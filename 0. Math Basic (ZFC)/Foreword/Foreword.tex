@@ -1,0 +1,225 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Tr}{RGB}{9, 132, 227}
+    \definecolor{Rdf}{RGB}{34, 166, 179}
+    \definecolor{Rtr}{RGB}{86, 66, 143}
+    \definecolor{Spec}{RGB}{243, 243, 243}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Tr}[2][]{colbacktitle=Tr, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Spec}[2][]{colbacktitle=Spec, colback=white, title={\large\color{black}#2},fonttitle=\bfseries,#1}
+
+    \title{\LARGE Foreword}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+The 0th course of my mathematics career is the Math Basic, which is set up on the ZFC set theory. And this chapter is for the most elementary concepts and resulting truth that you have to keep in mind. In this chapter below, I will propose every concept in a \textbf{Df} colorbox and every truth in a \textbf{Tr} colorbox. Notably, if sometimes a Df or a Tr is somewhat trivial, I will specify it in the text (where a changed color of text is used to marked it) instead of making it a single colorbox. For this part of text, I will color the one for Df using the color for the Df colorbox, and color the one for Tr also using the corresponding color.
+Now, here we go!
+
+\begin{Df}{$\bullet$ Universe of Discourse (论域)}
+    Everything talked about is included as the universe of discourse. In mathematics, the universe of discourse is invariant.
+\end{Df}
+
+\begin{Df}{$\bullet$ Individual (个体)}
+    An object in the universe of discourse is called an individual. \textcolor{Rtr}{Due to the invariance of the universe of discourse, there is no new individual added and no existing deleted all the while.}
+\end{Df}
+
+\begin{Df}{$\circ$ Individual Variable (个体变元)}
+    A variable taking values among individuals is called an individual variable.
+\end{Df}
+
+\begin{Df}{$\bullet$ Proposition (命题)}
+A declaritive sentence that is (already) determined as either true or false is called a proposition.
+\end{Df}
+
+Exactly speaking, a sentence is a proposition if and only if it is:
+\begin{compactenum}
+    \item a declaritive sentence and 
+    \item true or false on the current state.
+\end{compactenum}
+And here are some examples that are is (yes) or is not (no) a proposition:
+\begin{compactitem}
+    \item Does Alice like cats? (no, not declaritive but interrogative)
+    \item Bob is 12 years old. (no, declaritive but not determinable since the time is not specified)
+    \item Bob was 12 years old in 2024. (yes, declaritive and determinable)
+\end{compactitem}
+
+\begin{Df}{$\bullet$ Proposition Variable (命题变元)}
+    A variable taking values among propositions is called a proposition variable.
+\end{Df}
+
+A series of operators on propositions are necessary for logic.
+
+\begin{Df}{$\circ $ Logic Connectives (逻辑连接词)}
+    An operator that takes propositions as input and outputs a truth value (True or False) is called a logic connective. Some commonly used logic connectives are listed below:
+    \begin{compactitem}
+        \item $\lor $ : disjunction (析取) (或)
+        \item $\land $ : conjunction (合取) (与)
+        \item $\lnot $ : negation (否定) (非)
+        \item $\rightarrow $ : implication (蕴含) (推出)
+        \item $\leftrightarrow $: bi-implication (双蕴含) (等价)
+    \end{compactitem}
+    and please search online for their exact rules. 
+\end{Df}
+
+With these connectives, we can build new propositions on existing ones. However, sometimes there is insufficient for us to describe the world only with the propositions above. For example, if student Alice loves learning, we can denote this fact as $p$:
+$$p: \text{Alice loves learning}$$
+Furthermore, if all the students in the same class with Alice love learning, we have to invoke more notations:
+\begin{align*}
+    q&: \text{Bob loves learning}\\
+    r&: \text{Charlie loves learning}\\
+     & \dots
+\end{align*}
+We definitely would not do like this. Instead, we will:
+\begin{align*}
+    p&(\text{Alice}): \text{Alice loves learning}\\
+    p&(\text{Bob}): \text{Bob loves learning}\\
+    p&(\text{Charlie}): \text{Charlie loves learning}\\
+     & \dots
+\end{align*}
+or:
+$$p: \text{All students in Alice's class love learning}$$
+This draws forth the concept of \textbf{quantifiers} and \textbf{predicates}:
+
+\begin{Df}{$\bullet$ Predicates (谓词)}
+    A predicate is an operator that takes objects (maybe propositions, individuals or predicates themselves) as input and outputs a proposition. We often denote a predicate with the form $p(x)$, $p(x,y)$, \dots
+\end{Df}
+
+In other words, a predicate is a function, which can map some propositions, individuals or another predicates to a proposition.
+
+\begin{Df}{$\bullet$ Quantifiers (量词)}
+    There are two basic quantifiers:
+    \begin{compactitem}
+        \item $\forall$ : universal quantifier (全称量词)
+        \item $\exists$ : existential quantifier (特称量词)
+    \end{compactitem}
+    A quantifier leads a variable which takes values among individuals or propositions, and then a predicate of the proper form, to form a proposition. For example:
+    \begin{align*}
+        &\forall x\;p(x)\\
+        &\exists x\; p(x)\\
+        &\forall x\forall y\; p(x,y)\\
+        &\forall p\; (p \text{ is true.})\\
+        &\dots
+    \end{align*}
+\end{Df}
+
+\begin{Df}{$\bullet$ Tautology (永真式)}
+    A predicate that is always true under every condition of the variables it involves is called a tautology. For example, $P(p): p\land F \rightarrow F$ ($F$ stands for a false proposition), $p(x): (x>0)\rightarrow (x+1>1) $ 
+\end{Df}
+
+Now we will step into the overall architecture of logic. Here we mainly introduce the \textbf{proposition logic} (also called the \textbf{0-order logic}) and the \textbf{predicate logic} (also called the \textbf{1-order logic}), and we will see that the 1-order-logic-based ZFC system is sufficient for all the mathematics at present.
+
+\begin{Df}{$\bullet$ 0, 1 and 2-order Logic}
+    \begin{compactitem}
+        \item 0-order: describes the world only use propositions without any quantifier.
+        \item 1-order: (based on 0-order) introduces the quantifiers and the individual variables.
+        \item 2-order: (based on 1-order) introduces the predicate variables (which take values among predicates) and allow the quantifiers to lead them.
+    \end{compactitem}
+\end{Df}
+
+Specifically speaking, the 1-order logic adds the propositions of the form $\forall x \; p(x)$ compared to the 0-order; and the 2-order logic adds the propositions of the form $\forall \varphi \; P(\varphi)$ (where $\varphi$ is an individual predicate and $P$ is a ``predicate'' predicate). compared to the 1-order.
+
+Now it is time to summarise the 1-order logic:
+
+\begin{Tr}{$\bullet$ Rules of 1-order Logic}
+    In 1-order logic:
+    \begin{compactenum}
+        \item There are only propositions, individuals and predicates;
+        \item The predicates are all ``individual predicates'' (i.e., the predicates take values only among individuals).
+    \end{compactenum}
+\end{Tr}
+
+For an advanced utility of 1-order logic, we will should develop more concepts and explore more truths that \textbf{are suitable for later development of all knowledge.}
+
+\begin{Spec}{$\bullet$ Relationship between Propositions and Predicates}
+    \begin{compactitem}
+        \item Suppose $p(x_1, \dots, x_n)$ is a predicate (only) about variables $x_1, \dots, x_n$. If we quantify the variable $x_1$, for example, append a ``$\forall x_1$'' in front of this predicate,then the resulting sentence $\forall x_1 \; p(x_1, \dots, x_n)$ is a predicate (only) about variables $x_2, \dots, x_n$, i.e., $q(x_2, \dots, x_n) = \forall x_1 \; p(x_1, \dots, x_n)$ is a predicate (only) about variables $x_2, \dots, x_n$.
+        \item In a word, \textcolor{Tr}{the quantification of one variable involved by a predicate yields a predicate about the rest of the involved variables; and when there is no variable involved, the predicate reduces to a proposition.}
+        \item Hence, we can further define the nestification of quantifiers: \textcolor{Df}{``$Q_1 x_1\dots Q_m x_m \;p(x_1, \dots, x_n)$'' stands for the predicate ``$Q_1 x_1 [Q_2 x_2 \dots[Q_m x_m \; p(x_1, \dots, x_n)]\dots]$'' (where $Q_1, \dots, Q_m$ are ``$\forall$'' or ``$\exists$'')}
+        \item \textcolor{Df}{Logic connectives are allowed to be applied on predicates, which is defined as the point-wise operation on corresponding reduced propositions over all possible values of the involved variables.} (consider the function addition $f(x)+g(x)$ that yields a new function $[f(x)+g(x)]$)
+    \end{compactitem} 
+\end{Spec}
+
+\begin{Spec}{$\bullet$ the Order of Nesting Quantifiers}
+    \textcolor{Tr}{Suppose $k$ quantifications $Q_1 x_{n_1}, \dots, Q_k x_{n_k}$ are made on a predicate $p(x_1, \dots, x_n)$, then:
+    \begin{compactenum}
+        \item if $Q_1, \dots, Q_k$ are all ``$\forall$'' or are all ``$\exists$'', then the $k$ quantifications can be arranged in any order.
+        \item if there are both ``$\forall$'' and ``$\exists$'' in $Q_1, \dots, Q_k$, then the order of these $k$ quantifications is not arbitrary (since a change to their order could leads to a changed meaning of the sentence in this case).
+    \end{compactenum}}
+\end{Spec}
+
+\begin{Spec}{$\bullet$ Habitual Notation: ``s.t.''}
+    \begin{compactitem}
+        \item \textcolor{Df}{$\forall x \;(p(x)\rightarrow q(x))$ can be denoted by $\forall x \text{ s.t. } p(x)\;[q(x)]$ (here ``s.t.'' means ``subject to'')}
+        \item \textcolor{Df}{$\exists x \;(p(x)\land q(x))$ can be denoted by $\exists x \text{ s.t. } p(x)\;[q(x)]$}
+        \item \textcolor{Df}{When $x$ is grammatically the subject of the predicate $p(x)$, we can further denote $$\forall x \text{ s.t. } p(x)\;[q(x)] \quad(\text{resp. }\exists x \text{ s.t. } p(x)\;[q(x)])$$ by $$\forall p(x)\;[q(x)] \quad(\text{resp. }\exists p(x)\;[q(x)])$$ without ambiguity. For example, ``$\forall x>0, x+1>1$'' or ``$\forall A \text{ is a positive matrix}, \det(A)>0$''}
+        \item \textcolor{Df}{The notations above (``s.t'' and the further omission of ``s.t'') keep the same if $p$ and $q$ involve more other variables.}
+        \item \textcolor{Tr}{Suppose $\forall x_1 \text{ s.t. } p_1\; \forall x_2 \text{ s.t. } p_2\; \dots \forall x_n \text{ s.t. } p_n\; (q)$ is a predicate (where $p_1$, \dots, $p_n$ and $q$ are all predicates). If we treat $\forall x_i \text{ s.t. } p_i$ as an entirety, then:
+        \begin{compactenum}
+            \item If $p_i$ is only about $x_i$ for all $i=1,\dots, n$, then the $n$ entireties above are commutable in their order; 
+            \item If some $p_i$ involved more than $x_i$, then these entireties are not commutable, and sometimes the entire predicate may be semantically confusing.  
+        \end{compactenum}
+        }
+        For example, $(\forall x>0)\; (\forall y>x)\; (x+1<y+1)$ is a proposition, but $(\forall y>x)\; (\forall x>0)\; (x+1<y+1)$ is a predicate about $x$ in structure and is confusing in semantics. \textcolor{Tr}{Note that this is also true for the predicate $\exists x_1 \text{ s.t. } p_1\; \exists x_2 \text{ s.t. } p_2\; \dots \exists x_n \text{ s.t. } p_n\; (q)$.}
+        \item \textcolor{Tr}{Suppose $p_i$ is a predicate (only) about $x_i$ for all $i = 1, \dots, n$ and $q$ is another predicate, then:
+        \begin{compactenum}
+            \item $\{(\forall x_1 \text{ s.t. } p_1) \dots (\forall x_n \text{ s.t. } p_n)\; (q)\}\leftrightarrow \{\forall x_1 \dots \forall x_n \;((p_1\land \dots \land p_n) \rightarrow q)\}$ is a tautology;
+            \item $\{(\exists x_1 \text{ s.t. } p_1) \dots (\exists x_n \text{ s.t. } p_n)\; (q)\}\leftrightarrow \{\exists x_1 \dots \exists x_n \;((p_1\land \dots \land p_n) \land q)\}$ is a tautology; 
+        \end{compactenum}}
+        \item \textcolor{Tr}{It is obvious that when $p(x)$ is a tautology, ``$\forall x \text{ s.t. } p(x)\; [q(x)]$'' (resp. ``$\exists x \text{ s.t. } p(x)\; [q(x)]$'') is equivalent to ``$\forall x\; [q(x)]$'' (resp. ``$\exists x\; [q(x)]$'')}
+    \end{compactitem}
+\end{Spec}
+
+\begin{Spec}{$\bullet$ Habitual Notation: Uniqueness Notation ``$\exists !$''}
+    \begin{compactitem}
+        
+        \item \textcolor{Df}{To describe the uniqueness of one individual $x$, we can adopt the following proposition: 
+        \begin{equation}
+            \{\exists x \text{ s.t. } p(x)\; [q(x)]\} \land \{\forall x_1 \forall x_2 \;(\,p(x_1)\land q(x_1)\land p(x_2)\land q(x_2)\rightarrow (x_1=x_2)\,)\} \label{big} 
+        \end{equation}
+        which expresses both the existence and the uniqueness of the individual $x$ that subject to $p(x)\land q(x)$. Then we denote the proposition \eqref{big} by the following notation:
+        $$\exists! x \text{ s.t. } p(x)\; [q(x)]$$
+        Additionally, when $p(x)$ is a tautology, \eqref{big} is equivalent to
+        \begin{equation}
+            \{\exists x\; [q(x)]\} \land \{\forall x_1 \forall x_2 \;(\,q(x_1)\land q(x_2)\rightarrow (x_1=x_2)\,)\} \label{subbig} 
+        \end{equation}
+        and we denote \eqref{subbig} by ``$\exists! x\;q(x)$''.}
+
+        \item \textcolor{Tr}{Obviously, $$\{\exists! x \text{ s.t. } p(x)\; [q(x)]\} \leftrightarrow \{\exists! x\; [p(x)\land q(x)]\}$$}
+        \item The symbol $\exists!$ can be viewed as a new quantifier, and we will include this symbol when we refer to ``quantifiers'' later.
+    \end{compactitem}
+\end{Spec}
+
+\begin{Spec}{$\bullet$ Symbolic Expression Writing}
+    \begin{compactitem}
+        \item \textcolor{Df}{For convenience, we can define the priority of the logic connectives as: $\lnot>\land>\lor>\,\rightarrow\,=\,\leftrightarrow$.}
+        \item When writing a predicate or proposition in linguistic way (such as ``$x\in y$'', ``A is isomorphic to B'', rather than ``$p(x)$ or $q(x,y)$''), wrap it with parentheses.
+        \item When a predicate is to be quantified, wrap it with parentheses.
+        \item \textcolor{Tr}{The unambiguity of 1-order symbolic expression: Under the writing rule above, when exposed to a sentence consists of variables, logic connectives, quantifiers and parentheses-marked sub-sentences, we are able to read it without any ambiguity. Specifically speaking, we read a sentence written in this way by the following steps:
+        \begin{compactenum}
+            \item Identify all the quantifiers and mark their positions.
+            \item For each quantifier, if a letter representing a variable is on the heels, then identify the structure like ``$\forall x\; (\dots)$''; if on the heels is a left parenthesis, then identify the structure like ``$\forall (\dots)\; (\dots)$''. If the structure deleted is of this form instead: ``$\forall x \forall y \dots \;(\dots)$'' (or ``$\forall (\dots)\; \forall (\dots)\; \dots \forall (\dots)\; (\dots)$''), then it is a nested structure.
+            \item Each structure detected just now is essentially a predicate. Imagine we have substituded each of these structures with a letter representing a predicate, then the original sentence has no quantifier now, and thus can be read without ambiguity. 
+        \end{compactenum}
+        }
+        \item If you are still confused about the writing and reading rules of 1-order-logic sentences, please do not be worried, as the next chapter will demonstrate this in a more detailed way.
+    \end{compactitem}
+\end{Spec}
+
+\end{document}

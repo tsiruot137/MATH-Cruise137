@@ -1,0 +1,234 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Limit of Number Sequence}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 1st chapter of Mathematical Analysis, which is about \textbf{the limit of number sequence.} In this course (Mathematical Analysis), only the basic analitic properties and methods in $\mathbb{R}$ are included, and those about complex number are responsible for the course ``3. Complex Analysis''.\\
+Here it is necessary to claim a ``definition (Df) -> theorem (Th)'' working cycle, which acts as the writing style throughout this whole course. This working cycle is shown bellow:
+
+\noindent\rule{\textwidth}{2pt}
+\begin{Df}{Some Definition}
+    The text of this definition.
+\end{Df}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+
+\begin{Th}{Some Theorem}
+    The text of this theorem.
+    \tcblower
+    \textit{Pf}: The proof of this theorem (is possibly "todo" when the author cannot complete it yet).
+\end{Th}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+\noindent\rule{\textwidth}{2pt}
+As for the text of both a definition or a theorem, a common fixed pattern of sentences is adopted, which is ``Suppose \dots (some pre-conditions or background information). Then \dots (the direct text for the definition or the theorem).''. Please identify this pattern later by yourself. 
+
+By the way, we now pre-claim some commonly-used notations:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+\end{compactenum} 
+Then with everything prepared, here we go.
+
+\begin{Df}{$\bullet$ Df1.1 (the limit of a number sequence)}
+    Suppose $\{a_n: n\in\mathbb{N}\}$ is a sequence in $\mathbb{R}$ and $a\in\mathbb{R}$. Then $a$ is called the limit of the sequence $\{a_n\}$, denoted by $\lim\limits_{n\to\infty}a_n=a$, if: 
+    $$\forall \varepsilon>0, \exists N\in\mathbb{N}, \forall n > N, |a_n-a|<\varepsilon.$$
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Df}{$\lim\limits_{n\to\infty}a_n=a$ is also called that the sequence $\{a_n\}$ converges to $a$. If no $a\in\mathbb{R}$ s.t. $\lim\limits_{n\to\infty}a_n=a$ exists, then we say that the sequence $\{a_n\}$ diverges.}
+        \item \textcolor{Th}{(Uniqueness) Easy to see that the limit of a sequence (if exists) is unique.}
+        \item \textcolor{Th}{(Boundedness) If $\{a_n\}$ converges to some real number, then there is some $M>0$ s.t. $|a_n|\leq M$ for all $n\in\mathbb{N}$.}
+        \item \textcolor{Th}{(Preservation of inequality) If $\lim\limits_{n\to\infty}a_n=a$ and $\lim\limits_{n\to\infty}b_n=b$ and $a_n\leq b_n$ for all $n\in\mathbb{N}$, then $a\leq b$.}
+        \item \textcolor{Th}{(Subsequence) If $\{a_n\}$ converges to $a$, then every subsequence of $\{a_n\}$ also converges to $a$.}
+        \item \textcolor{Th}{(Arithmetic) If $\{a_n\}$ and $\{b_n\}$ both converges in $\mathbb{R}$, then:
+            \begin{compactitem}
+                \item $\lim\limits_{n\to\infty}(a_n\pm b_n)=\lim\limits_{n\to\infty}a_n\pm \lim\limits_{n\to\infty}b_n$; 
+                \item $\lim\limits_{n\to\infty}(a_n\cdot b_n)=\lim\limits_{n\to\infty}a_n\cdot \lim\limits_{n\to\infty}b_n$, 
+                \item If $\lim\limits{n\to\infty} b_n\neq 0$, then $\lim\limits_{n\to\infty}\frac{a_n}{b_n}=\frac{a}{b}$ (if $b\neq 0$).
+            \end{compactitem}
+        }
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{$\circ$ Df1.1.1 (infinite small)}
+    A sequence $\{a_n\}$ in $\mathbb{R}$ is called an infinite small sequence if $\lim\limits_{n\to\infty}a_n=0$.
+\end{Df}
+
+\begin{Df}{$\circ$ Df1.1.2 (infinite large)}
+    A sequence $\{a_n\}$ in $\mathbb{R}$ is called an infinite large sequence, denoted by $\lim\limits_{n\to\infty}a_n=\infty$, if:
+    $$\forall M>0, \exists N\in\mathbb{N}, \forall n > N, a_n>M.$$
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{This definition is also referred as ``the positive infinite large sequence'', with the negative infinite large sequence, denoted as $\lim\limits_{n\to\infty}(a_n)=-\infty$, is defined as
+    $$\lim\limits_{n\to\infty}(-a_n)=\infty.$$}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df1.2 (the monotonicity of a sequence)}
+    Suppose $\{a_n\}$ is a sequence in $\mathbb{R}$. Then $\{a_n\}$ is called:
+    \begin{compactenum}
+        \item increasing if $a_n\leq a_{n+1}$ for all $n\in\mathbb{N}$;
+        \item strictly increasing if $a_n<a_{n+1}$ for all $n\in\mathbb{N}$;
+        \item decreasing if $a_n\geq a_{n+1}$ for all $n\in\mathbb{N}$;
+        \item strictly decreasing if $a_n>a_{n+1}$ for all $n\in\mathbb{N}$.
+        \item monotonic if it is either increasing or decreasing.
+    \end{compactenum}
+\end{Df}
+
+\begin{Th}{$\bullet$ Th1.3 (theorem of monotonicity and boundness)}
+    Suppose $\{a_n\}$ is a monotonic and bounded sequence in $\mathbb{R}$. Then $\{a_n\}$ converges.
+    \tcblower
+    \textit{Pf}: Let us say $\{a_n\}$ that is increasing and write the terms in $\{a_n\}$ in decimals:
+    $$
+    \begin{aligned}
+        a_1&=x_{10}.x_{11}x_{12}x_{13}\dots,\\
+        a_2&=x_{20}.x_{21}x_{22}x_{23}\dots,\\
+        &\dots\\
+        a_n&=x_{n0}.x_{n1}x_{n2}x_{n3}\dots,\\
+        &\dots
+    \end{aligned}
+    $$
+    Since monotonic $\{a_n\}$ is bounded, we can see that $\{x_{n0}\}$ is a bounded sequence in $\mathbb{N}$, and thus it will finally reach a maximum $x_0\in\mathbb{N}$. Then we can see that $\{x_{n1}\}$ is a bounded sequence in $\mathbb{N}$, and thus it will finally reach a maximum $x_1\in\mathbb{N}$. So forth, we can find a number $x = x_0.x_1x_2x_3\dots$, which can be verified as the limit of $\{a_n\}$.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th1.4 (theorem of nested closed intervals)}
+    Suppose $\{[a_n, b_n]: n\in\mathbb{N}\}$ is a sequence of closed intervals in $\mathbb{R}$ and $[a_{n+1}, b_{n+1}]\subseteq [a_n, b_n]$ for all $n\in\mathbb{N}$. If the length of the intervals $\{b_n-a_n: n\in\mathbb{N}\}$ converges to $0$, then there is some $x\in\mathbb{R}$ s.t. $x\in[a_n, b_n]$ for all $n\in\mathbb{N}$.
+    \tcblower
+    \textit{Pf}: From the theorem of monotonicity and boundness, we can see that $\{a_n\}$ and $\{b_n\}$ both converges to some $a$. Then we can see that $a\in[a_n, b_n]$ for all $n\in\mathbb{N}$.
+\end{Th}
+
+\begin{Th}{$\circ$ Th1.5.-1}
+    In $\mathbb{R}$, any sequence has a monotonic subsequence.
+    \tcblower
+    \textit{Pf}: Consider some terms named ``pilot'' in a sequence $\{a_n\}$, each of which is defined as a term that is greater than all other terms after. Then:
+    \begin{compactitem}
+        \item If there are finitely many pilot terms in $\{a_n\}$, then after the last pilot, we can choose an increasing subsequence since every term there has a (not strictly) greater term somewhere after.
+        \item If there are infinitely many pilot terms, then the pilots themselves form an decreasing subsequence.
+    \end{compactitem}
+\end{Th}
+
+\begin{Rmk}{}
+    This is a lemma for the proof of the Bolzano-Weierstrass theorem.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th1.5 (Bolzano-Weierstrass theorem)}
+    In $\mathbb{R}$, any bounded sequence has a convergent subsequence.
+    \tcblower
+    \textit{Pf}: From Th1.5.-1, we can see that any sequence has a monotonic subsequence. Then from Th1.3, we can see that this subsequence converges.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df1.6 (Cauchy sequence)}
+    Suppose $\{a_n\}$ is a sequence in $\mathbb{R}$. Then $\{a_n\}$ is called a Cauchy sequence if:
+    $$\forall \varepsilon>0, \exists N\in\mathbb{N}, \forall m, n > N, |a_m-a_n|<\varepsilon.$$
+\end{Df}
+
+\begin{Th}{$\bullet$ Th1.7 (Cauchy criterion)}
+    In $\mathbb{R}$, a convergent sequence is equivalent to a Cauchy sequence.
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item (Convergent $\Rightarrow$ Cauchy) Obvious.
+        \item (Cauchy $\Rightarrow$ Convergent) Let $\{a_n\}$ is a Cauchy sequence. Hence $\{a_n\}$ is obviously bounded. Then from the Bolzano-Weierstrass theorem, we choose a convergent subsequence $a_{k_n} \rightarrow a$ as $n\to \infty$. Now we want to show that $\{a_n\}$ converges to $a$. To limit the terms of $\{a_n\}$ arbitrarily close to $a$, we first limit the terms of $\{a_{k_n}\}$ and then restrict the remaining terms near around using the property of Cauchy sequence.
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{$\bullet$ Df1.8 (upper bound, lower bound, supremum, infimum)}
+    Suppose $A\subseteq\mathbb{R}_\infty$ (\textcolor{Df}{$\mathbb{R}_\infty\triangleq\mathbb{R}\cup\{\infty, -\infty\}$}). Then:
+    \begin{compactenum}
+        \item An element $u\in\mathbb{R}_\infty$ (resp. $l\in\mathbb{R}_\infty$) is called an upper bound (resp. a lower bound) of $A$ if $a\leq u$ (resp. $a\geq l$) for all $a\in A$.
+        \item An element in $\mathbb{R}_\infty$ is called the supremum (resp. infimum) of $A$, denoted by $\sup A$ (resp. $\inf A$), if it is the least upper bound (resp. greatest lower bound) of $A$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    From this definition we see that \textcolor{Th}{for any subset of $\mathbb{R}_\infty$, the supremum and infimum are both unique (if exist).}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th1.9 (supremum and infimum principle)}
+    Suppose $A\subseteq\mathbb{R}_{\infty}$. Then:
+    \begin{compactenum}
+        \item If $A$ has a finite upper bound (resp. lower bound), then $A$ has a supremum (resp. infimum).
+        \item If $A$ has no finite upper bound (resp. no finite lower bound), then $\sup A=\infty$ (resp. $\inf A=-\infty$).
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: The second statement (the one about no finite bound) is obvious.\\
+    Let us say that $A$ has a finite upper bound. To prove the first statement is just to find the supremum of $A$ from the known upper bound $a_0$. Then we can construct a sequence $\{a_n\}$ in the following process:
+        \begin{compactenum}
+            \item Decrease $\beta_0$ by $10^0$ unless $\beta_{k1}$ is not an upper bound of $A$;
+            \item Increase $\beta_{k1}$ by $10^{-1}$ unless $\beta_{k2}$ is an upper bound of $A$;
+            \item Decrease $\beta_{k2}$ by $10^{-2}$ unless $\beta_{k3}$ is not an upper bound of $A$;
+            \item Increase $\beta_{k3}$ by $10^{-3}$ unless $\beta_{k4}$ is an upper bound of $A$;
+            \item $\dots$
+        \end{compactenum}
+    Then we can easily verify that $\{\beta_n\}$ is Cauchy, and thus converges to a finite number $\beta$, which can then be verified as the supremum of $A$. Actually speaking, we can divide $\{\beta_n\}$ into a ``upper bound subsequence'' and a ``not upper bound subsequence'' according to the process above to show the ``upper bound'' and ``least upper bound'' implication of supremum.
+\end{Th}
+
+\begin{Rmk}{}
+    We can see that \textcolor{Th}{every subset of $\mathbb{R}_\infty$ has a supremum and an infimum} since it is bounded by $\infty$ and $-\infty$ anyway. And obviously, \textcolor{Th}{the supremum is always greater than or equal to the infimum (except $\varnothing$, with $\sup\varnothing = -\infty$ and $\inf\varnothing = \infty$).}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th1.10 (finite covering theorem) (Heine-Borel theorem)}
+    Suppose $[a,b]\subseteq\mathbb{R}$ is a finite closed interval. If there is a collection $\mathcal{I} = \{I_\lambda: \lambda\in\Lambda\}$ of open intervals (``open interval'' refers to the interval of the form $(a,b)$, $(-\infty, b)$, $(a, \infty)$, or $(-\infty, \infty)$) s.t. $[a,b]\subseteq\bigcup\limits_{\lambda\in\Lambda}I_\lambda$, then there exist finitely many intervals $I_{\lambda_1}, \dots, I_{\lambda_n}$ in $\mathcal{I}$ s.t. $[a,b]\subseteq\bigcup\limits_{i=1}^nI_{\lambda_i}$.
+    \tcblower
+    \textit{Pf}: We try to prove it with the supremum and infimum principle. Since we try to fill $[a,b]$ with finitely many open intervals, a natural idea is to fill it from $a$ to $b$. \\
+    Let $S = \{a<x\leq b: [a,x] \text{ can be covered by finitely many } I_\lambda\}$. First $S$ is obviously not empty. Then we can prove that $\sup S = b$ so that the ``finite coverage'' property can be extended to $b$.
+    \begin{compactenum}
+        \item $\sup S = b$: If $\sup S < b$, then find an open interval $(\alpha, \beta)$ in $\mathcal{I}$ s.t. $\sup S\in (\alpha, \beta)$. Now take $x_1, x_2$ s.t. $\alpha<x_1<\sup S<x_2<\beta$ and s.t. $x_1\in S$. Then $[a, x_1]$ can be finitely covered by some sub-collection $\pmb{I}$ of $\mathcal{I}$. Hence $[a, x_2]$ can be finitely covered by $\pmb{I}\cup\{(\alpha, \beta)\}$ and thus $x_2\in S$, which contradicts with that $\sup S<x_2$. Hence $\sup S = b$.
+        \item $[a,b]$ can be finitely covered: Since $\sup S = b$, any proper sub-interval $[a,x]$ of $[a,b]$ can be finitely covered. Hence we can first cover $b$ with some interval $(\alpha, \beta)$, and then cover $[a, \alpha]$ with finitely many intervals. 
+    \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    Actually we will propose a more general version of this theorem in the futural discussion about the topology of $\mathbb{R}^n$. There we will define the ``open sets'' and the ``closed sets'', and called a collection of open sets an ``open covering'' of a set $E\in\mathbb{R}^n$ if $E$ is contained in the union of the collection. Since in $\mathbb{R}$, an open (resp. closed) interval is a kind of open set (resp. closed set), and there is no significant topological difference between the open intervals and the open sets, we just proposed this theorem in a more understandable way.\\
+    Generally, the ``finite covering theorem'' can be summerized as: \textcolor{Th}{In $\mathbb{R}^n$, any open covering of a bounded closed set has a finite sub-covering.}\\
+    Above we have proposed the so called ``six basic theorems'' in $\mathbb{R}$, including (1) the theorem of monotonicity and boundness, (2) the theorem of nested closed intervals, (3) the Bolzano-Weierstrass theorem, (4) the Cauchy criterion, (5) the supremum and infimum principle, and (6) the finite covering theorem. These theorems show the completeness of $\mathbb{R}$ in different aspects, and they are equivalent, as we can see the logic chain $(1)\Rightarrow (2)\Rightarrow (3)\Rightarrow (4)\Rightarrow (5)\Rightarrow (6)$ from the their proofs we have written. Actually, there is still a lacked link $(6)\Rightarrow (1)$ before we truely complete the equivalence logic loop. This link is given by the following proof:
+    \tcblower
+    \textit{Pf}: Suppose $\{a_n\}$ is an increasing sequence in $\mathbb{R}$ and $\{a_n\}\subseteq [a_0, A]$ for some $A\in\mathbb{R}$. If $\{a_n\}$ has a maximum, then the maximum can be verified as the limit. If $\{a_n\}$ has no maximum, it would difficult to construct a limit with an open covering. Hence in this case, we can prove it by contradiction. Assume that $\{a_n\}$ has no limit in $[a_0, A]$. Then we construct an open covering $\mathcal{I} = \{I_x: x\in [a_0, A]\}$ of $[a_0, A]$ as follows:
+    \begin{compactenum}
+        \item If $x\in[a_0, A]$ is not an upper bound of $\{a_n\}$, then first check which adjacent terms $a_k, a_{k+1}$ of $\{a_n\}$ $x$ lies between (exactly speaking, if $x=a_k$ for some $k$, it should be which $a_{k-1}, a_{k+1}$) and let $I_x = (a_k, a_{k+1})$. In $\mathcal{I}$, such $I_x$ is called a ``type-1 interval''.
+        \item If $x\in[a_0, A]$ is an upper bound of $\{a_n\}$, then find a neighborhood $(x-\varepsilon, x+\varepsilon)$ of $x$ s.t. $\varepsilon>0$ and s.t. no term of $\{a_n\}$ lies in $(x-\varepsilon, x+\varepsilon)$ (such neighborhood exists since $x$ is not the limit of $\{a_n\}$). Let $I_x = (x-\varepsilon, x+\varepsilon)$. In $\mathcal{I}$, such $I_x$ is called a ``type-2 interval''.
+    \end{compactenum}
+    It is easy to notice that any type 1 interval is disjoint with any type 2 interval, or exactly speaking, the right end point of any type-1 interval is less than the left point of any type-2 interval. Now apply the finite covering theorem to obtain a finite sub-covering. Since $a_0$ can be covered only by a type-1 interval and $A$, only by a type-2 interval, there are both type-1 and type-2 intervals in the sub-covering. But since the sub-covering is finitely many, there is always a ``gap'' between the type-1 and the type-2 intervals, which is impossible for the covering of the entire $[a_0, A]$. Contradiction!
+\end{Rmk}
+\end{document}

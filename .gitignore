@@ -1,0 +1,5 @@
+*.pdf
+*.synctex.gz
+*.history/
+*.aux
+*.log

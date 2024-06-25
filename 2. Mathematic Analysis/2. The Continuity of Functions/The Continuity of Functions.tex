@@ -1,0 +1,290 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{The Continuity of Functions}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 1st chapter of Mathematical Analysis, which is about \textbf{the Continuity of Functions}. Here it is necessary to claim a ``definition (Df) -> theorem (Th)'' working cycle, which acts as the writing style throughout this whole course. This working cycle is shown bellow:
+
+\noindent\rule{\textwidth}{2pt}
+\begin{Df}{Some Definition}
+    The text of this definition.
+\end{Df}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+
+\begin{Th}{Some Theorem}
+    The text of this theorem.
+    \tcblower
+    \textit{Pf}: The proof of this theorem (is possibly "todo" when the author cannot complete it yet).
+\end{Th}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+\noindent\rule{\textwidth}{2pt}
+As for the text of both a definition or a theorem, a common fixed pattern of sentences is adopted, which is ``Suppose \dots (some pre-conditions or background information). Then \dots (the direct text for the definition or the theorem).''. Please identify this pattern later by yourself. 
+
+By the way, we now pre-claim some commonly-used notations and terms:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+    $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+    \item Since in this course we major in the basic analysis on $\mathbb{R}$, we will use the term ``real function'' to refer to a function $f: A\rightarrow \mathbb{R}$ where $A\subseteq \mathbb{R}$.
+    \item $\infty$: positive infinity; $-\infty$: negative infinity; $\pm\infty$: infinity.
+    \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists and is a finite real number.
+    \item An interval is a subset of $\mathbb{R}$ of one of the following forms: $(a,b)$, $[a,b]$, $(a,b]$, $[a,b)$, $(a, \infty)$, $(-\infty, b)$, $(-\infty, \infty)$, where $a, b\in\mathbb{R}$ and $a<b$. Please identify whether $(a,b)$ stands for a tuple or an open interval from the context by yourself.
+    \item Monotonic function: ``increasing'' for ``$\geq$'', ``strictly increasing'' for ``$>$''.
+\end{compactenum} 
+Then with everything prepared, here we go.
+
+\begin{Df}{$\bullet$ Df2.1.-2 (limit point)}
+    Suppose $A\subseteq\mathbb{R}$ and $a\in\mathbb{R}$. Then $a$ is called a limit point of $A$ if there is a sequence $\{a_n:n\in\mathbb{N}\}$ in $A$ such that
+    \begin{compactenum}
+        \item $a_n\neq a$ for all $n\in\mathbb{N}$;
+        \item $\lim\limits_{n\rightarrow\infty}a_n = a$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is from the topology of $\mathbb{R}^n$. We propose it here just for the definition of the limit of a function.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.1.-1 (neighborhood of a point)}
+    Suppose $a\in\mathbb{R}$ and $\delta>0$. Then the open interval $(a-\delta, a+\delta)$ is called a neighborhood of $a$ with radius $\delta$, denoted by $B_\delta(a)$.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactitem}
+        \item This definition is very useful in the presence of the local property of limits. Actually in later exposition of topology, we will call such regions as open balls (open disc for 2-dimensional and open ball for a higher dimension).
+        \textcolor{Df}{\item Actually in the later topology of $\mathbb{R}^n$, a neighborhood of a point $a$ is defined as an open set containing $a$, which would take on some other forms when $n=1$. In $\mathbb{R}$, the above definition is just a special type of neighborhood, but we will refer to it by default for the sake of analytical simplicity. 
+        \item We also denote the ``hollow neighborhood'' of $a$ with radius $\delta$, i.e., $(a-\delta, a)\cup(a, a+\delta)$, by $\check{B}_\delta(a)$.}
+    \end{compactitem}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.1 (the limit of a function)}
+    Suppose $f$ is a real function and $x_0$ is a limit point of $\text{dom}(f)$. Suppose also $l\in\mathbb{R}$. Then $l$ is called the limit of $f$ at $x_0$, denoted by $\lim\limits_{x\rightarrow x_0}f(x) = l$, if:
+    $$\forall\varepsilon>0, \exists\delta>0, \forall x\in\text{dom}(f)\cap\check{B}_\delta(x_0), f(x)\in B_\varepsilon(l).$$
+\end{Df}
+
+\begin{Rmk}{}
+    For a real function $f$, we say that $\lim\limits_{x\to x_0} f(x)$ exists if there is some real number $l$ such that $\lim\limits_{x\to x_0} f(x) = l$.\\
+    \textcolor{Df}{As for the pre-conditions ``Suppose $f$ is a real function and $x_0$ is a limit point of $\text{dom}(f)$'', we can refer to it by ``real function $f$ is defined near $x_0$''.} In 1-dimensional analysis, we often assume that a function is well-defined on some simple intervals. \textcolor{Df}{Hence we will often explicitly claim later that $f$ ``is well-defined near $x_0$'' when talking about some local properties, which means that there is some $\delta>0$ such that $\text{dom}(f)\supseteq \check{B}_\delta(x_0)$.}\\
+    \textcolor{Th}{From this definition, we can easily verified these basic properties:
+    \begin{compactenum}
+        \item If $\lim\limits_{x\rightarrow x_0}f(x) = l$, then the limit $l$ is unique.
+        \item If $\lim\limits_{x\rightarrow x_0}f(x) = l$, then $f$ is bounded on some neighborhood of $x_0$ (namely, there is some $\delta>0$ and some $M>0$ s.t. $|f(x)|<M$ for all $x\in\text{dom}(f)\cap\check{B}_\delta(x_0)$).
+        \item (Heine's theorem) (resolution principle) Suppose $f$ is defined near $x_0$ and $l$ is a real number. Then $\lim\limits_{x\rightarrow x_0}f(x) = l$ if and only if:\\
+        For any sequence $\{x_n:n\in\mathbb{N^\ast}\}$ in $\text{dom}(f)$ s.t. (1) $x_n\neq x_0$ for all $n\in\mathbb{N^\ast}$ and (2) $\lim\limits_{n\rightarrow\infty}x_n = x_0$, we have $\lim\limits_{n\rightarrow\infty}f(x_n) = l$.
+        \item (sandwich theorem) Suppose $f, g, h$ are well-defined near $x_0$ and the inequality $f(x)\leq h(x)\leq g(x)$ holds for all $x$ in some $\check{B}_\delta(x_0)$. Suppose also $l\in\mathbb{R}$. If $\lim\limits_{x\to x_0} f(x) = \lim\limits_{x\to x_0} g(x) = l$, then $\lim\limits_{x\to x_0} h(x) = l$.
+        \item (preservation of inequality) Suppose $f$ and $g$ both has limit at $x_0$. If on their shared domain, $f(x)\leq g(x)$ for all $x$ in some $\check{B}_\delta(x_0)$, then $\lim\limits_{x\to x_0} f(x) \leq \lim\limits_{x\to x_0} g(x)$.
+        \item (arithmics of limits) If both $\lim\limits_{x\rightarrow x_0} f(x)$ and $\lim\limits_{x\rightarrow x_0} g(x)$ exist, then:
+        \begin{compactitem}
+            \item $\lim\limits_{x\rightarrow x_0} (f(x)\pm g(x)) = \lim\limits_{x\rightarrow x_0} f(x) \pm \lim\limits_{x\rightarrow x_0} g(x)$;
+            \item $\lim\limits_{x\rightarrow x_0} (f(x)g(x)) = \lim\limits_{x\rightarrow x_0} f(x) \cdot \lim\limits_{x\rightarrow x_0} g(x)$;
+            \item If $\lim\limits_{x\rightarrow x_0} g(x)\neq 0$, then $\lim\limits_{x\rightarrow x_0} \frac{f(x)}{g(x)} = \frac{\lim\limits_{x\rightarrow x_0} f(x)}{\lim\limits_{x\rightarrow x_0} g(x)}$.
+        \end{compactitem}
+        \item The limit of function is a local property, which means that the limit of a function at a point is determined only by the behavior of the function near that point. But please pay attention that the limit at a point can be influenced if the function is modified at some other points nearby (see the ``local property'' part of Rmk \{, ID: 2.2\}).
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.1.1 (limit of composite function)}
+    Suppose $f$ and $g$ are real functions and $f\circ g$ is composable. If:
+    \begin{compactenum}
+        \item $\lim\limits_{t\rightarrow t_0} g(t) = x_0$;
+        \item $\lim\limits_{x\rightarrow x_0} f(x) = l$;
+        \item $\exists \check{B}_\eta(t_0)$ s.t. $g(t)\neq x_0$ for all $t\in\check{B}_\eta(t_0)$,
+    \end{compactenum}
+    then $\lim\limits_{t\rightarrow t_0} f(g(t)) = l$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\circ$ Th2.1.2 (left and right limit)}
+    Suppose $f$ is a real function and $x_0$ is a limit point of $\text{dom}(f)\cap (-\infty, x_0)$. A real number $l$ is called the left limit of $f$ at $x_0$, denoted by $\lim\limits_{x\rightarrow x_0^-}f(x) = l$, if:
+    $$\forall\varepsilon>0, \exists\delta>0, \forall x\in\text{dom}(f)\cap(x_0-\delta, x_0), f(x)\in B_\varepsilon(l).$$
+\end{Df}
+
+\begin{Rmk}{}
+    The right limit of $f$ at $x_0$ is defined similarly. \textcolor{Th}{If $f$ is well-defined near $x_0$, then $\lim\limits_{x\rightarrow x_0}f(x) = l$ if and only if $\lim\limits_{x\rightarrow x_0^-}f(x) = \lim\limits_{x\rightarrow x_0^+}f(x) = l$.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.1.3 (limit involving infinity)}
+    Suppose $f$ is a real function and there is a sequence $\{x_n\}\subseteq\text{dom}(f)$ s.t. $\lim\limits_{n\rightarrow\infty}x_n = \infty$. Suppose also $l\in\mathbb{R}$. Then $l$ is called the limit of $f$ at $\infty$, denoted by $\lim\limits_{x\rightarrow\infty}f(x) = l$, if:
+    $$\forall\varepsilon>0, \exists M>0, \forall x\in\text{dom}(f)\cap(M, +\infty), f(x)\in B_\varepsilon(l).$$
+\end{Df}
+
+\begin{Rmk}{}
+    There are many other type of limit for a real function. A common pattern of the definition of limit is that:\\
+    \textcolor{Df}{Suppose $f$ is a real function, $a$, $b$ are some ``target'' for independent variable $x$ and dependent variable $f(x)$ respectively. Suppose $\text{dom}(f)$ intersects with any ``hollow neighborhood'' $\check{U}(a)$ of $a$. Then $b$ is called the limit of $f$ at $a$, denoted by $\lim\limits_{x\to a} f(x) = b$ (or, $f(x)\rightarrow b$ as $x\rightarrow a$) if:
+    $$\forall U(b), \exists\check{U}(a), \forall x\in\text{dom}(f)\cap \check{U}(a), f(x)\in U(b)$$.}
+    Here the ``neighborhood'' $U(t)$ of $t$ is a subset of $\mathbb{R}_\infty$ in some form (as for $\check{U}(t)$, it is $U(t)\backslash \{t\}$), varied with different type of $t$:
+    \textcolor{Df}{
+    \begin{compactenum}
+        \item $t\in\mathbb{R}$: $U(t) = (t-\delta, t+\delta)$ for $\delta>0$;
+        \item $t = t_0^+$ (resp. $t = t_0^-$) for some $t_0\in\mathbb{R}$: $U(t) = [t_0, t_0+\delta)$ for $\delta>0$ (resp. $U(t) = (t_0-\delta, t_0]$ for $\delta>0$);
+        \item $t = \pm\infty$: $U(t) = [-\infty, -M)\cup (M, \infty]$ for $M>0$;
+        \item $t = \infty$ (resp. $t = -\infty$): $U(t) = (M, \infty]$ for $M>0$ (resp, $U(t) = [-\infty, -M)$ for $M>0$).
+    \end{compactenum}
+    }
+    In the common definition of limit, $a$ and $b$ can be any one of these four, namely, we can define $6\times 6 = 36$ types of limit from the discussion here. For example, when $a$, $b$ are both real numbers (of type-1 here), then it is just Df \{, ID: 2.1\}, the regular type of limit; if $a = \infty$ (in type-4 here) and $b$ is a real number (of type-1 here), then the limit is just Df \{, ID: 2.1.3\}.\\
+    Within one type of limit, the readers can discuss about the properties listed all above, following the same idea and pattern.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.1.4 (Cauchy criterion for limit of function)}
+    Suppose $f$ is a real function and $x_0\in\mathbb{R}$ is a limit point of $\text{dom}(f)$. Then $\lim\limits_{x\to x_0} f(x)$ exists iff:
+    $$\forall \varepsilon>0, \exists \delta>0, \forall x_1, x_2\in\text{dom}(f)\cap \check{B}_\delta(x_0), |f(x_1)-f(x_2)|<\varepsilon.$$
+    \tcblower
+    \textit{Pf}: Use the resolution principle in the Rmk \{, ID: 2.1\} and the fact ``convergent sequence is equivalent to Cauchy sequence''.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df2.2 (Continuity of function)}
+    Suppose $f$ is a real function and $x_0\in\text{dom}(f)$. Then $f$ is called continuous at $x_0$ (or, $x_0$ is called a continuity point of $f$) if:
+    $$\forall\varepsilon>0, \exists\delta>0, \forall x\in\text{dom}(f)\cap B_\delta(x_0), f(x)\in B_\varepsilon(f(x_0)).$$
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item Please recall the concept of neighborhood $U(t)$ in Rmk \{, ID: 2.1.3\}, \textcolor{Th}{Suppose $f$ is a real function, $x_0\in\text{dom}(f)$ and $\text{dom}(f)$ intersects with any $\check{U}(x_0)$. Then $f$ is continuous at $x_0$ iff $\lim\limits_{x\to x_0} f(x) = f(x_0)$.}
+        \item We can usually check the continuity of $f$ at $x_0$ by verifying the limit $\lim\limits_{x\to x_0} f(x) = f(x_0)$ as we usually assume that $f$ is well-defined near $x_0\in\text{dom}(f)$.
+        \item We can also define the left continuity (and correspondingly, right continuity). \textcolor{Df}{Suppose $f$ is a real function and $x_0\in\text{dom}(f)$. Then $f$ is called left continuous at $x_0$ if:
+        $$\forall \varepsilon>0, \exists\delta>0, \forall x\in\text{dom}(f)\cap(x_0-\delta, x_0], f(x)\in B_\varepsilon(f(x_0)).$$} For a real function $f$, we can easily verify that \textcolor{Th}{the continuity at $x_0$ implies both left and right continuity at $x_0$}, and that \textcolor{Th}{if $x_0\in\text{dom}(f)$ and $\text{dom}(f)$ intersects with any $\check{U}(x_0^-)$, then $f$ is left continuous at $x_0$ iff $\lim\limits_{x\to x_0^-} f(x) = f(x_0)$.} Similarly, recall the relationship between regular limit and ``sided''-limit, we can obtain that \textcolor{Th}{suppose real function $f$ is well-defined at and near $x_0$ (i.e., there is a $B_\delta(x_0)$ s.t. $\text{dom}(f)\supseteq B_\delta(x_0)$). Then: $f$ is continuous at $x_0$ iff $f$ is both left and right continuous at $x_0$.}
+        \item \textcolor{Df}{Suppose $f$ is a real function and $x_1\in\mathbb{R}$. Then $x_1$ is called a discontinuous point of $f$ if $x_1$ is not a continuous point of $f$.}
+        \item \textcolor{Df}{Suppose $f$ is real function and $A\subseteq\mathbb{R}$. Then $f$ is called continuous on $A$ (or, $f$ is called a continuous function on $A$) if $f$ is continuous at every point in $A$.}
+        \item As the continuity is defined as the same ``$\varepsilon-\delta$'' language with the limit of function, we can easily check the arithmics of it. \textcolor{Th}{If real functions $f$ and $g$ are both continuous at $x_0$, then: 
+        \begin{compactenum}
+            \item $f\pm g$, $f\cdot g$ are all continuous at $x_0$;
+            \item if $g(x_0)\neq 0$, then $f/g$ are also continuous at $x_0$. 
+        \end{compactenum}}
+        \item Also, we can check the chain-rule: \textcolor{Th}{Suppose real functions $f$ and $g$ are composable ($f\circ g$). If $g$ is continuous at $t_0$ and $f$ is continuous at $g(t_0)$, then $f\circ g$ is continuous at $t_0$.}
+        \item The continuity of a function is also a local property (as the similar pattern of definition with the limit). But please also pay attention to the domain issue. For example, $f$ defined by $\text{dom}(f) = [0,1]$ and $f(x) = x$ is continuous at $1$, but an extended $f^*$ of $f$, which is defined by $\text{dom}(f^*) = [0,2]$, $f^*(x) = x (\text{ when }x\in[0,1])$ and $f^*(x) = x-1 (\text{ when }x\in(1,2])$, is not continuous at $1$.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.2.1 (interval-continuous function)}
+    Suppose $f$ is a real function. For an open interval $I$ (that is, the interval $I$ of the form $(a,b)$, $(a, \infty)$, $(-\infty, b)$ or $(-\infty, \infty)$), $f$ is called an interval-continuous function on $I$ if $f$ is continuous at every point in $I$; for a closed interval $[a,b]$, $f$ is called a interval-continuous function on $[a,b]$ if $f$ is continuous at every point in $(a,b)$, and is left continuous at $b$, right continuous at $a$.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item The term ``interval-continuous'' is specifically used to describe the continuity property of a function on an interval, which is a common concept in the analysis of real functions. Notice that we say $f$ is continuous on a set $A$ if $f$ is continuous at every point in $A$, but the interval-continuity does not require the continuity at every point of the interval. In fact, there are cases where $f$ is interval-continuous on an interval $I$ but is not continuous on $I$ (e.g., the interval-continuity of $f$ on $[a,b]$ does not guarantee the continuity of the endpoints $a$ and $b$, say, $\lim\limits_{x\to a^-} f(x)\neq \lim\limits_{x\to a^+} f(x)$).
+        \item Since in 1-dimensional calculation we mainly focus on the research of properties of functions on intervals, ``interval-continuous'' is more commonly used than ``continuous'' in this chapter, while the latter is a core concept in the futural topology.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.2.2 (continuity of inverse function)}
+    Suppose real function $f$ is a interval-continuous on an interval $I$ (an interval of the form listed in Df \{, ID: 2.2.1\}) and $f$ is strictly monotonic on $I$. Then the inverse function $f^{-1}$ is interval-continuous on $f[I]$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\circ$ Df2.3 (types of discontinuous point)}
+    Suppose $f$ is a real function and there is some $B_\delta(x_0)$ s.t. $\text{dom}(f)\supseteq B_\delta(x_0)$ (namely, $f$ is continuous at $x_0$ $\Leftrightarrow$ $\lim\limits_{x\to x_0} f(x) = f(x_0)$ $\Leftrightarrow$ $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x) = f(x_0)$ $\Leftrightarrow$ $f$ is both left continuous and right continuous at $x_0$). Suppose also $x_0$ is a discontinuous point of $f$ (and thus $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x) = f(x_0)$ does not holds). Then the discontinuous point $x_0$ can be further classified into the following types:
+    \begin{compactenum}
+        \item If $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x)$, then $x_0$ is called a removable discontinuous point of $f$;
+        \item If $\lim\limits_{x\to x_0^-} f(x) \neq \lim\limits_{x\to x_0^+} f(x)$, then $x_0$ is called a jump discontinuous point of $f$;
+        \item Removable discontinuous points and jump discontinuous points are collectively called ``type-1'' discontinuous points. Those discontinuous points that are not of type-1 —  namely, one of $\lim\limits_{x\to x_0^-} f(x)$ and $\lim\limits_{x\to x_0^+} f(x)$ does not exist (or is infinity) —  are called type-2 discontinuous points of $f$.
+    \end{compactenum} 
+\end{Df}
+
+\begin{Th}{$\circ$ Th2.3.1 (discontinuous points of monotonic function)}
+    Suppose real function $f$ is monotonic on $(a,b)$. Then any discontinuous point of $f$ on $(a,b)$ must be jump discontinuous point, and the set of all discontinuous points of $f$ on $(a,b)$ is at most countable.
+    \tcblower
+    \textit{Pf}: Let us assume that $f$ is increasing on $(a,b)$.
+    \begin{compactenum}
+        \item Any discontinuous point of $f$ on $(a,b)$ must be jump discontinuous point. First show that $\lim\limits_{x\to x_0^-} f(x)$ and $\lim\limits_{x\to x_0^+} f(x)$ both exist for any discontinuous point $x_0\in(a,b)$. Take a sequence $\{x_n\}\subseteq(a,b)$ that converges to $x_0$ from the left. Since $\{f(x_n)\}$ is increasing and bounded, it converges to some $l_1\in\mathbb{R}$, which can be verified as the limit $\lim\limits_{x\to x_0^-} f(x)$. The right limit is similar. Then we can easily show that the left limit must be less than the right limit, otherwise the function would break the monotonicity at $x_0$. Hence $x_0$ is a jump discontinuous point.
+        \item The set of all discontinuous points of $f$ on $(a,b)$ is at most countable. For any jump discontinuous point $x_0\in(a,b)$, we can find a rational number $r(x_0)$ in $(\lim\limits_{x\to x_0^-} f(x), \lim\limits_{x\to x_0^+} f(x))$. Then the map $x_0\mapsto r(x_0)$ can be constructed to be increasing, and thus can be injective. Since the set of all rational numbers is countable, the set of all jump discontinuous points is at most countable.
+        \item Here is my schetched proof for the countablility of the discontinuity. For any jump discontinuous point $x_0\in(a,b)$, partition it into a set $D(n)$ if the ``leap'' $\lim\limits_{x\to x_0^+} f(x) - \lim\limits_{x\to x_0^-} f(x)$ is in $[10^n, 10^{n+1})$. Since the discontinuous points in every $D(n)$ are (at most) countable, and $\{D(n): n\in\mathbb{Z}\}$ is also countable, we conclude the proof as ``the union of countably many countable sets is still countable''.
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{$\bullet$ Df2.4 (uniform continuity (一致连续))}
+    Suppose $f$ is a real function and $D\subseteq\text{dom}(f)$. Then $f$ is called uniformly continuous on $D$ if:
+    $$\forall\varepsilon>0, \exists\delta>0, \left(\forall x_1, x_2\in D\text{ and } |x_1-x_2|<\delta\right), |f(x_1)-f(x_2)|<\varepsilon.$$
+\end{Df}
+
+\begin{Rmk}{}
+    We can see that the uniform continuity is highly related to continuity. In fact, \textcolor{Th}{if a real function $f$ is uniformly continuous on $\text{dom}(f)$, then $f$ is continuous on $\text{dom}(f)$; and if a real function $f$ is uniformly continuous on an interval $I$, then $f$ is interval-continuous on $I$.} And under some conditions, the continuity can conversely imply the uniform continuity, which is discussed later.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.4.1 (on a closed interval, interval-continuity is equivalent to uniform continuity)}
+    Suppose $f:[a,b]\rightarrow\mathbb{R}$. Then $f$ is uniformly continuous on $[a,b]$ iff $f$ is interval-continuous on $[a,b]$.
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item (``only if'') Trivial.
+        \item (``if'') Prove by contradiction. Suppose $f$ is interval-continuous on $[a,b]$ but not uniformly continuous on $[a,b]$. Then there is some $\varepsilon_0>0$ s.t. $\forall\delta>0, \exists x_1, x_2\in[a,b]$ s.t. $|x_1-x_2|<\delta$ but $|f(x_1)-f(x_2)|\geq\varepsilon_0$. Hence for any $n\in\mathbb{N}^*$, there exist $s_n, t_n\in [a,b]$ s.t. $|s_n-t_n|<1/n$ but $|f(s_n)-f(t_n)|\geq \varepsilon_0$. By Bolzano-Weierstrass theorem, we can find a subsequence $\{s_{n_k}\}$ of $\{s_n\}$ s.t. $s_{n_k}\rightarrow s^*$ (as $k\rightarrow\infty$). Clearly, $t_{n_k}\rightarrow s^*$. Since for any $k$, $|f(s_{n_k})-f(t_{n_k})|\geq\varepsilon_0$, we take the limit on both sides. With also the continuity, we can obtain:
+        $$0 = |f(s^*)-f(s^*)| = |\lim\limits_{k\to\infty} f(s_{n_k})-\lim\limits_{k\to\infty}f(t_{n_k})| = \lim\limits_{k\to\infty} |f(s_{n_k})-f(t_{n_k})|\geq \varepsilon_0 > 0,$$
+        which is a contradiction.
+    \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    There are also some other properties of a continuous function on a closed interval. Note that \textcolor{Th}{for a function $f:[a,b]\rightarrow \mathbb{R}$, the continuity and the interval-continuity are the same (as these two concepts are different only at the endpoints).} Thus do not mind whether we say ``continuous'' or ``interval-continuous'' in such cases.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.5 (on a closed interval, interval-continuous function is bounded)}
+    Suppose $f:[a,b]\rightarrow\mathbb{R}$ is interval-continuous on $[a,b]$. Then $f$ is bounded on $[a,b]$.
+    \tcblower
+    \textit{Pf}: Prove by contradiction. Suppose $f$ is not bounded on $[a,b]$. Then choose a sequence $\{|f(x_n)|: n\in\mathbb{N}^*\}$ strictly increasing to infinity. Since $\{x_n\}$ is bounded in $[a,b]$, by Bolzano-Weierstrass theorem, $x_{k_n}\rightarrow x^*$ for some subsequence $\{x_{k_n}: n\in\mathbb{N}^*\}$ and some $x^*\in [a,b]$. $f$ is continuous on $[a,b]$, thus $\lim\limits_{x\to x_0}f(x) = f(x_0)$ for any $x_0\in[a,b]$ (obviously, including the endpoints), and thus $\lim\limits_{x\to x_0}|f(x)| = |f(x_0)|$. Since $\{x_{k_n}\}$ converges to $x^*$ (of course there is at most one term of $\{x_{k_n}\}$ equal to $x^*$), we have $\lim\limits_{n\to\infty}|f(x_{k_n})| = |f(x^*)|$. But this is a contradiction since $\{|f(x_n)|\}$ is strictly increasing to infinity.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.5.1 (on a closed interval, interval-continuous function attains its maximum and minimum)}
+    Suppose $f:[a,b]\rightarrow\mathbb{R}$ is interval-continuous on $[a,b]$. Then there exist $x^*, x_*\in [a,b]$ s.t. 
+    $$f(x^*) = \sup\{\text{range}(f)\}, \quad f(x_*) = \inf\{\text{range}(f)\}.$$
+    \tcblower
+    \textit{Pf}: Only prove the maximum here. Let $M = \sup\{\text{range}(f)\}$. Similar to the proof of Th \{, ID: 2.5\}, we can find a sequence $\{x_n\}$ s.t. $f(x_n)\rightarrow M$. Then select a subsequence $\{x_{k_n}\}$ that converges to some $x^*\in[a,b]$, and finally prove that $f(x^*) = M$ using continuity and the reduction principle.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.5.2 (intermediate value theorem)}
+    Suppose $f:[a,b]\rightarrow\mathbb{R}$ is interval-continuous on $[a,b]$. Let $y^*$ and $y_*$ be the maximum and minimum of $f(x)$ for $x\in [a,b]$. Then for any $y_0\in [y_*, y^*]$, there exists $x_0\in [a,b]$ s.t. $f(x_0) = y_0$.
+    \tcblower
+    \textit{Pf}: Let $y^* = f(x^*)$, $y_* = f(x_*)$ and say $x_*<x^*$, $y_0\in(y_*, y^*)$. Then we can construct a sequence of nested closed intervals $\{[a_n, b_n]\}$:
+    \begin{compactitem}
+        \item $[a_0, b_0] = [x_*, x^*]$;
+        \item Let us say for any $n$, $f(\frac{a_n+b_n}{2})\neq y_0 $ (otherwise we have done). If $f(\frac{a_n+b_n}{2})> y_0$, then $[a_{n+1}, b_{n+1}] = [a_n, \frac{a_n+b_n}{2}]$; if $f(\frac{a_n+b_n}{2})< y_0$, then $[a_{n+1}, b_{n+1}] = [\frac{a_n+b_n}{2}, b_n]$.
+    \end{compactitem}
+    Then $\{a_n\}$ and $\{b_n\}$ both converges to some $x_0\in [a,b]$, and we have $f(a_i)<y_0<f(b_i)$ for all $i$. By the continuity, we obtain $f(a_n)$, $f(b_n)$ both converges to $f(x_0)$ (as $n\rightarrow\infty$), and thus $f(x_0)$ must be $y_0$.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{This theorem immediately comes to a result that the image of an interval-continuous function on a closed interval is also a closed interval. And if the interval-continuous function has values of different signs at the endpoints (such as $f(a)<0<f(b)$), then it must have a zero in the interval.}
+\end{Rmk}
+\end{document}

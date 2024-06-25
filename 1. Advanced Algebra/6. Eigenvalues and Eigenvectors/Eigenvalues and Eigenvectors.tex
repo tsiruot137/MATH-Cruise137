@@ -1,0 +1,212 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Eigenvalues and Eigenvectors}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 6th chapter of advanced algebra, which is about \textbf{Eigenvalues and Eigenvectors.}\\
+Here it is necessary to claim a ``definition (Df) -> theorem (Th)'' working cycle, which acts as the writing style throughout this whole course. This working cycle is shown below:
+
+\noindent\rule{\textwidth}{2pt}
+\begin{Df}{Some Definition}
+    The text of this definition.
+\end{Df}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+
+\begin{Th}{Some Theorem}
+    The text of this theorem.
+    \tcblower
+    \textit{Pf}: The proof of this theorem (is possibly "todo" when the author cannot complete it yet).
+\end{Th}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+\noindent\rule{\textwidth}{2pt}
+As for the text of both a definition or a theorem, a common fixed pattern of sentences is adopted, which is ``Suppose \dots (some pre-conditions or background information). Then \dots (the direct text for the definition or the theorem).''. Please identify this pattern later by yourself. 
+
+By the way, we now reiterate some commonly-used notations and conventions:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $A\times B$: the Cartesian product of $A$ and $B$.
+    \item $\mathbb{F}$: a number field.
+    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+    \item The matrix product $KA$ is referred as ``$A$ left-multiplied by $K$'' or ``left-multiply $A$ by $K$''; $AK$ is similar.
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+\begin{Df}{$\bullet$ Df6.1.-1 (invariant subspace)}
+    Suppose $T\in\mathcal{L}(V)$ and $U\subseteq V$. Then $U$ is called an invariant subspace of $V$ under $T$ if
+    $$\forall u\in U, \;T(u)\in U$$
+\end{Df}
+
+\begin{Rmk}{}
+    Some examples of invariant subspaces of $V$ under $T$: $V$, $\{0\}$, $N(T)$, $R(T)$.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df6.1 (eigenvalues and eigenvectors)}
+    Suppose $T\in\mathcal{L}(V)$, where $V$ is a vector space over $\mathbb{F}$. Suppose $\lambda\in\mathbb{F}$. If there exists a non-zero vector $v\in V$ s.t. $Tv=\lambda v$, then $\lambda$ is called an eigenvalue of $T$, and $v$ is called an eigenvector of $T$ corresponding to eigenvalue $\lambda$.
+\end{Df}
+
+\begin{Rmk}{}
+    Easy to know that \textcolor{Th}{one eigenvalue can have different eigenvectors (if $v$ is an eigenvector corresponding to $\lambda$, then so is $cv$ for any non-zero scalar $c$), but one eigenvector can corresponds to only one eigenvalue.} And we know that \textcolor{Th}{for $T\in\mathcal{L}(V)$, $\lambda$ is an eigenvalue of $T$ if and only if $T-\lambda I$ is not invertible.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df6.1.1 (eigenspace)}
+    Suppose $T\in\mathcal{L}(V)$ and $\lambda\in\mathbb{F}$ is an eigenvalue of $T$. \textcolor{Th}{Then the set of all eigenvectors of $T$ corresponding to $\lambda$ (union with $\{0\}$) can be verified as a non-zero subspace of $V$}, which is called the eigenspace of $T$ corresponding to $\lambda$. In other word, $N(T-\lambda I)$ is the eigenspace of $T$ corresponding to $\lambda$, denoted by $E(\lambda, T)\triangleq N(T-\lambda I)$ (or $E(\lambda)$ if $T$ is specified from the context).
+\end{Df}
+
+\begin{Th}{$\bullet$ Th6.1.2 (eigenvectors corresponding to distinct eigenvalues are linearly independent)}
+    Suppose $T\in\mathcal{L}(V)$ and $\lambda_1, \dots, \lambda_m$ are $m$ distinct eigenvalues of $T$. Suppose also $v_1,\dots, v_m$ are eigenvectors corresponding to $\lambda_1, \dots, \lambda_m$ respectively. Then $v_1, \dots, v_m$ are linearly independent.
+    \tcblower
+    \textit{Pf}: Prove by contradiction. Assume that $v_1, \dots, v_m$ are linearly dependent. Then we take the maximal linearly-independent subset of $\{v_1, \dots, v_m\}$, say $\{v_1, \dots, v_k\}$, where $k<m$. Then $v_{k+1}$ can be written as a linear combination of $v_1, \dots, v_k$, i.e. $v_{k+1}=\sum_{i=1}^k c_iv_i$. Then: 
+    $$\begin{aligned}
+        T(v_{k+1}) &= T\left(\sum_{i=1}^k c_iv_i\right)\\
+        \lambda_{k+1}v_{k+1} &= \sum_{i=1}^k c_iT(v_i) \\
+        \sum_{i=1}^{k} c_i\lambda_{k+1} v_i &= \sum_{i=1}^k c_i\lambda_iv_i\\
+        &\Downarrow\\
+        \sum_{i=1}^{k} c_i(\lambda_{k+1}&-\lambda_i)v_i = 0
+    \end{aligned} 
+    $$
+    which implies that $c_i(\lambda_i-\lambda_{k+1})=0$ for all $i\in\{1,\dots, k\}$. Since $c_i (i=1,\dots, k)$ are not all zero, there must exist some $i$ s.t. $\lambda_{k+1}=\lambda_i$, which contradicts the assumption that $\lambda_1, \dots, \lambda_m$ are distinct.
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem quickly implies that \textcolor{Th}{if $V$ is finite-dimensional, then the number of distinct eigenvalues of $T$ is at most $\dim V$}, and that \textcolor{Th}{the sum of eigenspaces corresponding to different eigenvalues of $T$ is a direct sum}.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df6.1.3 ($p(T))$}
+    \begin{compactenum}
+        \item Suppose $T\in\mathcal{L}(V)$. Then $T^m\triangleq \underbrace{T\cdots T}_{m\text{ times}}$ ($m\in\mathbb{N}^\ast$); $T^0\triangleq I$; if $T$ is invertible, then $T^{-m}\triangleq (T^{-1})^m = (T^m)^{-1}$ ($m\in\mathbb{N}^\ast$).
+        \item Suppose $T\in\mathcal{L}(V)$ where $V$ is a vector space over $\mathbb{F}$. Suppose $p(x)=a_0+a_1x+\dots+a_mx^m$ is a polynomial about $x$ in $\mathbb{F}$. Then $p(T)$ is the linear map defined by $p(T)=a_0I+a_1T+\dots+a_mT^m$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Easy to verify the multiplicative properties of $p(T)$:}
+    \textcolor{Th}{
+    \begin{compactitem}
+        \item Suppose $r(x) = p(x)q(x)$. Then $r(T) = p(T)q(T)$;
+        \item $p(T)q(T) = q(T)p(T)$.
+    \end{compactitem}
+    }
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th6.2 (operators over $\mathbb{C}$ has at least one eigenvalue)}
+    Suppose $T\in\mathcal{L}(V)$ where $V$ is a finite-dimensional non-zero vector space over $\mathbb{C}$. Then $T$ has at least one eigenvalue.
+    \tcblower
+    \textit{Pf}: Let $v$ be a non-zero vector in $V$ and $\dim V=n$. Then $v, Tv, T^2v, \dots, T^nv$ are linearly dependent. Then there exists $a_0, a_1, \dots, a_n$ s.t. $a_0v+a_1Tv+\dots+a_nT^nv=0$, where $a_i \;(i=0,1,\dots, n)$ are not all zero. Then the polynomial $p(x) = a_0+a_1x+\dots+a_nx^n$ satisfies $p(T)(v) = 0$. Since $a_1, \dots, a_n$ are not all zero (otherwise $a_0$ would be forced to be zero), $p(x)$ has degree at least 1. According to the polynomial factorization theorem on $\mathbb{C}$ (Th \{, ID: 1.8.3\} and Th \{, ID: 1.14.2\}), $p(T) = c\prod_{i=1}^n (T-\lambda_iI)$ for some non-zero $c$ and some $\lambda_i\in\mathbb{C}$, and $\left(c\prod_{i=1}^n (T-\lambda_iI)\right)v = 0$. This indicates that some $T-\lambda_i I$ is not invertible, i.e. some $\lambda_i$ is an eigenvalue of $T$.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Although operators over $\mathbb{C}$ always has eigenvalues, operators over $\mathbb{R}$ does not}. For example, a rotation operator $T$ on $\mathbb{R}^2$ does not have eigenvalue, since $Tv$ changes the orientation of $v$ but $\lambda v$ never does.
+\end{Rmk}
+
+\begin{Df}{$\circ$ Df6.3 (upper-triangular matrix)}
+    Check this definition online by yourself.
+\end{Df}
+
+\begin{Th}{$\circ$ Th6.3.1 (conditions of upper-triangular matrix)}
+    Suppose $T\in\mathcal{L}(V)$ and $\pmb{v} = \{v_1, \dots, v_n\}$ is a basis of $V$. Then the following conditions are equivalent:
+    \begin{compactenum}
+        \item $\mathcal{M}(T)_{\pmb{v}}$ is upper-triangular;
+        \item $Tv_j\in \text{span}(v_1, \dots, v_j)$ for any $j\in\{1, \dots, n\}$;
+        \item $\text{span}(v_1, \dots, v_j)$ is invariant under $T$ for any $j\in\{1, \dots, n\}$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th6.3.2 (operators over $\mathbb{C}$ has a upper-triangular matrix w.r.t. some basis)}
+    Suppose $T\in\mathcal{L}(V)$ where $V$ is a finite-dimensional non-zero vector space over $\mathbb{C}$. Then there exists a basis $\pmb{v}$ of $V$ s.t. $\mathcal{M}(T)_{\pmb{v}}$ is upper-triangular.
+    \tcblower
+    \textit{Pf}: An upper-triangular matrix requires that $Tv_j\in\text{span}(v_1, \dots, v_j)$ for any $j\in\{1, \dots, n\}$. Hence it first requires that $v_1$ is an eigenvector of $T$, $T$ must have an eigenvalue. Thus we first know that this theorem does not hold for operators over $\mathbb{R}$. Since no other conditions provided other than that $T$ is over $\mathbb{C}$, we know that the existence of eigenvalue is the key to the proof. As the theorem \{, ID: 6.2\} only guarantees the existence of one eigenvalue, we need to repeatedly construct some ``sub-operators'' to find more equations of the form $Tv_j = c_1v_1 + \dots + c_jv_j$. Here is a natural idea to construct such sub-operators. For a subspace $U$ with basis $u_1, \dots, u_m$, extend the basis to a basis $\{u_1, \dots, u_m, v_1, \dots, v_n\}$ of the entire space $V$, then let $T|U$ be an operator defined by $(T|U)(u) \overset{\forall u\in U}{=} Tu|_U = (\sum_{i=1}^{m}a_iu_i + \sum_{i=1}^{n}b_iv_i)|_U = \sum_{i}^{m}a_iu_i$. Then $T|U$ is an operator over $U$.
+    \begin{compactenum}
+        \item[$\bullet$] Since $T_1\triangleq T\in\mathcal{L}(V_1)$ where $V_1 \triangleq V$ is non-zero, finite-dimensional and over $\mathbb{C}$, $T_1$ has an eigenvalue $\lambda_{11}$. Hence for some eigenvector $v_1$ corresponding to $\lambda_{11}$, $Tv_1 = T_1v_1 = \lambda_{11}v_1\in\text{span}(v_1)$.  
+        \item[$\circ$] Find a $V_2$ s.t. $V_1 = V_2 \oplus \text{span}(v_1)$. If $V_2 = \{0\}$, then we have done; otherwise, consider the operator $T_2\triangleq T_1|V_2\in\mathcal{L}(V_2)$. 
+        \item[$\bullet$] Since $T_2\in\mathcal{L}(V_2)$ where $V_2$ is non-zero, finite-dimensional and over $\mathbb{C}$, $T_2$ has an eigenvalue $\lambda_{22}$. Hence for some eigenvector $v_2$ corresponding to $\lambda_{22}$, $Tv_2 = T_1v_2 = T_2v_2 + cv_1 = \lambda_{22}v_2 + cv_1\in\text{span}(v_1, v_2)$ ($c$ represents some scalar).
+        \item[$\circ$] Find a $V_3$ s.t. $V_2 = V_3 \oplus \text{span}(v_2)$. If $V_3=\{0\}$, then we have done; otherwise, consider the operator $T_3\triangleq T_2|V_3\in\mathcal{L}(V_3)$.
+        \item[$\bullet$] Since $T_3\in\mathcal{L}(V_3)$ where $V_3$ is non-zero, finite-dimensional and over $\mathbb{C}$, $T_3$ has an eigenvalue $\lambda_{33}$. Hence for some eigenvector $v_3$ corresponding to $\lambda_{33}$, $Tv_3 = T_1v_3 = T_2v_3 + cv_1 = T_3v_3 + cv_2 + cv_1 = \lambda_{33}v_3 + cv_2 + cv_1 \in\text{span}(v_1, v_2, v_3)$ ($c$ represents some scalars, maybe distinct for $cv_1$ and $cv_2$ here).
+        \item[$\circ$] Find a $V_4$ s.t. $V_3 = V_4 \oplus \text{span}(v_3)$ \dots 
+    \end{compactenum}
+    This process can be repeated until we find a basis $\pmb{v}$ of $V$ s.t. $\mathcal{M}(T)_{\pmb{v}}$ is upper-triangular.
+\end{Th}
+
+\begin{Rmk}{}
+    An upper-triangular matrix brought much convenience. For example, \textcolor{Th}{if an operator $T$ has an upper-triangular matrix w.r.t. some basis, then $T$ is invertible iff no diagonal entry of the matrix is zero}. This can be further drew to the conclusion that \textcolor{Th}{if operator $T$ has an upper-triangular matrix $\mathcal{M}(T)$, then the set of eigenvalues of $T$ is the set of the diagonal entries of $\mathcal{M}(T)$ (recall that $\lambda$ is an eigenvalue of $T$ iff $T-\lambda I$ is not invertible).}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Th6.4 (diagonal matrix)}
+    Check this definition online by yourself.
+\end{Df}
+
+\begin{Df}{$\bullet$ Df6.4.1 (diagonalizable operator)}
+    Suppose $T\in\mathcal{L}(V)$ where $V$ is a non-zero finite-dimensional vector space over $\mathbb{F}$. Then $T$ is called diagonalizable if there exists a basis $\pmb{v}$ of $V$ s.t. $\mathcal{M}(T)_{\pmb{v}}$ is diagonal.
+\end{Df}
+
+\begin{Rmk}{}
+    An equivalent definition of diagonalizable operator is that (recall the remark \{, ID: 2.23\}):\\
+    \textcolor{Th}{Suppose $T\in\mathcal{L}(V)$ where $V$ is a non-zero finite-dimensional vector space over $\mathbb{F}$. Then $T$ is diagonalizable if and only if:
+    $$\forall \text{ matrix } \mathcal{M}(T)\text{ of } T, \;\exists \text{ invertible matrix } S \;\text{ s.t. }\; S^{-1}\mathcal{M}(T)S \;\text{ is diagonal.}$$}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th6.4.2 (conditions of diagonalizable operator)}
+    Suppose $T\in\mathcal{L}(V)$ where $V$ is a non-zero finite-dimensional vector space over $\mathbb{F}$. Then the following conditions are equivalent:
+    \begin{compactenum}
+        \item $T$ is diagonalizable;
+        \item $V$ has a basis of eigenvectors of $T$;
+        \item $V$ can be decomposed as $V = U_1\oplus \dots \oplus U_{\dim V}$ where each $U_i$ is a 1-dimensional invariant subspace of $V$ under $T$.
+        \item $V = \bigoplus_{\text{eigenvalue }\lambda} E(\lambda)$.
+        \item $\dim V = \sum_{\text{eigenvalue }\lambda} \dim E(\lambda)$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Prove it by (1)->(2)->(3)->(4)->(5)->(1).
+    \begin{compactitem}
+        \item (1)->(2): Trivial.
+        \item (2)->(3): Trivial.
+        \item (3)->(4): Trivial.
+        \item (4)->(5): Trivial.
+        \item (5)->(1): First (5) can imply (4). Hence the eigenspaces fill all dimensions of $V$. Thus we can take a basis of $V$ by taking a basis of each eigenspace, and then the matrix of $T$ w.r.t. this basis is diagonal.
+    \end{compactitem}
+\end{Th}
+
+
+\end{document}

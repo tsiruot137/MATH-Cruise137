@@ -1,0 +1,303 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    % \definecolor{Rdf}{RGB}{34, 166, 179}
+    % \definecolor{Rth}{RGB}{86, 66, 143}
+    \definecolor{Ax}{RGB}{202, 100, 234}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Ax}[2][]{colbacktitle=Ax, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+
+    \title{\LARGE ZFC System}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+ZFC claims that all mathematics objects are SETS (集合), namely, the discourse-universe of individuals is the universe of sets. ZFC provides 10 axioms about sets based on which we can derive most of the contemporary mathematics. Now we follow ZFC to construct the elementary concepts of math.
+In ZFC, there are two ``atomic'' formulae: $x=y$ and $x\in y$, from which we can build all other formulae.
+
+Since most theorems can be stated within the 1-order logic, we are ready to do this unless we encounter those exception — those with predicate variables involved. In this chapter, we will follow a working cycle of ``axiom (Ax) -> definition (Df) -> theorem (Th)'', where we describe each axiom and each theorem in both 1-order symbolic expression and natural language exposition. As for those exceptions beyond the 1-order logic, we will start with ``Suppose \dots'' in the symbolic expression, please identify that by yourself.
+
+Exactly speaking, our writing style can be elaborated as the following sample.\\
+\noindent\rule{\textwidth}{1pt}
+\begin{Ax}{Some Axiom}
+    \textcolor{Ax}{This is the 1-order expression of the axiom.}
+\end{Ax}
+This is some remarks about this axiom, including possibly what it means and what it is for.\\
+\textcolor{Df}{This is some incidental definitions.}
+\textcolor{Th}{This is some incidental theorems.}
+
+\begin{Df}{Some Definition}
+    This is the text for the definition in natural language.
+\end{Df}
+This is some remarks about this definition, including possibly what it means and what it is for.\\
+\textcolor{Df}{This is some incidental definitions.}
+\textcolor{Th}{This is some incidental theorems.}
+
+\begin{Th}{Some Theorem}
+    \textcolor{Th}{This is the 1-order expression for the theorem.}\\
+    This is the text clarification in natural language for the theorem (if needed).
+    \tcblower
+    This is the proof of this theorem.
+\end{Th}
+This is some remarks about this definition, including possibly what it means and what it is for.\\
+\textcolor{Df}{This is some incidental definitions.}
+\textcolor{Th}{This is some incidental theorems.}\\
+\noindent\rule{\textwidth}{1pt}
+With this work flow, here we go.
+
+\begin{Ax}{$\bullet$ Ax1.0.1 (ZFC0)}
+    \textcolor{Ax}{$\exists x\; (x \text{ is in the discourse universe })$}
+\end{Ax}
+There exists at least one set $x$ in the discourse universe. This trivial axiom at least guarantees that what we are discussing about is not nilhility.
+
+\begin{Ax}{$\bullet$ Ax1.1 (ZFC1) (the axiom of extensionality (外延公理模式))}
+    \textcolor{Ax}{$\forall a\forall b \;\left((a=b)\leftrightarrow \forall x [(x\in a)\leftrightarrow (x\in b)]\right)$}
+\end{Ax}
+Two sets are equal if and only if (iff) they have the same elements.
+
+\begin{Df}{$\bullet$ Df1.1.1 (inclusion of sets)}
+    Suppose $a$ and $b$ are two sets, we say:
+    \begin{compactitem}
+        \item $a\subseteq b$ if $\forall (x\in a) (x\in b)$ \quad($a$ is contained in $b$) ($b$ contains $a$) ($a$ is a subset of $b$)
+        \item $a\supseteq b$ if $\forall (x\in b) (x\in a)$
+        \item $a\subsetneq b$ if $(a\subseteq b)\land (\exists (y\in b) (y\notin a))$
+        \item $a\supsetneq b$ if $(b\subseteq a)\land (\exists (y\in a) (y\notin b))$ 
+    \end{compactitem}
+\end{Df}
+And we can prove that \textcolor{Th}{two sets are equal iff they contains each other.}
+
+\begin{Ax}{$\bullet$ Ax1.2 (ZFC2) (the axiom schema of comprehension (内涵公理模式)) }
+    \textcolor{Ax}{Suppose $p(x)$ is a individual-predicate, then:
+    $$\forall S\exists s\forall x\left((x\in s)\leftrightarrow (x\in S)\land p(x)\right)$$}
+\end{Ax}
+For any set $S$ and any predicate $p(x)$, we can choose the elements in $S$ that satisfy $p$ to form a subset $s=\{x\in S: p(x)\}$ of $S$. \textcolor{Th}{Furthermore, we can prove that this chosen $s$ is unique, i.e.:
+    $$\forall S\exists! s\forall x\left((x\in s)\leftrightarrow (x\in S)\land p(x)\right).$$}
+
+\begin{Df}{$\bullet$ Df1.2.1 (empty set)}
+    Since there is at least one set $S$, from ZFC2, $\{x\in S: x\neq x\}$ is a set, denoted by $$\varnothing = \{x\in S: x\neq x\}.$$ 
+\end{Df}
+\textcolor{Th}{Note that $\varnothing$ is unique for different $S$, and it has NO elements.}
+
+\begin{Ax}{$\bullet$ Ax1.3 (ZFC3) (the axiom of pairing) (无序对公理)}
+    \textcolor{Ax}{$\forall a\forall b\exists s\forall x \left((x\in s)\leftrightarrow (x=a)\lor (x=b)\right)$}
+\end{Ax}
+For any given sets $a$ and $b$, $\{a,b\}$ is a set. It is obvious that \textcolor{Th}{this $\{a,b\}$ is unique, that is, $$\forall a\forall b\exists! s\forall x \left((x\in s)\leftrightarrow (x=a)\lor (x=b)\right).$$} \textcolor{Df}{This $\{a,b\}$ is called the unordered pair of $a$ and $b$. If $a=b$, we will write $\{a,b\}$ as $\{a\}$ or as $\{b\}$.}
+
+\begin{Df}{$\bullet$ Df1.3.1 (ordered pair)}
+    Suppose $a$ and $b$ are two sets, then we say $\{\{a\}, \{a,b\}\}$ is the ordered pair of $a$ and $b$, denoted by $(a,b) = \{\{a\}, \{a,b\}\}$. Specifically, $(a,a) = \{\{a\}\}$. 
+\end{Df}
+\textcolor{Th}{Obviously, we can prove that two ordered pairs are equal iff their components on the matched positions are equal.}
+
+\begin{Df}{$\bullet$ Df1.3.2 (multi-dimensional ordered pairs / tuples)}
+    \begin{align*}
+        (a,b,c)&\triangleq ((a,b),c)\\
+        (a,b,c,d)&\triangleq ((a,b,c),d)\\
+        (a,b,c,d,e)&\triangleq ((a,b,c,d),e)\\
+        &\dots
+    \end{align*}
+\end{Df}
+And obviously \textcolor{Th}{the multi-dimensional pairs keeps the ``matched components comparison'' equivalance rule of two-dimensional cases stated above.}
+
+\begin{Ax}{$\bullet$ Ax1.4 (ZFC4) (the axiom of union (并集公理))}
+    \textcolor{Ax}{$\forall a \exists A \forall x \left((x\in A)\leftrightarrow \exists (s\in a)(x\in s)\right)$}
+\end{Ax}
+For any given set $a$, $A = \{x: \exists (s\in a) (x\in s)\}$ is a set, \textcolor{Th}{and this $A$ is unique, i.e., 
+$$\forall a \exists! A \forall x \left((x\in A)\leftrightarrow \exists (s\in a)(x\in s)\right)$$}
+\textcolor{Df}{This unique set is called the union of $a$, denoted by $\bigcup a = A = \{x: \exists (s\in a) (x\in s)\}$}\\
+Based on this axiom, we can add finitely arbitrarily many elements to a set, e.g., we can obtain the sets of this form: $\{a,b,c\}$, $\{a,b,c,d,e,f,g,\dots,X\}$. For intuitiveness, we write $\bigcup \{a_1, \dots, a_n\} $ as $a_1\cup \dots \cup a_n$ (this is unambiguous since $\{a_1, \dots, a_n\}$ ignores the order of $a_1,\dots, a_n$).
+
+\begin{Df}{$\bullet$ Df1.4.1 (intersection of sets (集合的交))}
+    \textcolor{Th}{Suppose $a$ is a set, then $\{x\in \bigcup a: \forall (s\in a) (x\in s)\}$ is a unique set (apply ZFC2 on $\bigcup a$)}, and we call this set the intersection of $a$, denoted by $\bigcap a = \{x\in \bigcup a: \forall (s\in a) (x\in s)\}$. And we also write $\bigcap\{a_1,\dots, a_n\}$ as $a_1\cap \dots \cap a_n$.\\
+    And it is easy to verify that \textcolor{Th}{both ``$\cup$'' and ``$\cap$'' are commutable and associatable.}
+\end{Df}
+
+\begin{Df}{$\bullet$ Df1.4.2 (sets subtraction)}
+    Suppose $a$ and $b$ are two sets, then the set subtraction from $a$ by $b$ is defined as: $$a\setminus b = \{x: (x\in a)\land (x\notin b)\}$$
+\end{Df}
+
+\begin{Ax}{$\bullet$ Ax1.5 (ZFC5) (the axiom of power sets (幂集公理))}
+    \textcolor{Ax}{$\forall s\exists S\forall x \left((x\in S)\leftrightarrow (x\subseteq s)\right)$}
+\end{Ax}
+For any given set $s$, all the subsets of $s$ join to be another set $S = \{x: x\subseteq s\}$ (\textcolor{Th}{also, it is obvious that this $S$ is unique}). \textcolor{Df}{We now call this $S$ the power set of $s$, denoted by $\mathcal{P}(s) = S = \{x: x\subseteq s\}$.}
+
+\begin{Df}{$\bullet$ Df1.5.1 (Descartes' product (笛卡尔积))}
+    Suppose $a$ and $b$ are two sets, then we define the Descartes' product of $a$ and $b$ as:
+    $$a\times b = \{u\in \mathcal{P}(\mathcal{P}(a\cup b)): \exists x\exists y \left((x\in a)\land (y\in b)\land (u=(x,y))\right)\}.$$
+\end{Df}
+Clearly, $a\times b$ is the set of all ordered pairs with the 1st component in $a$ and the 2nd component in $b$.
+We can extend this definition to multi-dimensional cases. For example, 
+$$a\times b\times c = \{u\in \mathcal{P}(\mathcal{P}(a\cup b\cup c)): \exists x\exists y\exists z \left((x\in a)\land (y\in b)\land (z\in c)\land (u=(x,y,z))\right)\}$$
+and we can see that \textcolor{Th}{$a\times b\times c = (a\times b)\times c$}
+
+\begin{Df}{$\bullet$ Df1.5.2 (relation (关系))}
+    A relation from set $A$ to set $B$ is a subset $R$ of $A\times B$.
+\end{Df}
+\begin{compactitem}
+    \item \textcolor{Df}{$\{x\in A: \exists (y\in B)\;((x,y)\in R)\}$ is called the domain of $R$, $\text{dom}(R)$; $\{y\in B: \exists (x\in A)\;((x,y)\in R)\}$ is called the range of $R$, $\text{range}(R)$.}
+    \item \textcolor{Df}{``$(x,y)\in R$'' is denoted by ``$xRy$''; ``$(x,y)\notin R$'' is denoted by $x\cancel{R} y$.}
+    \item \textcolor{Df}{Suppose $C\subseteq A$, then $\{(x,y)\in R: x\in C\}$ is a set, and is a relation from $C$ to $B$, which is denoted by: $$R\upharpoonright C \triangleq \{(x,y)\in R: x\in C\}.$$ And we say $R\upharpoonright C$ is the restriction of $R$ on $C$.} 
+    \item \textcolor{Df}{Let $C$ is a set, then we call $\{y\in B: \exists (x\in C)\;(xRy)\}$ the image (像) of $C$ under $R$, denoted by $R[C] = \{y\in B: \exists (x\in C)\;(xRy)\}$.}
+    \item \textcolor{Df}{Let $R\subseteq A\times B$, then the inverse relation of $R$, denoted by $R^{-1}$ is defined as: $R^{-1} = \{(y,x): xRy\}$, and $R^{-1}$ is a relation from $B$ to $A$.}
+    \item \textcolor{Th}{Clearly for any sets $A, B, C$ and any relations $R\subseteq A\times B$, $S\subseteq B\times C$, 
+    \begin{compactenum}
+        \item[(i)] $R^{-1}$ exists and $(R^{-1})^{-1} = R$;
+        \item[(ii)] $S\circ R$ exists and $(S\circ R)^{-1} = R^{-1}\circ S^{-1}$. 
+    \end{compactenum}
+    }
+    \item \textcolor{Df}{Suppose $D$ is a set. Then we call $\{x\in A: \exists (y\in D) (xRy)\}$, namely, $R^{-1}[D]$ the pre-image (原像) of $D$ under $R$.}
+    \item \textcolor{Df}{Suppose $A,B,C$ are sets, $R\subseteq A\times B$ and $T\subseteq B\times C$. Then the composition (复合) relation of $R$ and $S$, denoted by $S\circ R$, is a relation from $A$ to $C$, which is defined by:$$S\circ R = \{(x,z): \exists (y\in B)\; ((xRy)\land (ySz))\}$$.}
+\end{compactitem}
+
+\begin{Df}{$\bullet$ Df1.5.3 (maps (映射) / functions (函数))}
+    \begin{compactenum}
+        \item Suppose $A$ and $B$ are sets and $A\neq \varnothing$. Suppose also $f$ is a relation from $A$ to $B$. Then $f$ is called a map or function from $A$ to $B$ if: $$\forall (x\in A)\; \exists! (y\in B)\; (xfy),$$ denoted by $f:A\rightarrow B$.
+        \item Suppose $f:A\rightarrow B$, then we write ``$xfy$'' as ``$y = f(x)$'' (here the ``='' is the one in the atomic formulae); if $C\subseteq A$, then we can also write f[C] as $\{f(x):x\in C\}$.
+        \item \textcolor{Th}{For $f:A\rightarrow B$, we have: $\text{dom}(f) = A$ and $\text{range}(f)\subseteq B$.}
+        \item Suppose $f:A\rightarrow B$. If $\text{range}(f) = B$, then we say $f$ is surjective (满射的) from $A$ to $B$; if $\forall x_1 \forall x_2\; \left((f(x_1) = f(x_2))\rightarrow (x_1 = x_2)\right)$, we say $f$ is injective (单射的); if $f$ is both surjective and injective, then we say $f$ is bijective (双射的).
+        \item \textcolor{Th}{Suppose $f: A\rightarrow B$. Then we can verify that: $f^{-1}$ is a function from $\text{range}(f)$ to $A$ iff $f$ is injective.} And if $f$ is bijective, i.e., $\text{range}(f) = B$, we say $f$ is invertible and we call $f^{-1}$ the inverse map/function (逆映射/反函数) of $f$.
+        \item \textcolor{Th}{Write the set of all maps from $A$ to $B$, namely, $\{f\in \mathcal{P}(A\times B): f:A\rightarrow B\}$, as $\sideset{^A}{} {\mathop{B}}$.}
+        \item For a domain $A$, the function $\{(x,x): x\in A\}$ is called the identity function on $A$, often denoted by $I_A$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Th}{$\bullet$ Th1.5.4 (conditions of bijectiveness)}
+    \textcolor{Th}{$\forall (A\neq\varnothing) \forall (B\neq\varnothing) \forall (f:A\rightarrow B) \forall (g:B\rightarrow A)\left(\right.$
+    $$
+    \begin{aligned}
+        \{(g\circ f = I_A)&\rightarrow (f\text{ is injective})\land (g\text{ is surjective})\}\land\\
+        \{(f\circ g = I_B)&\rightarrow (f\text{ is surjective})\land (g\text{ is injective})\}\land\\
+        \{(g\circ f = I_A)&\land (f\circ g = I_B)\leftrightarrow (\text{both }f \text{ and } g\text{ are bijective})\land (g = f^{-1})\}
+    \end{aligned}
+    $$
+    $\left.\right)$}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Ax}{$\bullet$ Ax1.6 (ZFC6) (the axiom of regularity (正则公理))}
+    \textcolor{Ax}{$\forall (a\neq \varnothing)\exists x\left(x\cap a = \varnothing\right)$}
+\end{Ax}
+This axiom negates the existence of infinite $\in$-descending chains, which guarantees the existence of ``original component'' of every set (talked about later). 
+
+\begin{Th}{$\bullet$ Th1.6.1 (no self-reference)}
+    \textcolor{Th}{$\forall x \;(x\notin x)$}
+    \tcblower
+    \textit{Pf}: let $a = \{x\}$, then from ZFC6, $\exists (y\in a)(y\cap a = \varnothing)$, and of course $y = x$. Thus $x\cap \{x\} = \varnothing$, then $x\notin x$.
+\end{Th}
+This theorem avoids the self-reference cases where $x\in x$.
+
+\begin{Df}{$\bullet$ Df1.5.4 (successor (后继))}
+    Suppose $a$ is a set, then $a^\prime \triangleq a\cup \{a\}$ is called the successor of $a$.
+\end{Df}
+\textcolor{Th}{It is obvious that for any set $a$, $a\neq a^\prime$, $a\in a^\prime$, $a\subseteq a^\prime$ and $a^\prime \neq \varnothing$.}
+
+\begin{Ax}{$\bullet$ Ax1.7 (ZFC7) (the axiom of infinity (无穷公理))}
+    \textcolor{Ax}{$\exists s \left((\varnothing\in s)\land \forall (x\in s) (x^\prime\in s)\right)$}
+\end{Ax}
+This axiom guarantees that $\{\varnothing, \varnothing^\prime, \varnothing^{\prime\prime}, \dots\}$ is a set. We then call a set $s$ satisfying $(\varnothing\in s)\land \forall (x\in s) (x^\prime\in s)$ an inductive set (归纳集).
+
+\begin{Df}{$\bullet$ Df1.7.1 (minimal inductive set)}
+    Suppose $s$ is an inductive set, then we define set $\omega$ as:
+    $$\omega = \{x\in s: \forall (t \text{ is an inductive set }) (x\in t)\}$$
+\end{Df}
+\textcolor{Th}{Clearly $\omega$ is unique when choosing different inductive set $s$.} And we will later see that this $\omega$ is just the set of all natural numbers.
+
+\begin{Th}{$\bullet$ Th1.7.2 ($\omega$ is the minimal inductive set)}
+    \textcolor{Th}{$\left(\omega \text{ is an inductive set}\right)\land \forall (s\text{ is an inductive set}) (\omega\subseteq s)$}
+    \tcblower
+    \textit{Pf}: todo.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df1.7.3 (transitive set (传递集))}
+    Suppose $s$ is a set. Then $s$ is called a transitive set if: $$\forall x\forall y \left((x\in y\in s)\rightarrow (x\in s)\right).$$
+\end{Df}
+
+\begin{Th}{$\bullet$ Th1.7.4 (the successor of a transitive set is still transitive)}
+    \textcolor{Th}{$\forall (s \text{ is transitive }) \left(s^\prime \text{ is transitive }\right)$}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th1.7.5 ($\omega$ only has transitive sets)}
+    \textcolor{Th}{$\forall (x\in \omega) (x \text{ is transitive})$}
+    \tcblower
+    \textit{Pf}: Let $\alpha = \{x\in \omega: x \text{ is transitive }\}$ and then prove $\alpha$ is inductive so that $\alpha = \omega$.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th1.7.6 (the successors of different sets in $\omega$ are different)}
+    \textcolor{Th}{$\forall (x\in \omega) \forall (y\in \omega) \left((x\neq y)\rightarrow (x^\prime \neq y^\prime)\right)$}
+    \tcblower
+    \textit{Pf}: By contradiction and Th1.6.1 in this chapter.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th1.7.7 (the 1st mathematical induction schema (第一数学归纳法))}
+    \textcolor{Th}{Suppose $p$ is an individual predicate, then:
+    $$p(\varnothing)\land \forall (n\in \omega) (p(n)\rightarrow p(n^\prime))\rightarrow \forall (n\in \omega)p(n)$$}
+    \tcblower
+    \textit{Pf}: Assume that $p(\varnothing)$ and $\forall (n\in \omega)(p(n)\rightarrow p(n^\prime))$. Let set $a = \{k\in \omega: p(k)\}$, then:
+    \begin{compactenum}
+        \item[(i)] $\varnothing\in a$ and
+        \item[(ii)] $\forall (k\in a) (k^\prime\in a)$.
+    \end{compactenum}
+    Thus $a$ is inductive. Since $\omega$ is the minimal, $a\supseteq \omega$. Plus $a\in \omega$, we have $a=\omega$. Done.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df1.7.8 (natural numbers (自然数))}
+    \begin{align*}
+        0 &\triangleq \varnothing\\
+        1 &\triangleq \varnothing^\prime\\
+        2 &\triangleq \varnothing^{\prime\prime}\\
+        3 &\triangleq \varnothing^{\prime\prime\prime}\\
+        &\dots
+    \end{align*}
+\end{Df}
+
+\begin{Th}{$\bullet$ Th1.7.9 (inductive definition (归纳定义))}
+    \textcolor{Th}{$\forall A\forall (x_0\in A)\forall (h\in\sideset{^A}{} {\mathop{A}})\exists!(f\in \sideset{^\omega}{} {\mathop{A}})\left((f(0) = x_0)\land \forall (n\in \omega)[f(n^\prime) = h(f(n))]\right)$}
+    \tcblower
+    \textit{Pf}: \begin{compactenum}
+        \item[(I)] Firstly we call the relation $R$ that satisfying the conditions below an ``inductive relation'': \begin{compactenum}
+            \item[(i)] $R\subseteq \omega\times A$;
+            \item[(ii)] $0Rx_0$;
+            \item[(iii)] $\forall (n\in \omega) \forall (x\in A) \left((nRx)\rightarrow (n^\prime R h(x))\right)$.
+        \end{compactenum}
+        Obviously this kind of relations exists, such as $\omega\times A$ itself.\\
+        And we define the "minimal inductive relation" $f$ by:
+        $$f = \{u\in (\omega\times A): \forall (R\text{ is a inductive relation})(u\in R)\}$$
+        \item[(II)] By math induction, prove that $f$ is a function from $\omega$ to $A$: $\forall (m\in \omega)\exists!(x\in A)(mfx)$.
+        \item[(III)] Thus we have prove that such $f$ described in the theorem exists, and we can easily show its uniqueness. 
+    \end{compactenum}
+\end{Th}
+This theorem guarantees that we can define an exact sequence $\{f(n):n=0,1,2,\dots\}$ by first fixing its starting point $f(0)$ and then specifying $f(n)$ recursively by the recursion function $h$.
+
+\begin{Df}{$\bullet$ Df1.7.10 (addition and multiplication on $\omega$)}
+    \begin{itemize}
+        \item Addition: since for any $m\in \omega$, $\exists! \left(f_m\in \sideset{^\omega}{} {\mathop{\omega}}\right) \left((f_m(0) = m)\land \forall (n\in \omega)(f_m(n^\prime) = (f_m(n))^\prime)\right)$ (just take $A = \omega$, $x_0 = m$ and $h: \forall (n\in \omega)(h(n) = n^\prime)$ in the theorem \{course: 0, ID: 1.7.9\}). Then the relation $R_+ \triangleq \{((m,n),k)\in (\omega\times\omega)\times\omega: k = f_m(n)\}$ is a function from $\omega\times\omega$ to $\omega$. Hence we denote $(m,n)R_+ k$ by $m + n = k$, and this operation $+$ is called the addition on $\omega$.
+        \item Multiplication: since for any $m\in \omega$, $\exists! \left(g_m\in \sideset{^\omega}{} {\mathop{\omega}}\right) \left((g_m(0) = 0)\land \forall (n\in \omega)(g_m(n^\prime) = g_m(n)+m)\right)$ (just take $A = \omega$, $x_0 = 0$ and $h: \forall (n\in \omega)(h(n) = n+m)$ in the theorem \{, ID: 1.7.9\}). Then the relation $R_\cdot\triangleq\{((m,n),k)\in (\omega\times\omega)\times\omega: k = g_m(n)\}$ is a function from $\omega\times\omega$ to $\omega$. Hence we denote $(m,n)R. k$ by $m\cdot n = k$, and this operation is called the multiplication on $\omega$.
+    \end{itemize}
+\end{Df}
+
+\begin{Df}{$\bullet$ Df1.7.11 (finite/infinite sets)}
+    Suppose $a$ is a set. Then $a$ is called a finite set if
+    $$(a=\varnothing)\lor \exists (n\in\omega)\exists (f\in \sideset{^a}{} {\mathop{n}})(f\text{ is bijective.})$$
+\end{Df}
+\textcolor{Df}{If a set $a$ is not a finite set, then it is called an infinite set.}
+\end{document}

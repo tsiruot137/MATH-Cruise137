@@ -1,0 +1,543 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    % \definecolor{Rdf}{RGB}{34, 166, 179}
+    % \definecolor{Rth}{RGB}{86, 66, 143}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Vector Space}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 2nd chapter of advanced algebra, which is about \textbf{vector space.}\\
+Here it is necessary to claim a ``definition (Df) -> theorem (Th)'' working cycle, which acts as the writing style throughout this whole course. This working cycle is shown bellow:
+
+\noindent\rule{\textwidth}{2pt}
+\begin{Df}{Some Definition}
+    The text of this definition.
+\end{Df}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+
+\begin{Th}{Some Theorem}
+    The text of this theorem.
+    \tcblower
+    \textit{Pf}: The proof of this theorem (is possibly "todo" when the author cannot complete it yet).
+\end{Th}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+\noindent\rule{\textwidth}{2pt}
+As for the text of both a definition or a theorem, a common fixed pattern of sentences is adopted, which is ``Suppose \dots (some pre-conditions or background information). Then \dots (the direct text for the definition or the theorem).''. Please identify this pattern later by yourself. 
+
+By the way, we now pre-claim some commonly-used notations:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+\end{compactenum} 
+Then with everything prepared, here we go.
+
+\begin{Df}{$\bullet$ Df2.1 (vector space)}
+    Suppose $V$ is a non-empty set and $\mathbb{F}$ is a number field. Suppose also an \textbf{addition} ``+"$: V\times V\rightarrow V$ and a \textbf{scalar-multiplication} ``$\cdot$''$: \mathbb{F}\times V\rightarrow V$ are defined. Then $V$ is called a \textbf{vector space} over $\mathbb{F}$ (w.r.t. addition ``+'' and scalar-multiplication ``$\cdot$'') if the following conditions are all satisfied (the scalar-multiplication expression $\lambda\cdot v$ can be written as $\lambda v$ for simplicity, where $\lambda\in\mathbb{F}$ and $v\in V$):
+    \begin{compactenum}
+        \item (Commutativity) $\forall u,v\in V$, $u+v=v+u$
+        \item (Associativity) $\forall u,v,w\in V$, $(u+v)+w=u+(v+w)$;
+        \item (Associativity) $\forall a,b\in\mathbb{F}$, $\forall v\in V$, $a(bv)=(ab)v$;
+        \item (Additive Identity) $\exists 0\in V$, $\forall v\in V$, $v+0=v$;
+        \item (Additive Inverse) $\forall v\in V$, $\exists -v\in V$, $v+(-v)=0$;
+        \item (Multiplicative Identity) For the multiplicative identify $1$ in $\mathbb{F}$, $\forall v\in V$, $1v=v$;
+        \item (Distributivity) $\forall a\in\mathbb{F}$, $\forall u,v\in V$, $a(u+v)=au+av$;
+        \item (Distributivity) $\forall a,b\in\mathbb{F}$, $\forall v\in V$, $(a+b)v=av+bv$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item For the ``Additive Identity'' in the definition above, we just use the symbol ``$0$'' to denote such a vector, which is often not necessarily the actual number $0$ in $\mathbb{F}$.
+        \item For the ``Multiplicative Identity'' in the definition above, it is exactly the actual number $1$ in $\mathbb{F}$, i.e., the integer $1$ in $\mathbb{Q}$, $\mathbb{R}$ or $\mathbb{C}$.
+        \item The concept of vector space is a extension of the concept of the Euclidean space, which is a special case of the vector space. we can easily verify that \textcolor{Th}{for a number field $\mathbb{F}$, $\mathbb{R}^n$ is a vector space over $\mathbb{R}$ and other examples of vector spaces include $\mathbb{F}^n$ (a vector space over $\mathbb{F}$), $\mathbb{C}$ (a vector space over $\mathbb{R}$), $\sideset{^\mathbb{R}}{}{\mathop{\mathbb{R}}}$ (a vector space over $\mathbb{R}$) and $\mathcal{P}_\mathbb{F}(x)$ (a vector space over $\mathbb{F}$), etc.}
+        \item The elements of $V$ are called \textbf{vectors}, and the elements of $\mathbb{F}$ are called \textbf{scalars}. Note that these two concepts have relativity, since the same element can be a vector in one vector space and a scalar in another vector space.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.1.1 (basic properties of vector space)}
+    Suppose $V$ is a vector space over $\mathbb{F}$. Then the following properties hold:
+    \begin{compactenum}
+        \item (Uniqueness of the Additive Identity) The additive identity $0$ is unique;
+        \item (Uniqueness of the Additive Inverse) $\forall v\in V$, the additive inverse $-v$ is unique;
+        \item (Additive Inverse of the Additive Identity) $-0=0$;
+        \item (Additive Inverse of the Additive Inverse) $\forall v\in V$, $-(-v)=v$;
+        \item (Additive Inverse of the Multiplicative Identity) $\forall v\in V$, $(-1)v=v$;
+        \item ($0$ Multiplied by Any Scalar is Still $0$) $\forall a\in \mathbb{F}$, $a0=0$;
+        \item (The Number $0$ Multiplied by Any Vector is Still the Number $0$) $\forall v\in V$, $0v=0$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.1.2 (cancellation law of vector space)}
+    Suppose $V$ is a vector space over $\mathbb{F}$. Then: \\
+    $\forall u,v,w\in V$, $u+v=u+w$ indicates $v=w$;
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df2.2 (subspace of vector space)}
+    Suppose $V$ is a vector space over $\mathbb{F}$. A non-empty subset $U$ of $V$ is called a \textbf{subspace} of $V$ if $U$ is also a vector space over $\mathbb{F}$ (w.r.t. the same addition and scalar-multiplication as $V$).
+\end{Df}
+
+\begin{Th}{$\bullet$ Th2.2.1 (check a subspace)}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $U$ is a non-empty subset of $V$. Then $U$ is a subspace of $V$ if and only if all the following conditions holds:
+    \begin{compactenum}
+        \item (Contains Additive Identity) $0\in U$;
+        \item (Closed under Addition) $\forall u,v\in U$, $u+v\in U$;
+        \item (Closed under Scalar-Multiplication) $\forall a\in\mathbb{F}$ and $\forall u\in U$, $au\in U$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem is very useful as it lessen the conditions to check whether a subset is a subspace.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.2.2 (the union and the intersection of subspaces)}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $U_1$, \dots, $U_n$ are finitely many subspaces of $V$. Then:
+    \begin{compactenum}
+        \item $U_1\cap \dots \cap U_n$ is a subspace of $V$;
+        \item $U_1\cup \dots \cup U_n$ is not necessarily a subspace of $V$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df2.3 (the sum of subspaces)}
+    Suppose $V$ is a vector space and $U$, $W$ are both subspaces of $V$. Then the set $\{u+w: u\in U, w\in W\}$ (is of course a subspace of $V$) is called the \textbf{sum} of $U$ and $W$, denoted by $U+W = \{u+w: u\in U, w\in W\}$.
+\end{Df}
+
+\begin{Rmk}{}
+    This definition shows the attempt to decompose a vector space into the sum of some simpler subspaces. Therefore we have the multivariate extension: \textcolor{Df}{for example, $U_1+U_2+U_3+U_4 \triangleq ((U_1+U_2)+U_3)+U_4$, and the }. And we can easily verify that \textcolor{Th}{$U_1+\dots + U_n = \{\sum_{i=1}^{n} u_i: u_i\in U_i \text{ for all } i\}$, and that this sum is commutative and associative.} Compared to decomposing a vector space in the way of subsets' union, this decomposition provides us some linear properties of the vector space.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.3.1 (the sum of subspaces is the smallest subspace containing them)}
+    Suppose $V$ is a vector space and $U_1$, \dots, $U_n$ are all subspaces of $V$. Then:
+    \begin{compactenum}
+        \item $U_1+\dots + U_n$ contains all of $U_1$, \dots, $U_n$;
+        \item For any subspace $W$ of $V$ that contains all of $U_1$, \dots, $U_n$, $(U_1+\dots + U_n)\subseteq W$
+    \end{compactenum}
+    \tcblower
+\end{Th}
+
+\begin{Df}{$\bullet$ Df2.3.2 (direct sum (直和) of subspaces)}
+    Suppose $V$ is a vector space and $U_1, \dots, U_n$ are subspaces of $V$. Then the sum $U_1+\dots+U_n$ is called the \textbf{direct sum} of $U_1$, \dots, $U_n$, denoted by $U_1\oplus\dots\oplus U_n = U_1+\dots+U_n$, if:\\
+        $\forall u\in (U_1+\dots+U_n), \exists! (u_1, \dots, u_n)\in (U_1\times\dots\times U_n) \text{  s.t.  } u = u_1+\dots u_n$
+    When we write $U_1\oplus\dots\oplus U_n$, we indicate that $U_1+\dots+U_n$ is the direct sum of $U_1$, \dots, $U_n$.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item Suppose $V$ is a vector space and $U_1, \dots, U_n$ are subspaces of $V$. Then an equivalent definition of direct sum is here: \textcolor{Th}{$U_1+\dots+U_n$ is a direct sum if: \\
+        ($u_1+\dots + u_n = 0$ for some $(u_1, \dots, u_n)\in U_1\times\dots\times U_n$) $\Rightarrow$ ($u_1 = \dots = u_n = 0$)}
+        \item It can be easily proved the commutative and associative property of direct sum: \textcolor{Th}{In an expression of direct sum, we can change the order of the terms and add parentheses arbitrarily, i.e. for any $n\in\mathbb{N}^\ast$:
+        \begin{compactenum}
+            \item $U_1\oplus\cdots\oplus U_n = U_{\sigma(1)}\oplus\cdots\oplus U_{\sigma(n)}$ for any permutation $\sigma$ of $\{1, \dots, n\}$;
+            \item $U_1\oplus\cdots\oplus U_i\oplus\cdots\oplus U_j\oplus \cdots\oplus U_n = U_1\oplus\cdots\oplus \left(U_i\oplus\cdots\oplus U_j\right)\oplus\cdots\oplus U_n$ for any $1\leq i\leq j\leq n$.
+        \end{compactenum}}
+        And \textcolor{Th}{if some $U_i$'s sum to a direct sum, then any subset of these $U_i$'s also sums to a direct sum.}
+        \item It can be also seen that \textcolor{Th}{for the two-dimensional case $U_1+U_2$, $U_1\oplus U_2$ iff $U_1\cap U_2 = \{0\}$. But this does not holds for the three or more dimensional cases.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.4 (linear combination)}
+    For a vector space $V$ over $\mathbb{F}$, $a_1v_1+\dots+a_mv_m$ (where $a_1,\dots, a_m\in \mathbb{F}$ and $v_1,\dots, v_m\in V$) is called a linear combination of $v_1, \dots, v_m$.
+\end{Df}
+
+\begin{Df}{$\bullet$ Df2.5 (span (生成))}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $v_1, \dots, v_m\in V$. Then the set $\{a_1v_1+\dots+a_mv_m: a_1,\dots,a_m\in\mathbb{F}\}$ (of course is a subspace of $V$) is called the span of $v_1, \dots, v_m$, or we say that $v_1, \dots, v_m$ spans this space, denoted by 
+    $$\text{span} (v_1, \dots, v_m) = \{a_1v_1+\dots+a_mv_m: a_1,\dots,a_m\in\mathbb{F}\}$$
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item By convention, \textcolor{Df}{we define that the empty list of vector $\{\}$ spans $\{0\}$, which is the same span by $0$.}
+        \item It can be easily verified that \textcolor{Th}{the span is the smallest subspace of $V$ that contains every vectors in the list.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.6 (finite-dimensional vector space)}
+    \begin{compactitem}
+        \item Suppose $V$ is a vector space. Then $V$ is called a finite-dimensional vector space if there exists a finite list of vector $v_1, \dots, v_m$ such that $V = \text{span}(v_1, \dots, v_m)$.
+        \item A vector space that is not finite-dimensional is called a infinite-dimensional vector space.
+    \end{compactitem}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactitem}
+        \item \textcolor{Th}{It can be easily proved that a subspace of a finite-dimensional vector space is also finite-dimensional.}
+        \item \textcolor{Th}{Some examples of finite-dimensional vector spaces: $\mathbb{C}$ over $\mathbb{R}$, $\mathbb{F}^n$ over $\mathbb{F}$, $\mathcal{P}_\mathbb{F}^m (x)$ } \textcolor{Df}{(the set of polynomials about $x$ in $\mathbb{F}$ that are all of $m$-degree)} \textcolor{Th}{over $\mathbb{F}$.}
+        \item \textcolor{Th}{Some examples of infinite-dimensional vector spaces: $\overset{^\mathbb{R}}{}{\mathop{\mathbb{R}}}$ over $\mathbb{R}$, $\mathcal{P}_\mathbb{F}(x)$ over $\mathbb{F}$.}
+        \item As for the concept of dimension of a vector space, we will talk about it later.
+    \end{compactitem}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.7 (linear dependence (线性相关) and linear independence (线性无关))}
+    Please check this definition online by yourself.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item According to the definition, a list of only one vector is linearly independent iff the vector is non-zero. As for the empty list, we define it as linearly independent by convention.
+        \item \textcolor{Th}{It is obvious that a sublist of a linearly independent list is also linearly independent, and a list containing a linearly dependent list is also linearly dependent.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{$\circ$ Th2.7.1 (the lemma of linear dependence)}
+    Suppose $v_1, \dots, v_m$ is a list vectors in the vector space $V$. Then there exists $j\in\{1,\dots, m\}$ such that:
+    \begin{compactenum}
+        \item $v_j\in \text{span}(v_1, \dots, v_{j-1})$ (if $j=1$, it is $v_j\in\text{span}(\{\})$);
+        \item if $v_j$ is removed from $v_1, \dots, v_m$, then the span of the remaining list equals $\text{span}(v_1, \dots, v_m)$. 
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{$\circ$ Th2.7.2 (linearly independent lists are shorter than spanning lists)}
+    In a finite-dimensional vector space, the length of any linearly independent list of vectors is less than or equal to the length of any spanning list of vectors.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Here ``spanning list'' refers to a list of vectors that spans this whole vector space.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.7.3 (independent list and direct sum.)}
+    Suppose a linear independent list of vectors is partitioned into several sublists. Then the sum of the spans of these sublists is a direct sum.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    For example, $v_1, ..., v_5$ is a linearly independent list of vectors, then $\text{span}(v_1, v_2, v_3)\oplus\text{span}(v_4, v_5) = \text{span}(v_1, \dots, v_5)$
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.8 (basis)}
+    Suppose $V$ is a vector space. A list of vectors $v_1, \dots, v_m$ (regardless of their order) in $V$ is called a \textbf{basis} of $V$ if:
+    \begin{compactenum}
+        \item $v_1, \dots, v_m$ is linearly independent;
+        \item $\text{span}(v_1, \dots, v_m) = V$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Th}{$\circ$ Th2.8.1 (spanning list contains a basis)}
+    Suppose $V$ is a finite-dimensional vector space. Then every spanning list of vectors in $V$ contains a basis of $V$.
+    \tcblower
+    \textit{Pf}: Trivial using the lemma of linear dependence.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.8.2 (the basis of a finite-dimensional vector space)}
+    Suppose $V$ is a finite-dimensional vector space. Then $V$ has a basis, and all bases of $V$ are of the same length.
+    \tcblower
+    \textit{Pf}: By \{, ID: 2.8.1\} and \{, ID: 2.7.2\}, trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem is fundamental. From this theorem, we can clearly set up the concept of dimension of vector spaces.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.9 (dimension of vector space)}
+    Suppose $V$ is a finite-dimensional vector space. Then the length of the bases of $V$, denoted by $\dim V$, is called the dimension of $V$.
+\end{Df}
+
+\begin{Rmk}{}
+    With the definition of dimension, we now have a rough way to measure the size of a vector space. For example, we can say a vector space with larger dimension is larger (as we usually say that $\mathbb{R}^2$ is larger than $\mathbb{R}$ regardless of the cardinal meaning).
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.9.1 (of length $\dim V$, independence and spanning is equivalent)}
+    Suppose $V$ is a finite-dimensional vector space and $v_1, \dots, v_{\dim V}\in V$. Then:\\
+    $v_1,\dots, v_{\dim V}$ spans $V$ \quad $\Leftrightarrow$ \quad $v_1, \dots, v_{\dim V}$ are linearly independent.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.9.2 (linearly independent list can be extended to a basis)}
+    Suppose $v_1, \dots, v_m$ is a linearly independent list of vectors in the vector space $V$. Then we can add (if needed) finitely many vectors in $V$ to the list to make it a basis of $V$.
+    \tcblower
+    \textit{Pf}: Trivial. 
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.9.3 (sum of subspaces and dimension)}
+    Suppose $U$ and $W$ are both subspaces of a finite-dimensional vector space. Then $\dim (U+W) = \dim U+\dim W-\dim(U\cap W)$.
+    \tcblower
+    \textit{Pf}: First select a basis $v_1, \dots, v_k$ of $U\cap W$. Then extend $v_1, \dots, v_k$ to a basis $v_1, \dots, v_k, u_1, \dots, u_m$ of $U$ and a basis $v_1, \dots, v_k, w_1, \dots, w_n$ of $W$ respectively, and finally prove that these vectors $v_., u_., w_.$ joins to form a basis of $U+W$.
+\end{Th}
+
+\begin{Rmk}{}
+    As a collary of this theorem, we have: \textcolor{Th}{$\dim (U\oplus W) = \dim U+\dim W$, $\dim (U_1+\dots +U_n)\leq \dim U_1 + \dots + \dim U_n$ and $\dim (U_1\oplus\dots\oplus U_n) = \dim U_1 + \dots + \dim U_n$}.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.10 (linear maps (线性映射))}
+    Suppose $V$ and $W$ are both vector spaces over $\mathbb{F}$ and $T: V\rightarrow W$. Then $T$ is called a linear map if:
+    \begin{compactenum}
+        \item (Additivity): $T(u+v) = Tu+Tv$ for all $u, v\in V$;
+        \item (Homogeneity): $T(\lambda v) = \lambda Tv$ for all $v\in V$ and $\lambda\in\mathbb{F}$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item From this definition, \textcolor{Th}{it is obvious that a linear map must maps the $0$ in the domain to the $0$ in the range.}
+        \item For simplicity, \textcolor{Df}{we denote the set of all linear maps from vector space $V$ to vector space $W$ by $\mathcal{L}(V, W)$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.10.1 (a linear map is determined only by the images on the bases)}
+    Suppose $V$ and $W$ are both finite-dimensional vector spaces over $\mathbb{F}$. Suppose also $v_1, \dots, v_m$ is a basis of $V$ and $w_1, \dots, w_n\in W$. Then there exists unique $T\in\mathcal{L}(V, W)$ such that\\
+    $Tv_j = w_j$ for all $j\in\{1,\dots, n\}$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.11 ($\mathcal{L}(V, W)$ is a vector space)}
+    Suppose $V$ and $W$ are both vector spaces over $\mathbb{F}$. Then $\mathcal{L}(V, W)$ is also a vector space over $\mathbb{F}$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df2.12 (the product of linear maps)}
+    Suppose $T\in\mathcal{L}(U, V)$ and $S\in\mathcal{L}(V, W)$. Then the product of $S$ and $T$, denoted by $ST$, is defined as their composition $S\circ T$.
+\end{Df}
+
+\begin{Rmk}{}
+    We can easily check the associative and distributive properties of product of linear maps.
+    \textcolor{Th}{Suppose the products below of linear maps are well-defined, then:
+    \begin{compactenum}
+        \item (Associativity): $(T_1T_2)T_3 = T_1(T_2T_3)$;
+        \item (Distributivity): $S(T_1+T_2) = ST_1+ST_2$, $(S_1+S_2)T = S_1T+S_2T$
+        \item (Commutativity): $ST = TS$ usually does not holds.
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.13 (null space and range space of linear maps)}
+    \begin{compactenum}
+        \item Suppose $T\in\mathcal{L}(V, W)$. Then the null space of $T$, denoted by $N(T)$, is defined as the set $\{v\in V: Tv = 0\}$.
+        \item Suppose $T\in\mathcal{L}(V, W)$. Then the range space of $T$, denoted by $R(T)$, is defined as the range of $T$, i.e., $\{Tv: v\in V\}$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{For $T\in\mathcal{L}(V, W)$, it is obvious that $N(T)$ is a subspace of $V$ and $R(T)$ is a subspace of $W$.} This definition is aimed at deeping into the properties of bijectiveness.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.14 (injectiveness of linear maps)}
+    Suppose $T\in\mathcal{L}(V, W)$. Then $T$ is injective iff $N(T) = \{0\}$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    A linear map $T\in\mathcal{L}(V, W)$ is injective iff $N(T) = \{0\}$, and is surjective iff $R(T) = W$. Then the next theorem is the fundamental theorem of linear maps.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.15 (the fundamental theorem of linear maps)}
+    Suppose $V$ is a finite-dimensional vector space and $T\in\mathcal{L}(V, W)$. Then $R(T)$ is finite-dimensional and
+    $$\dim V = \dim N(T) +\dim R(T).$$
+    \tcblower
+    \textit{Pf}: First select a basis of $N(T)$, then extend it to a basis of $V$, and finally prove that the images of the extended vectors form a basis of $R(T)$.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.15.1}
+    Suppose $V, W$ are both finite-dimensional vector spaces over $\mathbb{F}$ and $\dim V = \dim W$. If $T\in\mathcal{L}(V, W)$, then:\\
+    $T$ is injective $\leftrightarrow$ $T$ is surjective $\Leftrightarrow$ $T$ is bijective.
+    \textit{Pf}: According to the fundamental theorem of linear map, trivial.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.16 (bijectiveness and dimension)}
+    Suppose $V$ and $W$ are both finite-dimensional vector spaces over $\mathbb{F}$. Then:
+    \begin{compactenum}
+        \item There exists an injective linear map from $V$ to $W$ iff $\dim V\leq \dim W$;
+        \item There exists a surjective linear map from $V$ to $W$ iff $\dim V\geq \dim W$;
+        \item There exists a bijective linear map from $V$ to $W$ iff $\dim V = \dim W$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    From this theorem we see again the measure meaning of dimension for the size of a vector space.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.17 (matrix)}
+    Learn this definition by yourself.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item The concept of matrix is very powerful in linear algebra. It can be seen as a shorthand for a linear map, which will greatly simplify the research of linear maps (as we will see later). 
+        \item A matrix is implemented by a tuple of numbers, arranged in a rectangular way.
+        \item When defining a matrix, we often pre-claim that all the entries of the matrix are from a number field $\mathbb{F}$. \textcolor{Df}{We denote the set of all $m\times n$ matrices (matrices with $m$ rows and $n$ columns) with entries from $\mathbb{F}$ by $\mathbb{F}^{m,n}$.}
+        \item \textcolor{Df}{For simplicity, for a matrix $A$, we can use $A_{i,j}$ to refer to the $(i,j)$ entry (the entry in the $i$-th row and the $j$-th column) of $A$, use $A_{i,\cdot}$ to refer to the $i$-th row vector (the vector represented by the $i$ row) of $A$ and use $A_{\cdot, j}$ to refer to the $j$-th column vector (the vector represented by the $j$ column) of $A$.}
+        \item \textcolor{Th}{If we treat the matrices in $\mathbb{F}^{m,n}$ like the $mn$-dimensional vectors, i.e., define the entry-wise addition and entry-wise scalar-multiplication, then we can easily verify that \textcolor{Th}{$\mathbb{F}^{m,n}$ is a vector space over $\mathbb{F}$}}. \textcolor{Df}{Hence we have defined the addition and scalar-multiplication of matrices.} 
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.18 (matrix representation of a linear map)}
+    Suppose (over the number field $\mathbb{F}$) $T\in\mathcal{L}(V, W)$, and $\pmb{v} = \{v_1, \dots, v_n\}$, $\pmb{w} = \{w_1, \dots, w_m\}$ are bases of $V$ and $W$ respectively. Then the matrix of $T$ w.r.t. the bases $\pmb{v}$ and $\pmb{w}$, denoted by $\mathcal{M}(T)_{\pmb{v}, \pmb{w}}$, is defined as the $m\times n$ matrix $A$ whose $(i,j)$ entry is defined by:
+    $$
+    \begin{aligned}
+        Tv_{1}&=A_{1,1}w_{1}+\cdots+A_{m,1}w_{m}\\
+        &\vdots\\
+        Tv_{n}&=A_{1,n}w_{1}+\cdots+A_{m,n}w_{m}
+    \end{aligned}
+    $$
+    And if the bases $\pmb{v}$ and $\pmb{w}$ are clear from the context, we can simply write $\mathcal{M}(T)$ to denote the matrix of $T$.
+\end{Df}
+
+\begin{Rmk}{}
+    Since we attempt to represent a linear map by a matrix, we wonder how to compute the operation of linear maps by the operation of matrices (addition, scalar-multiplication, matrices multiplication, etc). 
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.18.1 (linear maps operation and matrices operation)}
+    \begin{compactenum}
+        \item Suppose $S, T\in\mathcal{L}(V, W)$. Then w.r.t the same bases $\pmb{v} = \{v_1, \dots, v_n\}$ in $V$ and $\pmb{w} = \{w_1, \dots, w_m\}$ in $W$, $\mathcal{M}(S+T) = \mathcal{M}(S)+\mathcal{M}(T)$.
+        \item Suppose $T\in\mathcal{L}(V, W)$ where $V$ and $W$ are both vector spaces over $\mathbb{F}$. Then for any $\lambda\in\mathbb{F}$, we have $\mathcal{M}(\lambda T) = \lambda\mathcal{M}(T)$.
+        \item Suppose $T\in\mathcal{L}(U, V)$ and $S\in\mathcal{L}(V, W)$. Then w.r.t the bases $\pmb{u} = \{u_1, \dots, u_k\}$ in $U$, $\pmb{v} = \{v_1, \dots, v_m\}$ in $V$ and $\pmb{w} = \{w_1, \dots, w_n\}$ in $W$, we have $\mathcal{M}(ST) = \mathcal{M}(S)\mathcal{M}(T)$
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Actually, the definition of matrices multiplication is just the one choosed for the attempt to make the equality $\mathcal{M}(ST) = \mathcal{M}(S)\mathcal{M}(T)$ holds.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.19 (dimension of $\mathcal{L}(V, M)$ and the corresponding $\mathbb{F}^{m,n}$)}
+    Suppose $V$ and $W$ are both non-zero (not equal to $\{0\}$) finite-dimensional vector spaces over $\mathbb{F}$. Suppose also $\pmb{v} = \{v_1, \dots, v_n\}$ and $\pmb{w} = \{w_1, \dots, w_m\}$ are bases of $V$ and $W$ respectively. Then:
+    $$\dim \mathcal{L}(V, W) = \dim \mathbb{F}^{m,n} = m\cdot n = \dim V\cdot \dim W$$
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df2.20 (matrix of a vector)}
+    Suppose $V$ is a non-zero finite-dimensional vector space over $\mathbb{F}$ and $\pmb{v} = \{v_1, \dots, v_n\}$ is a basis of $V$. Then w.r.t. this basis, the matrix of a vector $v$ in $V$ is defined as the $n$ by $1$ matrix $\mathcal{M}(v)$, whose entries are defined by:
+    $$v = \mathcal{M}(v)_{1,1}v_1+\dots +\mathcal{M}(v)_{n,1}v_n$$
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is designed for the following clarification about the matrices representation of $Tv$. Actually, we do hope that $\mathcal{M}(Tv) = \mathcal{M}(T)\mathcal{M}(v)$ holds and thus we define the matrix of a vector.
+
+    Why can we still denote the matrix of a vector $v$ by $\mathcal{M}(v)$? We have note that a linear map $T\in\mathcal{M}(V, W)$ is a vector of another form, and then is the role of $\mathcal{M}(\cdot)$ the same in the expression $\mathcal{M}(T)$ and $\mathcal{M}(v)$?
+
+    To answer this question, let us deep a little into $\mathcal{L}(V,W)$. Suppose $\dim V = n$ and $\dim W = m$, then $\mathbb{F}^{m,n}$ can be thought of the corresponding matrix space of $\mathcal{L}(V, W)$. Thus we can easily note that the linear maps corresponding to the list of $1$-hot matrices, e.g. the maps corresponding to the matrices
+    $$
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & 0
+    \end{pmatrix} \qquad
+    \begin{pmatrix}
+        0 & 1 \\
+        0 & 0
+    \end{pmatrix} \qquad
+    \begin{pmatrix}
+        0 & 0 \\
+        1 & 0
+    \end{pmatrix} \qquad
+    \begin{pmatrix}
+        0 & 0 \\
+        0 & 1
+    \end{pmatrix}
+    $$
+    for the case of $m=n=2$, should form a basis of $\mathcal{L}(V, W)$. \textcolor{Th}{And this —  the one-hot linear maps $\pmb{E}(\pmb{v}, \pmb{w}) = \{E_{1,1}(\pmb{v}, \pmb{w}), \dots, E_{m,n}(\pmb{v}, \pmb{w})\}$ is a basis of $\mathcal{L}(V, W)$ —  can be exactly verified.} Hence we are now able to see the link between the two roles (the matrix of a map and the matrix of a vector) of $\mathcal{M}(\cdot)$:
+    \textcolor{Th}{$$\mathcal{M}(T)_{\pmb{v}, \pmb{w}} = \mathcal{M}(T)_{\pmb{E}(\pmb{v},\pmb{w})}.$$}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.20.1 (the matrix representation of $Tv$)}
+    Suppose $T\in\mathcal{L}(V, W)$ and $\pmb{v} = (v_1, \dots, v_n)$, $\pmb{w} = (w_1, \dots, w_m)$ are (ordered) bases of $V$ and $W$ respectively. Then for any $v\in V$, 
+    $$\mathcal{M}(Tv) = \mathcal{M}(T)\mathcal{M}(v)$$
+    w.r.t bases $\pmb{v}$ and $\pmb{w}$.
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Please notice that the bases $\pmb{v}$ and $\pmb{w}$ should be ordered, since one unordered bases can still yields different matrix representations. \textcolor{Df}{For basis vectors $\{v_1, ..., v_n\}$ of $V$, we use $(v_1, \dots, v_n)$ to refer to the ordered basis.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.21 (the inverse of a linear map)}
+    A linear map $T\in\mathcal{L}(V, W)$ is a function from $V$ to $W$. Hence if $T$ is bijective, then we say that $T$ is invertible. The inverse function of $T$ is denoted by $T^{-1}$, which is also called the inverse of $T$ for short.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Suppose $T\in\mathcal{L}(V, W)$, $S\in\mathcal{L}(W, V)$. Then the following are equivalent:
+    \begin{compactenum}
+        \item $T$ is bijective.
+        \item $T$ is invertible.
+        \item There exists $S_0\in\mathcal{L}(W, V)$ s.t. [$TS_0 = I_V$ and $S_0T = I_W$] ($I_V$ denotes the identity map on $V$).
+        \item $T$ is bijective, and [$TS = I_W$ and $ST = I_V$] iff $S = T^{-1}$ 
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.22 (isomorphism (同构) of vector spaces)}
+    Suppose $V, W$ are both vector spaces over $\mathbb{F}$. Then $V$ and $W$ are called isomorphic if there exists a bijective $T\in\mathcal{L}(V, W)$. And an bijective linear map between two isomorphic vector spaces is called an isomorphism.
+\end{Df}
+
+\begin{Th}{$\bullet$ Th2.22.1 (equivalent conditions of isomorphism)}
+    Suppose $V, W$ are both finite-dimensional vector spaces over $\mathbb{F}$. Then the following are equivalent:
+    \begin{compactenum}
+        \item There exists a bijective $T\in\mathcal{L}(V, W)$;
+        \item For any $T\in\mathcal{L}(V, W)$, if $\exists S\in\mathcal{L}(W, V)$ s.t. $ST = I_V$, then [$TS = I_W$, $T$ is invertible and $T^{-1} = S$]. 
+    \end{compactenum}
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Suppose $T\in\mathcal{L}(V, W)$. Generally if we want to check the invertibility of $T$, we need to find an $S\in\mathcal{L}(W, V)$ s.t. $TS = I$ and $ST = I$; if $V$ and $W$ are both finite-dimensional, then we first consider their dimensions since only $\dim V = \dim W$ makes the invertibility of $T$ possible; if $\dim V = \dim W$, then we only need to find an $S\in\mathcal{L}(W, V)$ s.t. $TS = I$ or $ST = I$; or we can take an easier approach if $\dim V = \dim W$, which is just checking whether $T$ is injective or $T$ is surjective.\\
+    \textcolor{Th}{We can now see that $\mathbb{F}^{m,n}$ is isomorphic to $\mathcal{L}(V, W)$ for any $n$-dimensional $V$ and $m$-dimensional $W$.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.23 (linear operator)}
+    A linear map $T\in\mathcal{L}(V, V)$ is called a linear operator on $V$. And we denote $\mathcal{L}(V,V)$ by $\mathcal{L}(V)$ for short.
+\end{Df}
+
+\begin{Rmk}{}
+    Here is a convenient way to denote the matrix representation of a linear map. Suppose $T\in\mathcal{L}(V, W)$, where $\{v_1, \dots, v_n\}$ and $\{w_1, \dots, w_m\}$ are corresponding bases. Then we can write the equations in the definition \{, ID: 2.18\} in the matrix-multiplication style:
+    $$T[v_1 \cdots v_n] = [w_1 \cdots w_m]\mathcal{M}(T)$$
+    Hence we can immediately obtain the matrix representation after a basis transformation:
+    \textcolor{Th}{Suppose $T\in\mathcal{L}(V)$ and $\pmb{v} = (v_1, \dots, v_n)$ is a basis of $V$. Suppose also another basis $\pmb{v}^\ast = (v_1^\ast, \dots, v_n^\ast)$ is obtained by $Sv_i = v_i^\ast$. Then:}
+    \textcolor{Th}{
+    $$\mathcal{M}(T)_{\pmb{v^\ast}} = \mathcal{M}(S)_{\pmb{v}}^{-1} \mathcal{M}(T)_{\pmb{v}} \mathcal{M}(S)_{\pmb{v}}$$}
+\end{Rmk}
+\end{document}

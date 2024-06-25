@@ -1,0 +1,141 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Product Space \& Quotient Space}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 3nd chapter of advanced algebra, which is about \textbf{Product Space and Quotient Space}\\
+Here it is necessary to claim a ``definition (Df) -> theorem (Th)'' working cycle, which acts as the writing style throughout this whole course. This working cycle is shown bellow:
+
+\noindent\rule{\textwidth}{2pt}
+\begin{Df}{Some Definition}
+    The text of this definition.
+\end{Df}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+
+\begin{Th}{Some Theorem}
+    The text of this theorem.
+    \tcblower
+    \textit{Pf}: The proof of this theorem (is possibly "todo" when the author cannot complete it yet).
+\end{Th}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+\noindent\rule{\textwidth}{2pt}
+As for the text of both a definition or a theorem, a common fixed pattern of sentences is adopted, which is ``Suppose \dots (some pre-conditions or background information). Then \dots (the direct text for the definition or the theorem).''. Please identify this pattern later by yourself. 
+
+By the way, we now reiterate some commonly-used notations:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $A\times B$: the Cartesian product of $A$ and $B$.
+    \item $\mathbb{F}$: a number field.
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+\begin{Df}{$\bullet$ Df 3.1 (product space)}
+    Suppose $V_1, \dots, V_m$ ($m\geq 1$) are all vector spaces over $\mathbb{F}$. \textcolor{Th}{Then the Cartesian product $V_1\times \dots \times V_m$ is a vector space over $\mathbb{F}$ with the addition and scalar-multiplication defined componentwise.} We call $V_1\times \dots \times V_m$ the product space of $V_1, \dots, V_m$.
+\end{Df}
+
+\begin{Th}{$\bullet$ Th3.1.1 (dimension of the product space)}
+    Suppose $V_1, \dots, V_m$ are all finite-dimensional vector spaces over $\mathbb{F}$. Then 
+    $$\dim \left(V_1\times \dots \times V_m\right) = \dim V_1 + \dots +\dim V_m$$
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th3.1.2 (product space and direct sum)}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $U_1, \dots, U_m$ are subspaces of $V$. Suppose $\Gamma: (U_1\times \dots\times U_m) \rightarrow (U_1 + \dots +U_m)$ is defined by $\Gamma(u_1, \dots, u_m) = u_1 + \dots + u_m$ for $\forall u_1\in U1 \dots\forall u_m\in U_m$. Then:
+    $$U_1\oplus\dots\oplus U_m \Leftrightarrow \Gamma \text{ is injective. }$$
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem is obvious as long as we understand the ``unique representation'' property of the direct sum.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df3.2 (affine subsets)}
+    Suppose $V$ is a vector space over $\mathbb{F}$. Then
+    \begin{compactenum}
+        \item Suppose $v\in V$ and $U$ is a subspace of $V$. Then the subset $v+U \triangleq \{v+u: u\in U\}$ of $V$ is called an affine subset of $V$.
+        \item Suppose $A_1$ and $A_2$ are two affine subsets of $V$, then we say that $A_1$ is parallel to $A_2$, denoted by $A_1// A_2$, if $A_1 = v + U$ and $A_2 = w + U$ for some $v, w\in V$ and some subspace $U$ of $V$.
+    \end{compactenum} 
+\end{Df}
+
+\begin{Df}{$\bullet$ Df3.3 (quotient space)}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $U$ is a subspace of $V$. Then the quotient space of $V$ by $U$, denoted by $V/U$, is the define as the set $\{v+U: v\in V\}$.
+\end{Df}
+
+\begin{Rmk}{}
+    The quotient space $V/U$ is actually a vector space, which is shown later.
+\end{Rmk}
+
+\begin{Th}{$\circ$ Th3.3.1 (the representative of $v+U$)}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $U$ is a subspace of $V$. Suppose $v,w\in V$. Then the following are equivalent:
+    \begin{compactenum}
+        \item $v-w \in U$.
+        \item $v + U = w + U$;
+        \item $(v+U)\cap (w+U)\neq \varnothing$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df3.4 (the vector operations in $V/U$)}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $U$ is a subspace of $V$. Then the addition and scalar-multiplication in $V/U$ are defined by:
+    \begin{compactenum}
+        \item $(v+U) + (w+U) = (v+w) + U$ for $\forall v, w\in V$;
+        \item $\lambda(v+U) = (\lambda v) + U$ for $\forall \lambda\in \mathbb{F}$ and $\forall v\in V$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    This definition rely on the theorem \{, ID: 3.3.1\}, since the addition $(v+U) + (w+U) = (v+w) + U$ needs to be well-defined for different choices of $v$ for $v+U$ (and $w$ for $w+U$). And with this definition, we see that \textcolor{Th}{the quotient space $V/U$ is a vector space, with the additive identity $0+U$ and the additive inverse $(-v)+U$ for $\forall v\in V$}.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th3.5 (the dimension of the quotient space)}
+    Suppose $V$ is a finite-dimensional vector space over $\mathbb{F}$ and $U$ is a subspace of $V$. Then $V/U$ is also finite-dimensional and:
+    $$\dim V/U = \dim V - \dim U$$
+    \tcblower
+    \textit{Pf}: Let $\{u_1, \dots, u_m\}$ be a basis of $U$ and extend it to a basis $\{u_1, \dots, u_m, w_1, \dots, w_k\}$ of $V$. Then easily prove that $\{w_1+U, \dots, w_k+U\}$ is a basis of $V/U$.
+\end{Th}
+\end{document}

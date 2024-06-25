@@ -1,0 +1,347 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Matrix}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 5th chapter of advanced algebra, which is about some basic computational theory of \textbf{Matrix}\\
+Here it is necessary to claim a ``definition (Df) -> theorem (Th)'' working cycle, which acts as the writing style throughout this whole course. This working cycle is shown below:
+
+\noindent\rule{\textwidth}{2pt}
+\begin{Df}{Some Definition}
+    The text of this definition.
+\end{Df}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+
+\begin{Th}{Some Theorem}
+    The text of this theorem.
+    \tcblower
+    \textit{Pf}: The proof of this theorem (is possibly "todo" when the author cannot complete it yet).
+\end{Th}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+\noindent\rule{\textwidth}{2pt}
+As for the text of both a definition or a theorem, a common fixed pattern of sentences is adopted, which is ``Suppose \dots (some pre-conditions or background information). Then \dots (the direct text for the definition or the theorem).''. Please identify this pattern later by yourself. 
+
+By the way, we now reiterate some commonly-used notations and conventions:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $A\times B$: the Cartesian product of $A$ and $B$.
+    \item $\mathbb{F}$: a number field.
+    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+    \item $A = \{a_{i,j}\}$: a matrix $A$ with the element $a_{i,j}$ at the $i$-th row and the $j$-th column. In this chapter, we usually use the capital letters to represent the matrices, small and bold letters to represent the row or column vectors, and the small letters to represent the elements of the matrices.
+    \item Since you have known that the matrices and the linear maps are isomorphic, we turn the point of discussion to the matrices as they are powerful tools. Once have fixed the bases, the matrix of a linear map is uniquely determined. Hence please associate any matrix with an underlying map, taking the standard bases in $\mathbb{F}$ (the standard bases are those bases of so called ``one-hot'' from).
+    \item The matrix product $KA$ is referred as ``$A$ left-multiplied by $K$'' or ``left-multiply $A$ by $K$''; $AK$ is similar.
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+\begin{Df}{$\bullet$ Df5.1 (linear system)}
+    Denoted by $A\pmb{x} = \pmb{b}$. Check this definition by yourself.
+\end{Df}
+
+\begin{Rmk}{}
+    This is a vital concepts in linear algebra, and we can say that linear algebra is born from the study of linear systems. With the preliminary in the previous chapters, we can now view the linear system in linear maps. Let $T$ be the underlying linear map of $A$, then the linear system $A\pmb{x} = \pmb{b}$ is just the equation $T(\pmb{x}) = \pmb{b}$. 
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th5.1.1 (solutions of a linear system)}
+    \begin{compactenum}
+        \item A linear system has no solution, a unique solution, or infinitely many solutions.
+        \item When a linear system $A\pmb{x} = \pmb{b}$ has solutions, its set of solutions is the affine set $\pmb{x_p} + N(T)$, where $\pmb{x_p}$ is a particular solution (s.t. $A\pmb{x_p} = \pmb{b}$) and $T$ is the underlying linear map of $A$.
+        \item Linear systems $A\pmb{x} = \pmb{b}$ (with the underlying linear map $T$ of $A$) has at least one solution if $T$ is surjective, and has at most one solution if $T$ is injective. 
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df5.1.2 (invertible matrix)}
+    A matrix $A$ is said to be invertible if the underlying linear map $T$ of $A$ (take the standard bases) is invertible. Denote the inverse of $A$ by $A^{-1}$.
+\end{Df}
+
+\begin{Rmk}{}
+    Obviously, \textcolor{Th}{only square matrices can be invertible}. And \textcolor{Th}{suppose $A$ is a square matrix, then $A$ is invertible iff $\exists$ square matrix $B$ s.t. $AB = I$ or $BA = I$}. \textcolor{Th}{If the matrix $A$ in the linear system is a square matrix, then the linear system has a unique solution iff $A$ is invertible; and this solution is $\pmb{x} = A^{-1}\pmb{b}$.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df5.2 (elementary operators, elementary matrices)}
+    Suppose $(\pmb{a}_1, \dots, \pmb{a}_m)$ is an ordered list of vectors in $\mathbb{F}^n$. Then the elementary operations on $(\pmb{a}_1, \dots, \pmb{a}_m)$ are the three types of operations below:
+    \begin{compactenum}
+        \item Permutation: permutes a pair of the vectors;
+        \item Scaling: multiply a vector by a non-zero scalar;
+        \item Addition: add a non-zero multiple of one vector to another.
+    \end{compactenum}
+    The elementary matrices are those matrices, say, the set $\mathcal{E}$ of matrices, corresponding to elementary operations (on the standard basis), with both the row-design and column-design:
+    \begin{compactenum}
+        \item Permutation: $E_p(i\leftrightarrow j)$ permutes the $i$-th and $j$-th rows (or columns, row-permutation is the same as column-permutation) of $I$.
+        \item Scaling: $E_s(ci)$ multiplies the $i$-th row (or $i$-th column, row and column are also the same here) of $I$ by a non-zero factor $c$.
+        \item Addition: $E_{ar}(i+cj)$ (resp. $E_{ac}(i+cj)$) adds $c$ times of the $j$-th row to the $i$-th row (resp. adds $c$ times of the $j$-th column to the $i$-th column).
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Obviously, the elementary operators are all invertible, and the three types of elementary operators listed above are mutually disjoint.}\\
+    Why have we proposed such definition, and claim such maps and matrices ``elementary''?\\
+    Now we give a brief explanation. Since we want to solve $A\pmb{x} = \pmb{b}$ with invertible $A$, we have to compute the inverse of $A$. Unfortunately, the inverse of a matrix is somewhat not as intuitive as the inverse of a number, which requires a systematic approach.\\
+    Since we can find the inverse for some simple matrices (as some smart kids would try), we attempt to decompose the task for solving $A^{-1}$ into solving the inverses of some simple matrices, which later inspired us to decompose $A$ as $A = E_n\dots E_1$ with simple (or say, ``elementary'') and invertible $E_i$, so that $A^{-1} = E_1^{-1}\dots E_n^{-1}$.\\
+    Then which matrices should be elementary? Just as the name implies, we expect a set $\mathcal{E}$of matrices with the following properties: 
+    \begin{compactenum}
+        \item (invertibility): $\forall E\in\mathcal{E}$, $E$ is invertible;
+        \item (universality): $\forall A\in\mathbb{F}^{n,n}$, $\exists$ unique $(E_1, \dots, E_n)\in \mathcal{E}^n$ s.t. $A = E_n\dots E_1$;
+        \item (atomicity): $\forall E\in\mathcal{E}$, $\nexists (E_1, E_2, \dots, E_n)\in\mathcal{E}^n$ s.t. $n>1$ and $E = E_n\dots E_1$.
+    \end{compactenum}
+    Actually, the atomicity is impractical to persue (as in the future we will look back and say that there is no $\mathcal{E}$ holds the atomicity and that every invertible matrix can be further factorized). This property, however, does not matter for us since we are just desire to find some invertible matrices simple enough. Hence we loosen our requirements for $\mathcal{E}$ (along with the uniqueness condition in ``universality'') as:
+    \begin{compactenum}
+        \item (invertibility): $\forall E\in\mathcal{E}$, $E$ is invertible;
+        \item (universality): $\forall A\in\mathbb{F}^{n,n}$, $\exists (E_1, \dots, E_n)\in \mathcal{E}^n$ s.t. $A = E_n\dots E_1$;
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Rmk}{}
+    Without doubt, elementary matrices should have feasible expression of inverse, and any invertible matrix $A$ can be factored as a product of them. The factorization $A = E_n\dots E_1$ is just $A = E_n\dots E_1 I$, which means to transform the identity maps to any invertible map, namely, transform the standard basis $\{\pmb{e}_1, \dots, \pmb{e}_n\}$ ($I$) to any basis $\{\pmb{v}_1, \dots, \pmb{v}_n\}$ ($A$) in a sequence of invertible transformations. For the sake of simplicity of $E_i$, a natural idea is that each $E_i$ should transform just a few basis vectors, for example, transform only one basis vector (if this idea is feasible). Thus we might need to consider the component-wise process: $\pmb{e}_1\mapsto \pmb{v}_1$, $\pmb{e}_2\mapsto \pmb{v}_2$, \dots, $\pmb{e}_n\mapsto \pmb{v}_n$.\\
+    Are we done? No, the transform $\pmb{e}_1\mapsto \pmb{v}_1$ may not be invertible. Let $\pmb{v}_1 = \sum_{i} c_i\pmb{e}_i$, and to achieve this map, we might go like this: $\pmb{e}_1\mapsto c_1\pmb{e}_1\mapsto \left(c_1\pmb{e}_1+\sum_{i\neq 1} c_i\pmb{e}_i\right)$. But the scaling $\pmb{e}_1\mapsto c_1\pmb{e}_1$ is not invertible if $c_1 = 0$. Hence we might turn to think that $\pmb{e}_1$ can be mapped to another $\pmb{v}_i$ as long as we permute $\pmb{v}_1$ and $\pmb{v}_j$ later. Now, there is always some $\pmb{v}_j$ with non-zero $\pmb{e}_1$ component (otherwise $A$ is not invertible) and thus we achieve $\pmb{e}_1\mapsto \pmb{v}_1$.\\
+    Then we are about to transform $(\pmb{v}_1, \pmb{e}_2, \dots, \pmb{e}_n)$ to $(\pmb{v}_1, \pmb{v}_2, \dots, \pmb{v}_n)$. Can we repeat the same process while keeping the successfully changed vectors $\pmb{v}_1$? Now you might ask a general method to change an order basis $(\pmb{v}_i)$ to another, $(\pmb{w}_i)$, by achieve the invertible linear map $\pmb{v}_{h+1}\mapsto \pmb{w}_{h+1}$ after the first $h$ vectors have been successfully transformed. Then is there some $\pmb{w}_j$ behind $\pmb{w}_h$ with a non-zero $\pmb{v}_{h+1}$ component? Exactly. Once express $\pmb{w}$'s in terms of $(\pmb{w}_1, \dots, \pmb{w}_h, \pmb{v}_{h+1}, \dots, \pmb{v}_n)$, there is always a vector in $\{\pmb{w}_i\}$ with non-zero $\pmb{v}_{h+1}$ component, and this vector must be after $\pmb{w}_h$ since the previous $h$ vectors all have zero $\pmb{v}_{h+1}$ component. Hence we just need to repeat the previous process, which can finally find the invertible sequence $E_1, \dots, E_n$. In this process, we can see that the involved transformations are just the permutation, scaling and addition operations, which depicts what $\mathcal{E}$ is like.\\
+    Actually this process is just a theoretical one, and it seems not as computationally convenient. In practice, we perform the factorization following the well-known \textbf{Gaussian Elimination}, which conversely transform any invertible $A$ into $I$. This process, along with the exact inverse of elementary matrices, would be introduced below. 
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th5.2.1 (multiplication by elementary matrices is equivalent to the corresponding elementary operations)}
+    Suppose $A$ is a matrix. Then:
+    \begin{compactenum}
+        \item $E_p(i\leftrightarrow j)A$ (resp. $AE_p(i\leftrightarrow j)$) is the matrix obtained by permuting the $i$-th and $j$-th rows (resp. columns) of $A$;
+        \item $E_s(ci)A$ (resp. $AE_s(ci)$) is the matrix obtained by multiplying the $i$-th row (resp. column) of $A$ by $c$;
+        \item $E_{ar}(i+cj)A$ (resp. $AE_{ac}(i+cj)$) is the matrix obtained by adding $c$ times of the $j$-th row (resp. column) to the $i$-th row (resp. column) of $A$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Sometimes it is better to have a schetch proof than an exact one. Here why multiplying elementary $E$ on the left of $A$ corresponds to the row operations and multiplying on the right corresponds to the column operations? As we will see later in the discussion of block matrix, $EA$ is just that every row of $E$ separately multiplies $A$, and $AE$ is just that $A$ multiplies every column of $E$. 
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df5.2.2 ((forward) Gaussian elimination)}
+    Given a $m$ by $n$ matrix
+    $$A = \begin{bmatrix}
+        a_{1,1} & \dots & a_{1,n}\\
+        \vdots & \ddots & \vdots\\
+        a_{m,1} & \dots & a_{m,n}
+    \end{bmatrix}$$
+    the Gaussian Elimination is described as follows:
+    \begin{compactenum}
+        \item Place a cursor at $a_{1,1}$ (the cursor is at $(1,1)$ now). Go to (2).
+        \item Say the cursor is now at $(i,j)$. Terminate the entire algorithm if the cursor is of index out of range. If the cursor encounters a zero, then search for the first non-zero element $a_{i^\prime, j}$ in the same column below the cursor (if any), and swap the $i$-th row and the $i^\prime$-th row of $A$; if all elements at and below the cursor are $0$, then move the cursor one unit to the right and repeat (2). Go to (3).
+        \item Say the cursor is now at $(i,j)$. Terminate the entire algorithm if the cursor is of index out of range. Eliminate all elements $a_{i+1, j}, \dots, a_{m, j}$ below the cursor (if any) to $0$, by subtracting each row below $(i,j)$ by an appropriate multiple of the $i$-th row of $A$. Then move the cursor one unit to the right and one unit to the bottom. Turn to (2).
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    We can see that this forward Gaussian elimination incorporate the elementary operations, and it is important for us to track the elementary matrices involved if we want to find $A^{-1}$.
+    \textcolor{Th}{It is obvious that for any input matrix $M$, forward Gaussian elimination ends up with a ``stair-form'' result matrix.} So what is the ``stair-form''? \textcolor{Df}{If we call the first non-zero element of the $i$-th row the ``pivot'' of this row, then the so-called stair-form-matrix is a matrix with strictly increasing column-indices of pivots from the top to the bottom (for a row $[0,3,0,0]$, the column-index of pivot $3$ is $2$; for a zero row where no pivot appears, we say the column-index of its pivot is $\infty$).}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th5.2.3 (solve linear system by the forward Gaussian elimination)}
+    For a linear system $A\pmb{x} = \pmb{b}$, apply the forward-Gaussian elimination on the augmented matrix $[A\;\;\pmb{b}]$ and obtain the matrix $[A_s\;\; \pmb{b}_s]$ (where $A_s$ is the resulted stair-form matrix). Then:
+    \begin{compactenum}
+        \item The resulted system $A_s\pmb{x} = \pmb{b}_s$ has the same solutions as the original system $A\pmb{x} = \pmb{b}$.
+        \item $A\pmb{x} = \pmb{b}$ has at least one solution iff there are no zero row of $A_s$ meeting a non-zero component of $\pmb{b}_s$ on the right (that is, no row in $[A_s\;\;\pmb{b}_s]$ like $[0, \dots, 0, b]$ with non-zero $b$).
+        \item Remove all zero rows of $[A_s\;\;\pmb{b}_s]$. Then $A\pmb{x} = \pmb{b}$ has a solution iff the pivot of the last row of $[A_s\;\;\pmb{b}_s]$ exists; $A\pmb{x} = \pmb{b}$ has a unique solution iff the pivot of the last row of $[A_s\;\;\pmb{b}_s]$ exists and reaches the right end.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    \begin{compactitem}
+        \item For the case of unique solution, one can solve the system by the back substitution process (check it online by yourself).
+        \item If you not only want the solution, but still the inverse of $A$, you need the entire Gaussian elimination, including both the forward and backward step.
+    \end{compactitem}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df5.2.4 (entire Gaussian elimination)}
+    Given an $n$ by $n$ square matrix $A$, the entire Gaussian elimination is described as follows:
+    \begin{compactenum}
+        \item Apply the forward Gaussian elimination and update $A$. Report a ``fail'' message and terminate the entire algorithm if the current $A$ is zero at $(n,n)$. Place the cursor at $(n,n)$ and go to (2).
+        \item Say the cursor is at $(i,i)$. Terminate the entire algorithm if the cursor is of index out of range. Eliminate all elements above the cursor to $0$, by subtracting each row above $(i,i)$ by an appropriate multiple of the $i$-th row. Move the cursor one unit to the left and one unit to the top. Repeat (2).
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    It is obvious that \textcolor{Th}{the entire Gaussian elemination ends up with the identity matrix iff the input square matrix is invertible.} This is because iff the matrix is not invertible, then the cursor would hit the wall (that is, end up with the column-index out of range) in the forward phase and fail later. For any invertible matrix $A$, we apply this algorithm on it, tracking in order the elementary matrices involved, and then multiply them to obtain $A^{-1}$ finally. And so far we would be happy to see that \textcolor{Th}{every invertible matrix can be factored as a product of elementary matrices.}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th5.2.5 (rank is invariant under elementary operations)}
+    Suppose $A$ is a matrix. Then $\text{rank}(A)$ is invariant if elementary operations are applied on A.
+    \tcblower
+    \textit{Pf}: Rank is the dimension of the column space and the row space of $A$. The elementary operations do not change the dimension.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th5.2.6 (properties of rank)}
+    The rank of matrix has the following properties (suppose all the expressions below are legal):
+    \begin{compactenum}
+        \item $\max \{\text{rank}(A), \text{rank(B)}\} \leq \text{rank}([A\;\; B]) \leq \text{rank}(A)+ \text{rank}(B)$;
+        \item $\text{rank}(A+B)\leq \text{rank}(A)+\text{rank}(B)$;
+        \item $\text{rank}(AB)\leq \min\{\text{rank}(A), \text{rank}(B)\}$.
+        \item If $AB=0$, then $\text{rank}(A)+\text{rank}(B)\leq n$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial, just think of the range space implications of rank.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df5.3 (block matrix (分块矩阵))}
+    \begin{compactenum}
+        \item Check this definition by yourself.
+        \item Let $A$ be a block matrix:
+            $$A = \begin{bmatrix}
+                A_{1,1} & \dots & A_{1,p}\\
+                \vdots  &       &\vdots\\
+                A_{m,1} & \dots & A_{m,p}
+            \end{bmatrix}$$
+        Then $A_{i,\cdot} = [A_{i,1}, \dots, A_{i,p}]$ is termed as the $i$-th block-row of $A$. The term ``block-column'' is defined similarly.
+        \item Let $D_1, \dots, D_m$ be square matrices of size $n_1, \dots, n_m$ respectively. Then the block matrix 
+            $$D = \begin{bmatrix}
+                D_1 &   &\\
+                    & \ddots &\\
+                    &   & D_m
+            \end{bmatrix}$$
+        is called the block diagonal matrix, denoted as $D = \text{diag}(D_1, \dots, D_m)$.
+        \item Let $I_1, \dots, I_m$ be identity matrices of sizes $n_1, \dots, n_m$ respectively. Then the block-diagonal matrix $I = \text{diag}(I_1, \dots, I_m)$ is called a block identity matrix (actually, $I$ is an identity matrix of size $n_1+\dots +n_m$).
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    This definition has brought huge theoretical and computational convenience. 
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th5.3.1 (multiplication of block matrices)}
+    Suppose matrices $A$ and $B$ (over $\mathbb{F}$) are blocked as 
+    $$
+    A = \begin{bmatrix}
+        A_{1,1} & \dots & A_{1,p}\\
+        \vdots  &       &\vdots\\
+        A_{m,1} & \dots & A_{m,p}
+    \end{bmatrix}, \quad
+    B = \begin{bmatrix}
+        B_{1,1} & \dots & B_{1,n}\\
+        \vdots  &       &\vdots\\
+        B_{p,1} & \dots & B_{p,n}
+    \end{bmatrix}
+    $$
+    Then $AB$ is the block matrix obtained by the same expression with the ordinary matrix multiplication, (treating each block as a single element in $\mathbb{F}$ but keeping the order of $A$ and $B$) as long as each addition and multiplication in the expression is legal.
+    \tcblower
+    \textit{Pf}: There is no more insight the proof can provide. You can first verify this theorem in the case that row-blocked $A$ multiplies column-blocked $B$, and in the case that column-blocked $A$ multiplies row-blocked $B$. Then you can further verify the general case. 
+\end{Th}
+
+\begin{Df}{$\bullet$ Df5.3.2 (block elementary operations and matrices)}
+    As an extension of the elementary matrices, the block elementary matrices are defined as the block matrices obtained by the block elementary operations on the block identity matrix $\pmb{I}$. The set $\pmb{\mathcal{E}}$ of block elementary matrices consists still of the three types of block matrices below, provided that all the matrix-addition and matrix-multiplication involved are legal (recall that addition requires the same shape of matrices, and multiplication requires the equal number of rows of the left multiplier and the number of columns of the right multiplier):
+    \begin{compactenum}
+        \item Permutation: $\pmb{E}_{pr}(i\leftrightarrow j)$ (resp. $\pmb{E}_{pc}(i\leftrightarrow j)$) permutes the $i$-th and $j$-th block-rows (resp. block-columns) of $\pmb{I}$;
+        \item Scaling: $\pmb{E}_{sr}(Ki)$ (resp. $\pmb{E}_{sc}(iK)$) left-multiplies (resp. right-multiplies) the $i$-th block-row (resp. block-column) of $\pmb{I}$ by an invertible matrix $K$;
+        \item Addition: Given a matrix $K$, $\pmb{E}_{ar}(i+Kj)$ (resp. $\pmb{E}_{ac}(i+jK)$) adds left-$K$ (right-$K$) times of the $j$-th block-row (resp. block-column) to the $i$-th block-row (resp. block-column) of $\pmb{I}$ (``a left-$K$ times of the $j$-th block-row'' means that the $j$-th block-row is left-multiplied by $K$). 
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    Note that for block scaling defined above, no $\pmb{E}_{sc}(Ki)$ and $\pmb{E}_{sr}(iK)$. The reason is that ``left-multiply a block-row by a matrix $K$'' means to left-multiply the block-row block-wisely. If $K$ is $2$ by $2$ and we right-multiply $[I_{2\times 2}\;\; A_{2\times 3}]$ by $K$, it would cause the mismatch of dimensions. Hence $\pmb{E}_{sc}(Ki)$ and $\pmb{E}_{sr}(iK)$ are illegal, and so are the block addition $\pmb{E}_{ar}(i+jK)$ and $\pmb{E}_{ac}(i+Kj)$.
+
+    Also, we can see that the block elementary operations are still the previous elementary operations. For example, to permute two block-rows is just to permute two rows many times. Hence we easily obtain that \textcolor{Th}{the rank of a matrix is invariant under block elementary operations}.
+
+    Another convenience of block matrices is that we can extend the theorem \{, ID: 5.2.1\}: \textcolor{Th}{Performing some block elementary row-operation (resp. column-operation) on a block matrix is equivalent to left-multiplying it (resp. right-multiplying it) by the corresponding block elementary matrix.} Here the ``corresponding'' is exactly listed as:
+    \begin{compactenum}
+        \item Block-row (resp. Block-column) permutation: $\pmb{E}_{pr}(i\leftrightarrow j)$ (resp. $\pmb{E}_{pc}(i\leftrightarrow j)$);
+        \item Block-row scaling (resp. Block-column scaling): $\pmb{E}_{sr}(Ki)$ (resp. $\pmb{E}_{sc}(iK)$);
+        \item Block-row (resp. Block-column) addition: $\pmb{E}_{ar}(i+Kj)$ (resp. $\pmb{E}_{ac}(i+jK)$).
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th5.3.3 (the inverse of block matrices)}
+    Suppose $A$ is a block square matrix with:
+    $$
+    A = \begin{bmatrix}
+        A_{11} & A_{12}\\
+        A_{21} & A_{22}
+    \end{bmatrix}
+    $$
+    where $A_{11}$ and $A_{22}$ are square matrices. 
+    \begin{compactenum}
+        \item If $A_{11}$ is invertible and $B_{21}\triangleq A_{22}-A_{21}A_{11}^{-1}A_{12}$ is invertible, then $A$ is invertible and
+            $$
+            A^{-1} = \begin{bmatrix}
+                A_{11}^{-1} + A_{11}^{-1}A_{12}B_{21}^{-1}A_{21}A_{11}^{-1} & -A_{11}^{-1}A_{12}B_{21}^{-1}\\
+                -B_{21}^{-1}A_{21}A_{11}^{-1} & B_{21}^{-1}
+            \end{bmatrix}
+            $$
+        \item If $A_{22}$ is invertible and $B_{12}\triangleq A_{11}-A_{12}A_{22}^{-1}A_{21}$ is invertible, then $A$ is invertible and
+            $$
+            A^{-1} = \begin{bmatrix}
+                B_{12}^{-1} & -B_{12}^{-1}A_{12}A_{22}^{-1}\\
+                -A_{22}^{-1}A_{21}B_{12}^{-1} & A_{22}^{-1}+A_{22}^{-1}A_{21}B_{12}^{-1}A_{12}A_{22}^{-1}
+            \end{bmatrix}
+            $$
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Just perform the Gaussian elimination on $A$ in a block-wise way (take the case where $B_{21}$ is invertible as example):
+    $$ A = \begin{bmatrix}
+        A_{11} & A_{12}\\
+        A_{21} & A_{22}
+    \end{bmatrix} 
+    \overset{\pmb{E}_{ar}(2-A_{21}A_{11}^{-1}1)}{\longrightarrow}
+    \begin{bmatrix}
+        A_{11} & A_{12}\\
+        \pmb{0} & B_{21}
+    \end{bmatrix}
+    \overset{\pmb{E}_{ar}(1-A_{12}B_{21}^{-1}2)}{\longrightarrow}
+    \begin{bmatrix}
+        A_{11} & \pmb{0}\\
+        \pmb{0} & B_{21}
+    \end{bmatrix}
+    \overunderset{\pmb{E}_{sr}(A_{11}^{-1}1)}{\pmb{E}_{sa}(B_{21}^{-1}2)}{\longrightarrow}
+    \begin{bmatrix}
+        I & \\
+        & I
+    \end{bmatrix}.
+    $$
+\end{Th}
+
+\begin{Rmk}{}
+    In this theorem, the condition ``$A_{11}$ is invertible and $B_{21}\triangleq A_{22}-A_{21}A_{11}^{-1}A_{12}$ is invertible'' is specified to make sure that the block-wise Gaussian elimination would not fail.
+\end{Rmk}
+
+
+\end{document}

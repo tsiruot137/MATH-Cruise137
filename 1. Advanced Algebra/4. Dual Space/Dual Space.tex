@@ -1,0 +1,194 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Dual Space}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 4th chapter of advanced algebra, which is about \textbf{Dual Space}\\
+Here it is necessary to claim a ``definition (Df) -> theorem (Th)'' working cycle, which acts as the writing style throughout this whole course. This working cycle is shown bellow:
+
+\noindent\rule{\textwidth}{2pt}
+\begin{Df}{Some Definition}
+    The text of this definition.
+\end{Df}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+
+\begin{Th}{Some Theorem}
+    The text of this theorem.
+    \tcblower
+    \textit{Pf}: The proof of this theorem (is possibly "todo" when the author cannot complete it yet).
+\end{Th}
+
+\begin{Rmk}{}
+    The text of the remarks about the definition just proposed (possibly including what it means and what it is for).\\
+    \textcolor{Df}{Some remarks with some incidental definitions.}\\
+    \textcolor{Th}{Some remarks with some incidental theorems.}
+\end{Rmk}
+\noindent\rule{\textwidth}{2pt}
+As for the text of both a definition or a theorem, a common fixed pattern of sentences is adopted, which is ``Suppose \dots (some pre-conditions or background information). Then \dots (the direct text for the definition or the theorem).''. Please identify this pattern later by yourself. 
+
+By the way, we now reiterate some commonly-used notations and conventions:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $A\times B$: the Cartesian product of $A$ and $B$.
+    \item $\mathbb{F}$: a number field.
+    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+\begin{Df}{$\bullet$ Df4.1 (linear functional (线性泛函))}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $T\in\mathcal{L}(V, \mathbb{F})$. Then $T$ is called a \textbf{linear functional} on $V$.
+\end{Df}
+
+\begin{Df}{$\bullet$ Df4.2 (dual space)}
+    Suppose $V$ is a vector space over $\mathbb{F}$. Then $\mathcal{L}(V, \mathbb{F})$ is called the \textbf{dual space} of $V$, denoted by $V^\prime$.
+\end{Df}
+
+\begin{Rmk}{}
+    Easy to see that \textcolor{Th}{$V^\prime$ is a vector space over $\mathbb{F}$. And if $V$ is finite-dimensional, then $\dim V = \dim V^\prime$.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df4.2.1 (dual basis)}
+    Suppose $V$ is a finite-dimensional vector space over $\mathbb{F}$ and $\{v_1, \dots, v_n\}$ is a basis of $V$. Then the list $\{\varphi_1, \dots, \varphi_n\}$ of linear functionals on $V$ defined by
+    \begin{equation*}
+        \varphi_i(v_j) = \begin{cases}
+            1, & \text{if } i = j,\\
+            0, & \text{if } i \neq j,
+        \end{cases}
+    \end{equation*}
+    is called the dual basis of $\{v_1, \dots, v_n\}$.
+\end{Df}
+
+\begin{Rmk}{}
+    Easy to see that \textcolor{Th}{the dual basis is a basis of the dual space.}\\
+    \textcolor{Th}{The definition of the dual basis actually constructs an isomorphism between $V$ and $V^\prime$, which is $\sum_{i} c_iv_i\mapsto \sum_{i} c_i\varphi_i$.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df4.3 (dual map)}
+    Suppose $T\in\mathcal{L}(V, W)$. Then the map $T^\prime\in\mathcal{L}(W^\prime, V^\prime)$ defined by
+    $$ T^\prime(\varphi) = \varphi\circ T, \quad\text{ for any }\varphi\in W^\prime$$
+    is called the dual map of $T$.
+\end{Df}
+
+\begin{Rmk}{}
+    We can derive the following basic properties of the dual map.
+    \begin{compactenum}
+        \item $(S+T)^\prime = S^\prime + T^\prime$ for any $S, T\in\mathcal{L}(V, W)$;
+        \item $(\lambda T)^\prime = \lambda T^\prime$ for any $T\in\mathcal{L}(V, W)$ and $\lambda\in\mathbb{F}$;
+        \item $(ST)^\prime = T^\prime S^\prime$ for any $S\in\mathcal{L}(V, W)$ and $T\in\mathcal{L}(U, V)$ ($U, V, W$ are all over $\mathbb{F}$).
+    \end{compactenum}
+    And these are similar to the properties of matrix transposition, as we will see their connections later.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df4.4 (annihilator (零化子))}
+    Suppose $V$ is a vector space over $\mathbb{F}$ and $U\subseteq V$. Then the annihilator of $U$, denoted by $U^0$, is the set defined by:
+    $$U^0 = \{\varphi\in V^\prime: \varphi[U] = \{0\}\}.$$
+\end{Df}
+
+\begin{Rmk}{}
+    Easy to see that \textcolor{Th}{$U^0$ is a subspace of $V^\prime$.} Note that $U^0$ varies not only with $U$, but also with $V$.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th4.4.1 ($\dim U^0$)}
+    Suppose $V$ is a finite-dimensional vector space over $\mathbb{F}$ and $U\subseteq V$. Then
+    $$\dim U + \dim U^0 = \dim V.$$
+    \tcblower
+    \textit{Pf}: Formulate a basis $\{u_1, \dots, u_m, w_1, \dots, w_k\}$ of $V$ (where $\{u_1, \dots, u_m\}$ is a basis of $U$) and the corresponding dual basis $\{\varphi_1, ..., \varphi_m, \psi_1, \dots, \psi_k\}$. Then it is easy to verify that $\{\psi_1, \dots, \psi_k\}$ is a basis of $U^0$. 
+\end{Th}
+
+\begin{Th}{$\bullet$ Th4.4.2 (relation between $N(T)$, $N(T^\prime)$, $R(T)$ and $R(T^\prime)$)}
+    Suppose $T\in\mathcal{L}(V, W)$. Then:
+    \begin{compactenum}
+        \item $N(T^\prime) = [R(T)]^0$;
+        \item If $V$ and $W$ are both finite-dimensional, then $R(T^\prime) = [N(T)]^0$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th4.4.3 (surjectiveness of $T^\prime$)}
+    Suppose $V$ and $W$ are finite-dimensional vector spaces and $T\in\mathcal{L}(V, W)$. Then $T^\prime$ is surjective if and only if $T$ is injective.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df4.5 (transposition of matrix)}
+    Check the definition online by yourself. The transposition of matrix $A$ is denoted by $A^\prime$ or $A^T$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Some basic properties of the transposition of matrix (suppose the expression about $A$ and $B$ are below are all legal):
+    \begin{compactenum}
+        \item $(A+B)^\prime = A^\prime + B^\prime$ for any matrices $A$ and $B$;
+        \item $(\lambda A)^\prime = \lambda A^\prime$ for any matrix $A$ and scalar $\lambda$;
+        \item $(AB)^\prime = B^\prime A^\prime$ for any matrices $A$ and $B$.
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th4.5.1 ($\mathcal{M}(T^\prime) = [\mathcal{M}(T)]^\prime$)}
+    Suppose $V$ and $W$ are finite-dimensional vector spaces and $T\in\mathcal{L}(V, W)$. Let $\pmb{v}$, $\pmb{w}$ are bases of $V$, $W$ respectively and their corresponding dual bases are $\pmb{\varphi}$ (of $\pmb{v}$), $\pmb{\psi}$ (of $\pmb{w}$). Then w.r.t. these bases: 
+    $$\mathcal{M}(T^\prime) = [\mathcal{M}(T)]^\prime$$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\circ$ Df4.6 (row vectors, column vectors and ranks)}
+    Suppose $A\in\mathbb{F}^{m,n}$. Then:
+    \begin{compactenum}
+        \item (row vectors): check the definition online by yourself;
+        \item (column vectors): check the definition online by yourself;
+        \item (row rank): the row rank of $A$ is the dimension of the row space (the subspace (of $\mathbb{F}^n$)spanned by the row vectors of $A$);
+        \item (column rank): the column rank of $A$ is the dimension of the column space (the subspace (of $\mathbb{F}^m$) spanned by the column vectors of $A$).
+    \end{compactenum}
+\end{Df}
+
+\begin{Th}{$\bullet$ Th4.6.1 (the fundamental theorem of linear algebra)}
+    For any matrix $A$, the row rank of $A$ equals the column rank of $A$.
+    \tcblower
+    \textit{Pf}: Assign an underlying linear map $T$ for $A$. Then: row rank = $\dim R(T)$ = $\dim R(T^\prime)$ = column rank.
+\end{Th}
+
+\begin{Rmk}{}
+    Among all the discussions above, we can see that the duality of maps is actually the same with transposition of matrices, in the meaning of isomorphism. And everything about linear maps (between finite-dimensional vector spaces) can be transformed into the language of matrices. In matrix terms, an n-vector (vector in an $n$-dimensional space) is a $n$-tuple arranged in a column, and a linear map is an $m$ by $n$ matrix (specifically, a linear functional is a $1$ by $n$ row), where mapping the vector is just multiplying the matrix by the vector. In this sense, an $m$ by $n$ matrix maps $\mathbb{F}^n$ exactly to its column space (as it maps the vectors in the basis to the corresponding columns), and correspondingly, the transposition of the matrix maps $\mathbb{F}^m$ exactly to its row space.  
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df4.6.2 (rank)}
+    The rank of a matrix $A$ is its column rank, denoted by $\text{rank}(A)$. 
+\end{Df}
+\end{document}
