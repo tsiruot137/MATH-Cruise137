@@ -94,6 +94,10 @@ Please check the notations and definitions by yourself from the previous chapter
     Suppose $T\in\mathcal{L}(V)$ and $\lambda\in\mathbb{F}$ is an eigenvalue of $T$. \textcolor{Th}{Then the set of all eigenvectors of $T$ corresponding to $\lambda$ (union with $\{0\}$) can be verified as a non-zero subspace of $V$}, which is called the eigenspace of $T$ corresponding to $\lambda$. In other word, $N(T-\lambda I)$ is the eigenspace of $T$ corresponding to $\lambda$, denoted by $E(\lambda, T)\triangleq N(T-\lambda I)$ (or $E(\lambda)$ if $T$ is specified from the context). \textcolor{Df}{For $\lambda\in\mathbb{F}$ that is not an eigenvalue of $T$, we still denote $N(T-\lambda I)$ by $E(\lambda, T)$ of $E(\lambda)$.}
 \end{Df}
 
+\begin{Rmk}{}
+    So far we have define the eigenvalues, eigenvectors and eigenspaces of an operator $T\in\mathcal{L}(V)$. From the matrix perspective, we can also define these concepts, just by linking the matrix of an underlying operator and keeping all the discussions above. \textcolor{Df}{Without explicit specification, the default underlying operator of a matrix $A\in\mathbb{F}^{n,n}$ is the linear operator $T\in\mathcal{L}(\mathbb{F}^n)$ such that $\mathcal{M}(T)=A$ w.r.t. the standard basis (namely, the column-vectors of the identity matrix). Then the eigenvalues, eigenvectors and eigenspaces of a matrix $A$ are just defined as the eigenvalues, eigenvectors and eigenspaces of the underlying operator $T$,} as the eigenvalue expression $Tv=\lambda v$ is just the same as the matrix expression $Av=\lambda v$.
+\end{Rmk}
+
 \begin{Th}{$\bullet$ Th6.1.2 (eigenvectors corresponding to distinct eigenvalues are linearly independent)}
     Suppose $T\in\mathcal{L}(V)$ and $\lambda_1, \dots, \lambda_m$ are $m$ distinct eigenvalues of $T$. Suppose also $v_1,\dots, v_m$ are eigenvectors corresponding to $\lambda_1, \dots, \lambda_m$ respectively. Then $v_1, \dots, v_m$ are linearly independent.
     \tcblower
@@ -208,5 +212,9 @@ Please check the notations and definitions by yourself from the previous chapter
     \end{compactitem}
 \end{Th}
 
-
+\begin{Th}{$\bullet$ Th6.4.3 (diagonal of a diagonalizable operator)}
+    Suppose $T\in\mathcal{L}(V)$ where $V$ is a non-zero finite-dimensional vector space over $\mathbb{F}$. Suppose $T$ is diagonalizable with some diagonal matrix $\mathcal{M}(T)$. Then the set diagonal entries of $\mathcal{M}(T)$ is equal to the set of eigenvalues of $T$, and for every eigenvalue $\lambda$ of $T$, $\lambda$ appears exactly $\dim E(\lambda)$ times on the diagonal of $\mathcal{M}(T)$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
 \end{document}
