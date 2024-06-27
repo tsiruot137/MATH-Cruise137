@@ -198,6 +198,32 @@ Please check the notations and definitions by yourself from the previous chapter
     \textit{Pf}: Trivial.
 \end{Th}
 
+\begin{Th}{$\bullet$ Th7.4.2 (Gram-Schmidt orthonormalization)}
+    Suppose $V$ is an inner product space and $(v_1, \dots, v_n)$ is a linearly independent list of vectors in $V$. Then the list $(e_1, \dots, e_n)$ defined by the following recursive process (called the Gram-Schmidt orthonormalization process) is an orthonormal basis of $\text{span}(v_1, \dots, v_n)$:
+    \begin{compactenum}
+        \item $e_1 = \frac{v_1}{\|v_1\|}$;
+        \item $e_k = \frac{v_k - \sum_{i=1}^{k-1}\langle v_k, e_i\rangle e_i}{\|v_k - \sum_{i=1}^{k-1}\langle v_k, e_i\rangle e_i\|}$ for $k=2, \dots, n$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: The idea of the process is just to removing the projection components of each basis vector to the previously construct subspace, using also the theorem \{, ID: 7.4.1\}.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{If $v_1, \dots, v_n$ is already orthogonal, then the Gram-Schmidt process yields $\frac{v_1}{\|v_1\|}, \dots, \frac{v_n}{\|v_n\|}$; if $v_1, \dots, v_n$ is already orthonormal, then the process yields $v_1, \dots, v_n$ itself.} Since Gram-Schmidt is a recursive process, it can be cut off at any step while keeping its property (orthonormality and the same spanning).
+    This theorem also indicates that \textcolor{Th}{every non-zero finite-dimensional inner product space has a orthonormal basis, and every orthogonal (resp. orthonormal) list of vectors in this space can be extended to an orthogonal (resp. orthonormal) basis.} For a given independent list of vectors, we can also first orthogonalize them, and then normalize them to find an orthonormal list of vectors.
+\end{Rmk}
+
+\begin{Th}{$\circ$ Th7.4.2.1 (upper-triangular matrix w.r.t. orthonormal basis)}
+    Suppose $T\in\mathcal{L}(V)$ where $V$ is a non-zero finite-dimensional inner product space. If $\mathcal{M}(T)$ is upper-triangular w.r.t. some basis of $V$, then $\mathcal{T}$ is upper-triangular w.r.t. some orthonormal basis of $V$.
+    \tcblower
+    \textit{Pf}: Just perform the Gram-Schmidt process on the known basis, and the resulted orthonormal basis is as desired.
+\end{Th}
+
+\begin{Th}{$\circ$ Th7.4.3 (Schur theorem)}
+    Suppose $V$ is a non-zero finite-dimensional inner product space over $\mathbb{C}$ and $T\in\mathcal{L}(V)$. Then $T$ has an upper-triangular matrix w.r.t. some orthonormal basis.
+    \tcblower
+    \textit{Pf}: Trivial using Th\{, ID: 6.3.2\} and Th \{, ID: 7.4.2.1\}.
+\end{Th}
 
 
 \end{document}
