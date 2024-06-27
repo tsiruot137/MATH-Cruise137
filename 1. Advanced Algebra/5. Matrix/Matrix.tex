@@ -93,6 +93,32 @@ Please check the notations and definitions by yourself from the previous chapter
     \textit{Pf}: Trivial.
 \end{Th}
 
+\begin{Df}{$\circ$ Th5.1.1.1 (four basic subspaces about matrix)}
+    Suppose $A$ is a $m$ by $n$ matrix. Then the four basic subspaces of $A$ are defined as follows:
+    \begin{compactenum}
+        \item The column space of $A$, denoted by $\text{Col}(A)$, is the subspace of $\mathbb{F}^{m,1}$ spanned by the column vectors of $A$.
+        \item The row space of $A$, denoted by $\text{Row}(A)$, is the subspace of $\mathbb{F}^{1,n}$ spanned by the row vectors of $A$.
+        \item The null space of $A$, denoted by $\text{Null}(A)$, is the set of the solutions to the linear system $Ax = 0$.
+        \item The left null space of $A$, denoted by $\text{LNull}(A)$, is the set of the solutions to the equations $yA = 0$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    The four basic subspaces defined above have the following relations:
+    \textcolor{Th}{
+    \begin{compactenum}
+        \item $\text{Row}(A^\prime) = \text{Col}(A)$;
+        \item $\text{LNull}(A) = \text{Null}(A^\prime)$.
+    \end{compactenum}
+    }
+    Hence there are only two types of subspaces actually. And if we link $A$ with its underlying linear map $T$, then the column space of $A$ is just the range space of $T$, and the null space of $A$ is just the null space of $T$: \textcolor{Th}{Suppose $T$ is some linear map such that $\mathcal{M}(T) = A$, then:
+    \begin{compactenum}
+        \item $\text{Col}(A) = \{\mathcal{M}(w): w\in R(T)\}$;
+        \item $\text{Null}(A) = \{\mathcal{M}(v): v\in N(T)\}$.
+    \end{compactenum}
+    }
+\end{Rmk}
+
 \begin{Df}{$\bullet$ Df5.1.2 (invertible matrix)}
     A matrix $A$ is said to be invertible if the underlying linear map $T$ of $A$ (take the standard bases) is invertible. Denote the inverse of $A$ by $A^{-1}$.
 \end{Df}

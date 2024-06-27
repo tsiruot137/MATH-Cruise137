@@ -95,7 +95,13 @@ Please check the notations and definitions by yourself from the previous chapter
 \end{Df}
 
 \begin{Rmk}{}
-    So far we have define the eigenvalues, eigenvectors and eigenspaces of an operator $T\in\mathcal{L}(V)$. From the matrix perspective, we can also define these concepts, just by linking the matrix of an underlying operator and keeping all the discussions above. \textcolor{Df}{Without explicit specification, the default underlying operator of a matrix $A\in\mathbb{F}^{n,n}$ is the linear operator $T\in\mathcal{L}(\mathbb{F}^n)$ such that $\mathcal{M}(T)=A$ w.r.t. the standard basis (namely, the column-vectors of the identity matrix). Then the eigenvalues, eigenvectors and eigenspaces of a matrix $A$ are just defined as the eigenvalues, eigenvectors and eigenspaces of the underlying operator $T$,} as the eigenvalue expression $Tv=\lambda v$ is just the same as the matrix expression $Av=\lambda v$.
+    So far we have define the eigenvalues, eigenvectors and eigenspaces of an operator $T\in\mathcal{L}(V)$. From the matrix perspective, we can also define these concepts, just by linking the matrix of an underlying operator and keeping all the discussions above. \textcolor{Df}{Without explicit specification, the default underlying operator of a matrix $A\in\mathbb{F}^{n,n}$ is the linear operator $T\in\mathcal{L}(\mathbb{F}^n)$ such that $\mathcal{M}(T)=A$ w.r.t. the standard basis (namely, the column-vectors of the identity matrix). Then the eigenvalues, eigenvectors and eigenspaces of a matrix $A$ are just defined as the eigenvalues, eigenvectors and eigenspaces of the underlying operator $T$. Or more exactly, for a matrix $A\in\mathbb{F}^{n,n}$ ($n\in\mathbb{N}^\ast$):
+    \begin{compactenum}
+        \item The eigenvalues of $A$ are the eigenvalues of the underlying operator $T$ (namely, the scalers $\lambda$ such that $Av = \lambda v$ for some non-zero vector $v\in\mathbb{F}^{n,1}$);
+        \item The eigenvectors of $A$ are the vectors in $\{\mathcal{M}(v): v \text{ is some eigenvector of } T\}$ (namely, the vectors $x\in\mathbb{F}^{n,1}$ such that $Ax=\lambda x$ for some eigenvalue $\lambda$ of $A$);
+        \item The eigenspaces of $A$ are the subspaces of $\mathbb{F}^{n,1}$ spanned by the corresponding eigenvectors of $A$ (namely, the subspaces $E(\lambda, A)\triangleq \{x: (A-\lambda I)x=0\}$ where $\lambda$ is an eigenvalue of $A$).
+    \end{compactenum}
+    } as the eigenvalue expression $Tv=\lambda v$ is just the same as the matrix expression $Av=\lambda v$.
 \end{Rmk}
 
 \begin{Th}{$\bullet$ Th6.1.2 (eigenvectors corresponding to distinct eigenvalues are linearly independent)}
@@ -190,6 +196,9 @@ Please check the notations and definitions by yourself from the previous chapter
     An equivalent definition of diagonalizable operator is that (recall the remark \{, ID: 2.23\}):\\
     \textcolor{Th}{Suppose $T\in\mathcal{L}(V)$ where $V$ is a non-zero finite-dimensional vector space over $\mathbb{F}$. Then $T$ is diagonalizable if and only if:
     $$\forall \text{ matrix } \mathcal{M}(T)\text{ of } T, \;\exists \text{ invertible matrix } S \;\text{ s.t. }\; S^{-1}\mathcal{M}(T)S \;\text{ is diagonal.}$$}
+    And we can accordingly define the diagonalizable matrix: 
+    \textcolor{Df}{Suppose $A$ is a square matrix. Then $A$ is called diagonalizable if $P^{-1}AP$ is diagonal for some invertible $P$.}
+    And it naturally has a equivalent definition: \textcolor{Th}{Suppose $A$ is a matrix. Then $A$ is diagonalizable iff the underlying map $T$ is diagonalizable.}
 \end{Rmk}
 
 \begin{Th}{$\bullet$ Th6.4.2 (conditions of diagonalizable operator)}
@@ -217,4 +226,31 @@ Please check the notations and definitions by yourself from the previous chapter
     \tcblower
     \textit{Pf}: Trivial.
 \end{Th}
+
+\begin{Df}{$\circ$ Df6.4.3.1 (multi-set)}
+    Suppose $A$ is a set. Then a map $f: A\to\mathbb{N}^\ast$ is called a multi-set of $A$, and for each $a\in A$, $f(a)$ is called the multiplicity of $a$ counted by $f$.
+\end{Df}
+
+\begin{Rmk}{}
+    The multi-set of a set $A$ actually implements the counting for the elements in $A$. For example, if there is a heap of items $\{a,a,a,b,c,c\}$, then the multi-set of $A = \{a,b,c\}$ is $f = \{(a, 3), (b, 1), (c, 2)\}$. The multi-set $\{(a, 3), (b, 1), (c, 2)\}$ can be also written as $\{a: 3, b: 1, c: 2\}$, which is just the data structure ``dictionary'' in Python programming.
+    \textcolor{Df}{If we count for a list $(a_1, \dots, a_n)$ of elements, then we can obtain the multi-set of the tuple, denoted as $\{a_1, \dots, a_n\}$}.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th6.4.4 (how to computationally diagonalize a matrix?)}
+    Suppose $A$ is an $n$ by $n$ diagonalizable square matrix. Suppose $v_1, \dots, v_n$ are all column vectors in $\mathbb{F}^{n,1}$, and $\lambda_1, \dots, \lambda_n$ are all scalers in $\mathbb{F}$. Then the following two conditions are equivalent:
+    \begin{compactenum}
+        \item $A$ can be diagonalized as $[v_1 \cdots v_n]^{-1}A[v_1 \cdots v_n] = \text{diag}(\lambda_1, \dots, \lambda_n)$;
+        \item For any $i\in\{1,\dots,n\}$, $\lambda_i$ is an eigenvalue of $A$ and $v_i$ is an eigenvector of $A$ corresponding to $\lambda_i$. And $v_1, \dots, v_n$ are linearly independent.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Just write the equations $Av_i = \lambda v_i$ in the matrix form $A[v_1 \cdots v_n] = [v_1 \cdots v_n]\text{diag}(\lambda_1, \cdots, \lambda_n)$.
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem indicates that the only approach to diagonalize a matrix (or an operator) is to find a basis consisting of the eigenvectors. In practice, we can first solve the eigenvalues of $A$, and then find the corresponding eigenvectors by solving the system $(A-\lambda I)x=0$ for every eigenvalue $\lambda$. As for solving all the eigenvalues of a matrix (or an operator), we will discuss it in the future.
+
+    We can also see that for diagonalizable matrices, the result of the theorem \{, ID: 6.4.3\} also holds: \textcolor{Th}{the set of eigenvalues of a diagonalizable matrix $A$ is the set of diagonal entries of $A$, and for every eigenvalue $\lambda$ of $A$, $\lambda$ appears exactly $\dim E(\lambda, A)$ times on the diagonal of $A$}.
+\end{Rmk}
+
+
 \end{document}
