@@ -298,6 +298,12 @@ Please check the notations and definitions by yourself from the previous chapter
     }
 \end{Rmk}
 
+\begin{Th}{$\bullet$ Th7.6.2.1 (conditions of orthogonal projection)}
+    Suppose $V$ is a finite-dimensional inner product space and $P\in\mathcal{L}(V)$. Then $P$ is an orthogonal projection operator iff there exists an orthogonal decomposition $V = U\oplus W$ (where $W = U^\perp$) s.t. $P|_U = I$ and $P|_W = 0$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
 \begin{Th}{$\bullet$ Th7.6.3 (orthogonal projection and minimization)}
     Suppose $V$ is a finite-dimensional vector space and $U$ is a subspace of $V$. Then for each $v\in V$, we have:
     $$\forall u\in U, \; \|v-\text{Proj}(v|U)\|\leq \|v-u\|,$$
@@ -310,5 +316,49 @@ Please check the notations and definitions by yourself from the previous chapter
     This theorem is natural (very natural in geometrical intuition) but commonly applied. The most typical application is in the least square estimate in the statistical linear model.
 \end{Rmk}
 
+\begin{Df}{$\bullet$ Df7.7 (projection operator)}
+    In a finite-dimensional inner product space, an idempotent operator $P$ (i.e. $P^2 = P$) is called a projection operator.
+\end{Df}
+
+\begin{Rmk}{}
+    This definition does not appear out of nowhere. We now give a derivation of this definition. 
+
+    The concept of projection operator is for depicting the projection phenomenon in our lives. Imagine that one end of a rod is fixed on the ground and the rod is at some angle with the ground. If the parallel light shines above the rod in a certain direction, the rod will be projected onto the ground and form a shadow. If the rod is already lying on the ground, then it will definitely coinside with its shadow. This observation of projection phenomenon naturally inspires us the necessary and sufficient conditions of a projection operator $P$:
+    \begin{compactenum}
+        \item \textcolor{Th}{$P$ is linear,} as the light does not bend so that the shadow is additive and scaler-multiplicative;
+        \item \textcolor{Th}{There exists a subspace $U$ (called the projection space) s.t. $P|_U = I$ and $R(P) = U$,} as the projection plane is invariant under projection.
+    \end{compactenum}
+    And we see that there are two essentials of a projection operator: 1. A projection space (the ground), 2. A direct-sum-complement of the projection space (the direction of the light).
+
+    Let us transform the conditions of projection operator above equivalently:
+    \begin{compactenum}
+        \item \textcolor{Th}{$P$ is linear;}
+        \item \textcolor{Th}{$P|_{R(P)} = I$.}
+    \end{compactenum}
+    or:
+    \begin{compactenum}
+        \item \textcolor{Th}{$P$ is linear;}
+        \item \textcolor{Th}{$P$ is idempotent,} as $P^2v \overset{\forall v}{=} Pv \;\Leftrightarrow\; P(Pv) \overset{\forall v}{=} Pv \;\Leftrightarrow\; P|_{R(P)} = I$.
+    \end{compactenum}
+    Hence this idempotence definition for projection operator is indeed an equivalent definition, or say ``a rational modeling'' for the projection phenomenon.
+
+    So far you must have noticed that \textcolor{Th}{the orthogonal projection operator is a special case of projection operator defined here.} And from the geometrical intuition, orthogonal projection occurs when the light shines down from directly above. Then we can get another perspective of the projection operator — the projection is just to keep the dimensions on the projection plane and remove the dimensions of the light:
+    \textcolor{Th}{An operator $P$ is a projection operator iff:
+    \begin{compactenum}
+        \item $P$ is linear;
+        \item There is a direct-sum decomposition $V = U\oplus W$ s.t. $P|_U = I$ and $P|_W = 0$
+    \end{compactenum}    
+    }
+    This gives us a clear comparison with the theorem \{, ID: 7.6.2.1\}. Hence \textcolor{Df}{the projection can be classified into orthogonal projection and oblique projection, according to whether $U\perp W$.}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th7.7.1 (constructure of projection operator)}
+    Suppose $V$ is a finite-dimensional inner product space and $P\in\mathcal{L}(V)$. Then
+    \begin{compactenum}
+        \item $P$ is a \textcolor{red}{orthogonal} projection operator iff there is some \textcolor{red}{orthogonal} basis $\{u_1, \dots, u_m, w_1, \dots, w_n\}$ of $V$ ($m, n\in\mathbb{N}$) s.t. $P$ is the operator that only keeps the $u$'s components of each $v\in V$. 
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
 
 \end{document}
