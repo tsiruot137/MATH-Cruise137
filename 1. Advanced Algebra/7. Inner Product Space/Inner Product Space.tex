@@ -101,6 +101,10 @@ Please check the notations and definitions by yourself from the previous chapter
     An inner product space is a vector space equipped with an inner product.
 \end{Df}
 
+\begin{Rmk}{}
+    In practice, the most commonly used inner product in $\mathbb{R}^n$ is the vector dot product (check the definition online by yourself).
+\end{Rmk}
+
 \begin{Df}{$\bullet$ Df7.2 (norm)}
     Suppose $V$ is a inner product space. The norm of a vector $v\in V$ is defined as $\|v\| = \sqrt{\langle v, v\rangle}$.
 \end{Df}
@@ -115,7 +119,7 @@ Please check the notations and definitions by yourself from the previous chapter
 \end{Rmk}
 
 \begin{Df}{$\bullet$ Df7.3 (orthogonality)}
-    Suppose $V$ is an inner product space and $u, v\in V$. We say $u$ and $v$ are orthogonal if $\langle u, v\rangle = 0$.
+    Suppose $V$ is an inner product space and $u, v\in V$. We say $u$ and $v$ are orthogonal, denoted by $u\perp v$, if $\langle u, v\rangle = 0$.
 \end{Df}
 
 \begin{Rmk}{}
@@ -224,6 +228,85 @@ Please check the notations and definitions by yourself from the previous chapter
     \tcblower
     \textit{Pf}: Trivial using Th\{, ID: 6.3.2\} and Th \{, ID: 7.4.2.1\}.
 \end{Th}
+
+\begin{Th}{$\bullet$ Th7.5 (Riesz representation theorem)}
+    Suppose $V$ is a finite-dimensional inner product space. Then for any linear functional $\varphi\in V^\ast$, there exists a unique vector $u\in V$ such that $\varphi = \langle \cdot, u\rangle$.
+    \tcblower
+    \textit{Pf}: We have known that $\langle \cdot, u\rangle$ is a linear functional, which inspires us to consider the linear map $u\mapsto \langle \cdot, u\rangle$. Then our proof is just to show that this map is bijective. Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    In Riesz representation, we might further be interested in what $u$ is given $\varphi$. Actually, to make that $\varphi = \langle \cdot, u\rangle$, for each $v=\sum_{i} \langle v, e_i\rangle e_i\in V$ ($e_i$'s forms a orthonormal basis of $V$), we must have $\varphi(v) = \langle v, u\rangle$. Then:
+    \begin{aligned}
+        \varphi(v) &= \sum \langle v, e_i\rangle \varphi(e_i)\\
+        &= \sum \langle v, \overline{\varphi(e_i)} e_i\rangle\\
+        &= \langle v, \sum \overline{\varphi(e_i)} e_i\rangle.
+    \end{aligned}
+    \textcolor{Th}{Hence, the vector $u$ in the Riesz representation theorem is $\sum \overline{\varphi(e_i)} e_i$.}
+    Here we can also see that \textcolor{Th}{the vector $\sum \overline{\varphi(e_i)} e_i$ is invariant under the choice of the orthonormal basis.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df7.6 (orthogonal subspaces)}
+    Suppose $V$ is an inner product space and $U, W$ are both subspaces of $V$. Then $U$ and $W$ are said to be orthogonal, denoted as $U\perp W$, if $\forall u\in U, \forall w\in W, u\perp w$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{In a finite-dimensional inner product space, two subspaces spanned by disjoint sublists of some orthogonal list of vectors are orthogonal. And the orthogonal subspaces in a finite-dimensional inner product space always appear in this way.} Since orthogonality implies linear independence, we can see that \textcolor{Th}{if $U\perp W$, then $U+W$ is a direct sum.} And the result similar to the theorem \{, ID: 7.3.1.1\} holds: \textcolor{Th}{if $U \perp W_1, \dots, W_m$ respectively, then $U\perp (W_1\oplus\cdots\oplus W_m)$.} \textcolor{Df}{When a one-dimensional subspace $U = \text{span}(u)$ is orthogonal to a subspace $W$, we also say that the vector $u$ is orthogonal to $W$.} We now define the orthogonal complement of a subspace.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df7.6.1 (orthogonal complement)}
+    Suppose $V$ is an inner product space and $U$ is a subspace of $V$. The orthogonal complement of $U$, denoted as $U^\perp$, is defined as the subspace $U^\perp$ of $V$ such that $U\perp U^\perp$ and $U\oplus U^\perp = V$.
+\end{Df}
+
+\begin{Rmk}{}
+    To well-define the orthogonal complement, we need to ensure that such $U^\perp$ exists and is unique. \textcolor{Th}{Yes, exactly. Actually we can extend some orthogonal basis of $U$ to an orthogonal basis of $V$ and take the supplemented part as $U^\perp$ to show the existence, and verify that such $U^\perp$ must be $\{u^\perp\in V: u^\perp\perp U\}$ to show the uniqueness.} From the discussion just now, we can see that \textcolor{Th}{in a finite-dimensional inner product space, take the orthogonal complement of a subspace is just to choose all the other perpendicular dimensions.} With this insight, we can easily verify the following basic properties:
+    \textcolor{Th}{Suppose $V$ is a finite-dimensional inner product space and $U, W$ are subspaces of $V$. Then:
+        \begin{compactenum}
+            \item $(U^\perp)^{\perp} = U$;
+            \item $\{0\}^\perp = V$;
+            \item If $U\subseteq W$, then $U^\perp\supseteq W^\perp$;
+        \end{compactenum}
+    }
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th7.6.1.1 (the row space is orthogonal to the null space)}
+    Suppose $A$ is a matrix over $\mathbb{R}$. Then under the dot product inner product:
+    \begin{compactenum}
+        \item $\text{Row}(A) = \text{Null}(A)^\perp$;
+        \item $\text{Col}(A) = \text{LNull}(A)^\perp$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df7.6.2 (orthogonal projection)}
+    Suppose $V$ is a finite-dimensional inner product space and $U$ is a subspace of $V$. Then for each vector $v\in V$, the orthogonal projection of $v$ onto $U$, denoted as $\text{Proj}(v|U)$, is the vector $\text{Proj}(v|U) = u$ where $v = u+u^\perp$, $u\in U$ and $u^\perp\in U^\perp$. \textcolor{Th}{This operator $\text{Proj}(\cdot|U)$ is verified to be linear}, and we call it the orthogonal projection operator onto $U$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Recall that the theorem \{, ID: 7.3.3\} is a special case of orthogonal projection here where $U = \text{span}(u)$ is one-dimensional.} And we can verify the following basic properties of orthogonal projection operator $\text{Proj}(\cdot |U)$: 
+    \textcolor{Th}{
+    \begin{compactenum}
+        \item $\text{Proj}(u|U) = u$ for all $u\in U$, $\text{Proj}(u^\perp|U) = 0$ for all $u^\perp\in U^\perp$;
+        \item $R(\text{Proj}(\cdot |U)) = U$, $N(\text{Proj}(\cdot |U)) = U^\perp$;
+        \item $v-\text{Proj}(v|U)\in U^\perp$ for all $v\in V$;
+        \item $\text{Proj}^2(\cdot |U) = \text{Proj}(\cdot |U)$;
+        \item $\|\text{Proj}(v|U)\| \leq \|v\|$ for all $v\in V$.
+    \end{compactenum}
+    }
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th7.6.3 (orthogonal projection and minimization)}
+    Suppose $V$ is a finite-dimensional vector space and $U$ is a subspace of $V$. Then for each $v\in V$, we have:
+    $$\forall u\in U, \; \|v-\text{Proj}(v|U)\|\leq \|v-u\|,$$
+    and the equality holds iff $u=\text{Proj}(v|U)$. 
+    \tcblower
+    \textit{Pf}: Square two sides and decompose the squared norm into every orthonormal dimension (using multi-dimensional Pythagorean theorem in the remark \{, ID: 7.4\}).
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem is natural (very natural in geometrical intuition) but commonly applied. The most typical application is in the least square estimate in the statistical linear model.
+\end{Rmk}
 
 
 \end{document}
