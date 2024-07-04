@@ -106,7 +106,16 @@ In the writing, I use two colors to distinguish the blocks of definitions validi
 
 When refer to a block, it is better to also specify the shorthand.
 
-### 8.5 Validity Marks
+### 8.5 Naming Convention
+Here is the naming convention for the directories and files in the repository:
++ Course directory: `[course ID].[course name]`
++ Chapter directory: `[chapter ID].[chapter name]`
++ Chapter note file: `[chapter name].tex`
++ Chapter problem file: `[chapter name]_P.tex`
++ Chapter insight file: `[chapter name]_I.tex`
+
+PS: the `chapter name` in the chapter file and the corresponding chapter directory keeps the same.
+### 8.6 Validity Marks
 When inserting a definition or a theorem in a remark block, I use the corresponding color to mark the validity of the text.
 
 ## 9. Last Modified: 2024-7-5
