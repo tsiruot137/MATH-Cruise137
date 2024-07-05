@@ -122,4 +122,14 @@ PS: the `chapter name` in the chapter file and the corresponding chapter directo
 ### 8.6 Validity Marks
 When inserting a definition or a theorem in a remark block, I use the corresponding color to mark the validity of the text.
 
-## 9. Last Modified: 2024-7-5
+### 8.7 Block Copy-Back Mechanism
+Sometimes a block is proposed in a file, but you would use this block (e.g. illustrate based on this block of theorem) later in some earlier files, without cyclic reference. Theoretically, all blocks in a file share the same prefix of the block ID, and thus a block in an earlier file is before any block in a later file, which means you cannot simply do this.
+
+To solve this problem, we propose the **Block Copy-Back Mechanism**. In an earlier file, when you need to use a block proposed in a later file, you can just copy the block to some appropriate place (maybe an even earlier file) so that this duplicated block can be referred to, **as long as you have checked that this block can be supported by the content before the copy destination (i.e. check that no cyclic reference is made).**
+
+Note that this copy-back machanism is not an manual operation, which means that you do not need to really copy the block's code to the earlier file. You just need to first claim the block in the earlier file (with the timestamp, shorthand and other information you want to show) and then refer to the original block in this claim (with the entire block ID of the original block). 
+
+> **About Cyclic Reference**: 
+> It is necessary to check the cyclic reference when apply the copy-back operation. If the original block is based on something after the copy-back destination, then this is a cyclic reference. However, this restriction can be further loosened. If the original block can be verified as able to be proposed only based on the content before the copy-back destination, even if the original block is literally based on something after the copy-back destination, then there is actually no cyclic reference and the copy-back operation is still valid. 
+
+Copy-back operation is very useful. For example, an insight is often concluded from files of different periods of time, and some valuable conclusions in this insight file can be used in some earlier files. If the latest referred block in the insight file is proposed in the chapter 5, then this insight file must not before the chapter 5. And in this case, if the insight file draw a pretty valuable conclusion only based on the content before the chapter 2, then this conclusion can be copy-back to the chapter 2 without cyclic reference, so that the fruit of the insight can benefit the theory development in the chapter 2.
