@@ -1,5 +1,5 @@
 # MATH-Cruise137
-This repository stores all my cumulative mathematical knowledge, including **notes** from the courses learning, some interesting **problems** I have encountered, and some summaries or **insights** I concluded from my learning.
+This repository stores all my cumulative mathematical knowledge, including **notes** from the courses learning, the **exercises** I have done, some interesting **problems** I have encountered, and some summaries or **insights** I concluded from my learning.
 
 As though repository is named as `MATH-Cruise137`, the `Cruise137` does not have any specific meaning. Please do not take it seriously. Here I will give an overall introduction to this repository.
 
@@ -7,16 +7,14 @@ As though repository is named as `MATH-Cruise137`, the `Cruise137` does not have
 This repository is in general organized by the courses I have learned. Every time I learn a new course, a directory for the notes, problems, and insights from that course will be added to the repository. Actually the contents (of the notes, problems, and insights) of a certain course are not necessarily all related to the course, and they can be any mathematical knowledge I have learned during that period of time.
 
 ## 2. Basic Composition of the Content
-Every course directory contains three genres of files: `notes`, `problems`, and `insights`, which are all written in LaTeX. These three genres of files share the same composition, which is the commonly-used **"Definition-Theorem"** workflow in mathematics. This workflow is described below (as though every math learner would be familiar with it).
+Every course directory contains four genres of files: `notes`, `exercise`, `problems`, and `insights`, which are all written in LaTeX. These four genres of files share the same composition, which is the commonly-used **"Definition-Theorem"** workflow in mathematics. This workflow is described below (as though every math learner would be familiar with it).
 > **Definition-Theorem workflow ("Df-Th" workflow for short)**: Math theory is developed in chronological order. Mathamaticians start with some basic definitions, then they prove some theorems based on these definitions or on theorems previously proved. For the progress of math theory, there must be always new definitions proposed so that new theorems offering more insights to the world can be discovered. **In this workflow, every definition or theorem must based on the previous definitions or theorems. Every definition or theorem must be verified to be valid, and each newly proposed definition or theorem must not conflict with any previous ones.** Thus in the very beginning of math theory, mathematicians must initialize a set of **logic** or rules that must be followed throughout the development of the theory, and some cornerstones (called **axioms**) to support all the theory.
 >
 
 ## 3. Writing of the Df-Th Workflow
-The Df-Th workflow basically consists of definitions and theorems. A definition or a theorem is written as a building block that takes up a region of a file, with a formatted **timestamp** representing the logic time when the definition or the theorem is proposed.
-## 4. Customized Orgnanization in Different Files
-Although the three genres of files share the same basic composition, they are actually organized in their corresponding variants of the Df-Th workflow. 
-### 4.1 Notes
-Notes files are the major part of the repository, which records the entire process of math theory's development. Notes files act as the source of the problems files and insights files. The notes-variant of the definition-theorem workflow consists of the following building blocks:
+The four genres of files share the same composition based on the Df-Th workflow. The Df-Th workflow basically consists of definitions and theorems. A definition or a theorem is written as a **building block** that takes up a region of a file, with a formatted **timestamp** representing the logic time when the definition or the theorem is proposed.
+
+In each LaTeX file, a variant of Df-Th workflow is adopted instead. The variant of Df-Th workflow consists of the following building blocks:
   + **Axiom**: Only present in those files in the very beginning.
   + **Definition**
   + **Theorem**: A theorem must be also followed by a proof. Theorems are also of different importance, since some theorems dipict the core of the some theory, while others are just some scaffolds. Thus besides the important theorems (assigned with a **Theorem** block), there are also the following blocks. Of course, all these above are just essentially theorems, they are all belongs to the "Th" part of the Df-Th workflow, and are said to have the **validity of theorem**.
@@ -29,20 +27,21 @@ Notes files are the major part of the repository, which records the entire proce
 
 Actually, the develepment of math theory is a huge project, which is filled with massive trivial definitions and theorems. **Hence, to assign a block for each definition and theorem is not practical, and what mathematicians do is to insert the trivial definitions and theorems into the remark blocks.** Each theorem, theoriotically, must be proved, but for those evident, we had better to omit that.
 
-The differenciation of "lemma", "property" and "corollary" is actually involved after some time of learning. In the very beginning when I was unconscious about this, I just simply set two importance levels for theorems.
+The differenciation of "lemma", "property", "corollary" and so on is actually involved after some time of learning. In the very beginning when I was unconscious about this, I just simply set two importance levels for theorems.
+## 4. Customized Writing in Different Files
+
+### 4.1 Notes
+Notes files record the notes I have taken during the courses learning. A notes file is more like a dictionary, which just take everything into consideration.  
 
 ### 4.2 Problems
 Problems files record the mathematical problems I have done research on. Actually, I would just record some small problems since a formal professional math problem is of course recorded with a paper. 
 
 No problems recorded yet. To be done.
 
-### 4.3 Insights
-Insights files record the insights I have summarized. Similar to the notes-invariant, the insights-variant of the definition-theorem workflow consists of the following building blocks:
-  + **Definition**
-  + **Theorem**
-  + **Remark**
-
-In the insights files, the order in which I propose the definitions and theorems is not only chronological, but also logical, fluent, and reasonable for the readers to understand. In other words, the insights files focus more on the ideas, connections, motivations and applications, rather than the details of the proofs. 
+### 4.3 Exercises
+Similar to the problems files, the exercises files record the exercises I have done. But the exercises are more related to the corresponding course, while the problems are more like an arbitrary collection of math problems.
+### 4.4 Insights
+Insights files record the insights I have summarized. In the insights files, the order in which I propose the definitions and theorems is not only chronological, but also logical, fluent, and reasonable for the readers to understand. In other words, the insights files focus more on the ideas, connections, motivations and applications, rather than the details of the proofs. 
 
 In the insights files, a remark block is often rather long, as it must act as a connecting link between the preceding and the following blocks. 
 
@@ -60,21 +59,26 @@ and the physical hierarchy (namely, the actual directory structure) is:
 As the courses learned increase, I would be navigating between different fields in math. Hence in the future, the courses will be organized in the corresponding fields. On that day, the courses-based organization of the repository will not change, but a new file named `fields.md` will be added in the repository directory and maintained. 
 
 ### 6.2 Chapter
-A course is divided into chapters, as it is impractical to put all chapters in one file. Each chapter of content is written in a **single** `.tex` file (note file, problem file, or insight file).
+A course is divided into chapters, as it is impractical to put all chapters in one file. Each chapter of content is written in some `.tex` files (note files, problem files or insight files).
+
+### 6.3 File
+In the early design of this repository, I planned to record all the contents of one chapter in a single file. But with the increasing need of insights and exercises, it is better to separate them into the four genres of files.
 
 ## 7. Formatted Timestamp
 The physical structures of different hierarchy levels must be coded in a unified timestamp format:
-+ Course: the course ID is an integer within `[0, 99]` (as I do not expect to learn more than 100 courses in my life)
-+ Chapter: the **chapter ID** is a lexical pair of two integers. For example, the chapter ID `3_2` refers to the **2nd article** (a problem file or an insight file) when learning the 3rd chapter of the course. When learning a chapter, the note file is always placed before the problem file and the insight file, and the note. Hence the note file is always the 0th article, i.e. here assigned with the chapter ID `3_0` (`3` for short). **Here every digit of the chapter ID can only be a non-negative integer.**
-+ Block: every block except the remark blocks is assigned with a **block ID**. A block ID is a lexical tuple of integers, comprised of the chapter ID and the **block ID within the chapter**. For example, the block ID `3_2.4` is the block `4` in the chapter `3_2`, `3_2.4.5` is the block `4.5` in the chapter `3_2`, `3.6.1` is the block `6.1` in the chapter `3` (namely, the chapter `3_0`). **The block ID within the chapter is a lexical tuple of integers, representing the main-branch order:** 
++ Course: the **course ID** is an integer within `[0, 99]` (as I do not expect to learn more than 100 courses in my life)
++ Chapter: the **chapter ID** is a non-negative integer.
++ File: the **file ID** is a non-negative integer prefixed with the genre of the file (`I` for insight, `P` for problem, `E` for exercise and none for note). For example, the file ID `I3` refers to the **3rd insight file** of this chapter. 
++ Block: every block except the remark blocks is assigned with a **block ID**. A block ID is a lexical tuple of integers prefixed with the chapter ID and the file ID. For example, the block ID `3_I2.4` is the block `4` in the file `I2` of the chapter `3`, `3_P2.4.5` is the block `4.5` in the file `P2` of the chapter `3`, `3.6.1` is the block `6.1` in the note file of chapter `3`. **The block ID within the chapter**, is the remaining part of the block ID after removing the prefix. For example, for the block ID `3_P2.4.5`, the block ID within the chapter is `4.5`.  The block ID is a lexical tuple of integers, representing the main-branch order:
   + `3.2` is before `3.3`, `3.3.1` is before `3.3.2` and `3.3.4` is before `3.4.3`.
   + `3.2` is before `3.2.1`, as `3.2` is actually `3.2.0` (exactly, it is `3.2.0.0.0. ...`). A block ID within the chapter is a lexical sequence infinite of integers, where those digits after the last presented digit are all zeros.
   + Each digit in the ID can be any integer, even negative. For example, `3.2.-1` is before `3.2` and `3.2.-2` is before `3.2.-1`.
+  + As for the blocks in different genres of files, the first digit of the block ID is claimed to be equal. For example, in the 3rd chapter, the prefixes `3`, `3_I1`, `3_P2`, `3_P3`, `3_E4`, `3_E5` or others are equal. This design is just as claimed above that I just distribute the chapters into the four genres of files.
 
 ### 7.1 Reference to the Timestamp
-To refer to a certain block in the writing, the **entire ID** of the block must be presented. The entire ID is the lexical tuple concatenating the course ID and the block ID, in the format `{course: [course ID], ID: [block ID]}`. For example, `{course: 3, ID: 4.5}` refers to the block with the block ID `4.5` in the 3rd course, and `{course: 3, ID: 4_2.3.1}` refers to the block with the block ID `4_2.3.1` in the 3rd course. Sometimes for convenience, we can omit the course ID, like `{, ID: 4_2.3.1}`, if the referred block is in the current course. 
+To refer to a certain block in the writing, the **entire ID** of the block must be presented. The entire ID is the lexical tuple concatenating the course ID and the block ID, in the format `{course: [course ID], ID: [block ID]}`. For example, `{course: 3, ID: 4.5}` refers to the block with the block ID `4.5` in the 3rd course, and `{course: 3, ID: 4_P2.3.1}` refers to the block with the block ID `4_P2.3.1` in the 3rd course. Sometimes for convenience, we can omit the course ID, like `{, ID: 4_P2.3.1}`, if the referred block is in the current course. 
 
-To refer to a remark block, we can use the entire ID of the block that the remark block follows (this block has an ID). For example, the remark `{, ID: 4_2.3.1}` refers to the remark block that follows the block with the ID `4_2.3.1` in the current course.
+To refer to a remark block, we can use the entire ID of the block that the remark block follows (this block has an ID). For example, the remark `{, ID: 4_I2.3.1}` refers to the remark block that follows the block with the ID `4_I2.3.1` in the current course.
 
 To refer to a proof, just use the entire ID of the proved theorem. 
 
@@ -88,7 +92,7 @@ The learning of math is from concrete to abstract, thus sometimes a proposed def
 ### 8.3 Reuse of Notations
 The notations human uses are limited, and the math expressions are expected to be precise and concise. Hence we can reuse the notations for different meanings, as long as we take the approach of **"locality"** to avoid confusion. 
 
-> If notation "a" is claimed for concepts "A" and "B", then you can distinguish the exact meaning by the context in most of the time. If you fail to figure out which of "A" and "B" the notation actually refers to, then the most "local" claim is the correct one (if "a for A" is claimed in the current chapter and "a for B" is claimed in some previous chapter of the current course, then "A" is said to be more "local" than "B").
+> If notation "a" is claimed for concepts "A" and "B", then you can distinguish the exact meaning by the context in most of the time. If you fail to figure out which of "A" and "B" the notation actually refers to, then the most "local" claim is the correct one (if "a for A" is claimed in the current chapter and "a for B" is claimed in some previous chapter of the current course, then "A" is said to be more "local" than "B"). For a claim of notation, the most "local" claim is the one in the current chapter (no matter in which file of the chapter) and there are no different claim in the same chapter.
 >
 
 ### 8.4 Shorthands for Blocks
@@ -111,8 +115,8 @@ Here is the naming convention for the directories and files in the repository:
 + Course directory: `[course ID].[course name]`
 + Chapter directory: `[chapter ID].[chapter name]`
 + Chapter note file: `[chapter name].tex`
-+ Chapter problem file: `[chapter name]_P.tex`
-+ Chapter insight file: `[chapter name]_I.tex`
++ Chapter problem file: `P[problem number]_[problem name].tex`
++ Chapter insight file: `I[insight number]_[insight name].tex`
 
 PS: the `chapter name` in the chapter file and the corresponding chapter directory keeps the same.
 ### 8.6 Validity Marks
