@@ -115,8 +115,8 @@ Here is the naming convention for the directories and files in the repository:
 + Course directory: `[course ID].[course name]`
 + Chapter directory: `[chapter ID].[chapter name]`
 + Chapter note file: `[chapter name].tex`
-+ Chapter problem file: `P[problem number]_[problem name].tex`
-+ Chapter insight file: `I[insight number]_[insight name].tex`
++ Chapter problem file: `P[problem number]. [problem name].tex`
++ Chapter insight file: `I[insight number]. [insight name].tex`
 
 PS: the `chapter name` in the chapter file and the corresponding chapter directory keeps the same.
 ### 8.6 Validity Marks

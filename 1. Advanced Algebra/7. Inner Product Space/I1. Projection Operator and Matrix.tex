@@ -1,0 +1,152 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Inner Product Space}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is an insight into the projection in finite-dimensional vector spaces, including the projection operator and the projection matrix. We now reiterate some commonly-used notations and conventions:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{R}^+$: the set of the positive real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$ or $\mathbb{N}^+$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $A\times B$: the Cartesian product of $A$ and $B$.
+    \item $\mathbb{F}$: a number field.
+    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+    \item The matrix product $KA$ is referred as ``$A$ left-multiplied by $K$'' or ``left-multiply $A$ by $K$''; $AK$ is similar.
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+\section{Projection}
+
+The concept of projection operator is for depicting the projection phenomenon in our lives. Since I have derived the concept of projection operator before I first planned to summarize the projection into this insight file, please refer to this part of content at the remark \{, ID: 7.7\}, which has covered the definition and properties of the projection operator (both oblique projection and orthogonal projection).
+
+\section{Projection Operator}
+See the remark \{, ID: 7.7\}.
+
+\section{Projection Matrix}
+\textcolor{Df}{Projection matrices is the matrices of projection operators, including the orthogonal projection matrix and the oblique projection matrix (or general projection matrix):}
+\begin{Df}{Df 7\_I1.7.2 (Projection Matrix)}
+    \begin{compactenum}
+        \item The projection matrices are the matrices $\{\mathcal{M}(P): P\text{ is a projection operator}\}$;
+        \item The orthogonal (resp. oblique) projection matrices are the matrices
+        $$\{\mathcal{M}(P): P\text{ is an orthogonal (resp. oblique) projection operator}\}.$$
+    \end{compactenum}
+\end{Df}
+
+In this definition, $\mathcal{M}(P)$ needs the specification of the basis. However, we have known that a projection operator is just to remove a part of the dimensions w.r.t. some basis (see Th \{, ID: 7.7.1\}), and thus changing the basis of $\mathcal{M}(P)$ would just get the matrix of another projection operator, i.e., the set of all projection matrices defined above is independent of the choice of basis.
+
+Next we will talk about the judgement theorem of the projection matrix.
+
+\subsection{General Projection Matrix}
+\begin{Th}{Th 7\_I1.7.3 (judgement of projection matrix)}
+    Suppose $P$ is a square matrix. Then $P$ is a projection matrix iff $P$ is idempotent.
+\end{Th}
+This is trivial, as the projection operators are just defined to be the idempotent operators (see Df \{, ID: 7.7\}).
+
+\subsection{Orthogonal Projection Matrix}
+Since matrices are just operators on $\mathbb{F}^n$, we need to first define when an $n$-tuple is orthogonal to another one before we give the judgement of the orthogonal projection matrices. An $n$-tuple is viewed as the coordinates of a vector w.r.t. an orthonormal basis, thus the inner product of two $n$-tuples are expected to be the inner product of the two vectors behind. Now let $v=\sum_{i=1}^n x_ie_i$ and $w=\sum_{i=1}^n y_ie_i$ where $e_i$'s form an orthonormal basis and $x=(x_1, \dots, x_n)^\prime$, $y=(y_1, \dots, y_n)^\prime$ are the coordinates of $v$, $w$ respectively. Then:
+$$
+\begin{aligned}
+    \langle x, y\rangle &\triangleq \langle v, w\rangle \\
+    &= \langle \sum_{i=1}^n x_ie_i, \sum_{i=1}^n y_ie_i\rangle \\
+    &= \sum_{i,j} x_i\overline{y}_j\langle e_i,e_j\rangle \\
+    &= \sum_{i} x_i\overline{y}_j = y^\ast x
+\end{aligned}
+$$
+Hence: 
+\begin{Df}{Df 7\_I1.7.4.-1 (inner product on $\mathbb{R}^n$ or $\mathbb{C}^n$)}
+    Let $x, y\in\mathbb{C}^{n,1}$. The inner product $\langle x, y\rangle$ is defined as: $\langle x, y\rangle = y^\ast x$, where $y^\ast$ is the conjugate transpose of $y$. Specifically, $\langle x, y\rangle$ reduces to $y^\prime x$ when $x, y$ are both in $\mathbb{R}^{n,1}$.
+\end{Df}
+
+Clearly, an orthogonal projection matrix needs more restrictions than a general projection matrix, which means that the idempotence is not enough to judge an orthogonal projection matrix. Now it is time to derive the extra conditions. For convenience of computation, we just consider the inner product space as $\mathbb{F}^n$ and link every operator to its matrix by the standard basis.
+
+Suppose $P$ is a projection matrix based on the direct-sum decomposition $\mathbb{F}^n = U\oplus W$. Then $P$ is an orthogonal projection matrix iff $U\perp W$. Since the ``complement'' projection matrix of $P$ (namely, $I-P$) is based on $\mathbb{F}^n = W\oplus U$, $W$ is just the column space of $I-P$. Then the condition is further equivalent to ($P^\ast$ is the conjugate transpose of $P$):
+$$
+\begin{aligned}
+    & U\perp \text{Col}(P) \\
+    & \Leftrightarrow u\perp \text{Col}(P) \;\text{ for all } u\in U \\
+    & \Leftrightarrow Px\perp \text{Col}(P) \;\text{ for all } x\in\mathbb{F}^n \\
+    & \Leftrightarrow x^\ast P^\ast (I-P) = (Px)^\ast (I-P) = 0 \;\text{ for all } x\in\mathbb{F}^n \\
+    & \Leftrightarrow P^\ast (I-P) = 0 \\
+    & \Leftrightarrow P^\ast = P^\ast P \\
+    & \Leftrightarrow P = P^\ast P \\
+    & \Leftrightarrow P^\ast = P \;\;(\text{ since } P^2 = P )
+\end{aligned}
+$$
+Hence we have derived the extra condition for an orthogonal projection matrix:
+\begin{Th}{Th 7\_I1.7.4 (judgement of orthogonal projection matrix)}
+    Suppose $P$ is a square matrix. Then $P$ is an orthogonal projection matrix iff $P$ is idempotent and $P^\ast = P$.
+\end{Th}
+
+\subsection{Compute the Orthogonal Projection Matrix}
+How to compute the orthogonal projection matrix given a basis of the projection subspace? Suppose $P$ is a general projection matrix and $U = [u_1, \cdots, u_m]$ is the matrix whose columns $u_i$'s form a basis of the projection subspace. Then for any $x\in\mathbb{F}^{n,1}$, $Px = Ua$ for some $a\in\mathbb{F}^{m,1}$. Hence:
+$$
+\begin{aligned}
+    & P \text{ is an orthogonal projection matrix} \\
+    & \Leftrightarrow x-Px\perp \text{Col}(U) \;\text{ for all } x \\
+    & \Leftrightarrow (I-P)x\perp u_i \;\text{ for all } x \text{ and } i \\
+    & \Leftrightarrow u_i^\ast (I-P)x = 0 \;\text{ for all } x \text{ and } i \\
+    & \Leftrightarrow u_i^\ast x = u_i^\ast Px \;\text{ for all } x \text{ and } i \\
+    & \Leftrightarrow U^\ast x = U^\ast Px = U^\ast Ua \;\text{ for all } x \\
+    & \Leftrightarrow a = (U^\ast U)^{-1}U^\ast x \\ 
+    & (U^\ast U \text{ is invertible, since } U \text{ has full column rank.})\\
+    & \Leftrightarrow Px = Ua = U(U^\ast U)^{-1}U^\ast x \\
+\end{aligned}
+$$
+Hence we have derived the formula for the orthogonal projection matrix: $P = U(U^\ast U)^{-1}U^\ast$. Conversely, if a matrix $P = U(U^\ast U)^{-1}U^\ast$ for some $U$ of full column rank, then $P$ is first a projection matrix, and we can easily go through the above derivation conversely to show that $P$ is an orthogonal projection matrix.
+\begin{Th}{Th 7\_I1.7.5 (computation of orthogonal projection matrix)}
+    Suppose $P$ is a square matrix. Then: 
+    \begin{compactenum}
+        \item $P$ is an orthogonal projection matrix iff there exists a matrix $U$ of full column rank such that $P = U(U^\ast U)^{-1}U^\ast$. 
+        \item If $P$ is an orthogonal projection matrix and $U = [u_1, \cdots, u_m]$ where the column-vectors $u_i$'s form a basis of the projection subspace, then $P = U(U^\ast U)^{-1}U^\ast$.
+        \item If $P = U(U^\ast U)^{-1}U^\ast$ for some matrix $U$ of full column rank, then $P$ is the orthogonal projection matrix onto the column space of $U$.
+    \end{compactenum}
+\end{Th}
+
+\section{Conjugate Transpose and Adjoint}
+So far we have see the importance of the conjugate transpose (to a matrix) in many discussions in the inner product space. Since operator and matrix are just two parallel language of linear algebra, we wonder, as before, that which linear maps correspond to the conjugate transpose of matrices. That is, given $T\in\mathcal{L}(V, W)$ and $\mathcal{M}(T)_{\pmb{e}, \pmb{f}}$ (where $\pmb{e}$, $\pmb{f}$ are the corresponding orthonormal bases), we wonder that which linear map $T^\ast\in\mathcal{L}(W, V)$ satisfies 
+$$\mathcal{M}(T^\ast)_{\pmb{f}, \pmb{e}} = \mathcal{M}(T)_{\pmb{e}, \pmb{f}}^\ast$$
+Let us look at the $(i,j)$-th entry of $\mathcal{M}(T)_{\pmb{e}, \pmb{f}}^\ast$. Since $\pmb{e}, \pmb{f}$ are orthonormal bases, $\mathcal{M}(T)_{(i,j)} = \langle Te_j, f_i\rangle$. Likewise, $\mathcal{M}(T^\ast)_{(j,i)} = \langle T^\ast f_i, e_j\rangle$, which is the conjugate of $\mathcal{M}(T)_{(i,j)}$. Hence $\langle Te_j, f_i\rangle = \langle e_j, T^\ast f_i\rangle$ for all $i, j$, which means that for all $v\in V$ and $w\in W$:
+$$
+\begin{aligned}
+    \langle Tv, w\rangle &= \langle T\left(\sum x_ie_i\right), \sum y_if_i\rangle = \langle \sum x_iTe_i, \sum y_if_i\rangle \\
+    &= \sum_{i,j} x_i\overline{y}_i\langle Te_i, f_i\rangle = \sum_{i,j} x_i\overline{y}_i\langle e_i, T^\ast f_i\rangle \\
+    &= \langle \sum x_ie_i, \sum y_iT^\ast f_i\rangle = \langle v, T^\ast w\rangle
+\end{aligned}
+$$
+And this is just the definition of the adjoint:
+\begin{Df}{Df 7\_I1.8 (adjoint)}
+    Let $T\in\mathcal{L}(V, W)$. The adjoint of $T\in\mathcal{L}(V, W)$, denoted by $T^\ast$, is the linear map $T^\ast\in\mathcal{L}(W, V)$ such that $\langle Tv, w\rangle = \langle v, T^\ast w\rangle$ for all $v\in V$ and $w\in W$.
+\end{Df}
+\textcolor{Th}{This definition is well-defined, since we can then easily prove that the adjoint exists and is unique using the Riesz representation theorem.}
+\end{document}
