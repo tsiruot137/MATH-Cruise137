@@ -1,0 +1,179 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Inner Product Space}}
+    \author{\large Jiawei Hu}
+
+
+    % new commands for formula typying
+    \newcommand{\basisTilde}[1]{\tilde{\pmb{#1}}}
+\begin{document}
+\maketitle
+
+This is an insight into the \textbf{transformation of basis or coordinates} in a vector space, including the similarity transformation of matrices and its interpretation.
+We now reiterate some commonly-used notations and conventions:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{R}^+$: the set of the positive real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$ or $\mathbb{N}^+$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $\mathbb{F}$: a number field.
+    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+    \item The matrix product $KA$ is referred as ``$A$ left-multiplied by $K$'' or ``left-multiply $A$ by $K$''; $AK$ is similar.
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+\section{Matrix Representation under Basis Transformation}
+A linear map $T\in\mathcal{L}(V,W)$ ($V, W$ are both finite-dimensional) is uniquely represented by $\mathcal{M}(T)_{\pmb{v}, \pmb{w}}$ after the pre-given bases $\pmb{v}$ and $\pmb{w}$. The pre-given bases then act as a ``perspective'' or ``reference frame'' for the observation of $T$, and the shift of the choice of $\pmb{v}$ and $\pmb{w}$ will change the matrix representation. Then we naturally wonder that how $\mathcal{M}(T)$ will be changed if the chosen bases are another two, say $\basisTilde{v}, \basisTilde{w}$ instead.
+
+To simplify the computation and illustration, we first adopt the following notation.
+\begin{Df}{Df 2\_I1.24 (a simple notation for matrix representation)}
+    Suppose $T\in\mathcal{L}(V, W)$ where $V$ and $W$ are both finite-dimensional with (ordered) bases $\pmb{v} = (v_1, \dots, v_n)$ and $\pmb{w} = (w_1, \dots, w_m)$ respectively. Then we often rewrite the equalities in \{, ID: 2.18\} of matrix representation as the following form:
+    $$ T\pmb{v} = \pmb{w}\mathcal{M}(T)_{\pmb{v}, \pmb{w}} $$
+\end{Df}
+This notation is just an analogue of matrix multiplication, as $v_j$'s and $w_i$'s are viewed as column vectors here. Since this is just the matrix multiplication, we can apply the associative law, which as we will see later is very convenient.
+
+To shift the referred bases to $\basisTilde{v}, \basisTilde{w}$, the link between them and the original referred bases is necessary. Hence we let $S\pmb{v} = \basisTilde{v}$ \textcolor{Df}{(i.e. $Sv_i = \tilde{v}_i$ for all $i$)} and $R\pmb{w} = \basisTilde{w}$ for some invertible $S\in\mathcal{L}(V)$ and $R\in\mathcal{L}(W)$. Then we can derive $\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}}$:
+$$
+\begin{aligned}
+    & T\basisTilde{v} = TS\pmb{v} = T\pmb{v}\mathcal{M}(S)_{\pmb{v}, \pmb{v}} = \pmb{w}\mathcal{M}(T)_{\pmb{v}, \pmb{w}}\mathcal{M}(S)_{\pmb{v}, \pmb{v}} \\
+    &= R^{-1}\basisTilde{w}\mathcal{M}(T)_{\pmb{v}, \pmb{w}}\mathcal{M}(S)_{\pmb{v}, \pmb{v}} = \basisTilde{w}\mathcal{M}(R^{-1})_{\basisTilde{w}, \basisTilde{w}}\mathcal{M}(T)_{\pmb{v}, \pmb{w}}\mathcal{M}(S)_{\pmb{v}, \pmb{v}}
+\end{aligned}
+$$
+Hence $\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}} = \mathcal{M}(R^{-1})_{\basisTilde{w}, \basisTilde{w}}\mathcal{M}(T)_{\pmb{v}, \pmb{w}}\mathcal{M}(S)_{\pmb{v}, \pmb{v}}$. Actually, $\mathcal{M}(R^{-1})_{\basisTilde{w}, \basisTilde{w}}$ here is equal to $\mathcal{M}(R)^{-1}_{\pmb{w}, \pmb{w}}$, as we will show it in the later discussion of invertible matrix.
+
+\begin{Th}{Th 2\_I1.24.1 ($\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}}$)}
+    Suppose $T\in\mathcal{L}(V,W)$ and $\pmb{v}, \pmb{w}$ are pre-given bases of $V$ and $W$ respectively. If $\basisTilde{v}$ and $\basisTilde{w}$ are another bases of $V$ and $W$ respectively, such that $\basisTilde{v} = S\pmb{v}$ and $\basisTilde{w} = R\pmb{w}$ (for some invertible $S\in\mathcal{L}(V)$ and $R\in\mathcal{L}(W)$), then:
+    $$\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}} = \mathcal{M}(R)^{-1}_{\pmb{w}, \pmb{w}}\mathcal{M}(T)_{\pmb{v}, \pmb{w}}\mathcal{M}(S)_{\pmb{v}, \pmb{v}}$$
+\end{Th}
+
+Now to show that $\mathcal{M}(R^{-1})_{\basisTilde{w}, \basisTilde{w}} = \mathcal{M}(R)^{-1}_{\pmb{w}, \pmb{w}}$, we turn to talk about the invertible matrix.
+
+\subsection{Invertible Matrix}
+To keep the isomorphism of the operator language and the matrix language, we define the invertible matrices as those whose behind operator is invertible.
+\begin{Df}{Df 2\_I1.25 (invertible matrix)}
+    Suppose $A\in\mathbb{F}^{n,n}$. Then $A$ is said to be invertible if the behind operator $T$ (s.t. $\mathcal{M}(T) = A$) is invertible. For an invertible matrix $A = \mathcal{M}(T)$ (w.r.t. some basis), the inverse of $A$, denoted by $A^{-1}$, equals $\mathcal{M}(T^{-1})$ (w.r.t. the same basis).
+\end{Df}
+This definition needs to be well-defined, as we have not assign the referred basis of the the behind operator $T$. Actually as we will prove below, \textcolor{Th}{the invertibility of $T$ is independent of which referred basis to choose, and so is $A^{-1}$.}
+
+\begin{Th}{Lma 2\_I1.25.1 (invertible basis transformation)}
+    Suppose $S\in\mathcal{L}(V)$ and $\pmb{v}$ is a basis of $V$. Then $\mathcal{M}(S)_{S\pmb{v}, S\pmb{v}} = \mathcal{M}(S)_{\pmb{v}, \pmb{v}}$.
+    \tcblower
+    \textit{Pf}: Just apply S on the both sides of $S\pmb{v} = \pmb{v}\mathcal{M}(S)_{\pmb{v}, \pmb{v}}$ and obtain that $S(S\pmb{v}) = (Sv)\mathcal{M}(S)_{\pmb{v}, \pmb{v}}$
+\end{Th}
+
+This lemma indicates that $\mathcal{M}(R^{-1})_{\basisTilde{w}, \basisTilde{w}} = \mathcal{M}(R^{-1})_{\pmb{w}, \pmb{w}}$, and the basis transformation 
+$$\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}} = \mathcal{M}(R^{-1})_{\basisTilde{w}, \basisTilde{w}}\mathcal{M}(T)_{\pmb{v}, \pmb{w}}\mathcal{M}(S)_{\pmb{v}, \pmb{v}}$$
+is now:
+$$\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}} = \mathcal{M}(R^{-1})_{\pmb{w}, \pmb{w}}\mathcal{M}(T)_{\pmb{v}, \pmb{w}}\mathcal{M}(S)_{\pmb{v}, \pmb{v}} = \mathcal{M}(R^{-1}TS)_{\pmb{v}, \pmb{w}}$$
+
+And if $T\in\mathcal{L}(V)$, then it reduces to:
+$$\mathcal{M}(T)_{\basisTilde{v}} = \mathcal{M}(S^{-1})_{\pmb{v}}\mathcal{M}(T)_{\pmb{v}}\mathcal{M}(S)_{\pmb{v}} = \mathcal{M}(S^{-1}TS)_{\pmb{v}}.$$
+
+This implies that for the behind operator $T$ of a square matrix $A$ (s.t. $\mathcal{M}(T) = A$), if the refered basis is changed, then $T$ can be changed to another operator $S^{-1}TS$ so that $\mathcal{M}(S^{-1}TS) = A$ (where $S$ is some invertible operator). Hence the invertibility of the behind operator of a matrix is independent of the choice of the refered basis, and the concept of invertible matrices is well-defined. We now can easily verify the following basic properties of invertible matrix:
+
+\begin{Th}{Th 2\_I1.25.2 (basic properties of invertible matrix)}
+    Suppose $A\in\mathbb{F}^{n,n}$. Then the following conditions are equivalent:
+    \begin{compactenum}
+        \item $A$ is invertible;        
+        \item There is a matrix $B$ s.t. $AB=BA=I$; 
+        \item There is a matrix $B$ s.t. $AB=I$ or $BA=I$; (and if this condition holds, then $B = A^{-1}$)
+    \end{compactenum}
+    And if the following matrices are all invertible, then:
+    \begin{compactenum}
+        \item $(A^{-1})^{-1} = A$;
+        \item $(AB)^{-1} = B^{-1}A^{-1}$.
+    \end{compactenum}
+\end{Th}
+
+Thus we now have $\mathcal{M}(R^{-1})_{\pmb{w}, \pmb{w}} = \mathcal{M}(R)^{-1}_{\pmb{w}, \pmb{w}}$, and the basis transformation of $T$ turns to the form in Th \{, ID: 2\_I1.24.1\}.
+
+As for the lemma 2\_I1.25.1, it points out an interesting fact that an invertible operator $S\in\mathcal{L}(V)$ groups every basis $\pmb{v}$ of $V$ with a family $\{S^{m}\pmb{v}: m\in\mathbb{Z}\}$, and all bases in the same family yields the common $\mathcal{M}(S)$.
+
+\section{Geometry Interpretation of Basis Transformation}
+The Th \{, ID: 2\_I1.24.1\} will show a great influence on the understanding of an operator's behaviour, as we will see this formula (this decomposition of a matrix) can be the later \textbf{eigenvalue decomposition}, \textbf{spectral decomposition} and \textbf{singular-value decomposition}. Now we can also see that this decomposition can have a trivial geometrical interpretation.
+
+Rewrite the formula as
+
+\begin{equation}
+    \mathcal{M}(T)_{\pmb{v}, \pmb{w}} = \mathcal{M}(R)_{\pmb{w}, \pmb{w}}\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}}\mathcal{M}(S)_{\pmb{v}, \pmb{v}}^{-1} \label{eq:decomp}
+\end{equation}
+
+where $\pmb{v}, \pmb{w}$ are the pre-given basis, and we change them to $\basisTilde{v}, \basisTilde{w}$. Since a vector is jointly determined by the referred basis and the coordinates, what a linear operator done on a vector can be viewed by the following perspectives:
+\begin{compactenum}
+    \item Keeps the basis, and change the coordinates of the vector;
+    \item Keeps the coordinates, and change the refered basis into another (if the operator is invertible).
+\end{compactenum}
+In the formula \eqref{eq:decomp}, the invertible matrices can be viewed as the second perspective. For any vector $v\in V$, let $w = Tv$, and we have:
+$$
+\begin{aligned}
+    \mathcal{M}(S)^{-1}_{\pmb{v}, \pmb{v}}\mathcal{M}(v)_{\pmb{v}} &= \mathcal{M}(S^{-1})_{\pmb{v}, \pmb{v}}\mathcal{M}(v)_{\pmb{v}} \\
+    &= \mathcal{M}(S^{-1}v)_{\pmb{v}, \pmb{v}} \\
+    &= \mathcal{M}(v)_{\basisTilde{v}, \basisTilde{v}}
+\end{aligned}
+$$
+The third equality above is based on the following theorem:
+\begin{Th}{Lma 2\_I1.25.2}
+    Suppose $S\in\mathcal{L}(V)$ and $\pmb{v}$ is a basis of $V$. Then for any $v\in V$, $\mathcal{M}(v)_{\pmb{v}} = \mathcal{M}(Sv)_{S\pmb{v}}$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+Hence $\mathcal{M}(S^{-1})_{\pmb{v}, \pmb{v}}$ does not change the vector $v$ itself, but changes the refered basis from $\pmb{v}$ to $\basisTilde{v}$. 
+
+Then $\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}}$ change $\mathcal{M}(v)_{\basisTilde{v}}$ to $\mathcal{M}(w)_{\basisTilde{w}}$. 
+
+Finally, $\mathcal{M}(R)_{\pmb{w}, \pmb{w}}$ changes $\mathcal{M}(w)_{\basisTilde{w}}$ to $\mathcal{M}(w)_{\pmb{w}}$:
+$$
+\begin{aligned}
+    \mathcal{M}(R)_{\pmb{w}, \pmb{w}}\mathcal{M}(Tv)_{\basisTilde{w}} &= \mathcal{M}(R)_{\basisTilde{w}, \basisTilde{w}}\mathcal{M}(w)_{\basisTilde{w}} \\
+    &= \mathcal{M}(Rw)_{\basisTilde{w}} \\
+    &= \mathcal{M}(w)_{\pmb{w}}
+\end{aligned}
+$$
+And these three matrices together go through the whole process of the operator $T$ acting on the vector $v$ (by transform the coordinates of $v$):
+$$\mathcal{M}(v)_{\pmb{v}}\overset{\mathcal{M}(S)^{-1}_{\pmb{v}}}{\longrightarrow}\mathcal{M}(v)_{\basisTilde{v}}\overset{\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}}}{\longrightarrow}\mathcal{M}(w)_{\basisTilde{w}}\overset{\mathcal{M}(R)_{\pmb{w}}}{\longrightarrow}\mathcal{M}(w)_{\pmb{w}}$$
+And this process is very natural and intuitive.
+
+\section{Similar Matrices}
+The Th \{, ID: 2\_I1.24.1\} reveals the matrix representation of a map under basis transformation (i.e. keeping the map, how the matrix change with the referred basis). Correspondingly, the following theorem, as we have proved previously, reveals that keeping the matrix, how the map change with the referred basis:
+\begin{Th}{Th 2\_I1.26.-1}
+    Suppose $T\in\mathcal{V, W}$ and $\pmb{v}, \pmb{w}$ are bases of $V$ and $W$ respectively. Suppose $\basisTilde{v}$, $\basisTilde{w}$ are another bases of $V$ and $W$ respectively. Then:
+    $$\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}} = \mathcal{M}(R^{-1}TS)_{\pmb{v}, \pmb{w}}$$
+    where $S\pmb{v} = \basisTilde{v}$ and $R\pmb{w} = \basisTilde{w}$.
+\end{Th}
+
+Here we see that the change of referred basis will multiply an invertible matrix (or invertible operator) on both sides of the original one, which induces the definition of similarity for matrices (or maps):
+\begin{Df}{Df 2\_I1.26 (similar matrices)}
+    Two matrices $A$ and $\tilde{A}$ (resp. two maps $T$ and $\tilde{T}$) are said to be similar if there are two invertible matrices $P$ and $Q$ (resp. two invertible operators $R$ and $S$) s.t.
+    $$ \tilde{A} = P^{-1}AQ \quad(\text{resp. } \tilde{T} = R^{-1}TS) $$
+\end{Df}
+
+And we can verify that \textcolor{Th}{the similar relation is an equivalance relation.}
+\end{document}
