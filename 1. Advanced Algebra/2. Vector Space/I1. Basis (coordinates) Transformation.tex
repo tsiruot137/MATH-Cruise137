@@ -31,7 +31,7 @@
 \begin{document}
 \maketitle
 
-This is an insight into the \textbf{transformation of basis or coordinates} in a vector space, including the similarity transformation of matrices and its interpretation.
+This is an insight into the \textbf{transformation of basis or coordinates} in a vector space, including the equivalance transformation of matrices and its interpretation.
 We now reiterate some commonly-used notations and conventions:
 \begin{compactenum}
     \item $\mathbb{C}$: the set of the complex numbers;
@@ -161,7 +161,7 @@ And these three matrices together go through the whole process of the operator $
 $$\mathcal{M}(v)_{\pmb{v}}\overset{\mathcal{M}(S)^{-1}_{\pmb{v}}}{\longrightarrow}\mathcal{M}(v)_{\basisTilde{v}}\overset{\mathcal{M}(T)_{\basisTilde{v}, \basisTilde{w}}}{\longrightarrow}\mathcal{M}(w)_{\basisTilde{w}}\overset{\mathcal{M}(R)_{\pmb{w}}}{\longrightarrow}\mathcal{M}(w)_{\pmb{w}}$$
 And this process is very natural and intuitive.
 
-\section{Similar Matrices}
+\section{Equivalent Matrices}
 The Th \{, ID: 2\_I1.24.1\} reveals the matrix representation of a map under basis transformation (i.e. keeping the map, how the matrix change with the referred basis). Correspondingly, the following theorem, as we have proved previously, reveals that keeping the matrix, how the map change with the referred basis:
 \begin{Th}{Th 2\_I1.26.-1}
     Suppose $T\in\mathcal{V, W}$ and $\pmb{v}, \pmb{w}$ are bases of $V$ and $W$ respectively. Suppose $\basisTilde{v}$, $\basisTilde{w}$ are another bases of $V$ and $W$ respectively. Then:
@@ -169,11 +169,26 @@ The Th \{, ID: 2\_I1.24.1\} reveals the matrix representation of a map under bas
     where $S\pmb{v} = \basisTilde{v}$ and $R\pmb{w} = \basisTilde{w}$.
 \end{Th}
 
-Here we see that the change of referred basis will multiply an invertible matrix (or invertible operator) on both sides of the original one, which induces the definition of similarity for matrices (or maps):
-\begin{Df}{Df 2\_I1.26 (similar matrices)}
-    Two matrices $A$ and $\tilde{A}$ (resp. two maps $T$ and $\tilde{T}$) are said to be similar if there are two invertible matrices $P$ and $Q$ (resp. two invertible operators $R$ and $S$) s.t.
+Here we see that the change of referred basis will multiply an invertible matrix (or invertible operator) on both sides of the original one, which induces the definition of equivalance for matrices (or maps):
+\begin{Df}{Df 2\_I1.26 (equivalent matrices (or operators))}
+    Two matrices $A$ and $\tilde{A}$ (resp. two maps $T$ and $\tilde{T}$) are said to be equivalent if there are two invertible matrices $P$ and $Q$ (resp. two invertible operators $R$ and $S$) s.t.
     $$ \tilde{A} = P^{-1}AQ \quad(\text{resp. } \tilde{T} = R^{-1}TS) $$
 \end{Df}
 
-And we can verify that \textcolor{Th}{the similar relation is an equivalance relation.}
+And we can verify that \textcolor{Th}{the matrix equivalance is an equivalance relation, that is, the relation is reflexive, symmetric and transitive.} Also, we can verify that:
+
+\begin{Th}{Th 2\_I1.26.1 (matrix equivalance is the equality of rank)}
+    Suppose $A, \tilde{A}\in\mathbb{F}^{m,n}$. Then $A$ and $\tilde{A}$ are equivalent iff $\text{rank}(A) = \text{rank}(\tilde{A})$.
+\end{Th}
+
+Accordingly, since the rank of a matrix corresponds to the dimension of the range space, we have: \textcolor{Th}{If $T, \tilde{T}\in\mathcal{L}(V, W)$, then $T$ and $\tilde{T}$ are equivalent iff $\text{dim}R(T) = \text{dim}R(\tilde{T})$}. Since a linear map always takes a part of the dimensions of the domain to the range space (called, say, valid dimensions) while the rest to the null space. If the two maps have the same dimension of the range space, then we can just first adjust their valid dimensions to be the same, and then adjust their range spaces to be the same. This way we then construct the expression $\tilde{T} = R^{-1}TS$. Then, the Th \{, ID: 2\_I1.26.1\} is just self-evident. 
+
+If we focus on operators, then the equivalance expression $\tilde{T} = R^{-1}TS$ is restricted to $\tilde{T} = S^{-1}TS$, since the referred bases of the domain and the target space are required to be the same. In this case, we can define the similarity of operators:
+
+\begin{Df}{Df 2\_I1.26.2 (similar matrices (or operators))}
+    Two square matrices $A$ and $\tilde{A}$ (resp. two operators $T$ and $\tilde{T}$) are said to be similar if there is an invertible matrix $P$ (resp. an invertible operator $S$) s.t.
+    $$ \tilde{A} = P^{-1}AP \quad(\text{resp. } \tilde{T} = S^{-1}TS) $$
+\end{Df}
+
+Likewise, we can verify that \textcolor{Th}{the similarity of matrices (or operators) is an equivalance relation}
 \end{document}
