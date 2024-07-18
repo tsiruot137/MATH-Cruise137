@@ -1,0 +1,52 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Jordan Form}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 9th chapter of advanced algebra, which is about \textbf{Jordan Form}\\. 
+ 
+By the way, we now reiterate some commonly-used notations and conventions:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{R}^+$: the set of the positive real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$ or $\mathbb{N}^+$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $A\times B$: the Cartesian product of $A$ and $B$.
+    \item $\mathbb{F}$: a number field.
+    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+    \item The matrix product $KA$ is referred as ``$A$ left-multiplied by $K$'' or ``left-multiply $A$ by $K$''; $AK$ is similar.
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+
+\end{document}

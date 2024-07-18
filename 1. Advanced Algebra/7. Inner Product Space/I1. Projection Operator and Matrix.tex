@@ -22,7 +22,7 @@
     \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
     \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
 
-    \title{\LARGE \textbf{Inner Product Space}}
+    \title{\LARGE \textbf{Projection Operator and Matrix}}
     \author{\large Jiawei Hu}
 
 \begin{document}
@@ -134,7 +134,7 @@ Hence we have derived the formula for the orthogonal projection matrix: $P = U(U
 \end{Th}
 
 \section{Conjugate Transpose and Adjoint}
-So far we have see the importance of the conjugate transpose (to a matrix) in many discussions in the inner product space. Since operator and matrix are just two parallel language of linear algebra, we wonder, as before, that which linear maps correspond to the conjugate transpose of matrices. That is, given $T\in\mathcal{L}(V, W)$ and $\mathcal{M}(T)_{\pmb{e}, \pmb{f}}$ (where $\pmb{e}$, $\pmb{f}$ are the corresponding orthonormal bases), we wonder that which linear map $T^\ast\in\mathcal{L}(W, V)$ satisfies 
+So far we have seen the importance of the conjugate transpose (to a matrix) in many discussions in the inner product space. Since operator and matrix are just two parallel language of linear algebra, we wonder, as before, that which linear maps correspond to the conjugate transpose of matrices. That is, given $T\in\mathcal{L}(V, W)$ and $\mathcal{M}(T)_{\pmb{e}, \pmb{f}}$ (where $\pmb{e}$, $\pmb{f}$ are the corresponding orthonormal bases), we wonder that which linear map $T^\ast\in\mathcal{L}(W, V)$ satisfies 
 $$\mathcal{M}(T^\ast)_{\pmb{f}, \pmb{e}} = \mathcal{M}(T)_{\pmb{e}, \pmb{f}}^\ast$$
 Let us look at the $(i,j)$-th entry of $\mathcal{M}(T)_{\pmb{e}, \pmb{f}}^\ast$. Since $\pmb{e}, \pmb{f}$ are orthonormal bases, $\mathcal{M}(T)_{(i,j)} = \langle Te_j, f_i\rangle$. Likewise, $\mathcal{M}(T^\ast)_{(j,i)} = \langle T^\ast f_i, e_j\rangle$, which is the conjugate of $\mathcal{M}(T)_{(i,j)}$. Hence $\langle Te_j, f_i\rangle = \langle e_j, T^\ast f_i\rangle$ for all $i, j$, which means that for all $v\in V$ and $w\in W$:
 $$

@@ -1,0 +1,411 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Jordan Form and Generalized Eigenvectors}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 9th chapter of advanced algebra, which is about \textbf{Jordan Form} and \textbf{Generalized Eigenvectors}. 
+ 
+By the way, we now reiterate some commonly-used notations and conventions:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{R}^+$: the set of the positive real numbers;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$ or $\mathbb{N}^+$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $A\times B$: the Cartesian product of $A$ and $B$.
+    \item $\mathbb{F}$: a number field.
+    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+    \item The matrix product $KA$ is referred as ``$A$ left-multiplied by $K$'' or ``left-multiply $A$ by $K$''; $AK$ is similar.
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+\section{Introduction}
+In previous chapters, we desire to diagonalize an operators since a matrix in the diagonal form is very convenient for computation (e.g. the power of the matrix) and a diagonal matrix representation of an operator offers a trivial geometrical interpretation (i.e. the diagonal entries are the eigenvalues and the operator is just to do scaling). Also, the diagonalization of an operator decoposes the space into some direct-sum of invariant subspaces. If an operator $T$ divides the space $V$ as $V = \bigoplus_{i=1}^m V_i$ where each $V_i$ is $T$-invariant, then $T$ can be decomposed as $T = \sum_{i=1}^{m} T_{V_i}P_i$ where $T_{V_i}$ is the restriction of $T$ to $V_i$ and $P_i$ is the projection operator from $V$ to $V_i$ (corresponding to $V = \bigoplus_{i=1}^m V_i$); and if further $T$ is diagonalizable, then the $V_i$'s can be the eigenspaces of $T$, and $T$ can be written as $T = \sum_{i=1}^{m} \lambda_i P_i$ for the corresponding eigenvalues $\lambda_i$'s, which is somewhat graceful.
+
+However, an operator is diagonalizable if and only if the eigenvectors fill the whole space, which is not always the case. For example, the shear operator with the matrix
+$$
+\begin{bmatrix}
+    1 & 1 \\
+    0 & 1
+\end{bmatrix}
+$$
+has only one dimension of eigenspace (corresponding to the eigenvalue $1$).
+
+Therefore, we now try to find a suboptimal solution for the geometrical picture of a general operator and the computational convenience of a general matrix. Geometrically, we still want to decompose the space into some direct-sum of invariant subspaces, but the subspaces are not necessarily one-dimensional (i.e. those associated with some eigenvector). And clearly, such a decomposition can yield a block-diagonal matrix representation
+$$ A = 
+\begin{bmatrix}
+    A_1 & & & \\
+    & A_2 & & \\
+    & & \ddots & \\
+    & & & A_m
+\end{bmatrix}
+$$
+of the operator, where each $A_i$ is just the matrix representation of the restriction of the operator to the corresponding subspace. This form of matrix is still computationally convenient, e.g. the power of the matrix
+$$ A^k = 
+\begin{bmatrix}
+    A_1^k & & & \\
+    & A_2^k & & \\
+    & & \ddots & \\
+    & & & A_m^k
+\end{bmatrix}
+$$
+as long as every $A_i^k$ is also easy to compute. 
+
+Still, we can not avoid the computation of the power $A_i^k$, for which we now have no idea other than taking brute force if we do not fix some shape or form of $A_i$. Then can $A_i$ be, say, upper-triangular (as a wide range of operators, including all the complex operators, has a upper-triangular matrix representation)? Yes, but not convenient enough. Can $A_i$ be diagonal? No, as in this case $A$ is itself diagonal. How about a proper form that is between the requirement of upper-triangle and diagonal, and is close to the diagonal form as much as possible? Then let us allow $A_i$ to have some non-zero entries on the upper-secondary diagonal, say, to have some $1$'s.
+\begin{Df}{Df 9\_I1.1.-1 (secondary diagonal)}
+    The upper-secondary diagonal of a square matrix is the slant line lying right above the diagonal. For example, the entries on the upper-secondary diagonal is marked by $\bullet$ in the following matrix ($\times$ for the diagonal entries):
+    $$
+    \begin{bmatrix}
+        \times & \bullet & & \\
+        & \times & \bullet & \\
+        & & \times & \bullet \\
+        & & & \times
+    \end{bmatrix}
+    $$
+    The lower-secondary diagonal is defined similarly.
+\end{Df}
+
+If $A_i$ has the same scalar on the diagonal (as what we often did before, put the eigenvectors of the same  eigenvalues together when write the matrix representation), then $A_i$ is of the so-called \textbf{Jordan block} form:
+
+\begin{Df}{Df 9\_I1.1 (Jordan block)}
+    A \textbf{Jordan block} $J_{k}(\lambda)$ is a $k$-square matrix whose diagonal entries are all $\lambda$ and the upper-secondary diagonal entries are all $1$. For example:
+    $$ J_{4}(\lambda) =
+    \begin{bmatrix}
+        \lambda & 1 & & \\
+        & \lambda & 1 & \\
+        & & \lambda & 1 \\
+        & & & \lambda
+    \end{bmatrix}
+    $$
+    and $J_{1}(\lambda) = [\lambda]$.
+\end{Df}
+
+Then we can write the matrix representation $A$ of $T\in\mathcal{L}(V)$ as block-diagonal form, with each block being a Jordan block:
+$$ A =
+\begin{bmatrix}
+    J_{k_1}(\lambda_1) & & \\
+    & \ddots & \\
+    & & J_{k_m}(\lambda_m)
+\end{bmatrix}
+$$
+
+\begin{Df}{Df 9\_I1.1.1 (Jordan form and Jordan basis)}
+    \begin{compactenum}
+        \item Suppose $A$ is a square matrix. Then $A$ is said to be in the \textbf{Jordan form} (or Jordan canonical form) if $$ A =
+        \begin{bmatrix}
+            J_1 & & \\
+            & \ddots & \\
+            & & J_m
+        \end{bmatrix}
+        $$
+        for some Jordan blocks $J_1, \dots, J_m$.
+        \item If a linear operator has a Jordan form w.r.t. some basis $\beta$, then $\beta$ is called a \textbf{Jordan basis} of the operator.
+    \end{compactenum}
+\end{Df}
+
+A Jordan block brings us a lot of convenience in computation. Here is an example:
+
+\begin{Th}{Ex 9\_I1.1.2 (power of a Jordan block)}
+    Compute the power $J^k$ for the Jordan block $J=J_{4}(\lambda)$ and the first few $k$'s. State your findings.
+    \tcblower
+    \textit{Solution}: $J^k$ for $k=1,2,3,4$ are computed as:
+    $$ J^1 = 
+    \begin{bmatrix}
+        \lambda & 1 & & \\
+        & \lambda & 1 & \\
+        & & \lambda & 1 \\
+        & & & \lambda
+    \end{bmatrix} \quad J^2 =
+    \begin{bmatrix}
+        \lambda^2 & 2\lambda & 1 & \\
+        & \lambda^2 & 2\lambda & 1 \\
+        & & \lambda^2 & 2\lambda \\
+        & & & \lambda^2
+    \end{bmatrix}
+    $$
+    $$
+    J^3 = 
+    \begin{bmatrix}
+        \lambda^3 & 3\lambda^2 & 3\lambda & 1 \\
+        & \lambda^3 & 3\lambda^2 & 3\lambda \\
+        & & \lambda^3 & 3\lambda^2 \\
+        & & & \lambda^3
+    \end{bmatrix} \quad J^4 = 
+    \begin{bmatrix}
+        \lambda^4 & 4\lambda^3 & 6\lambda^2 & 4\lambda \\
+        & \lambda^4 & 4\lambda^3 & 6\lambda^2 \\
+        & & \lambda^4 & 4\lambda^3 \\
+        & & & \lambda^4
+    \end{bmatrix}
+    $$
+    Finding: \textcolor{Th}{The power $J_n^k(\lambda)$ can be written by this rule: First imagine a brush which draws a row consists of the coefficients of the expansion of $(\lambda+1)^k$ once dropped on a white paper representing a zero-matrix of the corresponding size, then move the brush from the upper-left to the lower-right to complete the matrix.}
+\end{Th}
+
+\section{Cyclic Subspaces and Generalized Eigenvectors}
+To figure out the uniqueness of the Jordan form, we need to look deep into the structure of the Jordan form. Suppose $T\in\mathcal{L}(V)$ has a Jordan form w.r.t. some basis $\beta$:
+$$ \mathcal{M}(T)_\beta = A = 
+\begin{bmatrix}
+    J_1(\lambda_1) & & \\
+    & \ddots & \\
+    & & J_m(\lambda_m)
+\end{bmatrix}
+$$
+Then $A$ is upper-triangular, so that the $\lambda_i$'s are the eigenvalues of $T$. Here $\lambda_1, \cdots, \lambda_m$ can be distinct or not. For example, we inspect the operator $T$ that has such a Jordan form:
+$$ A =
+\left[\begin{array}{ccc|c|cc|cc}
+    2&1& & & & & & \\
+     &2&1& & & & & \\
+     & &2& & & & & \\
+    \hline
+     & & &2& & & & \\
+    \hline
+     & & & &3&1& & \\
+     & & & & &3& & \\
+    \hline
+     & & & & & &0&1\\
+     & & & & & &0&0
+\end{array}\right]
+$$
+For the top-left $3\times 3$ block and the corresponding basis vectors $v_1, v_2, v_3$, we have $Tv_1 = 2v_1$, $Tv_2 = 2v_2+v_1$ and $Tv_3 = 2v_3+v_2$, which is:
+$$
+\begin{aligned}
+    v_3 &= (T-2I)^0v_3 \\
+    v_2 &= (T-2I)^1v_3 \\
+    v_1 &= (T-2I)v_2 = (T-2I)^2v_3 \\
+\end{aligned}
+$$
+And then we notice such a structure for the invariant subspace corresponding to a Jordan block:
+
+\begin{Th}{Clry 9\_I1.2.-1}
+    Suppose $S\in\mathcal{L}(U)$ where $U$ is a finite-dimensional vector space. Then $\mathcal{M}(S)$ is a Jordan block $J_k(\lambda)$ if and only if the corresponding basis ${u_1, \cdots, u_k}$ of $U$ satisfies:
+    $$ (u_k, u_{k-1}, \cdots, u_1) = (u_k, (S-\lambda I)u_k, \cdots, (S-\lambda I)^{k-1}u_k) $$
+\end{Th}
+
+And we propose the concept of a \textbf{cyclic subspace}:
+
+\begin{Df}{Df 9\_I1.2.1 (cyclic subspace)}
+    Suppose $T\in\mathcal{L}(V)$ where $V$ is finite-dimensional, and $v\in V\setminus\{0\}$. Then the subspace $\text{span}(v, Tv, T^2v, \cdots)$ is called the \textbf{$T$-cyclic subspace generated by $v$}.
+\end{Df}
+
+The study of the cyclic subspace echoes with our another target: to find as many invariant subspaces as possible. Given a non-zero vector $v$, what is the minimal $T$-invariant subspace containing $v$? Exactly, this minimal subspace must contain $v$, $Tv$, $T(Tv)$ and all the successors so that it contains the $T$-cyclic subspace generated by $v$. At the same time, the cyclic subspace is enough to be an invariant subspace:
+
+\begin{Th}{Th 9\_I1.2.2}
+    Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$, and $v\in V\setminus\{0\}$. Then the $T$-cyclic subspace generated by $v$ is the smallest $T$-invariant subspace containing $v$.
+    \tcblower
+    \textit{Pf}: Just check that the $T$-cyclic subspace $W$ is $T$-invariant, which is followed by:
+    $$ Tv\overset{\forall v\in W}{=} T\left(\sum_{i} a_iT^iv\right) = \sum_{i} a_iT^{i+1}v \in W $$
+\end{Th}
+
+Since in the example above, $V_1$ is the only eigenvector among the basis of the top-left block, we now propose the concept of \textbf{generalized eigenvectors} to including the discussion of the remaining basis vectors.
+
+\begin{Df}{Df 9\_I1.2.3 (generalized eigenvectors)}
+    \begin{compactenum}
+        \item Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$. If there exists a non-zero vector $v\in V$ such that $(T-\lambda I)^jv = 0$ for some positive integer $j$ and some scalar $\lambda$, then we see that $\lambda$ is an eigenvalue of $T$, and we call $v$ a \textbf{generalized eigenvector} of $T$ corresponding to the eigenvalue $\lambda$.
+        \item Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$, and $\lambda$ is an eigenvalue of $T$. Then the \textbf{generalized eigenspace} of $T$ corresponding to $\lambda$, denoted by $G(\lambda, T)$ (or $G(\lambda)$ if no ambiguity), is the set of all generalized eigenvectors of $T$ corresponding to $\lambda$ together with the zero vector.
+    \end{compactenum}
+\end{Df}
+
+And as our desire, the generalized eigenspaces are invariant subspaces. They contain the corresponding eigenspaces, and sum to a direct-sum.
+
+\begin{Th}{Th 9\_I1.2.4}
+    Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$, and $\lambda_1, \cdots, \lambda_m$ are all the distinct eigenvalues of $T$. Then:
+    \begin{compactenum}
+        \item $G(\lambda_i)$ is an $T$-invariant subspace for each $i$;
+        \item $G(\lambda_i)\supseteq E(\lambda_i)$ for each $i$;
+        \item $G(\lambda_1) + \cdots + G(\lambda_m) = \bigoplus_{i=1}^m G(\lambda_i)$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Trivial.
+        \item Trivial.
+        \item Suppose $\sum_{i=1}^{m} v_i = 0$ where $v_i\in G(\lambda_i)$. To show that each $a_i$ is $0$, we can design a method to annihilate the other $v$'s while keeping $v_i$. Let $(T-\lambda_i I)^{j_i}v_i = 0$. Then to keep $v_1$, we can apply $\prod_{i=2}^{m} (T-\lambda_i I)^{j_i}$ to both sides of the equation to get:
+        $$ 0 = a_1\prod_{i=2}^{m} (T-\lambda_i I)^{j_i} v_1$$
+        We hope that $Tv_1 = \lambda_1v_1$ so that $T$ can be replaced by $\lambda_1$ in the polynomial, but actually it is not. Hence we further apply $(T-\lambda_1 I)^{j_1-1}$ to both sides so that $w_1 = (T-\lambda_1 I)^{j_1-1}v_1$ is an eigenvector of $T$ corresponding to $\lambda_1$ (assume $j_i$ is the minimal integer for annihilating $v_i$). Then we have:
+        $$ 
+        \begin{aligned}
+            0 &= a_1\left[\prod_{i=2}^{m} (T-\lambda_i I)^{j_i}\right] (T-\lambda_1)^{j_1-1}v_1 \\
+            &= a_1\left[\prod_{i=2}^{m} (T-\lambda_i I)^{j_i}\right] w_1 = a_1\left[\prod_{i=2}^{m} (\lambda_1-\lambda_i)^{j_i}\right]w_1 \\
+            &= a_1c w_1 \quad (\text{where } c, w_1\neq 0)
+        \end{aligned}
+        $$
+        Hence $a_1 = 0$, and we can repeat the process for the other $v$'s.
+    \end{compactenum}
+\end{Th}
+
+Look back to the example above, we see that each Jordan block corresponds to a $T$-cyclic subspace, and the Jordan blocks with the same eigenvalue sum to the corresponding generalized eigenspace. Now come two vital questions: (1) Can a generalized eigenspace be decomposed into some direct-sum of $T$-cyclic subspaces? (2) Can the generalized eigenvectors fill the whole space? 
+
+\section{Construct the Jordan Basis}
+To answer the first question asked at the end of the last section, we now try to construct a basis in the cycling style for each generalized eigenspace. 
+
+Suppose $T\in\mathcal{L}(V)$ for the finite-dimensional $V$, and $\lambda$ is an eigenvalue of $T$. For a generalized eigenvector $v\in G(\lambda)$, can the cycle $v, (T-\lambda I)v, (T-\lambda I)^2v \cdots$ be constructed as a basis for $G(\lambda)$? First, what about the linear independence of the cycle?
+
+\begin{Th}{Th 9\_I1.3.1 (linear independence of the cycle)}
+    Suppose $T\in\mathcal{L}(V)$ and $v\in V\setminus\{0\}$. Let $k$ be the smallest integer such that $T^kv = 0$. Then the list $v, Tv, T^2v, \cdots, T^{k-1}v$ is linearly independent. 
+    \tcblower
+    \textit{Pf}: To make the coefficients $a_i$'s in $\sum_{i=0}^{k-1} a_i(T-\lambda I)^iv = 0$ all zero, just apply $(T-\lambda I)^{j}$ ($j=1, \cdots, k-1$) to annihilate the vectors once by once.
+\end{Th}
+
+\begin{Df}{Df 9\_I1.3.2 (cycle)}
+    Suppose $T\in\mathcal{L}(V)$ for the finite-dimensional $V$ and $v\in V\setminus\{0\}$. Let $k$ be the smallest integer such that $T^kv = 0$. Then the list $T^{k-1}v, T^{k-2}v, \cdots, Tv, v$ is called the \textbf{$T$-cycle} generated by $v$, denoted by $\gamma(v, T)$ (or $\gamma(v)$ if no ambiguity). For the cycle $T^{k-1}v, T^{k-2}v, \cdots, Tv, v$, the vector $T^{k-1}v$ and $v$ is called the \textbf{initial vector} and the \textbf{end vector} respectively. 
+\end{Df}
+
+Then for a generalized eigenspace corresponding to the eigenvalue $\lambda$, we seek to construct a basis comprising of some $(T-\lambda I)$-cycles. If we select a non-zero $v\in G(\lambda)$, a single cycle $\gamma(v, T-\lambda I)$ can be not enough to span $G(\lambda)$. Then we consider to select another non-zero vector $\tilde{v}\in G(\lambda)$ that is beyond the span of the existing basis vectors, $\text{span}(\gamma(v, T-\lambda I))$, and fill the remaining dimensions with the vectors in the cycle $\gamma(\tilde{v}, T-\lambda I)$. However, this method can fail when $\tilde{v}$ makes some $(T-\lambda I)^j\tilde{v}$ fall again into $\text{span}(\gamma(v, T-\lambda I))$. 
+
+Hence the appropriate method is to grow the cycle in an opposite direction, that is, to start with an existing cycle $T^{k-1}v, T^{k-2}v, \cdots, Tv, v$ and then extend it to a larger cycle by seeking a vector $w$ such that $(T-\lambda I)w = v$. Here we can understand why the vector $(T-\lambda I)^{k-1}v$ instead of $v$ is called the initial vector. Then with this idea, we would grow the cycle from a eigenvector to some generalized eigenvectors, and we want to figure out how to make different cycles linearly independent.
+
+\begin{Th}{Th 9\_I1.3.3 (cycles with independent initial vectors are linearly independent)}
+    Suppose $T\in\mathcal{L}(V)$ and $\gamma_i = \{v_{ij}: j=1,\cdots,n_i\}\; (i=1,\cdots,m)$ are $T$-cycles with $v_{i1}$ being the initial vector of $\gamma_i$. If the initial vectors $\{v_{11},\cdots, v_{m1}\}$ are linearly independent, then the union of the cycles $\gamma = \bigcup_i \gamma_i$ is linear independent.
+    \tcblower
+    \textit{Pf}: Consider the expression $\sum_{i}\sum_{j} a_{ij}v_{ij} = 0$ and try to make all the $a_{ij}=0$. Then to annihilate the vectors one batch at a time is a good idea. Arrange the vectors $\{v_{ij}\}$ in the following way (take $m=5$ and some small $n_j$ for illustration):
+    $$
+    \begin{aligned}
+        \bullet v_{11} & \bullet v_{21} & \bullet v_{31} & \bullet v_{41} & \bullet v_{51} & \quad\in N(T^1)\\
+        \bullet v_{12} & \bullet v_{22} & \bullet v_{32} & \bullet v_{42} & &\quad\in N(T^2)\\
+        \bullet v_{13} & \bullet v_{23} & \bullet v_{33} & \bullet v_{43} & &\quad\in N(T^3)\\
+        \bullet v_{14} & \bullet v_{24} & & & &\quad\in N(T^4)\\
+        \bullet v_{15} & & & & & \quad\in N(T^5)
+    \end{aligned}
+    $$
+    And each $a_{ij}$ is attached to the corresponding vector. Since $Tv_{ij} = v_{i(j-1)}$, we can apply $T^{k}$ for different $k$ and then just wait and see.
+\end{Th}
+
+And then we can prove the desirable existence:
+
+\begin{Th}{Th 9\_I1.3.4 (existence of cyclic basis of $G(\lambda)$)}
+    Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$, and $\lambda$ is an eigenvalue of $T$. Then there exists a basis of $G(\lambda)$ consisting of some $(T-\lambda I)$-cycles.
+    \tcblower
+    \textit{Pf}: Perform math induction on $n = \dim G(\lambda)$. Clearly it holds for $n=1$. Then assume that the proposition holds for any generalized eigenspace with dimension less than $n$. Then for $\dim G(\lambda) = n$, consider the restriction $U$ of $T-\lambda I$ to $G(\lambda)$. Thus the range $R(U)$ of this restriction actually equals $G(\lambda, T_{R(U)})$ ($T_{R(U)}$ is the restriction of $T$ to $R(U)$). According to the induction hypothesis, there exists a basis $\gamma = \bigcup_i^q \gamma_i$ of $R(U)$ consisting of some $(T_{R(U)}-\lambda I)$-cycles (namely, $(T-\lambda I)$-cycles) $\gamma_1, \cdots, \gamma_q$. Since each basis vector in $\gamma$ is in $R(U)$, we can extend each $\gamma_i$ into $\tilde{\gamma}_i$ by including a new vector $w_i\in G(\lambda)$ s.t. $(T-\lambda I)w_i$ is the end vector of $\gamma_i$. Also, we extend the initial vectors of the $q$ cycles into a basis of $E(\lambda)$, by adding the required vectors $u_1, \cdots, u_s$. Then we will show that the union $\tilde{\gamma} = \left(\tilde{\gamma}_1\cup\cdots\cup\tilde{\gamma}_q\right)\cup\{u_1\}\cup\cdots\cup\{u_s\}$ (is of course a union of cycles) is a basis of $G(\lambda)$.
+
+    First, the $\gamma$ is clearly a linearly independent list of vectors. Then we verify the dimension. There are $\dim R(U) = \dim G(\lambda)-\dim N(U) = n-(q+s)$ basis vectors in $\gamma$, $q+s$ newly added basis vectors to $\gamma$. Hence there are $n-(q+s)+(q+s) = n = G(\lambda)$ basis vectors in $\tilde{\gamma}$ in total, finishing the proof.
+\end{Th}
+
+The main idea for developing such a proof is right in the ``dot-diagram'' we drew in the proof of Th \{, 9\_I1.3.3\}. Under such arrangement for the cycles, we find that if $G(\lambda)$ has the basis as desired, then $R(U)$ is made up of those dimensions other than ``the outermost dimensions'':
+$$
+\begin{aligned}
+    & \bullet \quad \bullet \quad \bullet \quad \bullet \quad\; \circ \qquad \qquad G(\lambda): \bullet \text{ and } \circ \\
+    & \bullet \quad \bullet \quad \circ \quad \circ \\
+    & \bullet \quad \circ \qquad\qquad\qquad\qquad\qquad R(U): \bullet\\
+    & \circ \quad \\
+\end{aligned}
+$$
+which inspires us how to construct the desirable basis from an existing one of a lower dimensional space (as exemplified in the proof), with mathematical induction applied.
+
+So far we have succeeded in constructing the basis of the desired form for each eigenspace, and hence succeeded in constructing a Jordan basis for $\bigoplus_{\lambda} G(\lambda)$. Now it comes to the question that whether the generalized eigenvectors fill the whole space.
+
+Consider the matrix representation of a general operator:
+$$
+\begin{bmatrix}
+    J_1 & & & A_1 \\
+     & \ddots & & \vdots \\
+     & & J_m & A_m \\
+     & & & A_{m+1}
+\end{bmatrix}
+$$
+where $J_i$'s are Jordan blocks. If those $G(\lambda)$'s fill the whole space, then those $A_i$ will collapse to $0\times 0$ matrices, indicating that the matrix representation is upper-triangular. And we can think of that an operator has an upper-triangular matrix representation if its characteristic polynomial splits (Schur's Theorem). Then we can accordingly make this speculatation.
+
+\begin{Th}{Th 9\_I1.3.5 ($G(\lambda)$ fill the whole space if characteristic polynomial splits)}
+    Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$ and $\lambda_1, \cdots, \lambda_m$ are all the distinct eigenvalues of $T$. If the characteristic polynomial of $T$ splits, then $V = \bigoplus_{i=1}^m G(\lambda_i)$.
+\end{Th}
+
+To prove this theorem, we only need to prove that any $v\in V$ can be write as $v=v_1+\cdots+v_m$ for some $v_i\in G(\lambda_i)$. Since the characteristic polynomial $f(t)$ splits, it is of the form 
+    $$f(t) = (t-\lambda_1)^{d_1}\cdots (t-\lambda_m)^{d_m}$$
+Here a natural question is: does $d_i$ mean something about $\dim G(\lambda_i)$?
+
+\begin{Th}{Th 9\_I1.3.5.-1 ($\dim G(\lambda)$ and the geometrical multiplicty)}
+    Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$. Suppose also $\lambda$ is an eigenvalue of $T$. Then $\dim G(\lambda) \leq d_\lambda$ where $d_\lambda$ is the multiplicty of $(t-\lambda)$ in the characteristic polynomial $f(t)$ of $T$.
+    \tcblower
+    \textit{Pf}: 
+    $$
+    \begin{aligned}
+        f(t) &= \det(\mathcal{M}(T)-t I) = 
+        \left|\begin{array}{cccc}
+            J(\lambda)_1-tI & & & A_1 \\
+            & \ddots & & \vdots \\
+            & & J(\lambda)_m-tI & A_m \\
+            & & & A_{m+1}-tI
+        \end{array}\right| \\
+        &= \det(A_{m+1}-tI)\prod_{i=1}^{m}\det(J(\lambda)_i-tI) = g(t)(t-\lambda)^{\dim G(\lambda)}
+    \end{aligned}
+    $$
+    where $J(\lambda)_i$'s are some Jordan blocks corresponding to $G(\lambda)$ and $g(t)$ is some polynomial.
+\end{Th}
+
+Back to the proof of \{, ID: 9\_I1.3.5\}, we want to prove that any $v$ can be written as $v = v_1 + \cdots + v_m$. That is, for any $v$, we can find the required vectors $v_i(v)$ according to $v$, and in the perspective of maps: $I(v)\overset{\forall v}{ = } p_1(T)(v) + \cdots + p_m(T)(v)$. That is, to decompose the identity operator $I$ into some required maps $p_i(T)$ about $T$. We have a plausible idea that each $p_i(T)$ is a polynomial about $T$, and each $p_i(T)$ is the one desired if $p_i(T)(v)\in G(\lambda_i)$ for each $v$, namely, $(T-\lambda I)^{d_i}p_i(T)(v) \overset{\forall v}{=} 0$, as $d_i\geq \dim G(\lambda_i)$. Hence we naturally think of that $\prod_{i=1}^{m}(T-\lambda_i I)^{d_i} = f(T) = 0$, so that $p_i(t)$ should be $f(t)/(t-\lambda_i) = \prod_{j\neq i} (t-\lambda_j)^{d_j}$ (or a polynomial multiple of this). Then the decomposition of $I$ is now:
+$$ I = \sum_{i=1}^{m} p_i(T) = \sum_{i=1}^{m} q_i(T)\prod_{j\neq i} (T-\lambda_j I)^{d_j} $$
+for some polynomials $q_i(t)$. To facilitate this decomposition is to find the proper $q_i(t)$'s s.t. 
+$$ q_1(t)r_1(t) + \cdots + q_m(t)r_m(t) = 1 $$ 
+where $r_i(t) = \prod_{j\neq i} (t-\lambda_j)^{d_j}$. This then becomes clear if you think of the Bezout's theorem, which guarantees the existence of the $q_i(t)$'s as long as the $r_i(t)$'s are coprime (and they are indeed).
+
+So far we have completed the proof the existence of the Jordan basis, provided that the characteristic polynomial of the operator splits. 
+
+\section{Uniqueness of the Jordan Form}
+We are equally long for the uniqueness when try to unify some kinds of math objects with some canonical form. Unfortunatly, the Jordan form is not unique, let alone the Jordan basis. Given a Jordan form, we can at least change the order of the Jordan blocks to obtain another one. But this is still nice if the Jordan form is unique up to the order of the Jordan blocks.
+
+In a Jordan form, Jordan blocks with the same eigenvalue joins to the Jordan form of a single generalized eigenspace, and different generalized eigenspaces sum to the whole space. Then two Jordan form of a single operator, despite the order of the Jordan blocks, differ only in the shapes of the cycles within each generalized eigenspace. That is, we expect that, for example, for an arbitrary eigenvalue $\lambda$ of the operator, if one Jordan basis (within $G(\lambda)$) comprises of some cycles of length $5,4,3,3,1$ respectively, then so should all other Jordan bases (within $G(\lambda)$).
+
+To describe what the cycles (within $G(\lambda)$) look like, we introduce, as we have previous done in the proof of Th \{, 9\_I1.3.3\}, the ``dot-diagram'' for a given eigenspace $G(\lambda)$.
+
+\begin{Df}{Df 9\_I1.4 (dot-diagram)}
+    Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$, and $\lambda$ is an eigenvalue of $T$. Given a basis $\gamma = \bigcup_{i} \gamma_i$ of $G(\lambda)$ which consists of some $(T-\lambda I)$-cycles, the dot-diagram of $G(\lambda)$ w.r.t. this basis is a diagram drawn as following rules:
+    \begin{compactenum}
+        \item Each cycle $\gamma_i$ is represented by a column of dots ($\bullet$), where each dot represent a vector in $\gamma_i$ and the dots are in order s.t. the initial vector is at the top and the end vector is at the bottom.
+        \item Columns representing different cycles joint together horizontally, and the columns sorted according to the length of the cycles, with the longest cycle at the left and the shortest at the right. 
+    \end{compactenum}
+\end{Df}
+
+Then is the dot-diagram unique for a given generalized eigenspace of an operator? In the dot-diagram used in the proof of Th \{, 9\_I1.3.3\}, we discover that the dots in the $i$-th row can be annihilated by applying $(T-\lambda I)$ for, and exactly for $i$ times. This is a intensive implication that the first $i$ row of dots in the dot-diagram make up the space $N[(T-\lambda I)^i]$:
+
+\begin{Th}{Th 9\_I1.4.2 (the rows of dot-diagram)}
+    Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$, and $\lambda$ is an eigenvalue of $T$. Suppose a dot-diagram is constructed for $G(\lambda)$. Then the first $i$ rows of dots (vectors) form a basis of $N[(T-\lambda I)^i]$.
+    \tcblower
+    \textit{Pf}: Do proper annihilation then wait and see.
+\end{Th}
+
+Hence we now see that the dot program is unique for a given generalized eigenspace of an operator, as the number of dots in each row is already determined by $T$ and $\lambda$. And what follows immediately is how to compute the length of every row:
+
+\begin{Th}{Th 9\_I1.4.3 (the length of each row)}
+    Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$, and $\lambda$ is an eigenvalue of $T$. Then the length $r_i$ of the $i$-th row ($i\in\mathbb{N}^\ast$) of dots in the dot-diagram of $G(\lambda)$, can be computed by
+    $$ r_i = \dim R[(T-\lambda I)^{i-1}] - \dim R[(T-\lambda I)^i].$$
+\end{Th}
+
+\section{The Jordan Form for a Matrix}
+\textcolor{Df}{The Jordan form of a matrix is defined to be the Jordan form of the behind linear operator.} \textcolor{Th}{Since the behind linear operators of a matrix differ only in the choice of the basis, the Jordan form of a matrix is also unique (up to the order of the Jordan blocks)}.
+
+And it follows that
+
+\begin{Th}{Th 9\_I1.5 (the Jordan form and similarity of matrices)}
+    Suppose $A, B\in\mathbb{F}^{n,n}$ with the Jordan form $J_A, J_B$ computed. Then $A$ and $B$ are similar iff $J_A = J_B$.
+    \tcblower
+    \textit{Pf}: Trivial. 
+\end{Th}
+\end{document}
