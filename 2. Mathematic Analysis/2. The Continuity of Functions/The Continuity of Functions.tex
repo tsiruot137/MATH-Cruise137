@@ -105,7 +105,7 @@ Then with everything prepared, here we go.
 \end{Df}
 
 \begin{Rmk}{}
-    For a real function $f$, we say that $\lim\limits_{x\to x_0} f(x)$ exists if there is some real number $l$ such that $\lim\limits_{x\to x_0} f(x) = l$.\\
+    \textcolor{Df}{For a real function $f$, we say that $\lim\limits_{x\to x_0} f(x)$ exists if there is some real number $l$ such that $\lim\limits_{x\to x_0} f(x) = l$.}\\
     \textcolor{Df}{As for the pre-conditions ``Suppose $f$ is a real function and $x_0$ is a limit point of $\text{dom}(f)$'', we can refer to it by ``real function $f$ is defined near $x_0$''.} In 1-dimensional analysis, we often assume that a function is well-defined on some simple intervals. \textcolor{Df}{Hence we will often explicitly claim later that $f$ ``is well-defined near $x_0$'' when talking about some local properties, which means that there is some $\delta>0$ such that $\text{dom}(f)\supseteq \check{B}_\delta(x_0)$.}\\
     \textcolor{Th}{From this definition, we can easily verified these basic properties:
     \begin{compactenum}
@@ -115,7 +115,7 @@ Then with everything prepared, here we go.
         For any sequence $\{x_n:n\in\mathbb{N^\ast}\}$ in $\text{dom}(f)$ s.t. (1) $x_n\neq x_0$ for all $n\in\mathbb{N^\ast}$ and (2) $\lim\limits_{n\rightarrow\infty}x_n = x_0$, we have $\lim\limits_{n\rightarrow\infty}f(x_n) = l$.
         \item (sandwich theorem) Suppose $f, g, h$ are well-defined near $x_0$ and the inequality $f(x)\leq h(x)\leq g(x)$ holds for all $x$ in some $\check{B}_\delta(x_0)$. Suppose also $l\in\mathbb{R}$. If $\lim\limits_{x\to x_0} f(x) = \lim\limits_{x\to x_0} g(x) = l$, then $\lim\limits_{x\to x_0} h(x) = l$.
         \item (preservation of inequality) Suppose $f$ and $g$ both has limit at $x_0$. If on their shared domain, $f(x)\leq g(x)$ for all $x$ in some $\check{B}_\delta(x_0)$, then $\lim\limits_{x\to x_0} f(x) \leq \lim\limits_{x\to x_0} g(x)$.
-        \item (arithmics of limits) If both $\lim\limits_{x\rightarrow x_0} f(x)$ and $\lim\limits_{x\rightarrow x_0} g(x)$ exist, then:
+        \item (arithmics of limits) If both $\lim\limits_{x\rightarrow x_0} f(x)$ and $\lim\limits_{x\rightarrow x_0} g(x)$ exist, and the following functions are defined near $x_0$, then:
         \begin{compactitem}
             \item $\lim\limits_{x\rightarrow x_0} (f(x)\pm g(x)) = \lim\limits_{x\rightarrow x_0} f(x) \pm \lim\limits_{x\rightarrow x_0} g(x)$;
             \item $\lim\limits_{x\rightarrow x_0} (f(x)g(x)) = \lim\limits_{x\rightarrow x_0} f(x) \cdot \lim\limits_{x\rightarrow x_0} g(x)$;
@@ -216,7 +216,7 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Df}{$\circ$ Df2.3 (types of discontinuous point)}
-    Suppose $f$ is a real function and there is some $B_\delta(x_0)$ s.t. $\text{dom}(f)\supseteq B_\delta(x_0)$ (namely, $f$ is continuous at $x_0$ $\Leftrightarrow$ $\lim\limits_{x\to x_0} f(x) = f(x_0)$ $\Leftrightarrow$ $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x) = f(x_0)$ $\Leftrightarrow$ $f$ is both left continuous and right continuous at $x_0$). Suppose also $x_0$ is a discontinuous point of $f$ (and thus $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x) = f(x_0)$ does not holds). Then the discontinuous point $x_0$ can be further classified into the following types:
+    Suppose $f$ is a real function, $x_0\in\mathbb{R}$ and there is some $B_\delta(x_0)$ s.t. $\text{dom}(f)\supseteq B_\delta(x_0)$ (namely, $f$ is continuous at $x_0$ $\Leftrightarrow$ $\lim\limits_{x\to x_0} f(x) = f(x_0)$ $\Leftrightarrow$ $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x) = f(x_0)$ $\Leftrightarrow$ $f$ is both left continuous and right continuous at $x_0$). Suppose also $x_0$ is a discontinuous point of $f$ (and thus $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x) = f(x_0)$ does not holds). Then the discontinuous point $x_0$ can be further classified into the following types:
     \begin{compactenum}
         \item If $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x)$, then $x_0$ is called a removable discontinuous point of $f$;
         \item If $\lim\limits_{x\to x_0^-} f(x) \neq \lim\limits_{x\to x_0^+} f(x)$, then $x_0$ is called a jump discontinuous point of $f$;

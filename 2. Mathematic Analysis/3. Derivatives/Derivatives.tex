@@ -1,0 +1,264 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Derivatives}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 3rd chapter of Mathematical Analysis, which is about \textbf{the Derivatives of Functions}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{compactenum}
+    \item $\mathbb{C}$: the set of the complex numbers;
+    \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+    \item $\mathbb{Q}$: the set of the rational numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$: the set of the positive integers.
+    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+    $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+    \item Since in this course we major in the basic analysis on $\mathbb{R}$, we will use the term ``real function'' to refer to a function $f: A\rightarrow \mathbb{R}$ where $A\subseteq \mathbb{R}$.
+    \item $\infty$: positive infinity; $-\infty$: negative infinity; $\pm\infty$: infinity.
+    \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists and is a finite real number.
+    \item An interval is a subset of $\mathbb{R}$ of one of the following forms: $(a,b)$, $[a,b]$, $(a,b]$, $[a,b)$, $(a, \infty)$, $(-\infty, b)$, $(-\infty, \infty)$, where $a, b\in\mathbb{R}$ and $a<b$. Please identify whether $(a,b)$ stands for a tuple or an open interval from the context by yourself.
+    \item Monotonic function: ``increasing'' for ``$\geq$'', ``strictly increasing'' for ``$>$''.
+\end{compactenum} 
+Then with everything prepared, here we go.
+
+\begin{Df}{Df3.1 (Derivatives (导数))}
+    Suppose $f$ is a real function well-defined near and at $x_0\in\mathbb{R}$ (the term ``well-defined near and at $x_0$'' means, literally, that there exists some $B_\eta(x_0)$ s.t. $B(\eta)\subseteq \text{dom}(f)$). Then the limit
+    $$ \lim_{h\to 0} \frac{f(x_0+h)-f(x_0)}{h} $$
+    is called the \textbf{derivative} of $f$ at $x_0$, denoted by $f^\prime(x_0)$, and $f$ is said to be \textbf{derivable (可导的)} at $x_0$. 
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Df}{Suppose $f$ is a real function and $x_0\in\mathbb{R}$. If $f$ is not well-defined near and at $x_0$, or it is, but the limit in Definition 3.1 does not exist, we say that $f$ is not derivable at $x_0$ (or that $f$ has no derivative at $x_0$).}
+        \item \textcolor{Df}{Suppose $f$ is a real function and $x_0\in\mathbb{R}$. Suppose also there exists some $r>0$ s.t. $[x_0, x_0+r)\subseteq \text{dom}(f)$ (resp. $(x_0-r, x_0]\subseteq \text{dom}(f)$). Then the limit 
+        $$ \lim_{h\to 0^+} \frac{f(x_0+h)-f(x_0)}{h}\quad \left(\text{resp. } \lim_{h\to 0^-} \frac{f(x_0+h)-f(x_0)}{h}\right) $$
+        is called the \textbf{right derivative} (resp. \textbf{left derivative}) of $f$ at $x_0$, denoted by $f_+^\prime (x_0)$ (resp. $f_-^\prime (x_0)$) and $f$ is said to be \textbf{right-derivable} (resp. \textbf{left-derivable}) at $x_0$. (Accordingly, define the cases of ``not right-derivable'' and ``not left-derivable'' as above.)} Clearly, \textcolor{Th}{Suppose $f$ is a real function and $x_0, l\in\mathbb{R}$. Then $f^\prime(x_0) = d$ iff $f_+^\prime(x_0) = f_-^\prime(x_0) = d$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Df3.2 (derivable and continous)}
+    Suppose $f$ is a real function and $x_0\in\mathbb{R}$. Then 
+    $$ f \text{ is derivable at } x_0 \Rightarrow f \text{ is continuous at } x_0. $$
+    \tcblower
+    \textit{Pf}: Suppose $f$ is derivable at $x_0$. Then the limit
+    $$ \lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0} $$
+    exists, and so does the limit 
+    $$\lim\limits_{x\to x_0} (f(x)-f(x_0)) = \lim\limits_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0}\cdot \lim\limits_{x\to x_0} (x-x_0) = 0.$$ 
+    Thus $\lim\limits_{x\to x_0} f(x) = f(x_0)$, which means $f$ is continuous at $x_0$. 
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{While differentiability implies continuity, the converse is not true. For example, the function $f(x) = |x|$ is continuous at $x=0$ but not derivable at $x=0$.}
+\end{Rmk}
+
+\begin{Th}{Th3.3.1 (arithmics of derivatives)}
+    Suppose real functions $f$ and $g$ are both derivable at $x_0\in\mathbb{R}$. Then:
+    \begin{compactenum}
+        \item $(f\pm g)^\prime(x_0) = f^\prime(x_0) \pm g^\prime(x_0)$;
+        \item $(fg)^\prime(x_0) = f^\prime(x_0)g(x_0) + f(x_0)g^\prime(x_0)$;
+        \item $(f/g)^\prime(x_0) = \frac{f^\prime(x_0)g(x_0) - f(x_0)g^\prime(x_0)}{[g(x_0)]^2}$ (provided $g(x_0)\neq 0$).
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}:
+    \begin{compactenum}
+        \item Trivial.
+        \item Take the trick that ``add and subtract the same term'':
+        $$
+        \begin{aligned}
+            & \frac{f(x)g(x) - f(x_0)g(x_0)}{x-x_0} = \frac{f(x)g(x) - f(x_0)g(x) + f(x_0)g(x) - f(x_0)g(x_0)}{x-x_0} \\
+            &= \frac{f(x)(g(x)-g(x_0)) + g(x_0)(f(x)-f(x_0))}{x-x_0} \\
+            &= f(x)\frac{g(x)-g(x_0)}{x-x_0} + g(x_0)\frac{f(x)-f(x_0)}{x-x_0}.
+        \end{aligned}
+        $$
+        \item First derive the derivative of $1/g$.
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th3.3.2 (chain-rule)}
+    Suppose real functions $\varphi$ is derivable at $t_0\in\mathbb{R}$ and $f$ is derivable at $x_0 = \varphi(t_0)$. Then the composite function $f\circ\varphi$ (since, as you can verify, $f\circ\varphi$ can be well-defined near and at $t_0$) is derivable at $t_0$ and 
+    $$ (f\circ\varphi)^\prime(t_0) = f^\prime(x_0)\varphi^\prime(t_0). $$
+    \tcblower
+    \textit{Pf}: $$ \frac{f(\varphi(t))-f(\varphi(t_0))}{t-t_0} = \frac{f(\varphi(t))-f(\varphi(t_0))}{\varphi(t)-\varphi(t_0)}\cdot \frac{\varphi(t)-\varphi(t_0)}{t-t_0}. $$
+    And then take the limit. In this limit of composite functions, the outer function is
+    $$ g(x) = \left\{
+        \begin{aligned}
+            &\frac{f(x)-f(x_0)}{x-x_0}, && \text{if } x\neq x_0;\\
+            &f^\prime(x_0), && \text{if } x = x_0.
+        \end{aligned}\right.
+    $$
+    where it is the definition $g(x_0) = f^\prime(x_0)$ that avoids the trifling discussion of the third condition in Th \{, ID: 2.1.1\}.
+\end{Th}
+
+\begin{Th}{Th3.3.3 (derivative of inverse function)}
+    Suppose real functions $f$ is continous and strictly monotonic on an interval $I = (a,b)$ (where $a, b\in\mathbb{R}_\infty$). If $f$ is derivable at some $x_0\in I$ and $f^\prime(x_0)\neq 0$, then the inverse function $f^{-1}$ is derivable at $y_0 = f(x_0)$ and
+    $$ (f^{-1})^\prime(y_0) = \frac{1}{f^\prime(x_0)}. $$
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Df}{Df3.4 (derivative function)}
+    Suppose $f$ is a real function derivable at every point of a set $I\subseteq \mathbb{R}$. Then the function $x\mapsto f^\prime(x)$ defined on $I$ is called the \textbf{derivative function} of $f$ on $I$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{If $f$ is derivable at every point of $\text{dom}(f)$, then we called the derivative function of $f$ on $\text{dom}(f)$ the \textbf{derivative function} of $f$.}
+\end{Rmk}
+
+\begin{Df}{Df3.4.1 (higher derivatives)}
+    Suppose $f$ is a real function and $x_0\in\mathbb{R}$. Define the $n$-th ($n\in\mathbb{N}$) derivative of $f$ at $x_0$, denoted by $f^{(n)}(x_0)$, inductively as follows:
+    \begin{compactenum}
+        \item $f^{(0)}(x_0) = f(x_0)$;
+        \item $f^{(n)}(x_0) = [f^{(n-1)}]^\prime(x_0)$ for $n\geq 1$.
+    \end{compactenum}
+    We say that $f$ is $n$-times derivable at $x_0$ if $f^{(n)}(x_0)$ exists, and we call the map $x\mapsto f^{(n)}(x)$ defined on the set of all points where $f$ is $n$-times derivable the $n$-th derivative function of $f$, denoted by $f^{(n)}: \text{dom}(f^{(n)})\rightarrow \mathbb{R}$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{Suppose $f$ is a real function. Then $f$ is said to be $n$-times derivable on $I = (a,b)$ (where $a, b\in\mathbb{R}_\infty$) if $f$ is $n$-times derivable at every $x\in I$.} \textcolor{Th}{For a real function $f$, if $f$ is $n$-times derivable at $x_0$, then $f$ is $m$-times derivable at $x_0$ for every $m\leq n$.}
+\end{Rmk}
+
+\begin{Th}{Th3.4.2 (Leibniz's formula for computing higher derivatives)}
+    Suppose real functions $f$ and $g$ are both $n$-times derivable on $I = (a,b)$ (where $a, b\in\mathbb{R}_\infty$). Then $fg$ is $n$-times derivable on $I$ and
+    $$ (fg)^{(n)} = \sum_{k=0}^n \binom{n}{k} f^{(k)}g^{(n-k)}$$
+    on $I$.
+    \tcblower
+    \textit{Pf}: Repeatedly apply the product rule of derivatives.
+\end{Th}
+
+\begin{Df}{Df3.5.-1 (interval-derivable)}
+    Suppose $f$ is a real function and $I=[a,b]$ ($a,b\in\mathbb{R}$). We say that $f$ is \textbf{interval-derivable} on $I$ if $f$ is interval-continous on $I$ and derivable on $(a,b)$.
+\end{Df}
+
+\begin{Rmk}{}
+    The term ``interval-derivable'' is used as the premise of the following ``derivative intermediate value theorems''.
+\end{Rmk}
+
+\begin{Df}{Df3.5.0.-1 (extremum)}
+    \begin{compactenum}
+        \item Suppose $f$ is a real function and $x_0\in\mathbb{R}$. We say $x_0$ is a peak point of $f$ (resp. a valley point of $f$) and $f(x_0)$ is the corresponding peak (resp. valley) if there exists some $B_\delta(x_0)$ s.t. $f(x_0)\geq f(x)$ (resp. $f(x_0)\leq f(x)$) for every $x\in B_\delta(x_0)$.
+        \item Suppose $f$ is a real function and $x_0\in\mathbb{R}$. We say $x_0$ is an extremal point of $f$ and $f(x_0)$ is the corresponding extremum if $x_0$ is a peak point or a valley point of $f$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{The definition of extremal points itself implies that $f$ must be well-defined near and at $x_0$,} as the statement ``$f(x_0)\leq f(x)$ for every $x\in B_\delta(x_0)$'' has already implied that $B_\delta(x_0)\subseteq\text{dom}(f)$. Also recall that \textcolor{Df}{Suppose $f$ is a function and $x_0$ is some element. Then $x_0$ is called a maximal point (resp. a minimal point) of $f$ and $f(x_0)$ is the corresponding maximum (resp. minimum) if $f(x_0)\geq f(x)$ (resp. $f(x_0)\leq f(x)$) for every $x\in \text{dom}(f)$.}
+\end{Rmk}
+
+\begin{Th}{Th3.5 (Fermat's theorem)}
+    Suppose $f$ is a real function and $x_0\in\mathbb{R}$. If $x_0$ is an extremal point of $f$ and $f$ is derivable at $x_0$, then $f^\prime(x_0) = 0$.
+    \tcblower
+    \textit{Pf}: Let us suppose $x_0$ is a valley point of $f$. Then $f(x)\geq f(x_0)$ for every $x$ in some $B = B_\delta(x_0)$. Thus in $B$, 
+    $$ \frac{f(x)-f(x_0)}{x-x_0} \left\{
+        \begin{aligned}
+            &\geq 0, && \text{if } x>x_0;\\
+            &\leq 0, && \text{if } x<x_0.
+        \end{aligned}\right.
+    $$
+    Hence the limit $f^\prime(x_0) = \lim\limits_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0}$ must be both $\geq 0$ and $\leq 0$, namely, $f^\prime(x_0) = 0$.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Df}{Suppose $f$ is a real function and $x_0\in\mathbb{R}$. Then $x_0$ is called a stationary point of $f$ if $f^\prime(x_0) = 0$.}
+\end{Rmk}
+
+\begin{Th}{Th3.5.1 (Rolle's intermediate-value theorem)}
+    Suppose $f$ is a real function that is interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$). If $f(a) = f(b)$, then there exists some $\xi \in (a,b)$ s.t. $f^\prime(\xi) = 0$.
+    \tcblower
+    \textit{Pf}: Since $f$ is interval-continous on $[a,b]$, it has a maximal point $x^*$ and a minimal point $x_*$ on $[a,b]$. If $f(x^*) = f(x_*)$, then $f$ is constant on $[a,b]$ and $f^\prime(x) = 0$ for every $x\in (a,b)$; if $f(x^*) > f(x_*)$, then one of $x^*$ and $x_*$ must be in $(a,b)$ (since $f(a) = f(b)$), say $x^*\in (a,b)$. Then $x^*$ is a peak point of $f$ and thus $f^\prime(x^*) = 0$ by Fermat's theorem.
+\end{Th}
+
+\begin{Th}{Th3.5.2 (Lagrange's intermediate-value theorem)}
+    Suppose $f$ is a real function that is interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$). Then there exists some $\xi\in (a,b)$ s.t.
+    $$ f^\prime(\xi) = \frac{f(b)-f(a)}{b-a}. $$
+    \tcblower
+    \textit{Pf}: We can clearly see that this is an extension of Rolle's theorem, which inspires us to reduce the problem to the case of Rolle's theorem. Just seek a function $g$ from $f$ s.t. $g(a) = g(b)$, which is just to turn the rod $(a, f(a)), (b, f(b))$ into a horizontal one. Thus consider
+    $$ g(x) = f(x) - \frac{f(b)-f(a)}{b-a}(x-a), $$
+    which is as required. 
+\end{Th}
+
+\begin{Th}{Th3.5.3 (Cauchy's intermediate-value theorem)}
+    Suppose $f$ and $g$ are real functions that are interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$) and $g^\prime(x)\neq 0$ for every $x\in (a,b)$. Then there exists some $\xi\in (a,b)$ s.t.
+    $$ \frac{f^\prime(\xi)}{g^\prime(\xi)} = \frac{f(b)-f(a)}{g(b)-g(a)}. $$
+    \tcblower
+    \textit{Pf}: If proving with the Lagrange's theorem, then we can not force the point $\xi$ to be identical for $f$ and $g$. Thus still prove it with the Rolle's theorem. Write the expression as
+    $$ f^\prime(\xi)\Big[g(b)-g(a)\Big] - g^\prime(\xi)\Big[f(b)-f(a)\Big] = 0. $$
+    Hence we construct the function $h$ as
+    $$ h(x) = f(x)\Big[g(b)-g(a)\Big] - g(x)\Big[f(b)-f(a)\Big], $$
+    which can be verified to satisfy $h(a) = h(b)$, done.
+\end{Th}
+
+\begin{Th}{Th3.5.4 (Darboux's theorem)}
+    Suppose $f$ is a real function that is derivable on $[a, b]$ ($a, b\in\mathbb{R}$). Then:
+    \begin{compactenum}
+        \item $f^\prime$ on $[a,b]$ can achieve all values between $f^\prime(a)$ and $f^\prime(b)$ (that is, say $f^\prime(a) \leq f^\prime(b)$, for every $\gamma$ s.t. $f^\prime(a)\leq\gamma\leq f^\prime(b)$, there exists some $\xi\in [a,b]$ s.t. $f^\prime(\xi) = \gamma$);
+        \item On $(a,b)$, $f^\prime$ has no type-1 discontinuous point;
+        \item If $\lim\limits_{x\to a^+} f^\prime(x)$ (resp. $\lim\limits_{x\to b^-} f^\prime(x)$) exists, then $f^\prime$ is right-continous at $a$ (resp. left-continous at $b$).
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}:
+    \begin{compactenum}
+        \item To show the derivative, namely, the slope of tangent lines traverse $[f^\prime(a), f^\prime(b)]$, we can show the slope of secant lines traverse and then apply the Lagrange's theorem. Hence we first construct the secant function, and show that it traverses. To show it traverses, just recall that a interval-continous function traverses its range. Hence the secant function:
+        $$ d_a(x) = \frac{f(x)-f(a)}{x-a}, $$
+        which, at least, traverses $[d_a(a), d_a(b)]$. But $d_a(a)$ is not defined, hence we supplement it with:
+        $$ d_a(x) = \left\{
+            \begin{aligned}
+                &\frac{f(x)-f(a)}{x-a}, && \text{if } x\neq a;\\
+                &f^\prime(a), && \text{if } x = a.
+            \end{aligned}\right.
+        $$
+        where $d_a(x)$ traverses $[d_a(a), d_a(b)] = \Big[f^\prime(a), \frac{f(b)-f(a)}{b-a}\Big]$.
+        How about the left side $[\frac{f(b)-f(a)}{b-a}, f^\prime(b)]$? Just construct the secant function $d_b(x)$ in the same way:
+        $$ d_b(x) = \left\{ 
+            \begin{aligned}
+                &\frac{f(b)-f(x)}{b-x}, && \text{if } x\neq b;\\
+                &f^\prime(b), && \text{if } x = b.
+            \end{aligned}\right.
+        $$
+        \item If $f^\prime$ has a type-1 discontinuous point $x_0\in (a,b)$, then $\lim\limits_{x\to x_0^+} f^\prime(x)$ and $\lim\limits_{x\to x_0^-} f^\prime(x)$ both exist but one of them is not equal to $f^\prime(x_0)$, say $\lim\limits_{x\to x_0^-} f^\prime(x) \neq f^\prime(x_0)$. Then from the locality of limit, we can find some small $[x_0-\delta, x_0)$ where $f^\prime(x)$ can not achieve some values between $f^\prime(x_0)$ and $\lim\limits_{x\to x_0^-}$, which contradicts the first part of this theorem (as the first part we just proved also holds on $[x_0-\delta, x_0]$).
+        \item The same thought as the second part.  
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th3.6.1 (monotonicity and derivatives)}
+    Suppose $f$ is a real function that is interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$). Then $f$ is increasing (resp. decreasing) on $[a,b]$ iff $f^\prime(x)\geq 0$ (resp. $f^\prime(x)\leq 0$) for every $x\in (a,b)$.
+    \tcblower
+    \textit{Pf}: Prove the increasing case. ``if'' can be proved by the Lagrange's intermediate-value theorem. For ``only if'', suppose $f^\prime(x_0) < 0$ for some $x_0\in (a,b)$. Then by the locality of limit, there exists some $B_\delta(x_0)$ where $\frac{f(x)-f(x_0)}{x-x_0} < 0$, which contradicts the increasing property of $f$.
+\end{Th}
+
+\begin{Th}{Th3.6.1.1 (strict monotonicity and derivatives)}
+    Suppose $f$ is a real function that is interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$). Then $f$ is strictly increasing (resp. strictly decreasing) on $[a,b]$ iff:
+    \begin{compactenum}
+        \item $f^\prime(x)\geq 0$ (resp. $f^\prime(x)\leq 0$) for every $x\in (a,b)$ and 
+        \item for every open interval $I=(c,d)\subseteq (a,b)$, there exists some $x_0\in I$ s.t. $f^\prime(x_0) > 0$ (resp. $f^\prime(x_0) < 0$).
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: The proof is trivial, and only take a look at the derivation of this theorem. Known that the not-strict increasing is equal to the non-negative derivative, we seek the condition for the strict increasing. Clearly if all the derivatives are positive then $f$ is strictly increasing. But this is too strong, as we force too many points to have positive derivatives. How many points should have positive derivatives to guarantee the strict increasing, i.e. $(f(x_2)-f(x_1)) / (x_2-x_1) > 0$ for every $x_1, x_2\in (a,b)$? Right here is that we need to force the presence of positive derivatives in every open interval $(x_1, x_2)$ in $I$.
+\end{Th}
+\end{document}
