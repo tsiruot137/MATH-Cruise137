@@ -63,7 +63,7 @@ Then with everything prepared, here we go.
     \end{compactenum}
 \end{Rmk}
 
-\begin{Th}{Df3.2 (derivable and continous)}
+\begin{Th}{Df3.2 (derivable and continuous)}
     Suppose $f$ is a real function and $x_0\in\mathbb{R}$. Then 
     $$ f \text{ is derivable at } x_0 \Rightarrow f \text{ is continuous at } x_0. $$
     \tcblower
@@ -117,7 +117,7 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Th}{Th3.3.3 (derivative of inverse function)}
-    Suppose real functions $f$ is continous and strictly monotonic on an interval $I = (a,b)$ (where $a, b\in\mathbb{R}_\infty$). If $f$ is derivable at some $x_0\in I$ and $f^\prime(x_0)\neq 0$, then the inverse function $f^{-1}$ is derivable at $y_0 = f(x_0)$ and
+    Suppose real functions $f$ is continuous and strictly monotonic on an interval $I = (a,b)$ (where $a, b\in\mathbb{R}_\infty$). If $f$ is derivable at some $x_0\in I$ and $f^\prime(x_0)\neq 0$, then the inverse function $f^{-1}$ is derivable at $y_0 = f(x_0)$ and
     $$ (f^{-1})^\prime(y_0) = \frac{1}{f^\prime(x_0)}. $$
     \tcblower
     \textit{Pf}: Trivial.
@@ -153,7 +153,7 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Df}{Df3.5.-1 (interval-derivable)}
-    Suppose $f$ is a real function and $I=[a,b]$ ($a,b\in\mathbb{R}$). We say that $f$ is \textbf{interval-derivable} on $I$ if $f$ is interval-continous on $I$ and derivable on $(a,b)$.
+    Suppose $f$ is a real function and $I=[a,b]$ ($a,b\in\mathbb{R}$). We say that $f$ is \textbf{interval-derivable} on $I$ if $f$ is interval-continuous on $I$ and derivable on $(a,b)$.
 \end{Df}
 
 \begin{Rmk}{}
@@ -191,7 +191,7 @@ Then with everything prepared, here we go.
 \begin{Th}{Th3.5.1 (Rolle's intermediate-value theorem)}
     Suppose $f$ is a real function that is interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$). If $f(a) = f(b)$, then there exists some $\xi \in (a,b)$ s.t. $f^\prime(\xi) = 0$.
     \tcblower
-    \textit{Pf}: Since $f$ is interval-continous on $[a,b]$, it has a maximal point $x^*$ and a minimal point $x_*$ on $[a,b]$. If $f(x^*) = f(x_*)$, then $f$ is constant on $[a,b]$ and $f^\prime(x) = 0$ for every $x\in (a,b)$; if $f(x^*) > f(x_*)$, then one of $x^*$ and $x_*$ must be in $(a,b)$ (since $f(a) = f(b)$), say $x^*\in (a,b)$. Then $x^*$ is a peak point of $f$ and thus $f^\prime(x^*) = 0$ by Fermat's theorem.
+    \textit{Pf}: Since $f$ is interval-continuous on $[a,b]$, it has a maximal point $x^*$ and a minimal point $x_*$ on $[a,b]$. If $f(x^*) = f(x_*)$, then $f$ is constant on $[a,b]$ and $f^\prime(x) = 0$ for every $x\in (a,b)$; if $f(x^*) > f(x_*)$, then one of $x^*$ and $x_*$ must be in $(a,b)$ (since $f(a) = f(b)$), say $x^*\in (a,b)$. Then $x^*$ is a peak point of $f$ and thus $f^\prime(x^*) = 0$ by Fermat's theorem.
 \end{Th}
 
 \begin{Th}{Th3.5.2 (Lagrange's intermediate-value theorem)}
@@ -219,12 +219,12 @@ Then with everything prepared, here we go.
     \begin{compactenum}
         \item $f^\prime$ on $[a,b]$ can achieve all values between $f^\prime(a)$ and $f^\prime(b)$ (that is, say $f^\prime(a) \leq f^\prime(b)$, for every $\gamma$ s.t. $f^\prime(a)\leq\gamma\leq f^\prime(b)$, there exists some $\xi\in [a,b]$ s.t. $f^\prime(\xi) = \gamma$);
         \item On $(a,b)$, $f^\prime$ has no type-1 discontinuous point;
-        \item If $\lim\limits_{x\to a^+} f^\prime(x)$ (resp. $\lim\limits_{x\to b^-} f^\prime(x)$) exists, then $f^\prime$ is right-continous at $a$ (resp. left-continous at $b$).
+        \item If $\lim\limits_{x\to a^+} f^\prime(x)$ (resp. $\lim\limits_{x\to b^-} f^\prime(x)$) exists, then $f^\prime$ is right-continuous at $a$ (resp. left-continuous at $b$).
     \end{compactenum}
     \tcblower
     \textit{Pf}:
     \begin{compactenum}
-        \item To show the derivative, namely, the slope of tangent lines traverse $[f^\prime(a), f^\prime(b)]$, we can show the slope of secant lines traverse and then apply the Lagrange's theorem. Hence we first construct the secant function, and show that it traverses. To show it traverses, just recall that a interval-continous function traverses its range. Hence the secant function:
+        \item To show the derivative, namely, the slope of tangent lines traverse $[f^\prime(a), f^\prime(b)]$, we can show the slope of secant lines traverse and then apply the Lagrange's theorem. Hence we first construct the secant function, and show that it traverses. To show it traverses, just recall that a interval-continuous function traverses its range. Hence the secant function:
         $$ d_a(x) = \frac{f(x)-f(a)}{x-a}, $$
         which, at least, traverses $[d_a(a), d_a(b)]$. But $d_a(a)$ is not defined, hence we supplement it with:
         $$ d_a(x) = \left\{
@@ -260,5 +260,142 @@ Then with everything prepared, here we go.
     \end{compactenum}
     \tcblower
     \textit{Pf}: The proof is trivial, and only take a look at the derivation of this theorem. Known that the not-strict increasing is equal to the non-negative derivative, we seek the condition for the strict increasing. Clearly if all the derivatives are positive then $f$ is strictly increasing. But this is too strong, as we force too many points to have positive derivatives. How many points should have positive derivatives to guarantee the strict increasing, i.e. $(f(x_2)-f(x_1)) / (x_2-x_1) > 0$ for every $x_1, x_2\in (a,b)$? Right here is that we need to force the presence of positive derivatives in every open interval $(x_1, x_2)$ in $I$.
+\end{Th}
+
+\begin{Df}{Df3.6.2.-1 (strict extremal and maximal/minimal)}
+    \begin{compactenum}
+        \item Suppose $f$ is a function valued in $\mathbb{R}$ and $x_0\in\text{dom}(f)$. Then $x_0$ is called a strict maximal point (resp. a strict minimal point) of $f$ and $f(x_0)$ is called the strict maximum (resp. strict minimum) if $f(x_0) > f(x)$ (resp. $f(x_0) < f(x)$) for every $x\in\text{dom}(f)\setminus\{x_0\}$.
+        \item Suppose $f$ is a real function and $x_0\in\mathbb{R}$. Then $x_0$ is called a strict peak point of $f$ (resp. a strict valley point of $f$) and $f(x_0)$ is called the strict peak (resp. strict valley) if there exists some $B_\delta(x_0)$ s.t. $f(x_0) > f(x)$ (resp. $f(x_0) < f(x)$) for every $x\in B_\delta(x_0)\setminus\{x_0\}$.
+        \item Strict peak points and strict valley points are called strict extremal points.
+    \end{compactenum}
+\end{Df}
+
+\begin{Th}{Th3.6.2.1 (strict extremum and derivative)}
+    Suppose $f$ is a real function that is interval-continuous on $[a,b]$ ($a,b\in\mathbb{R}$) and $x_0\in (a,b)$. If there exists some $\check{B}_\delta(x_0)$ s.t. 
+    \begin{compactenum}
+        \item $f^\prime(x) > 0$ (resp. $f^\prime(x) < 0$) for every $x\in (x_0-\delta, x_0)$ and 
+        \item $f^\prime(x) < 0$ (resp. $f^\prime(x) > 0$) for every $x\in (x_0, x_0+\delta)$, then $x_0$ is a strict peak point (resp. a strict valley point) of $f$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: An extremal point, say a peak point $x_0$ often appears when $f(x)$ is increasing on some left side and decreasing on some right side of $x_0$. Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem does not require the existence of $f^\prime(x_0)$, which can be appiled to such a function $f(x) = |x|$ at $x_0 = 0$.
+\end{Rmk}
+
+\begin{Th}{Th3.6.2.2 (Th3.6.2.1 given the 2nd derivative exists)}
+    Suppose $f$ is a real function that is interval-continuous on $[a,b]$ ($a,b\in\mathbb{R}$) and $x_0\in (a,b)$. If $f^\prime (x_0) = 0$ and $f^{\prime\prime}(x_0)$ exists, then $x_0$ is a strict peak (resp. valley) point of $f$ if $f^{\prime\prime}(x_0) < 0$ (resp. $f^{\prime\prime}(x_0) > 0$).
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Given a function $f$ with nice properties, we can develop a procedure to find its maximum and minimum.
+
+    Suppose $f$ is a real function that is interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$). Then $f$ has a maximum and a minimum on $[a,b]$ (since $f$ is interval-continuous on $[a,b]$). If a maximal point $x_0$ is in $(a,b)$, then $x_0$ is a peak point of $f$ and thus it must have $f^\prime(x_0) = 0$. If there are finitely many stationary points of $f$ in $(a,b)$, then we can search the maximal points within this range:
+    $$ \max_{x\in [a,b]} f(x) = \max\{f(a), f(s_1), \cdots, f(s_n), f(b)\}, $$
+    where $s_1, \cdots, s_n$ are the stationary points of $f$ in $(a,b)$. Likewise, we can find the minimal points:
+    $$ \min_{x\in [a,b]} f(x) = \min\{f(a), f(s_1), \cdots, f(s_n), f(b)\}. $$
+
+    If there are some non-derivable points of $f$ in $(a,b)$, then we have to take care of them. 
+\end{Rmk}
+
+\begin{Df}{Df3.6.3.-2 (convex set and convex function)}
+    \begin{compactenum}
+        \item Suppose $S$ is a set with addition and scalar multiplication (over $\mathbb{R}$) defined on it. Then for every $x, y\in S$ and $\lambda\in [0,1]$, the element $\lambda x + (1-\lambda)y$ of $S$ is called a convex combination of $x$ and $y$. 
+        \item Suppose $S$ is a set with addition and scalar multiplication (over $\mathbb{R}$) defined on it. Suppose $A\subseteq S$. Then $A$ is called a convex set (or, $A$ is said to be convex) if for every $x, y\in A$, any convex combination of $x$ and $y$ is also in $A$.
+        \item Suppose $f$ is a real function and $\varnothing\neq A\subseteq\text{dom}(f)$ where $A$ is convex. Then the restriction of $f$ on $A$ is called a convex function (resp. strict convex function) or $f$ is said to be convex on $A$ (resp. strict convex on $A$) if: \\
+        $\forall x_1, x_2\in \text{dom}(f)$, $\forall \lambda_1, \lambda_2\in (0,1) \text{ s.t. } \lambda_1+\lambda_2=1$, we have $f(\lambda_1 x_1 + \lambda_2 x_2) \leq \lambda_1 f(x_1) + \lambda_2 f(x_2)$ (resp. $f(\lambda_1 x_1 + \lambda_2 x_2) < \lambda_1 f(x_1) + \lambda_2 f(x_2)$).
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{If the restriction of $f$ on $\text{dom}(f)$ is a convex function, then we say $f$ is a convex function.}\\
+    We can see the natural geometric meaning of convex combination $\lambda x+(1-\lambda)y$: some point on the line segment connecting $x$ and $y$. Hence in $\mathbb{R}$ (we now just discuss the convex set in $\mathbb{R}$, although we will define the more general convex sets in the future), an interval is a convex set. But is the converse true? Yes.
+\end{Rmk}
+
+\begin{Th}{Th3.6.3.-1 (in $\mathbb{R}$, convex set is interval)}
+    Suppose $A\subseteq \mathbb{R}$. Then $A$ is a convex set iff
+    \begin{compactenum}
+        \item $A=\varnothing$ or
+        \item $A=\{x\}$ for some $x\in\mathbb{R}$ or
+        \item $A$ is an interval.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: We can see that the empty set, a singleton set, and an interval are all convex sets. Conversely, suppose $A$ is a convex set, then we can further derive what $A$ is like. Consider the supremum and infimum in $\mathbb{R}_\infty$ of $A$, then $-\infty\leq\inf A \leq\sup A\leq\infty$, so that we can easily verify that $A$ is a singleton set or $A$ traverses the interval $(\inf A, \sup A)$.
+\end{Th}
+
+\begin{Th}{Th3.6.3 (Jensen's inequality)}
+    Suppose $f$ is a convex function. Then for every $n\geq 2$ and any $x_1, \cdots, x_n\in\text{dom}(f)$, 
+    $$ f\left(\sum_{i}^{n}\lambda_i x_i\right) \leq \sum_{i}^{n}\lambda_i f(x_i) $$
+    for any $\lambda_1, \cdots, \lambda_n\in (0,1)$ s.t. $\sum_{i}^{n}\lambda_i = 1$.
+    \tcblower
+    \textit{Pf}: The definition of convex function is just the Jensen's inequality for $n=2$. Now let us think about the induction, say $n=3$. Since $\lambda_1+\lambda_2+\lambda_3 = 1 = \lambda_3 + (\lambda_1+\lambda_2)$, we come to the idea:
+    $$ 
+    \begin{aligned}
+        f\left(\lambda_3 x_3 + \lambda_1 x_1 + \lambda_2 x_2\right) &= f\left[\lambda_3 x_3 + (\lambda_1 + \lambda_2)\left(\frac{\lambda_1}{\lambda_1+\lambda_2}x_1 + \frac{\lambda_2}{\lambda_1+\lambda_2}x_2\right)\right] \\
+        &\leq \lambda_3 f(x_3) + (\lambda_1+\lambda_2)f\left(\frac{\lambda_1}{\lambda_1+\lambda_2}x_1 + \frac{\lambda_2}{\lambda_1+\lambda_2}x_2\right) \\
+        &\leq \lambda_3 f(x_3) + (\lambda_1+\lambda_2)\left(\frac{\lambda_1}{\lambda_1+\lambda_2}f(x_1) + \frac{\lambda_2}{\lambda_1+\lambda_2}f(x_2)\right) = \sum_{i=1}^{3}\lambda_i f(x_i).
+    \end{aligned} 
+    $$
+\end{Th}
+
+\begin{Rmk}{}
+    For the strict convex function, we probably need the strict inequality. To make the strict inequality hold, we just need to make one of the two ``$\leq$'' in the proof above strict. For $n=2$, the strict inequality requires that $x_1\neq x_2$, which is the second ``$\leq$''. If $x_1=x_2=x$ and thus the second ``$\leq$'' is ``='', then the first ``$\leq$'' must be strict so that it requires
+    $$ x_3\neq \frac{\lambda_1}{\lambda_1+\lambda_2}x_1 + \frac{\lambda_2}{\lambda_1+\lambda_2}x_2 = x,$$
+    which indicates that $x_1, x_2, x_3$ are not all equal. Hence we have the strict Jensen's inequality. \textcolor{Th}{Suppose $f$ is a strict convex function. Then for every $n\geq2$ and any $x_1, \cdots, x_n\in\text{dom}(f)$ s.t. $x_1, \cdots, x_n$ are not all equal,
+    $$ f\left(\sum_{i}^{n}\lambda_i x_i\right) < \sum_{i}^{n}\lambda_i f(x_i) $$
+    for any $\lambda_1, \cdots, \lambda_n\in (0,1)$ s.t. $\sum_{i}^{n}\lambda_i = 1$.}
+    Now it comes to the question: how to judge whether a function is convex?
+\end{Rmk}
+
+\begin{Th}{Th3.6.3.1 (convex means increasing slope of secant lines)}
+    Suppose $f$ is a real function defined on an interval $I$. Then $f$ is convex on $I$ (resp. strict convex on $I$) iff for every $(x_1, x_2)\subseteq I$ and $x\in (x_1, x_2)$, 
+    $$ \frac{f(x)-f(x_1)}{x-x_1} \leq \frac{f(x_2)-f(x_1)}{x_2-x_1} \leq \frac{f(x_2)-f(x)}{x_2-x}. $$
+    (resp. $<$ for all the ``$\leq$'''s above)
+    \tcblower
+    \textit{Pf}: The derivation of this theorem is trivial. Here is a compact proof:
+    $$
+    \begin{aligned}
+        &\frac{f(x)-f(x_1)}{x-x_1} \leq \frac{f(x_2)-f(x_1)}{x_2-x_1} \\
+        \Leftrightarrow &\frac{f(\lambda_1 x_1 + \lambda_2 x_2) - f(x_1)}{\lambda_1 x_1 + \lambda_2 x_2-x_1} \leq \frac{f(x_2)-f(x_1)}{x_2-x_1} \\
+        \Leftrightarrow &\frac{f(\lambda_1 x_1 + \lambda_2 x_2) - f(x_1)}{\lambda_2 (x_2-x_1)} \leq \frac{f(x_2)-f(x_1)}{x_2-x_1} \\
+        \Leftrightarrow &f(\lambda_1 x_1 + \lambda_2 x_2) \leq \lambda_1 f(x_1) + \lambda_2 f(x_2).
+    \end{aligned}
+    $$
+\end{Th}
+
+\begin{Rmk}{}
+    The equality above can be simplified as 
+    $$ \frac{f(x)-f(x_1)}{x-x_1} \leq \frac{f(x_2)-f(x)}{x_2-x}, $$
+    since if these two slopes have this, then the slope of the secant line connecting $(x_1, f(x_1))$, $(x_2, f(x_2))$ is between these two slopes (recall the ``sugar water'' inequality). 
+\end{Rmk}
+
+\begin{Th}{Th3.6.3.2 (convexity and derivatives)}
+    Suppose $f$ is a real function that is interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$). Then $f$ is convex on $[a,b]$ (resp. strict convex on $[a,b]$) iff $f^\prime$ is increasing on $(a,b)$ (resp. strictly increasing on $(a,b)$).
+    \tcblower
+    \textit{Pf}: Prove it with the Th \{, ID: 3.6.3.1\}, and then the ``if'' part immediately follows from the Lagrange's intermediate-value theorem. 
+
+    For the ``only if'' part, suppose $f$ is convex on $[a,b]$. Then given $a<x_1<x_2<b$, we prove that $f^\prime(x_1)\leq f^\prime(x_2)$. To infer something about derivatives from the slope of secant lines (as what we know by the Th \{, ID: 3.6.3.1\} is the increasing property of the slope of secant lines), we cannot use those intermediate-value theorems as these infer something about the secant lines from the derivatives. Instead, we can use the ``secant functions'' $d_{x_1}(\cdot)$, $d_{x_2}(\cdot)$ defined in the proof of the Darboux's theorem. Since 
+    $$ d_{x_1}(x) = \left\{
+        \begin{aligned}
+            &\frac{f(x)-f(x_1)}{x-x_1}, && \text{if } x\neq x_1;\\
+            &f^\prime(x_1), && \text{if } x = x_1,
+        \end{aligned}\right.
+    $$
+    we can see that $d_{x_1}(x)$ is increasing on $(x_1, x_2]$ (Th \{, ID: 3.6.3.1\}), and thus so is on $[x_1, x_2]$ (since $d_{x_1}$ is right-continuous at $x_1$). Hence $f^\prime(x_1) = d_{x_1}(x_1) \leq d_{x_1}(x_2) = \frac{f(x_2)-f(x_1)}{x_2-x_1}$. Likewise, we can show that $\frac{f(x_2)-f(x_1)}{x_2-x_1} = d_{x_2}(x_1) \leq d_{x_2}(x_2) = f^\prime(x_2)$ since $d_{x_2}$ is also increasing on $[x_1, x_2]$, so that $f^\prime(x_1)\leq f^\prime(x_2)$.
+    
+    Same thought for the case of strict convexity.
+\end{Th}
+
+\begin{Th}{Th3.6.3.3 (convexity and the 2nd-order derivative)}
+    Suppose $f$ is a real function that is interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$), and $f^{\prime\prime}$ exists on $(a,b)$. Then:
+    \begin{compactenum}
+        \item $f$ is convex on $[a,b]$ iff $f^{\prime\prime}(x)\geq 0$ for every $x\in (a,b)$;
+        \item $f$ is strict convex on $[a,b]$ iff (1) $f^{\prime\prime}(x)\geq 0$ for every $x\in (a,b)$ and (2) for any $(c,d)\subseteq (a,b)$ there exists some $x_0\in (c,d)$ s.t. $f^{\prime\prime}(x_0) > 0$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: This theorem can be drawn combining the Th \{, ID: 3.6.1.1\} and the Th \{, ID: 3.6.3.2\} (perhaps supplement the definition of $f^\prime$ at $a$ and $b$ with the corresponding limits to meet the conditions that $f^\prime$ is interval-derivable on $[a,b]$).
 \end{Th}
 \end{document}
