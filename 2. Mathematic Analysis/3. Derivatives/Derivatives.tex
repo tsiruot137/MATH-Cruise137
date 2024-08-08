@@ -42,7 +42,7 @@ This is the 3rd chapter of Mathematical Analysis, which is about \textbf{the Der
     $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
     \item Since in this course we major in the basic analysis on $\mathbb{R}$, we will use the term ``real function'' to refer to a function $f: A\rightarrow \mathbb{R}$ where $A\subseteq \mathbb{R}$.
     \item $\infty$: positive infinity; $-\infty$: negative infinity; $\pm\infty$: infinity.
-    \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists and is a finite real number.
+    \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
     \item An interval is a subset of $\mathbb{R}$ of one of the following forms: $(a,b)$, $[a,b]$, $(a,b]$, $[a,b)$, $(a, \infty)$, $(-\infty, b)$, $(-\infty, \infty)$, where $a, b\in\mathbb{R}$ and $a<b$. Please identify whether $(a,b)$ stands for a tuple or an open interval from the context by yourself.
     \item Monotonic function: ``increasing'' for ``$\geq$'', ``strictly increasing'' for ``$>$''.
 \end{compactenum} 
@@ -51,12 +51,12 @@ Then with everything prepared, here we go.
 \begin{Df}{Df3.1 (Derivatives (导数))}
     Suppose $f$ is a real function well-defined near and at $x_0\in\mathbb{R}$ (the term ``well-defined near and at $x_0$'' means, literally, that there exists some $B_\eta(x_0)$ s.t. $B(\eta)\subseteq \text{dom}(f)$). Then the limit
     $$ \lim_{h\to 0} \frac{f(x_0+h)-f(x_0)}{h} $$
-    is called the \textbf{derivative} of $f$ at $x_0$, denoted by $f^\prime(x_0)$, and $f$ is said to be \textbf{derivable (可导的)} at $x_0$. 
+    (if it exists) is called the \textbf{derivative} of $f$ at $x_0$, denoted by $f^\prime(x_0)$, and $f$ is said to be \textbf{derivable (可导的)} at $x_0$. 
 \end{Df}
 
 \begin{Rmk}{}
     \begin{compactenum}
-        \item \textcolor{Df}{Suppose $f$ is a real function and $x_0\in\mathbb{R}$. If $f$ is not well-defined near and at $x_0$, or it is, but the limit in Definition 3.1 does not exist, we say that $f$ is not derivable at $x_0$ (or that $f$ has no derivative at $x_0$).}
+        \item \textcolor{Df}{Suppose $f$ is a real function and $x_0\in\mathbb{R}$. If $f$ is not well-defined near and at $x_0$, or it is, but the limit in Definition 3.1 does not exist, then we say that $f$ is not derivable at $x_0$ (or that $f$ has no derivative at $x_0$) (or that the derivative of $f$ at $x_0$ does not exist).}
         \item \textcolor{Df}{Suppose $f$ is a real function and $x_0\in\mathbb{R}$. Suppose also there exists some $r>0$ s.t. $[x_0, x_0+r)\subseteq \text{dom}(f)$ (resp. $(x_0-r, x_0]\subseteq \text{dom}(f)$). Then the limit 
         $$ \lim_{h\to 0^+} \frac{f(x_0+h)-f(x_0)}{h}\quad \left(\text{resp. } \lim_{h\to 0^-} \frac{f(x_0+h)-f(x_0)}{h}\right) $$
         is called the \textbf{right derivative} (resp. \textbf{left derivative}) of $f$ at $x_0$, denoted by $f_+^\prime (x_0)$ (resp. $f_-^\prime (x_0)$) and $f$ is said to be \textbf{right-derivable} (resp. \textbf{left-derivable}) at $x_0$. (Accordingly, define the cases of ``not right-derivable'' and ``not left-derivable'' as above.)} Clearly, \textcolor{Th}{Suppose $f$ is a real function and $x_0, l\in\mathbb{R}$. Then $f^\prime(x_0) = d$ iff $f_+^\prime(x_0) = f_-^\prime(x_0) = d$.}
@@ -102,7 +102,7 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Th}{Th3.3.2 (chain-rule)}
-    Suppose real functions $\varphi$ is derivable at $t_0\in\mathbb{R}$ and $f$ is derivable at $x_0 = \varphi(t_0)$. Then the composite function $f\circ\varphi$ (since, as you can verify, $f\circ\varphi$ can be well-defined near and at $t_0$) is derivable at $t_0$ and 
+    Suppose real functions $\varphi$ is derivable at $t_0\in\mathbb{R}$ and $f$ is derivable at $x_0 = \varphi(t_0)$. Then the composite function $f\circ\varphi$ ($f\circ\varphi$ may be not composable overall, but it is composable near and at $x_0$) is derivable at $t_0$ and 
     $$ (f\circ\varphi)^\prime(t_0) = f^\prime(x_0)\varphi^\prime(t_0). $$
     \tcblower
     \textit{Pf}: $$ \frac{f(\varphi(t))-f(\varphi(t_0))}{t-t_0} = \frac{f(\varphi(t))-f(\varphi(t_0))}{\varphi(t)-\varphi(t_0)}\cdot \frac{\varphi(t)-\varphi(t_0)}{t-t_0}. $$
@@ -326,7 +326,7 @@ Then with everything prepared, here we go.
     \textit{Pf}: We can see that the empty set, a singleton set, and an interval are all convex sets. Conversely, suppose $A$ is a convex set, then we can further derive what $A$ is like. Consider the supremum and infimum in $\mathbb{R}_\infty$ of $A$, then $-\infty\leq\inf A \leq\sup A\leq\infty$, so that we can easily verify that $A$ is a singleton set or $A$ traverses the interval $(\inf A, \sup A)$.
 \end{Th}
 
-\begin{Th}{Th3.6.3 (Jensen's inequality)}
+\begin{Th}{Th3.6.3 (Jensen's (詹森) inequality)}
     Suppose $f$ is a convex function. Then for every $n\geq 2$ and any $x_1, \cdots, x_n\in\text{dom}(f)$, 
     $$ f\left(\sum_{i}^{n}\lambda_i x_i\right) \leq \sum_{i}^{n}\lambda_i f(x_i) $$
     for any $\lambda_1, \cdots, \lambda_n\in (0,1)$ s.t. $\sum_{i}^{n}\lambda_i = 1$.
@@ -397,5 +397,26 @@ Then with everything prepared, here we go.
     \end{compactenum}
     \tcblower
     \textit{Pf}: This theorem can be drawn combining the Th \{, ID: 3.6.1.1\} and the Th \{, ID: 3.6.3.2\} (perhaps supplement the definition of $f^\prime$ at $a$ and $b$ with the corresponding limits to meet the conditions that $f^\prime$ is interval-derivable on $[a,b]$).
+\end{Th}
+
+\begin{Th}{Th3.7.1 (L'Hospital's (洛必达) rule)}
+    Within the range of this theorem (including theorem text, proof and corresponding remarks), we adopt the real circle's perspective.\\
+    Suppose $f$ and $g$ are real functions, and $x_0, y_0$ are arbitrarily chosen from $t_0, t_0^+, t_0^-, \infty, \infty^+, \infty^-$ ($t_0\in\mathbb{R}$). If:
+    \begin{compactenum}
+        \item $f$ and $g$ are derivable on some $\check{U}(x_0)$;
+        \item There is some $\check{U}(x_0)$ for $x$ where $g(x)\neq 0$;
+        \item $\lim\limits_{x\to x_0} f(x) = \lim\limits_{x\to x_0} g(x) = 0$;
+        \item $\lim\limits_{x\to x_0} \frac{f^\prime(x)}{g^\prime(x)} = y_0$;
+    \end{compactenum}
+    then $\lim\limits_{x\to x_0} \frac{f(x)}{g(x)} = \lim\limits_{x\to x_0} \frac{f^\prime(x)}{g^\prime(x)} = y_0$.
+    \tcblower
+    \textit{Pf}: First we prove the case where $x_0 = t_0$. Supplement the definition of $f$ and $g$ at $x_0$ with the corresponding limits
+    $$ f(x_0) = \lim\limits_{x\to x_0} f(x) = 0, \quad g(x_0) = \lim\limits_{x\to x_0} g(x) = 0. $$
+    Then:
+    $$ \lim\limits_{x\to x_0} \frac{f(x)}{g(x)} = \lim\limits_{x\to x_0} \frac{f(x)-f(x_0)}{g(x)-g(x_0)} = \lim\limits_{x\to x_0} \frac{f^\prime(\xi(x))}{g^\prime(\xi(x))} = \lim\limits_{\xi\to x_0} \frac{f^\prime(\xi)}{g^\prime(\xi)} = y_0. $$
+    From the left to the right, the second equality is the Cauchy's intermediate-value theorem, where we apply it for every interval with end points $x$ and $x_0$ and find a $\xi(x)$ for every $x$. Hence $\xi(\cdot)$ is a function of $x$ and $\lim\limits_{x\to x_0} \xi(x) = x_0$. And the third equality is the limit of a function composition. \\
+    As for $x_0=t_0^+$ and $x_0=t_0^-$, we can prove them in the same way.\\
+    Now we prove the case where $x_0 = \infty$. Let $x = 1/t$, then we apply the L'Hospital's rule proved above to $\lim\limits_{t\to 0} \frac{f(1/t)}{g(1/t)}$.\\
+    As for $x_0 = \infty^+$ and $x_0 = \infty^-$, we can prove them in the same way. Then we complete the proof.
 \end{Th}
 \end{document}

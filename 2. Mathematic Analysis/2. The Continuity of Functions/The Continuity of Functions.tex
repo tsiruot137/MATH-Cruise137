@@ -122,6 +122,7 @@ Then with everything prepared, here we go.
             \item If $\lim\limits_{x\rightarrow x_0} g(x)\neq 0$, then $\lim\limits_{x\rightarrow x_0} \frac{f(x)}{g(x)} = \frac{\lim\limits_{x\rightarrow x_0} f(x)}{\lim\limits_{x\rightarrow x_0} g(x)}$.
         \end{compactitem}
         \item The limit of function is a local property, which means that the limit of a function at a point is determined only by the behavior of the function near that point. But please pay attention that the limit at a point can be influenced if the function is modified at some other points nearby (see the ``local property'' part of Rmk \{, ID: 2.2\}).
+        \item A sequence in $\mathbb{R}$ is also a real function. \textcolor{Th}{For a sequence $\{a_n\}$ in $\mathbb{R}$, the limit of the sequence defined in the 1st chapter is just the limit of the function defined here.}
     \end{compactenum}}
 \end{Rmk}
 
@@ -152,21 +153,112 @@ Then with everything prepared, here we go.
 \end{Df}
 
 \begin{Rmk}{}
-    There are many other type of limit for a real function. A common pattern of the definition of limit is that:\\
-    \textcolor{Df}{Suppose $f$ is a real function, $a$, $b$ are some ``target'' for independent variable $x$ and dependent variable $f(x)$ respectively. Suppose $\text{dom}(f)$ intersects with any ``hollow neighborhood'' $\check{U}(a)$ of $a$. Then $b$ is called the limit of $f$ at $a$, denoted by $\lim\limits_{x\to a} f(x) = b$ (or, $f(x)\rightarrow b$ as $x\rightarrow a$) if:
-    $$\forall U(b), \exists\check{U}(a), \forall x\in\text{dom}(f)\cap \check{U}(a), f(x)\in U(b)$$.}
-    Here the ``neighborhood'' $U(t)$ of $t$ is a subset of $\mathbb{R}_\infty$ in some form (as for $\check{U}(t)$, it is $U(t)\backslash \{t\}$), varied with different type of $t$:
-    \textcolor{Df}{
+    There are many other types of limit for a real function, for which we will conclude a common pattern for different types of limit at the next definition. Within each type of limit, the readers can discuss about the properties listed all above, following the same idea and pattern. 
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.1.3.1 (other types of limit)}
+    Suppose $f$ is a real function, $a$, $b$ are some ``target'' for independent variable $x$ and dependent variable $f(x)$ respectively. Suppose $\text{dom}(f)$ intersects with any ``hollow neighborhood'' $\check{U}(a)$ of $a$. Then $b$ is called the limit of $f$ at $a$, denoted by $\lim\limits_{x\to a} f(x) = b$ (or, $f(x)\rightarrow b$ as $x\rightarrow a$) if:
+    $$\forall U(b), \exists\check{U}(a), \forall x\in\text{dom}(f)\cap \check{U}(a), f(x)\in U(b),$$
+    where the ``neighborhood'' $U(t)$ of $t$ is a subset of $\mathbb{R}_\infty$ in some form (as for $\check{U}(t)$, it is $U(t)\backslash \{t\}$), varied with different type of $t$:
+    \begin{compactitem}
+        \item (type-1) $t = t_0\in\mathbb{R}$: $U(t) = (t_0-\delta, t_0+\delta)$ for $\delta>0$;
+        \item (type-2) $t = t_0^+$ (resp. $t = t_0^-$) for some $t_0\in\mathbb{R}$: $U(t) = [t_0, t_0+\delta)$ for $\delta>0$ (resp. $U(t) = (t_0-\delta, t_0]$ for $\delta>0$);
+        \item (type-3) $t = \pm\infty$: $U(t) = [-\infty, -M)\cup (M, \infty]$ for $M>0$;
+        \item (type-4) $t = \infty$ (resp. $t = -\infty$): $U(t) = (M, \infty]$ for $M>0$ (resp, $U(t) = [-\infty, -M)$ for $M>0$).
+    \end{compactitem}
+\end{Df}
+
+\begin{Rmk}{}
+    In the common definition of limit, $a$ and $b$ can be any one of these four types. More exactly, each of $a$ and $b$ can be chosen as one of these six options:
+    $$ t_0, t_0^+, t_0^-, \pm\infty, -\infty, \infty. $$
+    Hence, we can define $6\times 6 = 36$ types of limit from the definition. For example, when $a$, $b$ are both real numbers (of type-1 here), then it is just Df \{, ID: 2.1\}, the regular type of limit; if $a = \infty$ (in type-4 here) and $b$ is a real number (of type-1 here), then the limit is just Df \{, ID: 2.1.3\}.\\
+    Actually, if we are aimed at summerizing different types of limit, we can treat the infinity as a point in $\mathbb{R}_\infty$ and discuss the limit involving infinity in the same way as the limit at a real number. \textcolor{Df}{Imagine a rope representing the real line $\mathbb{R}_\infty$, (do not mind that the rope is finite, as we have many ways to map the real line to a finite segment bijectively), and we join the two ends (representing $\infty$ and $-\infty$ respectively) of the rope to form a circle $\mathbb{R}_\infty^\circ$ called ``the real circle''. Then in the real circle's perspective, the original positive and negative infinity points join to a single point named $\infty$. In $\mathbb{R}_\infty^\circ$, like the limit process at a real number (two-sided or one-sided), the original processes $x\rightarrow\infty$, $x\rightarrow -\infty$ and $x\rightarrow\pm\infty$ in the real line $\mathbb{R}_\infty$ is now denoted as $x\rightarrow \infty^-$, $x\rightarrow \infty^+$ and $x\rightarrow \infty$ respectively in the real circle $R_\infty^\circ$ (according to which direction $x$ tends to $\infty$).}\\
+    We can also see that \textcolor{Th}{One sided limit value implies the two-sided counterpart. For example, if $\lim\limits_{x\to 0^+} f(x) = \infty^+$, then $\lim\limits_{x\to 0} f(x) = \infty$. But the converse is not true.}\\
+    This convention is convenient, but we do not adopt it by default unless we explicitly specify it by ``real circle's perspective''. With this convention, we can verify the more general rule for limit of composite functions (see the next theorem).
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.1.3.2 (different types of limit of composite function)}
+    Within this theorem, we adopt the real circle's perspective.\\
+    Suppose $f$ and $g$ are real functions and $f\circ g$ is composable. Let $t_0, x_0, y_0$ below be chosen arbitrarily from the six options in Rmk \{, ID: 2.1.3.1\}. If:
     \begin{compactenum}
-        \item $t\in\mathbb{R}$: $U(t) = (t-\delta, t+\delta)$ for $\delta>0$;
-        \item $t = t_0^+$ (resp. $t = t_0^-$) for some $t_0\in\mathbb{R}$: $U(t) = [t_0, t_0+\delta)$ for $\delta>0$ (resp. $U(t) = (t_0-\delta, t_0]$ for $\delta>0$);
-        \item $t = \pm\infty$: $U(t) = [-\infty, -M)\cup (M, \infty]$ for $M>0$;
-        \item $t = \infty$ (resp. $t = -\infty$): $U(t) = (M, \infty]$ for $M>0$ (resp, $U(t) = [-\infty, -M)$ for $M>0$).
+        \item $\lim\limits_{t\rightarrow t_0} g(t) = x_0$;
+        \item $\lim\limits_{x\rightarrow x_0} f(x) = y_0$;
+        \item $\exists \check{U}(t_0)$ s.t. $g(t)\neq x_0$ for all $t\in\check{U}(t_0)$ (here $g(t)=x_0$ means $g(t)$ is equal to the corresponding element of $x_0$ in $\mathbb{R}_\infty^\circ$, e.g., if $x_0 = 5^+$, then $g(t) = 5^+$ here means $g(t)=5$);
+    \end{compactenum}
+    then $\lim\limits_{t\rightarrow t_0} f(g(t)) = y_0$.
+    \tcblower
+    \textit{Pf}: Trivial if you follow the proof of the previous rule for the limit of composite function.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.1.3.3 (resolution principle for different types of limit)}
+    Suppose $f$ is a real function and $x_0, y_0$ are chosen arbitrarily from the six options in Rmk \{, ID: 2.1.3.1\}. Suppose also $\text{dom}(f)$ intersects with any $\check{U}(x_0)$. Then $\lim\limits_{x\to x_0} f(x) = y_0$ if and only if:
+    For any sequence $\{x_n: n\in\mathbb{N^\ast}\}$ in $\text{dom}(f)$ s.t. (1) $x_n\neq x_0$ for all $n\in\mathbb{N^\ast}$ (see what $x=x_0$ means in the last theorem) and (2) $\lim\limits_{n\to\infty} x_n = x_0$, we have $\lim\limits_{n\to\infty} f(x_n) = y_0$.
+    \tcblower
+    \textit{Pf}: We have proved for those types of limit not involving infinity. If one of $x_0$ and $y_0$ involves infinity, then we can use inverse transformation to reduce it to the previous cases. For example, if $x_0 = \infty$ and $y_0 = \infty^-$, then
+    $$ \lim\limits_{x\to\infty} f(x) = \infty^- \Leftrightarrow \lim\limits_{t\to 0} f(1/t) = \infty^- \Leftrightarrow \lim\limits_{t\to 0} 1/f(1/t) = 0^+$$
+    And then apply the previous rule to the function $g(t) = 1/f(1/t),\; (t\in \{s: 1/s\in\text{dom}(f)\})$.
+\end{Th}
+
+\begin{Df}{$\bullet$ Df2.1.3.4 (infinite small and infinite large quantity)}
+    Suppose $f$ is a real function and $x_0$ is one of the six options
+    $$ t_0\in\mathbb{R}, t_0^+, t_0^-, \pm\infty, -\infty, \infty. $$
+    Then we say that $f(x)$ is an infinite small (resp. infinite large) quantity at $x\rightarrow x_0$ if $\lim\limits_{x\to x_0} f(x) = 0$ (resp. $\lim\limits_{x\to x_0} f(x) = \infty$).
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{For a sequence in $\mathbb{R}$, this definition of ``infinite small'' and ``infinite large'' coincides with the one in the 1st chapter.}\\
+    We can also show that \textcolor{Th}{Suppose $f$ is a real function and $x_0$ is one of the six options. Then $f(x)$ is an infinite large quantity at $x\rightarrow x_0$ iff $1/f(x)$ is an infinite small quantity at $x\rightarrow x_0$.}
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.1.3.4.1 (comparison of infinite small (resp. large) quantity) (notations big-O, small-O, big-Omega, small-Omega, big-Theta)}
+    Suppose $f$ and $g$ are real functions and $x_0$ is one of the following
+    $$ t_0, t_0^+, t_0^-, \pm\infty, -\infty, \infty. $$
+    If within some $\check{U}(x_0)$, $\text{dom}(f) = \text{dom}(g)$ (that is, $\check{U}(x_0)\cap\text{dom}(f) = \check{U}(x_0)\cap\text{dom}(g)$), then we say that
+    \begin{compactenum}
+        \item $f(x) = O(g(x))$ (or $g(x) = \Omega(f(x))$) at $x\rightarrow x_0$ if $\frac{f(x)}{g(x)}$ is bounded on some $\check{U}(x_0)$; (otherwise, write $f(x) \neq O(g(x))$);
+        \item $f(x) = o(g(x))$ (or $g(x) = \omega(f(x))$) at $x\rightarrow x_0$ if $\lim\limits_{x\to x_0}\frac{f(x)}{g(x)} = 0$;
+        \item $f(x) = \Theta(g(x))$ at $x\rightarrow x_0$ if $\lim\limits_{x\to x_0}\frac{f(x)}{g(x)} = c$ for some non-zero real number $c$;
+        \item $f(x) \sim g(x)$ at $x\rightarrow x_0$ if $\lim\limits_{x\to x_0}\frac{f(x)}{g(x)} = 1$.
+    \end{compactenum}
+    (Note that the ratio $\frac{f(x)}{g(x)}$ is computed in a way a little different from our convention. Here (and now, only here), we supplement the definition that:
+    $$ \frac{c}{0} = \infty\quad (c>0),\quad \frac{c}{0} = -\infty\quad (c<0). $$
+    And under this agreement, the function $f/g$ may be actually not a real function as its range may include infinity. But this do not prevent us from following the literal definitions to take limit for $f/g$ at $x_0$.)
+\end{Df}
+
+\begin{Rmk}{}
+    We can verify the following basic properties of the notations.\\
+    \textcolor{Th}{Suppose $x_0$ is one of the six options, and the functions following have the same domain within some $\check{U}(x_0)$. Then:
+    \begin{compactenum}
+        \item $f(x) = o(g(x))$ iff $\lim_{x\to x_0} \frac{g(x)}{f(x)} = \infty$; $f(x) = \omega(g(x))$ iff $\lim_{x\to x_0} \frac{g(x)}{f(x)} = 0$; (under the new agreement in this definition)
+        \item $f(x) = O(g(x))$ iff $f(x) \neq \omega(g(x))$; $f(x) = \Omega(g(x))$ iff $f(x) \neq o(g(x))$;
+        \item ``$o$'' implies ``$O$'', ``$\omega$'' implies ``$\Omega$'';
+        \item ``$\Theta$'' is mutual, i.e., $f(x) = \Theta(g(x))$ iff $g(x) = \Theta(f(x))$;
+        \item ``$\Theta$'' implies both ``$O$'' and ``$\Omega$'', but the converse is not true (e.g. $x_0 = 0$, $f(x) = 1$, $g(x) = 1$ whenever $x$ is rational and $g(x) = -1$ whenever $x$ is irrational);
+        \item ``$\sim$'' is mutual, and it implies $\Theta$.
     \end{compactenum}
     }
-    In the common definition of limit, $a$ and $b$ can be any one of these four, namely, we can define $6\times 6 = 36$ types of limit from the discussion here. For example, when $a$, $b$ are both real numbers (of type-1 here), then it is just Df \{, ID: 2.1\}, the regular type of limit; if $a = \infty$ (in type-4 here) and $b$ is a real number (of type-1 here), then the limit is just Df \{, ID: 2.1.3\}.\\
-    Within one type of limit, the readers can discuss about the properties listed all above, following the same idea and pattern.
 \end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.1.3.4.2 (infinite small (resp. large) quantity of a higher order)}
+    Suppose real functions $f$ and $g$ are both infinite small (resp. large) quantities at $x\rightarrow x_0$ (where $x_0$ is one of the six options), and their domains are the same within some $\check{U}(x_0)$. Then we say that
+    \begin{compactenum}
+        \item $f(x)$ is an infinite small (resp. large) quantity of a higher order than $g(x)$ at $x\rightarrow x_0$ if $f(x) = o(g(x))$ (resp. $f(x) = \omega(g(x))$) at $x\rightarrow x_0$.
+        \item $f(x)$ is an infinite small (resp. large) quantity of the same order as $g(x)$ at $x\rightarrow x_0$ if $f(x) = \Theta(g(x))$ at $x\rightarrow x_0$.
+        \item $f(x)$ is an equivalent infinite small (resp. large) quantity to $g(x)$ at $x\rightarrow x_0$ if $f(x) \sim g(x)$ at $x\rightarrow x_0$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Th}{$\circ$ Th2.1.3.4.3 (substitution of $f(x)\sim g(x)$)}
+    Suppose real functions $f$, $g$, $h$ share the same domain within some $\check{U}(x_0)$, where $x_0$ is one of the six options. If $f(x)\sim g(x)$ at $x\rightarrow x_0$, then
+    \begin{compactenum}
+        \item $ \lim\limits_{x\to x_0} f(x)h(x) = \lim\limits_{x\to x_0} g(x)h(x) $;
+        \item $ \lim\limits_{x\to x_0} \frac{f(x)}{h(x)} = \lim\limits_{x\to x_0} \frac{g(x)}{h(x)} $.
+    \end{compactenum}
+    Here the equality means that the limits on the two sides are either (1) both the same real number, (2) both $-\infty$, (3) both $\infty$, (4) both $\pm\infty$ or (5) both otherwise undefined.
+    \tcblower
+    \textit{Pf}: Since $fh = \frac{f}{g} \cdot gh$, and that $f\sim g$ is mutual, the proof of the first part is trivial. \\
+    For the second part, let the shared domain of $f$, $g$ and $h$ be $D$, so the domains of $f/h$ and $g/h$ are both $D^* = D\setminus\{x: h(x) = 0\}$. Then this part reduces to the case of the first part ($f/h = f\cdot \frac{1}{h}$) if the restriction $f_{D^*}$ and $g_{D^*}$ of $f$ and $g$ to $D^*$ still satisfy $f_{D^*}\sim g_{D^*}$; if $f_{D^*}\sim g_{D^*}$ does not hold, then it must be that $D^*$ does not intersect with any $\check{U}(x_0)$, resulting in the limit of $f/h$ and $g/h$ being undefined (case (5)).
+\end{Th}
 
 \begin{Th}{$\bullet$ Th2.1.4 (Cauchy criterion for limit of function)}
     Suppose $f$ is a real function and $x_0\in\mathbb{R}$ is a limit point of $\text{dom}(f)$. Then $\lim\limits_{x\to x_0} f(x)$ exists iff:
@@ -270,7 +362,7 @@ Then with everything prepared, here we go.
     Suppose $f:[a,b]\rightarrow\mathbb{R}$ is interval-continuous on $[a,b]$. Then there exist $x^*, x_*\in [a,b]$ s.t. 
     $$f(x^*) = \sup\{\text{range}(f)\}, \quad f(x_*) = \inf\{\text{range}(f)\}.$$
     \tcblower
-    \textit{Pf}: Only prove the maximum here. Let $M = \sup\{\text{range}(f)\}$. Similar to the proof of Th \{, ID: 2.5\}, we can find a sequence $\{x_n\}$ s.t. $f(x_n)\rightarrow M$. Then select a subsequence $\{x_{k_n}\}$ that converges to some $x^*\in[a,b]$, and finally prove that $f(x^*) = M$ using continuity and the reduction principle.
+    \textit{Pf}: Only prove the maximum here. Let $M = \sup\{\text{range}(f)\}$. Similar to the proof of Th \{, ID: 2.5\}, we can find a sequence $\{x_n\}$ s.t. $f(x_n)\rightarrow M$. Then select a subsequence $\{x_{k_n}\}$ that converges to some $x^*\in[a,b]$, and finally prove that $f(x^*) = M$ using continuity and the resolution principle.
 \end{Th}
 
 \begin{Th}{$\bullet$ Th2.5.2 (intermediate value theorem)}
@@ -287,4 +379,55 @@ Then with everything prepared, here we go.
 \begin{Rmk}{}
     \textcolor{Th}{This theorem immediately comes to a result that the image of an interval-continuous function on a closed interval is also a closed interval. And if the interval-continuous function has values of different signs at the endpoints (such as $f(a)<0<f(b)$), then it must have a zero in the interval.}
 \end{Rmk}
+
+\begin{Df}{$\bullet$ Df2.6 (limit superior (上极限) and limit inferior (下极限) of function)}
+    Suppose $f$ is a real function whose $\text{dom}(f)$ intersects with any $\check{U}(x_0)$ (where $x_0$ is one of the six options). Then we define the limit superior $\limsup\limits_{x\to x_0} f(x)$ (or $\mathop{\overline{\lim}}\limits_{x\to x_0}f(x)$) and the limit inferior $\liminf\limits_{x\to x_0} f(x)$ (or $\mathop{\underline{\lim}}\limits_{x\to x_0}f(x)$) of $f$ at $x_0$ as:
+    $$\limsup\limits_{x\to x_0} f(x) = \sup E, \quad \liminf\limits_{x\to x_0} f(x) = \inf E,$$
+    where 
+    $$E = \{\lim\limits_{n\to\infty} f(x_n): \{x_n\}\text{ is a sequence in }\text{dom}(f)\cap\check{U}(x_0)\text{ that converges to } x_0\}$$ 
+    (the $\lim_{n\to\infty} f(x_n)$ can be any real number, $\infty$ or $-\infty$ here, but cannot be $\pm\infty$).
+\end{Df}
+
+\begin{Rmk}{}
+    In this definition, the set $E$ is the set of all possible limits (including $\infty$ and $-\infty$) of sequences in $\text{dom}(f)\cap\check{U}(x_0)$ that converges to $x_0$, and clearly which $\check{U}(x_0)$ is chosen does not affect the limit of a sequence, and so does not affect the set $E$. \textcolor{Th}{We can clearly see that $E$ is non-empty (since $E$ must contain some real number if $f(x)$ is bounded on some $\check{U}(x_0)$, and $E$ must contain one of $\infty$ and $-\infty$ if $f(x)$ is unbounded on $\check{U}(x_0)$), and thus $\liminf\limits_{x\to x_0} f(x)\leq \limsup\limits_{x\to x_0} f(x)$.}\\
+    Also, please note that if view a sequence $\{a_n\}$ (or written as $a(n)$) in $\mathbb{R}$ as a real function defined on $\mathbb{N}$, then \textcolor{Th}{the limit superior and limit inferior of $a(n)$ defined here coincide with those defined in Df \{, ID: 1.11\}.} Although when $f(x)$ reduces to $a(n)$ the set $E$ defined here is 
+    $$E = \{\lim\limits_{n\to\infty} a(k(n)): \quad k: \mathbb{N}\rightarrow\mathbb{N}\text{ and }\lim\limits_{n\to\infty} k(n) = \infty.\}$$
+    and the one defined in Df \{, ID: 1.11\} is
+    $$E^\ast = \{\lim\limits_{n\to\infty} a(k(n)): \quad k: \mathbb{N}\rightarrow\mathbb{N}\text{ is strictly increasing.}\},$$
+    $E^\ast = E$ actually. This is because that each positive infinite large integer-sequence $k(\cdot)$ (corresponding to $E$) has some monotonic subsequence $k\circ l$ (which is definitely increasing), and thus has some strictly increasing subsequence $k\circ l\circ m$ (corresponding to $E^\ast$). Hence the possible limits in $E$ and $E^\ast$ are the same.
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th2.6.1 (basic properties of limit superior and limit inferior) (analogue of Th1.11.1)}
+    Suppose $f$ is a real function whose $\text{dom}(f)$ intersects with any $\check{U}(x_0)$ (where $x_0$ is one of the six options), and $E$ is the set defined in Df \{, ID: 2.6\}. Then:
+    \begin{compactenum}
+        \item $\mathop{\overline{\lim}}\limits_{x\to x_0} f(x)$ (resp. $\mathop{\underline{\lim}}\limits_{x\to x_0} f(x)$) $\in E$;
+        \item $\forall y>\mathop{\overline{\lim}}\limits_{x\to x_0} f(x)$ (resp. $\forall y<\mathop{\underline{\lim}}\limits_{x\to x_0} f(x)$), $\exists\check{U}(x_0)$ s.t. $f(x)<y$ (resp. $f(x)>y$) for all $x\in\text{dom}(f)\cap\check{U}(x_0)$;
+        \item $\mathop{\overline{\lim}}\limits_{x\to x_0} f(x)$ (resp. $\mathop{\underline{\lim}}\limits_{x\to x_0} f(x)$) is the only one in $\mathbb{R}_\infty$ that satisfies the properties (1) and (2);
+        \item $\mathop{\underline{\lim}}\limits_{x\to x_0} f(x)\leq \mathop{\overline{\lim}}\limits_{x\to x_0} f(x)$;
+        \item Let $l\in\mathbb{R}_\infty$. Then $\lim\limits_{x\to x_0} f(x) = l$ iff $\mathop{\underline{\lim}}\limits_{x\to x_0} f(x) = \mathop{\overline{\lim}}\limits_{x\to x_0} f(x) = l$;
+        \item Suppose $g$ is also a real function whose domain $D$ is the same with $\text{dom}(f)$ within some $\check{U}(x_0)$. If $f(x)\leq g(x)$ for all $x$ in $D\cap\check{U}(x_0)$, then $\mathop{\underline{\lim}}\limits_{x\to x_0} f(x)\leq \mathop{\underline{\lim}}\limits_{x\to x_0} g(x)$ and $\mathop{\overline{\lim}}\limits_{x\to x_0} f(x)\leq \mathop{\overline{\lim}}\limits_{x\to x_0} g(x)$;
+        \item Denote the ``closed'' hollow-neighborhood of $x_0$ that is ``just right'' to contain $x$ as $\check{U}_x[x_0]$ (e.g. $\check{U}_2[0] = [-2, 2]\setminus\{0\}$). Then $$\limsup\limits_{x\to x_0} f(x) = \lim\limits_{x\to x_0} \left(\sup\limits_{x\in I_x} f(x)\right)$$
+        and 
+        $$\liminf\limits_{x\to x_0} f(x) = \lim\limits_{x\to x_0} \left(\inf\limits_{x\in I_x} f(x)\right),$$
+        where $I_x = \text{dom}(f)\cap\check{U}_x[x_0]$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: This proof is of the same idea with the proof of Th1.11.1, and we leave it to the readers.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.6.2.-1 (extended arithmetic of regular limit) (arithmetic of limit of function) (analogue of Th \{, ID: 1.11.2.-1\})}
+    Suppose $f$ and $g$ are real functions and $\text{dom}(f) = \text{dom}(g)\triangleq D$ within some $\check{U}(x_0)$ (where $x_0$ is one of the six options). If $\lim\limits_{x\to x_0} f(x)$ and $\lim\limits_{x\to x_0} g(x)$ both exist in $\mathbb{R}_\infty$, then:
+    $$ \lim\limits_{x\to x_0}\left(f(x)(+-\cdot\,/)g(x)\right) = \left(\lim\limits_{x\to x_0} f(x)\right)(+-\cdot\,/) \left(\lim\limits_{x\to x_0} g(x)\right).$$
+    (Here if the right side can be computed in $\mathbb{R}_\infty$, then the function of the left side has definition within $\check{U}(x_0)\cap D$ for some $\check{U}(x_0)$, and the limit of the left side exists in $\mathbb{R}_\infty$ and is equal to the result of the right side; if otherwise the right side is ``$\textcolor{red}{u}$'' in Df 1.11.2.-2, then the limit of the left side can exist in $\mathbb{R}_\infty$ or not so that other methods should be used to determine the limit.)
+    \tcblower
+    \textit{Pf}: Trivial if we use the resolution principle (Th \{, ID: 2.1.3.3\}) to reduce the proof to the one of Th \{, ID: 1.11.2.-1\}.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th2.6.2 (arithmetic of $\mathop{\overline{\lim}}$ and $\mathop{\underline{\lim}}$) (analogue of Th \{, ID: 1.11.2\})}
+    Suppose $f$ and $\varphi$ are real functions and $\text{dom}(f) = \text{dom}(\varphi)\triangleq D$ within some $\check{U}(x_0)$ (where $x_0$ is one of the six options). If $\lim\limits_{x\to x_0} \varphi(x) = \varphi_0\in\mathbb{R}_\infty$, then you can copy all the equalities in Th \{, ID: 1.11.2\}, only corresponding $f$ to $\{a_n\}$ and $\varphi$ to $\{x_n\}$. \\
+    (Still, for every equality here, if the right side can be computed in $\mathbb{R}_\infty$, then the function of the left side has definition within $\check{U}(x_0)\cap D$ for some $\check{U}(x_0)$, and the limit of the left side exists in $\mathbb{R}_\infty$ and is equal to the result of the right side; if otherwise the right side is ``$\textcolor{red}{u}$'' in Df 1.11.2.-2, then the limit of the left side can exist in $\mathbb{R}_\infty$ or not so that other methods should be used to determine the limit.)
+    \tcblower
+    \textit{Pf}: Trivial, as the proof is the same with the one of Th \{, ID: 1.11.2\}.
+\end{Th}
+
 \end{document}

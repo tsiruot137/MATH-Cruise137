@@ -66,6 +66,7 @@ By the way, we now pre-claim some commonly-used notations:
     \item $\mathbb{N^\ast}$: the set of the positive integers.
     \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
     \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item $\mathbb{R}_\infty = \mathbb{R}\cup\{\infty, -\infty\}$: the set of the extended real numbers.
 \end{compactenum} 
 Then with everything prepared, here we go.
 
@@ -76,7 +77,7 @@ Then with everything prepared, here we go.
 
 \begin{Rmk}{}
     \begin{compactenum}
-        \item \textcolor{Df}{$\lim\limits_{n\to\infty}a_n=a$ is also called that the sequence $\{a_n\}$ converges to $a$. If no $a\in\mathbb{R}$ s.t. $\lim\limits_{n\to\infty}a_n=a$ exists, then we say that the sequence $\{a_n\}$ diverges.}
+        \item \textcolor{Df}{$\lim\limits_{n\to\infty}a_n=a$ is also called that the sequence $\{a_n\}$ converges to $a$. If no $a\in\mathbb{R}$ s.t. $\lim\limits_{n\to\infty}a_n=a$ exists, then we say that the limit of the sequence does not exist, or that the sequence diverges.}
         \item \textcolor{Th}{(Uniqueness) Easy to see that the limit of a sequence (if exists) is unique.}
         \item \textcolor{Th}{(Boundedness) If $\{a_n\}$ converges to some real number, then there is some $M>0$ s.t. $|a_n|\leq M$ for all $n\in\mathbb{N}$.}
         \item \textcolor{Th}{(Preservation of inequality) If $\lim\limits_{n\to\infty}a_n=a$ and $\lim\limits_{n\to\infty}b_n=b$ and $a_n\leq b_n$ for all $n\in\mathbb{N}$, then $a\leq b$.}
@@ -85,7 +86,7 @@ Then with everything prepared, here we go.
             \begin{compactitem}
                 \item $\lim\limits_{n\to\infty}(a_n\pm b_n)=\lim\limits_{n\to\infty}a_n\pm \lim\limits_{n\to\infty}b_n$; 
                 \item $\lim\limits_{n\to\infty}(a_n\cdot b_n)=\lim\limits_{n\to\infty}a_n\cdot \lim\limits_{n\to\infty}b_n$, 
-                \item If $\lim\limits{n\to\infty} b_n\neq 0$, then $\lim\limits_{n\to\infty}\frac{a_n}{b_n}=\frac{a}{b}$ (if $b\neq 0$).
+                \item If $\lim\limits_{n\to\infty} b_n\neq 0$, then $\lim\limits_{n\to\infty}\frac{a_n}{b_n}=\frac{a}{b}$ (if $b\neq 0$).
             \end{compactitem}
         }
     \end{compactenum}
@@ -96,13 +97,15 @@ Then with everything prepared, here we go.
 \end{Df}
 
 \begin{Df}{$\circ$ Df1.1.2 (infinite large)}
-    A sequence $\{a_n\}$ in $\mathbb{R}$ is called an infinite large sequence, denoted by $\lim\limits_{n\to\infty}a_n=\infty$, if:
-    $$\forall M>0, \exists N\in\mathbb{N}, \forall n > N, a_n>M.$$
+    \begin{compactenum}
+        \item A sequence $\{a_n\}$ in $\mathbb{R}$ is called a positive (resp. negative) infinite large sequence, denoted by $\lim\limits_{n\to\infty}a_n=\infty$ (resp. $\lim\limits_{n\to\infty}a_n=-\infty$), if:
+        $$\forall M>0, \exists N\in\mathbb{N}, \forall n > N, a_n>M \;(\text{resp. } a_n<-M)$$
+        \item A sequence $\{a_n\}$ in $\mathbb{R}$ is called an infinite large sequence, denoted by $\lim\limits_{n\to\infty}a_n=\pm\infty$, if $\{|a_n|\}$ is a positive infinite large sequence.
+    \end{compactenum}
 \end{Df}
 
 \begin{Rmk}{}
-    \textcolor{Df}{This definition is also referred as ``the positive infinite large sequence'', with the negative infinite large sequence, denoted as $\lim\limits_{n\to\infty}(a_n)=-\infty$, is defined as
-    $$\lim\limits_{n\to\infty}(-a_n)=\infty.$$}
+    For a positive (resp. negative) infinite large sequence, we say that it converges to $\infty$ (resp. $-\infty$). But we still say that a positive (resp. negative) infinite large sequence has no limit.
 \end{Rmk}
 
 \begin{Df}{$\bullet$ Df1.2 (the monotonicity of a sequence)}
@@ -115,6 +118,30 @@ Then with everything prepared, here we go.
         \item monotonic if it is either increasing or decreasing.
     \end{compactenum}
 \end{Df}
+
+\begin{Th}{$\bullet$ Th1.2.1 (properties of infinite large sequences)}
+    Suppose $\{a_n\}$ is a sequence in $\mathbb{R}$. Then:
+    \begin{compactenum}
+        \item If $\{a_n\}$ is a infinite large sequence, then $\{a_n\}$ is unbounded; but the converse is not true;
+        \item $\{a_n\}$ has no upper bound (resp. $\{a_n\}$ has no lower bound) (resp. $\{a_n\}$ is unbounded) iff there is a positive infinite large (resp. negative infinite large) (resp. infinite large) subsequence of $\{a_n\}$;
+        \item $\{a_n\}$ is a infinite large (resp. positive infinite large) (resp. negative infinite large) sequence iff every subsequence of $\{a_n\}$ is a infinite large (resp. positive infinite large) (resp. negative infinite large) sequence;
+        \item Suppose $\{b_n\}$ is also a sequence in $\mathbb{R}$. If $\{a_n\}$, $\{b_n\}$ are both positive infinite large sequences, then $\{a_n+b_n\}$ and $\{a_n\cdot b_n\}$ are also positive infinite large sequences.
+        \item $\{a_n\}$ has some subsequence that converges to some $a\in\mathbb{R}_\infty$.
+        \item If $\{a_n\}$ is monotonic, then $\{a_n\}$ converges to some $a\in\mathbb{R}_\infty$.
+        \item (preserve the inequality) Suppose $\{b_n\}$ is also a sequence in $\mathbb{R}$. If $\lim\limits_{n\to\infty}a_n=a\in\mathbb{R}_\infty$ and $\lim\limits_{n\to\infty}b_n=b\in\mathbb{R}_\infty$, then $a\leq b$ if $a_n\leq b_n$ for all $n\in\mathbb{N}$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Obvious.
+        \item Only prove the ``no upper bound'' part and then the other two parts are similar. The ``if'' is obvious. For the ``only if'', we can first choose a term $a_{k_1}$ s.t. $a_{k_1}>1$. If a sequence has no upper bound, then it still has no upper bound after removing finitely many terms. Then we can keep the terms of $\{a_n\}$ after $a_{k_1}$ and choose a term $a_{k_2}$ s.t. $a_{k_2}>a_{k_1}+1$. So forth, we can choose a positive infinite large subsequence $\{a_{k_n}\}$.
+        \item Obvious.
+        \item Obvious.
+        \item Obvious.
+        \item Obvious.
+        \item Obvious.
+    \end{compactenum}
+\end{Th}
 
 \begin{Th}{$\bullet$ Th1.3 (theorem of monotonicity and boundness)}
     Suppose $\{a_n\}$ is a monotonic and bounded sequence in $\mathbb{R}$. Then $\{a_n\}$ converges.
@@ -231,4 +258,133 @@ Then with everything prepared, here we go.
     \end{compactenum}
     It is easy to notice that any type 1 interval is disjoint with any type 2 interval, or exactly speaking, the right end point of any type-1 interval is less than the left point of any type-2 interval. Now apply the finite covering theorem to obtain a finite sub-covering. Since $a_0$ can be covered only by a type-1 interval and $A$, only by a type-2 interval, there are both type-1 and type-2 intervals in the sub-covering. But since the sub-covering is finitely many, there is always a ``gap'' between the type-1 and the type-2 intervals, which is impossible for the covering of the entire $[a_0, A]$. Contradiction!
 \end{Rmk}
+
+\begin{Df}{$\bullet$ Df1.11 (limit superior (上极限), limit inferior (下极限))}
+    Suppose $\{a_n\}$ is a sequence in $\mathbb{R}$. Consider the set
+    $$ E = \{\lim\limits_{n\to\infty} a_{k_n}: a_{k_n} \text{ is a subsequence of } a_n\} $$
+    i.e., $E$ is the set of all limits of subsequences of $\{a_n\}$, where the ``limit'' can be $\infty$ or $-\infty$ (but not $\pm\infty$). Then we called $\sup E$ (resp. $\inf E$) the limit superior (resp. limit inferior) of $\{a_n\}$, denoted by $\limsup\limits_{n\to\infty}a_n$ or $\mathop{\overline{\lim}}\limits_{n\to\infty} a_n$ (resp. $\liminf\limits_{n\to\infty}a_n$ or $\mathop{\underline{\lim}}\limits_{n\to\infty} a_n$).
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Clearly for every sequence $\{a_n\}$ in $\mathbb{R}$, the set $E$ defined above is non-empty} (since if $\{a_n\}$ is bounded, then $\{a_n\}$ has some convergent subsequence, and if $\{a_n\}$ is unbounded, then $\{a_n\}$ has some infinite large subsequence), \textcolor{Th}{hence $\liminf\limits_{n\to\infty}a_n\leq \limsup\limits_{n\to\infty}a_n$.}
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th1.11.1 (basic properties of $\mathop{\overline{\lim}}$ and $\mathop{\underline{\lim}}$)}
+    Suppose $\{a_n\}$ is a sequence in $\mathbb{R}$, and $E$ is the ``set of subsequences' limits'' defined in Df1.11. Then:
+    \begin{compactenum}
+        \item $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n$ (resp. $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n$) $\in E$;
+        \item $\forall x>\mathop{\overline{\lim}}\limits_{n\to\infty}a_n$ (resp. $\forall x<\mathop{\underline{\lim}}\limits_{n\to\infty}a_n$), $\exists N\in\mathbb{N}$ s.t. $a_n<x$ (resp. $a_n>x$) for all $n>N$;
+        \item $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n$ (resp. $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n$) is the only one in $\mathbb{R}_\infty$ that satisfies the properties (1) and (2);
+        \item $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n \leq \mathop{\overline{\lim}}\limits_{n\to\infty}a_n$;
+        \item Let $l\in\mathbb{R}_\infty$. Then $\lim\limits_{n\to\infty}a_n=l$ iff $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n=\mathop{\underline{\lim}}\limits_{n\to\infty}a_n=l$;
+        \item Suppose $\{b_n\}$ is also a sequence in $\mathbb{R}$. If there is some $N\in\mathbb{N}$ s.t. $a_n\leq b_n$ for all $n>N$, then $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\leq \mathop{\underline{\lim}}\limits_{n\to\infty}b_n$ and $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\leq \mathop{\overline{\lim}}\limits_{n\to\infty}b_n$.
+        \item $\liminf\limits_{n\to\infty}a_n = \lim\limits_{n\to\infty}\left(\inf\limits_{k\geq n}a_k\right)$, $\limsup\limits_{n\to\infty}a_n = \lim\limits_{n\to\infty}\left(\sup\limits_{k\geq n}a_k\right)$ \\
+        (here $\inf\limits_{k\geq n}a_k = \inf\{a_n, a_{n+1}, \dots\}$).
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: See the next page.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th1.11.1 (basic properties of $\mathop{\overline{\lim}}$ and $\mathop{\underline{\lim}}$) —  continued}
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Here we only prove the case of limit superior, and assume the limit superior to be finite (other cases are of the same idea). Let $a^\ast = \mathop{\overline{\lim}}\limits_{n\to\infty}a_n$. To prove $a^\ast\in E$ is to find a subsequence of $\{a_n\}$ that converges to $a^\ast$. The key is ``supremum''. Since $a^\ast = \sup E$, we can find a subsequence $\pmb{a}_1$ that converges to $a^\ast-\frac{1}{2}$, and thus we can choose one term $a_{k_1}$ from $\pmb{a}_1$ s.t. $ a^\ast-\frac{1}{1}< a_{k_1} < a^\ast$. After removing all terms of $\{a_n\}$ before $a_{k_1}$ (which does not affect the limits of all subsequences), we can find a subsequence $\pmb{a}_2$ that converges to $a^\ast-\frac{1}{3}$ so that we can choose one term $a_{k_2}$ from $\pmb{a}_2$ s.t. $ a^\ast-\frac{1}{2}< a_{k_2} < a^\ast$ and $k_2>k_1$. So forth, we can find a subsequence $\{a_{k_n}\}$ of $\{a_n\}$ s.t. $a^\ast-\frac{1}{n}< a_{k_n} < a^\ast$ for all $n$, which converges to $a^\ast$.
+        \item Also, we assume the limit superior $a^\ast$ to be finite. Suppose $x>a^\ast$. If, by contradiction, when $n\rightarrow\infty$, $a_n$ jumps so that $a_n\geq x$ from time to time, then we can find a subsequence from these ``jumping terms'' that converges to some $l\geq x$, which contradicts with $a^\ast = \sup E$.
+        \item Also, we assume the limit superior $a^\ast$ to be finite. Suppose $A^\ast\in\mathbb{R}_\infty$ also satisfies (1) and (2), then $A^\ast\leq a^\ast$ by (1). If $A^\ast<a$, then by (2) $a_n<A^\ast+\frac{a^\ast-A^\ast}{2}$ holds for all enough large $n$, but still $\{a_n\}$ must yield a subsequence that converges to $a^\ast$, which is impossible. Hence $A^\ast = a^\ast$.
+        \item Obvious.
+        \item Obvious.
+        \item This is straightforward since that $E$ is the range of the map $L(\pmb{a}) = \lim\limits_{n\to\infty} \pmb{a}$ defined for each convergent subsequence $\pmb{a}$ of $\{a_n\}$, and that $\mathop{\overline{\lim}}\limits_{n\to\infty} a_n = \max\limits_{\pmb{a}} L(\pmb{a})$, $\mathop{\underline{\lim}}\limits_{n\to\infty} a_n = \min\limits_{\pmb{a}} L(\pmb{a})$. However we still need a proof since the domains of $L$ for $\{a_n\}$ and $\{b_n\}$ might be different. If, by contradiction, $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n > \mathop{\underline{\lim}}\limits_{n\to\infty}b_n$, then suppose $\lim\limits_{n\to\infty}b_{k_n} = \mathop{\underline{\lim}}\limits_{n\to\infty}b_n$, and we have $a_{k_n}\leq b_{k_n}$ for all $n$. Then 
+        $$\mathop{\underline{\lim}}\limits_{n\to\infty}a_n \leq \lim\limits_{n\to\infty}a_{k_n} \leq \lim\limits_{n\to\infty}b_{k_n} = \mathop{\underline{\lim}}\limits_{n\to\infty}b_n.$$
+        (Although $\{a_{k_n}\}$ may be not convergent, it has some convergent subsequence $\{a_{k_{l_n}}\}$ (which is also a subsequence of $\{a_n\}$) and we compare $\{a_{k_{l_n}}\}$ and $\{b_{k_{l_n}}\}$ to take the limit.)
+        \item Also, we assume the limit superior $a^\ast$ to be finite, and let $\alpha_n = \sup\limits_{k\geq n}a_k$.
+        \begin{compactitem}
+            \item First, $\lim\limits_{n\to\infty}\alpha_n \leq a^\ast$. For each $k\in\mathbb{N}^\ast$, we can find some $n_k$ s.t. $a_n<a^\ast+\frac{1}{k+1}$ for all $n\geq n_k$ (and we force that $n_1<n_2<\dots$). Then 
+            $$\alpha_{n_k} = \sup\limits_{n\geq n_k}a_n\leq a^\ast+\frac{1}{k+1}<a^\ast+\frac{1}{k},$$ 
+            and we let $k\rightarrow\infty$ to obtain $\lim\limits_{n\to\infty}\alpha_n \leq a^\ast$.
+            \item Second, $\lim\limits_{n\to\infty}\alpha_n \geq a^\ast$. We choose a subsequence $\{a_{k_n}\}$ s.t. $\lim\limits_{n\to\infty}a_{k_n} = a^\ast$. Since that $\alpha_{k_n} \geq a_{k_n}$ for all $n$, and that $\{\alpha_n\}$ is decreasing (hence is convergent), we let $n\rightarrow\infty$ to obtain $\lim\limits_{n\to\infty}\alpha_n = \lim\limits_{n\to\infty}\alpha_{k_n} \geq a^\ast$.
+        \end{compactitem}
+    \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    The 7th property here illustrates why we use $\limsup$ and $\liminf$ to denote limit superior and limit inferior. After all, the readers may first come up with the idea of using $\sup\lim$ instead of $\limsup$, as the limit superior is defined as the supremum of the possible subsequences' limits. \\
+    We also desire to construct the arithmetic of $\limsup$ and $\liminf$. Since $\limsup$ and $\liminf$ involve the infinity, we must first supplement the arithmetic for $\infty$ and $-\infty$.
+\end{Rmk}
+
+\begin{Df}{$\bullet$ Df1.11.2.-2 (arithmetic in $\mathbb{R}_\infty$)}
+    In $\mathbb{R}_\infty$, we define the ``+'', ``-'', ``$\cdot$'' and ``$/$'' (mainly for those rules involving infinity that are not defined before) as follows (the symbol ``$\textcolor{red}{u}$'' means that the we still not define the operation):
+    \begin{compactenum}
+        \item (+): Suppose $r\in\mathbb{R}$. Then
+        $$
+        \begin{aligned}
+            &r+\infty = \infty, \;\;\quad r+(-\infty) = -\infty,  \\
+            &\infty+\infty = \infty, \quad (-\infty)+(-\infty) = -\infty, \quad \infty+(-\infty) = \textcolor{red}{u}.
+        \end{aligned}
+        $$
+        and (+) is defined to be commutative (for those not listed here). \textcolor{Th}{If $a+b+c\triangleq (a+b)+c$ where $a,b,c\in\mathbb{R}_\infty$, then (+) is associative (which means that $a+b+c = a+(b+c)$ for all $a,b,c\in\mathbb{R}_\infty$).}
+        \item (-): Suppose $r\in\mathbb{R}$. First define the univariate ``additive inverse'' operation (-) on $\mathbb{R}_\infty$:
+        $$ -(r) = -r, \quad -(\infty) = -\infty, \quad -(-\infty) = \infty. $$
+        Then the subtraction (-) for any $a,b\in\mathbb{R}_\infty$ is defined as
+        $$ a-b = a+(-b). $$
+        \item ($\cdot$): Suppose $r\in\mathbb{R}$ and $r>0$. Then
+        $$
+        \begin{aligned}
+            &r\cdot\infty = \infty, \;\;\quad r\cdot(-\infty) = -\infty, \;\;\,\quad (-r)\cdot\infty = -\infty, \quad (-r)\cdot(-\infty) = \infty, \\
+            &\infty\cdot\infty = \infty, \quad (-\infty)\cdot(-\infty) = \infty, \quad \infty\cdot(-\infty) = -\infty, \\
+            &0\cdot\infty = \textcolor{red}{u}, \;\;\;\quad 0\cdot(-\infty) = \textcolor{red}{u}.
+        \end{aligned}
+        $$
+        and ($\cdot$) is defined to be commutative (for those not listed here). \textcolor{Th}{If $a\cdot b\cdot c\triangleq (a\cdot b)\cdot c$ where $a,b,c\in\mathbb{R}_\infty$, then ($\cdot$) is associative (which means that $a\cdot b\cdot c = a\cdot(b\cdot c)$ for all $a,b,c\in\mathbb{R}_\infty$).}
+        \item ($/$): Suppose $r\in\mathbb{R}$ and $r>0$. First define the univariate ``multiplicative inverse'' operation ($1/$) on $\mathbb{R}_\infty$:
+        $$ 1/(\pm r) = \pm 1/r, \quad 1/(\infty) = 1/(-\infty) = 0, \quad 1/0 = \textcolor{red}{u} $$
+        Then the division ($/$) for any $a,b\in\mathbb{R}_\infty$ is defined as
+        $$ a/b = a\cdot(1/b). $$
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    The infinity is actually a limit, and the arithmetic above is defined to make the limit operation more convenient. This is the following rules which extends the arithmetic of regular limits (those in the Rmk \{, ID: 1.1\})
+\end{Rmk}
+
+\begin{Th}{$\bullet$ Th1.11.2.-1 (extended arithmetic of regular limit) (arithmetic of limit)}
+    Suppose $\{a_n\}$ and $\{b_n\}$ are sequences in $\mathbb{R}$, and $\lim\limits_{n\to\infty}a_n, \lim\limits_{n\to\infty}b_n$ both exist in $\mathbb{R}_\infty$. Then:
+    $$ \lim\limits_{n\to\infty}\Big(a_n (+-\cdot\,/) b_n\Big) = \left(\lim\limits_{n\to\infty}a_n \right)(+-\cdot\,/) \left(\lim\limits_{n\to\infty}b_n\right). $$
+    (Here if the right side can be computed in $\mathbb{R}_\infty$, then the sequence of the left side has definition after the $N$-th term for some $N\in\mathbb{N}$, and the limit of the left side exists in $\mathbb{R}_\infty$ and is equal to the result of the right side; if otherwise the right side is ``$\textcolor{red}{u}$'' in Df 1.11.2.-2, then the limit of the left side can exist in $\mathbb{R}_\infty$ or not so that other methods should be used to determine the limit.)
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th1.11.2 (arithmetic of $\mathop{\overline{\lim}}$ and $\mathop{\underline{\lim}}$)}
+    Suppose $\{x_n\}$ and $\{a_n\}$ are sequences in $\mathbb{R}$, and $\lim\limits_{n\to\infty}x_n = x\in\mathbb{R}_\infty$. Then:
+    \begin{compactenum}
+        \item $\mathop{\overline{\lim}}\limits_{n\to\infty}(a_n + x_n) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right) + x$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(a_n + x_n) = \left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right) + x$.
+        \item $\mathop{\overline{\lim}}\limits_{n\to\infty}(a_n - x_n) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right) - x$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(a_n - x_n) = \left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right) - x$; \\
+        $\mathop{\overline{\lim}}\limits_{n\to\infty}(x_n - a_n) = x - \left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right)$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(x_n - a_n) = x - \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right)$.
+        \item If $x>0$, then $\mathop{\overline{\lim}}\limits_{n\to\infty}(a_n\cdot x_n) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right)\cdot x$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(a_n\cdot x_n) = \left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right)\cdot x$; \\ 
+        if $x<0$, then $\mathop{\overline{\lim}}\limits_{n\to\infty}(a_n\cdot x_n) = \left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right)\cdot x$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(a_n\cdot x_n) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right)\cdot x$.
+        \item If $x>0$, then $\mathop{\overline{\lim}}\limits_{n\to\infty}(a_n/x_n) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right)/x$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(a_n/x_n) = \left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right)/x$;\\ 
+        if $x<0$, then $\mathop{\overline{\lim}}\limits_{n\to\infty}(a_n/x_n) = \left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right)/x$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(a_n/x_n) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right)/x$. 
+        \item[$4^*$] Suppose $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n>0$ or $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n<0$. \\
+        If $x>0$, then $\mathop{\overline{\lim}}\limits_{n\to\infty}(x_n/a_n) = x/\left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right)$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(x_n/a_n) = x/\left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right)$;\\
+        if $x<0$, then $\mathop{\overline{\lim}}\limits_{n\to\infty}(x_n/a_n) = x/\left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right)$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}(x_n/a_n) = x/\left(\mathop{\underline{\lim}}\limits_{n\to\infty}a_n\right)$. 
+    \end{compactenum}
+    (Here each equality, as we have mentioned in Th1.11.2.-1, means that: if the right side can be computed in $\mathbb{R}_\infty$, then the sequence of the left side has definition after the $N$-th term for some $N\in\mathbb{N}$, and the limit superior or limit inferior of the left side exists in $\mathbb{R}_\infty$ and is equal to the result of the right side; if otherwise the right side is ``$\textcolor{red}{u}$'' in Df 1.11.2.-2, then the limit superior or limit inferior of the left side can exist in $\mathbb{R}_\infty$ or not so that other methods should be used to determine it.)
+    \tcblower
+    \textit{Pf}: See the next page.
+\end{Th}
+
+\begin{Th}{$\bullet$ Th1.11.2 (arithmetic of $\mathop{\overline{\lim}}\limits_{n\to\infty}$ and $\mathop{\underline{\lim}}\limits_{n\to\infty}$) —  continued}
+    \textit{Pf}: The details of the proof are trivial, and thus we only prove that $\mathop{\overline{\lim}}\limits_{n\to\infty}(a_n + x_n) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right) + x$ to illustrate the idea. \\
+    Let $E\{b_n\}$ denote the set of all subsequences' limits of an arbitrary sequence $\{b_n\}$ (as is defined in Df1.11). Then
+    $$ E\{b_n\} = \{\lim\limits_{n\to\infty}b_{k_n}: \{b_{k_n}\}\text{ is a subsequence of }\{b_n\}\} $$
+    Thus 
+    $$ E\{a_n+x_n\} = \{\lim\limits_{n\to\infty}(a_{k_n}+x_{k_n})\}, $$
+    where $\{a_{k_n}+x_{k_n}\}$ converges to some element in $\mathbb{R}_\infty$. Here we can further assume that the $\{a_{k_n}\}$ in the expression of $E\{a_n+x_n\}$ above converges to someone in $\mathbb{R}_\infty$ (since if not, we can find a convergent subsequence $\{a_{k_{l_n}}\}$ of $\{a_{k_n}\}$ and then
+    $$ \lim\limits_{n\to\infty}(a_{k_{l_n}}+x_{k_{l_n}}) = \lim\limits_{n\to\infty}(a_{k_n} + x_{k_n}), $$
+    which does not affect the set $E$.) Furthermore, the sum $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n + x$ is assumed to be computable by the Df \{, ID: 1.11.2.-2\} (since the theorem only claims for this situation). Then let $\{a_{l_n}\}$ be the subsequence s.t. $\lim\limits_{n\to\infty}a_{l_n} = \mathop{\overline{\lim}}\limits_{n\to\infty}a_n$. Then for any $\{a_{k_n}\}$ that satisfies all conditions above, $\lim\limits_{n\to\infty}a_{k_n} = \lim\limits_{n\to\infty}a_{l_n}$ (so that $\lim\limits_{n\to\infty}(a_{k_n} + x_{k_n}) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right) + x$) or $\lim\limits_{n\to\infty}a_{k_n} < \lim\limits_{n\to\infty}a_{l_n}$. Under the latter case, we have $a_{k_n} < a_{l_n}$ (when $n$ is large enough). Then
+    $$ a_{k_n} + x_{k_n} < a_{l_n} + x_{k_n}, $$
+    and thus after taking the limit, we have
+    $$ \lim\limits_{n\to\infty}(a_{k_n} + x_{k_n}) \leq \lim\limits_{n\to\infty}(a_{l_n} + x_{k_n}) = \lim\limits_{n\to\infty}a_{l_n} + \lim\limits_{n\to\infty}x_{k_n} = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right) + x. $$
+    So far we have verified that $\left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right)+x$ is an upper bound of $E\{a_n+x_n\}$, and clearly this upper bound can be achieved if we choose $\{a_{k_n}\}$ to be $\{a_{l_n}\}$. Hence $\mathop{\overline{\lim}}\limits_{n\to\infty}(a_n+x_n) = \left(\mathop{\overline{\lim}}\limits_{n\to\infty}a_n\right) + x$.
+\end{Th}
 \end{document}
