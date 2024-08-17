@@ -399,7 +399,7 @@ Then with everything prepared, here we go.
     \textit{Pf}: This theorem can be drawn combining the Th \{, ID: 3.6.1.1\} and the Th \{, ID: 3.6.3.2\} (perhaps supplement the definition of $f^\prime$ at $a$ and $b$ with the corresponding limits to meet the conditions that $f^\prime$ is interval-derivable on $[a,b]$).
 \end{Th}
 
-\begin{Th}{Th3.7.1 (L'Hospital's (洛必达) rule)}
+\begin{Th}{Th3.7.1 (L'Hospital's (洛必达) rule for $\frac{0}{0}$)}
     Within the range of this theorem (including theorem text, proof and corresponding remarks), we adopt the real circle's perspective.\\
     Suppose $f$ and $g$ are real functions, and $x_0, y_0$ are arbitrarily chosen from $t_0, t_0^+, t_0^-, \infty, \infty^+, \infty^-$ ($t_0\in\mathbb{R}$). If:
     \begin{compactenum}
@@ -419,4 +419,47 @@ Then with everything prepared, here we go.
     Now we prove the case where $x_0 = \infty$. Let $x = 1/t$, then we apply the L'Hospital's rule proved above to $\lim\limits_{t\to 0} \frac{f(1/t)}{g(1/t)}$.\\
     As for $x_0 = \infty^+$ and $x_0 = \infty^-$, we can prove them in the same way. Then we complete the proof.
 \end{Th}
+
+\begin{Th}{Th3.7.2 (L'Hospital's rule for $\frac{\infty}{\infty}$)}
+    Suppose $f$ and $g$ are real functions. Let $x_0$ be a one-sided limit target, and $y_0$ be an option from $t_0^+, t_0^-, t_0, \infty, -\infty$. If:
+    \begin{compactenum}
+        \item $f$ and $g$ are derivable on some $\check{U}(x_0)$;
+        \item $\lim\limits_{x\to x_0} g(x) = \pm\infty$;
+        \item $\lim\limits_{x\to x_0} \frac{f^\prime(x)}{g^\prime(x)} = y_0$;
+    \end{compactenum}
+    then $\lim\limits_{x\to x_0} \frac{f(x)}{g(x)} = \lim\limits_{x\to x_0} \frac{f^\prime(x)}{g^\prime(x)} = y_0$.
+    \tcblower
+    \textit{Pf}: See the next page.
+\end{Th}
+
+\begin{Th}{Th3.7.2 (L'Hospital's rule for $\frac{\infty}{\infty}$) —  continued}
+    \textit{Pf}: We only prove the case where $x_0 = t_0^+$ and $y_0 = t_0$, and the other cases can be proved with the same idea.\\
+    Let $x_0\in\mathbb{R}$ and the limit target is $x_0^+$. Since $\lim\limits_{x\to x_0} \frac{f^\prime(x)}{g^\prime(x)} = y_0$, for every $\epsilon>0$, there exists some $\delta>0$ s.t. $y_0-\varepsilon < \frac{f^\prime(x)}{g^\prime(x)} < y_0+\varepsilon$ for every $x\in (x_0, x_0+\delta)$. Then take an arbitrary interval $(x,c)\subseteq (x_0, x_0+\delta)$, and apply the Cauchy's intermediate-value theorem to find some $\xi\in (x,c)$ s.t. 
+    $$ \frac{f(x)-f(c)}{g(x)-g(c)} = \frac{f^\prime(\xi)}{g^\prime(\xi)}\in (y_0-\varepsilon, y_0+\varepsilon). $$
+    Since also 
+    $$ \frac{f(x)-f(c)}{g(x)-g(c)} = \left[\frac{f(x)}{g(x)}-\frac{f(c)}{g(x)}\right]\left[1-\frac{g(c)}{g(x)}\right]^{-1}, $$
+    Take the limit superior and limit inferior of the both sides of the equation above, we have
+    $$ 
+    \begin{aligned}
+        \limsup\limits_{x\to x_0^+} \frac{f(x)}{g(x)} &= \limsup\limits_{x\to x_0} \Biggl\{\left[\frac{f(x)}{g(x)}-\frac{f(c)}{g(x)}\right]\left[1-\frac{g(c)}{g(x)}\right]^{-1}\Biggr\} \\ 
+        &= \limsup\limits_{x\to x_0^+} \frac{f^\prime(\xi)}{g^\prime(\xi)}\in [y_0-\varepsilon, y_0+\varepsilon], 
+    \end{aligned}
+    $$
+    and we similarly get $\liminf\limits_{x\to x_0^+} \frac{f(x)}{g(x)}\in [y_0-\varepsilon, y_0+\varepsilon]$. Then let $\varepsilon\rightarrow 0$, we get 
+    $$ \liminf\limits_{x\to x_0^+} \frac{f(x)}{g(x)} = \limsup\limits_{x\to x_0^+} \frac{f(x)}{g(x)} = y_0 = \lim\limits_{x\to x_0^+} \frac{f(x)}{g(x)}. $$ 
+\end{Th}
+
+\begin{Rmk}{}
+    Let us talk about the idea of this proof. To link $\lim\frac{f(x)}{g(x)}$ to $\lim\frac{f^\prime(x)}{g^\prime(x)}$, the Cauchy's intermediate-value theorem is still the only key so far. But we cannot directly supplement the definition of $f$ and $g$ at $x_0$ to write the equality
+    $$ \frac{f(x)}{g(x)} = \frac{f(x)-f(x_0)}{g(x)-g(x_0)} = \frac{f(x)-f(x_0)}{g(x)-(\pm\infty)}. $$
+    Hence we can only apply the Cauchy's intermediate-value theorem to one sub-interval $(x,c)$ of $(x_0, x_0+\delta)$, and then study the limit process of $\frac{f(x)-f(c)}{g(x)-g(c)}$ with $x\rightarrow x_0^+$, hoping that 
+    $$\frac{f(x)-f(c)}{g(x)-g(c)}\approx \frac{f(x)}{g(x)}.$$ 
+    Then why does the approximation hold? The answer is that $g(x)\rightarrow\pm\infty$, which covers the influence of $f(c)$ and $g(c)$ in the limit process. Remember when we solve the limit, say, 
+    $$ \lim\limits_{x\to\infty} \frac{2x-123}{3x-456}, $$
+    we usually divide the numerator and the denominator by $x$ to make them finite in the limit process. This is the same idea here where we just divide the numerator and the denominator by $g(x)$. Afterwards, we take the limit superior and limit inferior as we cannot preclaim the existence of the limit.\\
+    Here is some extension of this theorem. \textcolor{Th}{You might want to let $x_0$ be two-sided. Then what you need is just to add the extra condition:
+    $$ \forall\check{U}(x_0^-)\forall\check{U}(x_0^+)\;\exists x_1\in\check{U}(x_0^-)\exists x_2\in\check{U}(x_0^+) \text{ s.t. } g^\prime(x_1)\neq 0\neq g^\prime(x_2). $$
+    After we add this condition, the two-sided L'Hospital's rule can be reduced to the one-sided cases. \\
+    We do not consider $y_0$ to be $\pm\infty$ now.}
+\end{Rmk}
 \end{document}

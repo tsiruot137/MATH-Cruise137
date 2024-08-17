@@ -169,12 +169,17 @@ Then with everything prepared, here we go.
 \end{Df}
 
 \begin{Rmk}{}
-    In the common definition of limit, $a$ and $b$ can be any one of these four types. More exactly, each of $a$ and $b$ can be chosen as one of these six options:
+    In the common definition of limit, the limit target $a$ and the limit value $b$ can be any one of these four types. More exactly, each of $a$ and $b$ can be chosen as one of these six options:
     $$ t_0, t_0^+, t_0^-, \pm\infty, -\infty, \infty. $$
     Hence, we can define $6\times 6 = 36$ types of limit from the definition. For example, when $a$, $b$ are both real numbers (of type-1 here), then it is just Df \{, ID: 2.1\}, the regular type of limit; if $a = \infty$ (in type-4 here) and $b$ is a real number (of type-1 here), then the limit is just Df \{, ID: 2.1.3\}.\\
-    Actually, if we are aimed at summerizing different types of limit, we can treat the infinity as a point in $\mathbb{R}_\infty$ and discuss the limit involving infinity in the same way as the limit at a real number. \textcolor{Df}{Imagine a rope representing the real line $\mathbb{R}_\infty$, (do not mind that the rope is finite, as we have many ways to map the real line to a finite segment bijectively), and we join the two ends (representing $\infty$ and $-\infty$ respectively) of the rope to form a circle $\mathbb{R}_\infty^\circ$ called ``the real circle''. Then in the real circle's perspective, the original positive and negative infinity points join to a single point named $\infty$. In $\mathbb{R}_\infty^\circ$, like the limit process at a real number (two-sided or one-sided), the original processes $x\rightarrow\infty$, $x\rightarrow -\infty$ and $x\rightarrow\pm\infty$ in the real line $\mathbb{R}_\infty$ is now denoted as $x\rightarrow \infty^-$, $x\rightarrow \infty^+$ and $x\rightarrow \infty$ respectively in the real circle $R_\infty^\circ$ (according to which direction $x$ tends to $\infty$).}\\
-    We can also see that \textcolor{Th}{One sided limit value implies the two-sided counterpart. For example, if $\lim\limits_{x\to 0^+} f(x) = \infty^+$, then $\lim\limits_{x\to 0} f(x) = \infty$. But the converse is not true.}\\
-    This convention is convenient, but we do not adopt it by default unless we explicitly specify it by ``real circle's perspective''. With this convention, we can verify the more general rule for limit of composite functions (see the next theorem).
+    Actually, if we are aimed at summerizing different types of limit, we can treat the infinity as a point in $\mathbb{R}_\infty$ and discuss the limit involving infinity in the same way as the limit at a real number. \textcolor{Df}{Imagine a rope representing the real line $\mathbb{R}_\infty$, (do not mind that the rope is finite, as we have many ways to map the real line to a finite segment bijectively), and we join the two ends (representing $\infty$ and $-\infty$ respectively) of the rope to form a circle $\mathbb{R}_\infty^\circ$ called ``the real circle''. Then in the real circle's perspective, the original positive and negative infinity points join to a single point named $\infty$. In $\mathbb{R}_\infty^\circ$, like the limit process at a real number (two-sided or one-sided), the original processes $x\rightarrow\infty$, $x\rightarrow -\infty$ and $x\rightarrow\pm\infty$ in the real line $\mathbb{R}_\infty$ is now denoted as $x\rightarrow \infty^-$, $x\rightarrow \infty^+$ and $x\rightarrow \infty$ respectively in the real circle $\mathbb{R}_\infty^\circ$ (according to which direction $x$ tends to $\infty$).}\\
+    \textcolor{Df}{Among the 6 options for $a$ and $b$, we called $t_0^+$, $t_0^-$, $\infty^+$, $\infty^-$ the ``one-sided options'', and $t_0$, $\infty$ the ``two-sided options''.} Also, as we have done before, \textcolor{Df}{we term the premise ``$\text{dom}(f)$ intersects with any $\check{U}(a)$'' as ``$f$ is defined near $a$''}, and \textcolor{Df}{the condition ``$\text{dom}(f)$ contains some $\check{U}(a)$'' as ``$f$ is well-defined near $a$''.} Then we can see that \textcolor{Th}{ for the limit expression $\lim\limits_{x\to a} f(x) = b$:
+    \begin{compactenum}
+        \item If $b$ is one-sided, then the limit holds for the two-sided counterpart of $b$;
+        \item If $a$ is two-sided, then the limit holds for one of $a^-$ and $a^+$;
+        \item If $a$ is two-sided, $f$ is defined both near $a^-$ and near $a^+$, then $\lim\limits_{x\to a} f(x)=b$ iff $\lim\limits_{x\to a^-} f(x) = \lim\limits_{x\to a^+} f(x) = b$.
+    \end{compactenum}}
+    The convention that views the real line as a circle is convenient, but we do not adopt it by default unless we explicitly specify it by \textcolor{Df}{``real circle's perspective''}. With this convention, we can verify the more general rule for limit of composite functions (see the next theorem).
 \end{Rmk}
 
 \begin{Th}{$\bullet$ Th2.1.3.2 (different types of limit of composite function)}
@@ -229,7 +234,7 @@ Then with everything prepared, here we go.
     We can verify the following basic properties of the notations.\\
     \textcolor{Th}{Suppose $x_0$ is one of the six options, and the functions following have the same domain within some $\check{U}(x_0)$. Then:
     \begin{compactenum}
-        \item $f(x) = o(g(x))$ iff $\lim_{x\to x_0} \frac{g(x)}{f(x)} = \infty$; $f(x) = \omega(g(x))$ iff $\lim_{x\to x_0} \frac{g(x)}{f(x)} = 0$; (under the new agreement in this definition)
+        \item $f(x) = o(g(x))$ iff $\lim\limits_{x\to x_0} \frac{g(x)}{f(x)} = \infty$; $f(x) = \omega(g(x))$ iff $\lim\limits_{x\to x_0} \frac{g(x)}{f(x)} = 0$; (under the new agreement in this definition)
         \item $f(x) = O(g(x))$ iff $f(x) \neq \omega(g(x))$; $f(x) = \Omega(g(x))$ iff $f(x) \neq o(g(x))$;
         \item ``$o$'' implies ``$O$'', ``$\omega$'' implies ``$\Omega$'';
         \item ``$\Theta$'' is mutual, i.e., $f(x) = \Theta(g(x))$ iff $g(x) = \Theta(f(x))$;
@@ -360,7 +365,7 @@ Then with everything prepared, here we go.
 
 \begin{Th}{$\bullet$ Th2.5.1 (on a closed interval, interval-continuous function attains its maximum and minimum)}
     Suppose $f:[a,b]\rightarrow\mathbb{R}$ is interval-continuous on $[a,b]$. Then there exist $x^*, x_*\in [a,b]$ s.t. 
-    $$f(x^*) = \sup\{\text{range}(f)\}, \quad f(x_*) = \inf\{\text{range}(f)\}.$$
+    $$f(x^*) = \sup(text{range}(f)), \quad f(x_*) = \inf(\text{range}(f)).$$
     \tcblower
     \textit{Pf}: Only prove the maximum here. Let $M = \sup\{\text{range}(f)\}$. Similar to the proof of Th \{, ID: 2.5\}, we can find a sequence $\{x_n\}$ s.t. $f(x_n)\rightarrow M$. Then select a subsequence $\{x_{k_n}\}$ that converges to some $x^*\in[a,b]$, and finally prove that $f(x^*) = M$ using continuity and the resolution principle.
 \end{Th}
