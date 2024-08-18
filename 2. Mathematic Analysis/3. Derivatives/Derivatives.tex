@@ -29,23 +29,38 @@
 \maketitle
 
 This is the 3rd chapter of Mathematical Analysis, which is about \textbf{the Derivatives of Functions}. By the way, we now pre-claim some commonly-used notations and terms:
-\begin{compactenum}
-    \item $\mathbb{C}$: the set of the complex numbers;
-    \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
-    \item $\mathbb{Q}$: the set of the rational numbers;
-    \item $\mathbb{Z}$: the set of the integers;
-    \item $\mathbb{N}$: the set of the natural numbers;
-    \item $\mathbb{N^\ast}$: the set of the positive integers.
-    \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
-    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
-    \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
-    $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
-    \item Since in this course we major in the basic analysis on $\mathbb{R}$, we will use the term ``real function'' to refer to a function $f: A\rightarrow \mathbb{R}$ where $A\subseteq \mathbb{R}$.
-    \item $\infty$: positive infinity; $-\infty$: negative infinity; $\pm\infty$: infinity.
-    \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
-    \item An interval is a subset of $\mathbb{R}$ of one of the following forms: $(a,b)$, $[a,b]$, $(a,b]$, $[a,b)$, $(a, \infty)$, $(-\infty, b)$, $(-\infty, \infty)$, where $a, b\in\mathbb{R}$ and $a<b$. Please identify whether $(a,b)$ stands for a tuple or an open interval from the context by yourself.
-    \item Monotonic function: ``increasing'' for ``$\geq$'', ``strictly increasing'' for ``$>$''.
-\end{compactenum} 
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{C}$: the set of the complex numbers;
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item $\mathbb{Q}$: the set of the rational numbers;
+        \item $\mathbb{Z}$: the set of the integers;
+        \item $\mathbb{N}$: the set of the natural numbers;
+        \item $\mathbb{N^\ast}$: the set of the positive integers.
+        \item $\sideset{^R}{}{\mathop{D}}$: the set of all functions from $D$ to $R$ (with domain $D$ and range in $R$).
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item Since in this course we major in the basic analysis on $\mathbb{R}$, we will use the term ``real function'' to refer to a function $f: A\rightarrow \mathbb{R}$ where $A\subseteq \mathbb{R}$.
+        \item $\infty$: positive infinity; $-\infty$: negative infinity; $\pm\infty$: infinity.
+        \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
+        \item An interval is a subset of $\mathbb{R}$ of one of the following forms: $(a,b)$, $[a,b]$, $(a,b]$, $[a,b)$, $(a, \infty)$, $(-\infty, b)$, $(-\infty, \infty)$, where $a, b\in\mathbb{R}$ and $a<b$. Please identify whether $(a,b)$ stands for a tuple or an open interval from the context by yourself.
+        \item Monotonic function: ``increasing'' for ``$\geq$'', ``strictly increasing'' for ``$>$''.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item[] (3.3.*): Basic properties of derivatives (arithmetics, chain-rule, inverse function \dots).
+        \item[] (3.5.*): Intermediate-value theorems of derivatives.
+        \item[] (3.6.1.*): Monotonicity and derivatives.
+        \item[] (3.6.2.*): Extremum and derivatives.
+        \item[] (3.6.3.*): Convexity and derivatives.
+        \item[] (3.7.*): L'Hospital's rule.
+    \end{compactdesc}
+\end{Th}
+
 Then with everything prepared, here we go.
 
 \begin{Df}{Df3.1 (Derivatives (导数))}

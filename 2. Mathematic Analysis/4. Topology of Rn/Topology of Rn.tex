@@ -1,0 +1,197 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Topology of $\mathbb{R}^n$}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is the 4th chapter of Mathematical Analysis, which is about \textbf{Topology of $\mathbb{R}^n$}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{C}$: the set of the complex numbers;
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item $\mathbb{Z}$: the set of the integers;
+        \item $\mathbb{N}$: the set of the natural numbers;
+        \item $\mathbb{N^\ast}$: the set of the positive integers.
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
+        \item An interval is a subset of $\mathbb{R}$ of one of the following forms: $(a,b)$, $[a,b]$, $(a,b]$, $[a,b)$, $(a, \infty)$, $(-\infty, b)$, $(-\infty, \infty)$, where $a, b\in\mathbb{R}$ and $a<b$. Please identify whether $(a,b)$ stands for a tuple or an open interval from the context by yourself.
+        \item Monotonic function: ``increasing'' for ``$\geq$'', ``strictly increasing'' for ``$>$''.
+        \item The inner product and norm in $\mathbb{R}^n$ are the typical ones: $\langle \pmb{x}, \pmb{y}\rangle = x_1y_1 + \dots + x_ny_n$, $\Vert \pmb{x}\Vert = \sqrt{\langle \pmb{x}, \pmb{x}\rangle}$.
+        \item $E^c$: Let $E\subseteq\mathbb{R}^n$. Then $E^c\triangleq \mathbb{R}^n\setminus E$.
+        \item A set of sets is called a collection or a family.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+\end{Th}
+
+Then with everything prepared, here we go.
+
+\begin{Df}{Df4.1 (limit of sequence) (extension of Df \{, ID: 1.1\})}
+    Suppose $\{\pmb{x}_n: n\in\mathbb{N}\}$ is a sequence in $\mathbb{R}^n$ and $\pmb{l}\in\mathbb{R}^n$. Then $\pmb{l}$ is called the \textbf{limit} of the sequence $\{\pmb{x}_n\}$ (or $\{\pmb{x}_n\}$ \textbf{converges} to $\pmb{l}$), denoted by $\lim\limits_{n\to\infty} \pmb{x}_n = \pmb{l}$, if
+    $$\forall \varepsilon > 0, \exists N\in\mathbb{N}^\ast, \forall n\geq N, \Vert \pmb{x}_n - \pmb{l}\Vert < \varepsilon.$$
+\end{Df}
+
+\begin{Rmk}{}
+    We can easily verify the arithmetics:
+    \textcolor{Th}{Suppose $\{\pmb{x}_n\}$ and $\{\pmb{y}_n\}$ are two sequences in $\mathbb{R}^n$, both with their limits in $\mathbb{R}^n$. Then:
+    \begin{compactenum}
+        \item $\lim\limits_{n\to\infty} (\pmb{x}_n\pm\pmb{y}_n) = \lim\limits_{n\to\infty} \pmb{x}_n \pm \lim\limits_{n\to\infty} \pmb{y}_n$;
+        \item $\lim\limits_{n\to\infty} c\pmb{x}_n = c\lim\limits_{n\to\infty} \pmb{x}_n$ for any $c\in\mathbb{R}$.
+    \end{compactenum}}
+    And we naturally have:
+    \textcolor{Th}{Suppose $\{\pmb{x}_n\}$ is a sequence in $\mathbb{R}^n$ and $\pmb{l}\in\mathbb{R}^n$. Then $\lim\limits_{n\to\infty} \pmb{x}_n = \pmb{l}$ iff every subsequence of $\{\pmb{x}_n\}$ converges to $\pmb{l}$.}
+\end{Rmk}
+
+\begin{Th}{Th4.1.1 (points sequence converges by components)}
+    Suppose $\{\pmb{x}_n\}$ is a sequence in $\mathbb{R}^n$ and $\pmb{l}\in\mathbb{R}^n$. Then $\lim\limits_{n\to\infty} \pmb{x}_n = \pmb{l}$ iff $\lim\limits_{n\to\infty} x^{(i)}_n = l^{(i)}$ for each $i = 1, \dots, n$, where the superscript ``$(i)$'' denotes the $i$-th component of a vector.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Df}{Df4.1.2 (Cauchy sequence) (extension of Df \{, ID: 1.6\})}
+    Suppose $\{\pmb{x}_n\}$ is a sequence in $\mathbb{R}^n$. Then $\{\pmb{x}_n\}$ is called a \textbf{Cauchy sequence} if
+    $$\forall \varepsilon > 0, \exists N\in\mathbb{N}^\ast, \left(\forall m,n\geq N\right), \Vert \pmb{x}_m - \pmb{x}_n\Vert < \varepsilon.$$
+\end{Df}
+
+\begin{Th}{Th4.1.2.1 (Cauchy criterion) (extension of Th \{, ID: 1.7\})}
+    Suppose $\{\pmb{x}_n\}$ is a sequence in $\mathbb{R}^n$. Then $\{\pmb{x}_n\}$ has a limit in $\mathbb{R}^n$ iff $\{\pmb{x}_n\}$ is a Cauchy sequence.
+    \tcblower
+    \textit{Pf}: Obvious if we reduce it to the 1-dimensional case, aware of the ``convergence by components''.
+\end{Th}
+
+\begin{Df}{Df4.1.3.-1 (bounded set)}
+    Suppose $E\subseteq\mathbb{R}^n$. Then $E$ is called \textbf{bounded} if there is some positive real number $R$ s.t. $\Vert\pmb{x}\Vert\leq R$ for every $\pmb{x}\in E$. Otherwise, $E$ is called \textbf{unbounded}.
+\end{Df}
+
+\begin{Th}{Th4.1.3 (Bolzano-Weierstrass theorem) (extension of Th \{, ID: 1.5\})}
+    Suppose $\{\pmb{x}_n\}$ is a bounded sequence in $\mathbb{R}^n$. Then $\{\pmb{x}_n\}$ has a convergent subsequence.
+    \tcblower
+    \textit{Pf}: Obvious if we reduce it to the 1-dimensional case, aware of the ``convergence by components''. Actually, for the 1st component of the sequence, it is bounded and thus has a convergent subsequence; then for the 2nd component of this subsequence, it is bounded and thus has a convergent sub-subsequence; and so on.
+\end{Th}
+
+\begin{Df}{Df4.2 (open ball) (extension of Df \{, ID: 2.1.-1\})}
+    Suppose $\pmb{a}\in\mathbb{R}^n$ and $r$ is a positive real number. Then:
+    \begin{compactenum}
+        \item $B_r(\pmb{a})\triangleq \{\pmb{x}\in\mathbb{R}^n: \Vert \pmb{x}-\pmb{a}\Vert < r\}$ is called the \textbf{open ball} of radius $r$ centered at $\pmb{a}$.
+        \item $\bar{B}_r(\pmb{a})\triangleq \{\pmb{x}\in\mathbb{R}^n: \Vert \pmb{x}-\pmb{a}\Vert \leq r\}$ is called the \textbf{closed ball} of radius $r$ centered at $\pmb{a}$.
+        \item $\check{B}_r(\pmb{a})\triangleq \{\pmb{x}\in\mathbb{R}^n: 0 < \Vert \pmb{x}-\pmb{a}\Vert < r\}$ is called the \textbf{hollow open ball} of radius $r$ centered at $\pmb{a}$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Df}{Df4.2.1 (open set)}
+    Suppose $E\subseteq\mathbb{R}^n$. Then 
+    \begin{compactenum}
+        \item If $\pmb{a}\in E$, then $\pmb{a}$ is called an \textbf{interior point} of $E$ if there exists an open ball $B_r(\pmb{a})$ such that $B_r(\pmb{a})\subseteq E$;
+        \item The set of all interior points of $E$ is called the \textbf{interior} of $E$, denoted by $E^\circ$ (or $\text{int}(E)$);
+        \item $E$ is called an \textbf{open set} if $E^\circ = E$;
+        \item $E$ is called a \textbf{closed set} if $E^c$ is open.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    We find that \textcolor{Th}{an open ball is an open set, a hollow open ball is an open set, a closed ball is a closed set}. Here the ``open'' and ``closed'' are not disjoint, since \textcolor{Th}{$\mathbb{R}^n$ and $\varnothing$ are both open and closed}, and \textcolor{Th}{there are sets that are neither open nor closed (e.g. $(0,1]$).}
+\end{Rmk}
+
+\begin{Th}{Th4.2.2 (union and intersection of open sets and closed sets)}
+    In $\mathbb{R}^n$, we have:
+    \begin{compactenum}
+        \item The union of any collection of open sets is open;
+        \item The intersection of finitely many open sets is open;
+        \item The union of finitely many closed sets is closed;
+        \item The intersection of any collection of closed sets is closed.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: (1) is natural. For (2), suppose $E_1, \dots, E_n$ are open. Then for any $\pmb{a}\in E_1\cap\dots\cap E_n$, there exist $r_1, \dots, r_n$ such that $B_{r_1}(\pmb{a})\subseteq E_1, \dots, B_{r_n}(\pmb{a})\subseteq E_n$. Let $r = \min\{r_1, \dots, r_n\}$, so that $B_r(\pmb{a})\subseteq E_1\cap\dots\cap E_n$. (3) and (4) are natural by De Morgan's laws. 
+\end{Th}
+
+\begin{Rmk}{}
+    Let us talk about why (2) is not true for an infinite collection of open sets. Consider the collection $\{B_{1/n}(0): n\in\mathbb{N}^\ast\}$. Then $\bigcap\limits_{n=1}^\infty B_{1/n}(0) = \{0\}$, which is not open.
+\end{Rmk}
+
+\begin{Df}{Df4.2.3 (limit point) (focal point) (extension of Df \{, ID: 2.1.-2\})}
+    Suppose $E\subseteq\mathbb{R}^n$ and $\pmb{a}\in\mathbb{R}^n$. Then $\pmb{a}$ is called a \textbf{limit point} (or \textbf{focal point}) of $E$ if $E$ intersects every hollow open ball centered at $\pmb{a}$.
+\end{Df}
+    
+\begin{Rmk}{}
+    The equivalent definition of a limit point is: \textcolor{Df}{Suppose $E\subseteq\mathbb{R}^n$ and $\pmb{a}\in\mathbb{R}^n$. Then $\pmb{a}$ is a limit point of $E$ if there is a sequence $\{\pmb{x}_n\}$ in $E\setminus\{\pmb{a}\}$ s.t. $\lim\limits_{n\to\infty} \pmb{x}_n = \pmb{a}$.}\\
+    \textcolor{Df}{Let $E\subseteq\mathbb{R}^n$. Then the set of all limit points of $E$, denoted by $E^\prime$, is called the \textbf{derived set} of $E$. If a point $\pmb{a}$ is not a limit point of $E$, then $\pmb{a}$ is called an \textbf{isolated point} of $E$. Call the set $E\cup E^\prime$ the \textbf{closure} of $E$, denoted by $\overline{E}$.} We can then see these natural facts: 
+    \textcolor{Th}{The following $E$, $r$ and $\pmb{a}$ are all arbitrary:
+    \begin{compactenum}
+        \item $E^\prime$ and $\overline{E}$ are both closed;
+        \item $[B_r(\pmb{a})]^\prime = [\check{B}_r(\pmb{a})]^\prime = [\bar{B}_r(\pmb{a})]^\prime = \bar{B}_r(\pmb{a})$;
+        \item $E^\circ$ is the largest open set contained in $E$, $\overline{E}$ is the smallest closed set containing $E$.
+    \end{compactenum}}
+    \textcolor{Df}{For a subset $E$ of $\mathbb{R}^n$, we call those points in $(E^c)^\circ$ the \textbf{exterior points} of $E$, the set of all outer points of $E$ the \textbf{exterior} of $E$, denoted by $\text{ext}(E)$; call those points that are neither interior points nor exterior points of $E$ the \textbf{boundary points} of $E$, and the set of all boundary points of $E$ the \textbf{boundary} of $E$, denoted by $\partial E$.} 
+\end{Rmk}
+
+\begin{Th}{Th4.2.4 ($E$ is closed iff $E = \overline{E}$)}
+    Suppose $E\subseteq\mathbb{R}^n$. Then $E$ is closed iff $E = \overline{E}$.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Ex4.2.5 ($\varnothing$ and $\mathbb{R}^n$ are the only two sets that are both open and closed)}
+    In $\mathbb{R}^n$, are $\varnothing$ and $\mathbb{R}^n$ the only two sets that are both open and closed?
+    \tcblower
+    \textit{Answer}: Yes.\\
+    \textit{Solution}: If some set $E$ (neither $\varnothing$ nor $\mathbb{R}^n$) is both open and closed, then both $E$ and $E^c$ are open. To search for idea and simplify the thought, we first consider $E$ to be an open ball. Then we have known that $E^c$ cannot be open, which is due to the boundary of the ball $E$. \\
+    Then we think of that the an arbitrary set $E$ cannot be both open and closed if it has some boundary points. Actually, if $E$ is both open and closed, and $E$ has some boundary points $\pmb{x}$, then $\pmb{x}\notin E^\circ = E$ and $\pmb{x}\notin (E^c)^\circ = E^c$, impossible. \\
+    Then how to prove that except for $\varnothing$ and $\mathbb{R}^n$, any other subset $E$ of $\mathbb{R}^n$ has some boundary points? Since $E$ and $E^c$ are both non-empty, we find a point $\pmb{x}\in E$ and another point $\pmb{y}\in E^c$. As we can imagine, if moving from $\pmb{x}$ to $\pmb{y}$ along the line segment gradually, from $E^\circ$ to $(E^c)^\circ$, we must pass through some boundary points somewhere. \\
+    Now is the formal proof. Suppose $\varnothing\subsetneq E\subsetneq\mathbb{R}^n$. Then there are some $\pmb{x}\in E$ and $\pmb{y}\in E^c$. Consider the set
+    $$\Lambda = \{\lambda\in [0,1]: \pmb{x}+\lambda(\pmb{y}-\pmb{x})\in E^\circ\}.$$
+    If $\Lambda = \varnothing$, then $\pmb{x} = \pmb{x}+0(\pmb{y}-\pmb{x})\notin E^\circ$ and thus $\pmb{x}\in\partial E$. Suppose $\Lambda\neq\varnothing$, then $0\leq\inf\Lambda\leq\sup\Lambda\leq 1$. Consider the critical point $\pmb{z} = \pmb{x}+\lambda_0(\pmb{y}-\pmb{x})$ where $\lambda_0 = \inf\Lambda$. Then we can show that $\pmb{z}\in\partial E$:
+    \begin{compactenum}
+        \item $\pmb{z}\notin E^\circ$: If otherwise $\pmb{z}\in E^\circ$, then there is some $B_r(\pmb{z})\subseteq E$, and thus $\pmb{z}^\prime\triangleq \pmb{z}+\frac{r}{2}\frac{\pmb{y}-\pmb{x}}{\Vert\pmb{y}-\pmb{x}\Vert}\in E^\circ$, which contradicts that $\lambda_0$ is an upper bound of $\Lambda$;
+        \item $\pmb{z}\notin (E^c)^\circ$: If otherwise $\pmb{z}\in (E^c)^\circ$, then there is some $B_r(\pmb{z})\subseteq E^c$. But since $\lambda_0$ is the least upper bound of $\Lambda$, there is some $\lambda^\prime\in\Lambda$ s.t. $\lambda^\prime>\lambda_0-\frac{r}{\Vert\pmb{y}-\pmb{x}\Vert}$ (namely $\pmb{z}^\prime \triangleq \pmb{x}+\lambda^\prime(\pmb{y}-\pmb{x})\in E^\circ\subseteq E$), which contradicts that $\pmb{z}^\prime\in B_r(\pmb{z})\subseteq E^c$.
+    \end{compactenum}
+\end{Th} 
+
+\begin{Rmk}{}
+    This exercise obtain a byproduct: \textcolor{Th}{Every non-empty proper subset of $\mathbb{R}^n$ has some boundary points.}
+\end{Rmk}
+
+\begin{Df}{Df4.2.6.-1 (diameter)}
+    Suppose $E\subseteq\mathbb{R}^n$. Then the \textbf{diameter} of $E$, denoted by $\text{diam}(E)$, is defined as
+    $$\text{diam}(E) = \sup\{\Vert\pmb{x}-\pmb{y}\Vert: \pmb{x}, \pmb{y}\in E\}.$$
+\end{Df}
+
+\begin{Th}{Th4.2.6 (theorem of nested closed sets) (extension of Th \{, ID: 1.4\})}
+    Suppose $\{F_i: i\in\mathbb{N}\}$ is a sequence of non-empty closed sets in $\mathbb{R}^n$ and $F_1\supseteq F_2\supseteq F_3\supseteq \cdots$. Suppose also $\text{diam}(F_i)\rightarrow 0$. Then there is exactly one point in $\bigcap\limits_{i=1}^\infty F_i$.
+    \tcblower
+    \textit{Pf}: Since each $F_i$ is non-empty, find some $\pmb{x}_i\in F_i$ for each $i$. Clearly the sequence $X_i\triangleq\{\pmb{x}_i, \pmb{x}_{i+1}, \dots\}$ is in $F_i$. Since $\text{diam}(F_i)\rightarrow 0$, each $X_i$ is a Cauchy sequence, and different $X_i$ converge to some common $\pmb{x}$. Then for each $i$,
+    \begin{compactenum}
+        \item If all terms (or all terms after some term) in $X_i$ are $\pmb{x}$, then $\pmb{x}\in F_i$;
+        \item If there are always some term in $X_i$ that is not $\pmb{x}$, then choose these points as a subsequence $Y_i$ of $X_i$, and thus $Y_i$ is a sequence in $F_i\setminus\{\pmb{x}\}$ convergent to $\pmb{x}$, indicating that $\pmb{x}\in F_i^\prime\subseteq F_i$;
+    \end{compactenum}
+    that is, $\pmb{x}\in F_i$. Hence $\pmb{x}\in\bigcap\limits_{i=1}^\infty F_i$.\\
+    Easy to verify that $\bigcap\limits_{i=1}^\infty F_i$ contains only $\pmb{x}$.
+\end{Th}
+\end{document}
