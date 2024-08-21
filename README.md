@@ -1,5 +1,5 @@
 # MATH-Cruise137
-This repository stores all my cumulative mathematical knowledge, including **notes** from the courses learning, the **exercises** I have done, some interesting **problems** I have encountered, and some summaries or **insights** I concluded from my learning.
+This repository stores all my cumulative mathematical knowledge, including **notes** from the courses learning, some interesting **problems** I have encountered, and some summaries or **insights** I concluded from my learning.
 
 As though repository is named as `MATH-Cruise137`, the `Cruise137` does not have any specific meaning. Please do not take it seriously. Here I will give an overall introduction to this repository.
 
@@ -7,7 +7,7 @@ As though repository is named as `MATH-Cruise137`, the `Cruise137` does not have
 This repository is in general organized by the courses I have learned. Every time I learn a new course, a directory for the notes, problems, and insights from that course will be added to the repository. Actually the contents (of the notes, problems, and insights) of a certain course are not necessarily all related to the course, and they can be any mathematical knowledge I have learned during that period of time.
 
 ## 2. Basic Composition of the Content
-Every course directory contains four genres of files: `notes`, `exercise`, `problems`, and `insights`, which are all written in LaTeX. These four genres of files share the same composition, which is the commonly-used **"Definition-Theorem"** workflow in mathematics. This workflow is described below (as though every math learner would be familiar with it).
+Every course directory contains three genres of files: `notes`, `problems`, and `insights`, which are all written in LaTeX. These three genres of files share the same composition, which is the commonly-used **"Definition-Theorem"** workflow in mathematics. This workflow is described below (as though every math learner would be familiar with it).
 > **Definition-Theorem workflow ("Df-Th" workflow for short)**: Math theory is developed in chronological order. Mathamaticians start with some basic definitions, then they prove some theorems based on these definitions or on theorems previously proved. For the progress of math theory, there must be always new definitions proposed so that new theorems offering more insights to the world can be discovered. **In this workflow, every definition or theorem must based on the previous definitions or theorems. Every definition or theorem must be verified to be valid, and each newly proposed definition or theorem must not conflict with any previous ones.** Thus in the very beginning of math theory, mathematicians must initialize a set of **logic** or rules that must be followed throughout the development of the theory, and some cornerstones (called **axioms**) to support all the theory.
 >
 
@@ -38,8 +38,6 @@ Problems files record the mathematical problems I have done research on. Actuall
 
 No problems recorded yet. To be done.
 
-### 4.3 Exercises
-Similar to the problems files, the exercises files record the exercises I have done. But the exercises are more related to the corresponding course, while the problems are more like an arbitrary collection of math problems.
 ### 4.4 Insights
 Insights files record the insights I have summarized. In the insights files, the order in which I propose the definitions and theorems is not only chronological, but also logical, fluent, and reasonable for the readers to understand. In other words, the insights files focus more on the ideas, connections, motivations and applications, rather than the details of the proofs. 
 
@@ -62,13 +60,13 @@ As the courses learned increase, I would be navigating between different fields 
 A course is divided into chapters, as it is impractical to put all chapters in one file. Each chapter of content is written in some `.tex` files (note files, problem files or insight files).
 
 ### 6.3 File
-In the early design of this repository, I planned to record all the contents of one chapter in a single file. But with the increasing need of insights and exercises, it is better to separate them into the four genres of files.
+In the early design of this repository, I planned to record all the contents of one chapter in a single file. But with the increasing need of insights, it is better to separate them into the four genres of files.
 
 ## 7. Formatted Timestamp
 The physical structures of different hierarchy levels must be coded in a unified timestamp format:
 + Course: the **course ID** is an integer within `[0, 99]` (as I do not expect to learn more than 100 courses in my life)
 + Chapter: the **chapter ID** is a non-negative integer.
-+ File: the **file ID** is a non-negative integer prefixed with the genre of the file (`I` for insight, `P` for problem, `E` for exercise and none for note). For example, the file ID `I3` refers to the **3rd insight file** of this chapter. 
++ File: the **file ID** is a non-negative integer prefixed with the genre of the file (`I` for insight, `P` for problem, and none for note). For example, the file ID `I3` refers to the **3rd insight file** of this chapter. 
 + Block: every block except the remark blocks is assigned with a **block ID**. A block ID is a lexical tuple of integers prefixed with the chapter ID and the file ID. For example, the block ID `3_I2.4` is the block `4` in the file `I2` of the chapter `3`, `3_P2.4.5` is the block `4.5` in the file `P2` of the chapter `3`, `3.6.1` is the block `6.1` in the note file of chapter `3`. **The block ID within the chapter**, is the remaining part of the block ID after removing the prefix. For example, for the block ID `3_P2.4.5`, the block ID within the chapter is `4.5`.  The block ID is a lexical tuple of integers, representing the main-branch order:
   + `3.2` is before `3.3`, `3.3.1` is before `3.3.2` and `3.3.4` is before `3.4.3`.
   + `3.2` is before `3.2.1`, as `3.2` is actually `3.2.0` (exactly, it is `3.2.0.0.0. ...`). A block ID within the chapter is a lexical sequence infinite of integers, where those digits after the last presented digit are all zeros.
@@ -144,3 +142,19 @@ Above we have seen the sentence pattern of definition and theorem, where the who
 A definition delimits the exact range of cases where we say the definition terminology (as above, the terminology "`(2)` to be `(3)`"), and normally, a definition cannot shifts the cases which its terminology refers to. However, this shifting can happen when we persuit the flexibility of writing. For example, the methodology "definition generalization" mentioned above is a kind of shifting, where a generalized definition shifts the cases to a wider range.
 
 A shifted definition may has an impact on other definitions and theorems based on it. The shifted definition may appear in the premises or conclusions of other definitions or theorems. Hence, distributed the premises into multiple parts can alleviate the impact of the shifting. 
+
+### 8.9 Exercise Bank
+Exercises is a good way to test and consolidate the knowledge. Within the folder of a chapter (resp. a course), there can be one (but not more) file named `exercises.md` to collect some valuable exercise blocks presented in the chapter (resp. in the course). One `exercises.md` file is called the **Exercise Bank** of the corresponding chapter (resp. course). The instructions of exercise banks are as follows:
+
+(1) One chapter or one course can have **at most one** exercise bank, where you extract some valuable exercises from the corresponding chapter or course and put them all in this bank. 
+
+(2) This bank has no definition or theorem validity, as it is not allowed to propose any definition or theorem in this bank.
+
+(3) When including some exercise block into the bank, you are required to specify the entire reference of the block (see 7.1). You do not need to copy any content of the exercise after you correctly refer to the block.
+
+(4) It is recommended to specify the **source** of the exercise (from which book, from which webpage or proposed by whom). Feel free on the format of the source as long as you can relocate the exercise in future.
+
+(5) It is also recommended to make a rating to an exercise. This **rate** to an exercise is a complex number which reflects roughly its importance and difficulty, with the real component for "difficulty" and the imaginary component for "importance". It should be noted that the rating of one exercise can be changed over time. Now is the **rating rule**. 
+> Begin at score 0, each time I want to try on the exercise I will update the rate. If I can solve it, then add $i$ to the rating; if I cannot answer it or I finally give a wrong solution, then add $1+i$ to the rating. Each trial on solving an exercise, it is recommended to be familiar with the corresponding content beforehand and to limit the time.
+
+So the rating $r$ of an exercise is a complex number, where a larger $\text{Re}(r)$ means a higher difficulty and a larger $\text{Im}(r)$ means a higher importance. The square of the absolute value $|r|^2$ is the **overall score** of the exercise.
