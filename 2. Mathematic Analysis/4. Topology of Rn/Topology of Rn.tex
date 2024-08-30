@@ -18,6 +18,7 @@
     \definecolor{Df}{RGB}{0, 184, 148}
     \definecolor{Th}{RGB}{9, 132, 227}
     \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
     \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
     \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
     \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
@@ -31,8 +32,8 @@
 This is the 4th chapter of Mathematical Analysis, which is about \textbf{Topology of $\mathbb{R}^n$}. By the way, we now pre-claim some commonly-used notations and terms:
 \begin{Df}{Notations and Terms}
     \begin{compactenum}
-        \item $\mathbb{C}$: the set of the complex numbers;
         \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item $\mathbb{R}^n$: without extra specification, $n\in\mathbb{N}^\ast$; 
         \item $\mathbb{Z}$: the set of the integers;
         \item $\mathbb{N}$: the set of the natural numbers;
         \item $\mathbb{N^\ast}$: the set of the positive integers.
@@ -50,6 +51,20 @@ This is the 4th chapter of Mathematical Analysis, which is about \textbf{Topolog
 
 Here is the \textbf{Quick Search} for this chapter:
 \begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item[] (4.2.*): Open sets and closed sets.
+        \item[] (4.3.*): Sequentially compact $\Leftrightarrow$ compact $\Leftrightarrow$ bounded closed.
+    \end{compactdesc}
+\end{Th}
+
+When I marched this point, I add the \textbf{Pre \& Post Exercise} pattern to the writing, which is shown as the following Th block:
+
+\begin{Th}{Some theorem}
+    The text.
+    \tcblower
+    \textcolor{P}{\textit{Analytically}: The pre-exercise part.}\\
+    \textit{Pf}: The formal proof.\\
+    \textcolor{P}{\textit{Thoughtfully}: The post-exercise part.}
 \end{Th}
 
 Then with everything prepared, here we go.
@@ -205,5 +220,152 @@ Then with everything prepared, here we go.
     \textit{Pf}: Obvious.
 \end{Th}
 
+\begin{Df}{Df4.3.2.-1 (open cover (开覆盖))}
+    Suppose $E\subseteq\mathbb{R}^n$ and $\{A_\lambda: \lambda\in\Lambda\}$ is a collection of open sets in $\mathbb{R}^n$. Then $\{A_\lambda\}$ is called an \textbf{open cover} of $E$ if $E\subseteq\bigcup\limits_{\lambda\in\Lambda} A_\lambda$.
+\end{Df}
 
+\begin{Df}{Df4.3.2 (compact sets (紧致集))}
+    Suppose $E\subseteq\mathbb{R}^n$. Then $E$ is said to be compact if: \\
+    For every open cover $\{A_\lambda: \lambda\in\Lambda\}$ of $E$, there are finitely many $\lambda_1, \dots, \lambda_m$ s.t. $E\subseteq \bigcup_{i=1}^m A_{\lambda_i}$.
+\end{Df}
+
+\begin{Rmk}{}
+    In a word, a compact set is a set such that every open cover of it has a finite subcover. In $\mathbb{R}^n$, we have defined a more general concept of open cover than that in $\mathbb{R}$, the latter of which is just a collection of open intervals. And with this more general concept, we can extend the finite-covering theorem (or the Heine-Borel theorem) in $\mathbb{R}$ to $\mathbb{R}^n$ as follows.
+\end{Rmk}
+
+\begin{Th}{Th4.3.2.1 (compact sets are exactly bounded closed sets) (finite-covering theorem) (Heine-Borel theorem)}
+    Suppose $E\subseteq\mathbb{R}^n$. Then $E$ is compact iff $E$ is a bounded closed set.
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item ``only if'': Suppose $E$ is compact. Then $E$ is obviously bounded as we can use finitely many open balls in the open cover $\{B_N(\pmb{0}): N\in\mathbb{N}^\ast\}$ to cover $E$. To prove that $E$ is closed is to prove that $E^c$ is open, namely, to find an open ball centered at $\pmb{y}$ for each point $\pmb{y}\in E^c$. Since for every point $\pmb{x}\in E$, there is an appropriate radius $r(\pmb{x})$ s.t. $B_{r(\pmb{x})}(\pmb{x})\cap B_{r(\pmb{x})}(\pmb{y}) = \varnothing$, we collect all these balls to form an open cover
+        $$\{B_{r(\pmb{x})}(\pmb{x}): \pmb{x}\in E\}$$
+        of $E$. Then there is an finite subcover $\{B_{r_1}(\pmb{x}_1), \cdots, B_{r_m}(\pmb{x}_m)\}$ of $E$. Hence we can then choose the minimum radius $r = \min\{r_1, \dots, r_m\}$ to ensure that $B_r(\pmb{y})\cap \bigcup_{i=1}^m B_{r_i}(\pmb{x}_i) = \varnothing$, which means that $B_r(\pmb{y})\subseteq E^c$.
+        \item ``if'': Obviously we need to prove with contradiction. Suppose $E$ is bounded and closed, but there is an open cover $\{A_\lambda: \lambda\in\Lambda\}$ of $E$ that has no finite subcover. \\
+        To search for contradiction, we can try to prove that $E$ is not closed, i.e., to find a point $\pmb{x}$ s.t. $\pmb{x}\in E^\prime$ but $\pmb{x}\notin E$ (of course this is just a try which is not necessary the final solution). Then it naturally comes to the nested closed sets theorem since this theorem is powerful in finding some singular point. Then we just assume that $E\subseteq \mathbb{R}^2$ for simplicity. \\
+        First find a Rectangle $H_1$ s.t. $H_1\supseteq E$. Then divide $H_1$ into 4 equal rectangles (just cut $H_1$ with a cross), and find one of them, say $H_2$, s.t. $H_2\cap E$ cannot be covered by finitely many $A_\lambda$. Then divide $H_2$ into 4 equal rectangles, and find one of them, say $H_3$, s.t. $H_3\cap E$ cannot be covered by finitely many $A_\lambda$. And so on. Then we can find a sequence of nested closed sets $(H_1\cap E)\supseteq (H_2\cap E)\supseteq (H_3\cap E)\supseteq \cdots$ s.t. 
+        \begin{compactenum}
+            \item $\text{diam}(H_i\cap E)\rightarrow 0$;
+            \item $H_i\cap E$ cannot be covered by finitely many $A_\lambda$ (let alone $H_i$).
+        \end{compactenum}
+        Then there is exactly one point $\pmb{x}\in\bigcap_{i=1}^\infty (H_i\cap E) = E\cap \bigcap_{i=1}^\infty H_i$. Since $\pmb{x}\in E$, there is some $A_{\lambda_0}$ s.t. $\pmb{x}\in A_{\lambda_0}$, and thus there is some open ball $B_r(\pmb{x})\subseteq A_{\lambda_0}$. Then those $H_i$ small enough will be contained in $B_r(\pmb{x})$ and thus covered by $A_{\lambda_0}$, which contradicts that $H_i$ cannot be covered by finitely many $A_\lambda$.
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df4.4.-1 (non-empty-disjoint partition)}
+    Suppose $E$ is a set. If $E$ can be written as the union $E = \bigcup_{\lambda\in\Lambda} E_\lambda$ where $E_\lambda\neq\varnothing$ and $E_\lambda\cap E_\mu = \varnothing$ for any $\lambda\neq\mu$, then $E = \bigcup_{\lambda\in\Lambda} E_\lambda$ is called a \textbf{non-empty-disjoint partition} of $E$, and the union $\bigcup_{\lambda\in\Lambda} E_\lambda$ is called a \textbf{non-empty-disjoint union}.
+\end{Df}
+
+\begin{Rmk}{}
+    This very literal definition is proposed just for the convenience of the following narrative.
+\end{Rmk}
+
+\begin{Df}{Df4.4 (connected sets (连通集))}
+    Suppose $E\subseteq\mathbb{R}^n$ and there is at least two distinct points in $E$. Then $E$ is said to be connected if for any non-empty-disjoint partition $E = A\cup B$ of $E$, \\
+    $A\cap B^\prime\neq\varnothing$ or $A^\prime\cap B\neq\varnothing$.
+\end{Df}
+
+\begin{Rmk}{}
+    The definition is constructed as an extension of the one of intervals in $\mathbb{R}$, as we will see that many properties of real functions hold on intervals, i.e., on some kinds of sets that are ``connected'' or ``not separated''. To depict this property of ``connected'' mathematicians proposed this definition.\\
+    The premise that there are at least two distinct points in $E$ is for the convenience that there must exist some non-empty-disjoint partition $E = A\cup B$ of $E$.
+\end{Rmk}
+
+\begin{Df}{Df4.4.1.-1 (region (区域))}
+    In $\mathbb{R}^n$, a connected open set is called a \textbf{region}, and the closure of a region is called a \textbf{closed region}.
+\end{Df}
+
+\begin{Th}{Th4.4.1 (equivalent definition for regions)}
+    Suppose $E\subseteq\mathbb{R}^n$ is an open set that contains at least two distinct points. Then $E$ is connected iff for any non-empty-disjoint partition $E = A\cup B$ of $E$, \\
+    one of $A$ and $B$ is not open.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th4.4.2 (in $\mathbb{R}$, connected sets are exactly intervals)}
+    Suppose $E\subseteq\mathbb{R}$. Then $E$ is connected iff $E$ is an interval.
+    \tcblower
+    \textit{Pf}: Obviously \textcolor{Th}{$E$ is an interval iff $\inf E<\sup E$ and $(\inf E, \sup E)\subseteq E$}.
+    \begin{compactenum}
+        \item ``only if'': Suppose $E$ is connected. If otherwise $E$ is not an interval, then there are some $x\in (\inf E, \sup E)$ s.t. $x\notin E$. Let $A = E\cap (-\infty, x)\cap E$ and $B = E\cap (x, \infty)$, then $E = A\cup B$ is a non-empty-disjoint partition of $E$ and thus, say, $A^\prime\cap B\neq\varnothing$. Let $a\in A^\prime\cap B$, then it is clear that $a\leq x$ since $a\in A^\prime$. But $a>x$ since $a\in B$, which is a contradiction.
+        \item ``if'': Suppose $E$ is an interval. If otherwise a non-empty-disjoint partition $E = A\cup B$ of $E$ satisfies $A\cap B^\prime = A^\prime\cap B = \varnothing$. \\ 
+        First take $a_0\in A$ and $b_0\in B$, then start the dichotomy from the interval $[a_0, b_0]$ (let us say $a_0<b_0$). If the midpoint of the current interval is in $A$ (resp. in $B$), then let the next interval be the left half (resp. right half) of the current interval. Then we obtain the nested closed intervals $\{[a_i, b_i]\}$ s.t. $a_i\in A$ and $b_i\in B$ for each $i$, and thus there is a point $x\in\bigcap_i [a_i, b_i]$. Since $E$ is an interval and $x\in [a_0, b_0]$, $x\in E$. Now $x$ must in one of $A$ and $B$. Say $x\in A$, then $x\notin B$ so that $b_i\rightarrow x$ and $b_i\neq x$, and thus $x\in A\cap B^\prime$, which contradicts $A\cap B^\prime = \varnothing$.
+    \end{compactenum}
+    \textcolor{P}{\textit{Thoughtfully}: To find a point, consider the nested closed sets theorem.}
+\end{Th}
+
+\begin{Df}{Df4.4.3.-1 (continuous curve)}
+    \begin{compactenum}
+        \item Suppose $l\subseteq\mathbb{R}^n$. Then $l$ is called a \textbf{continuous curve} in $\mathbb{R}^n$ if there are continuous functions $\varphi_i: [a,b]\rightarrow\mathbb{R}$ ($i = 1, \cdots, n$) s.t. $l = \{\pmb{\varphi}(t): t\in [a,b]\}$ (where $\pmb{\varphi}(t) = (\varphi_1(t), \cdots, \varphi_n(t))$).
+        \item Suppose $l$ is a continuous curve in $\mathbb{R}^n$ with the parameterization $\pmb{\varphi}: [a,b]\rightarrow\mathbb{R}^n$ defined above. Then $l$ is said to \textbf{connect} $\pmb{\varphi}(a)$ and $\pmb{\varphi}(b)$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    Here each of the $\varphi_i$ is defined on and is continuous on $[a,b]$. Actually it is more appropriate to say ``interval-continuous'' according to our convention, but never mind since for a real function defined on a closed interval, ``continuous'' is the same as ``interval-continuous''.
+\end{Rmk}
+
+\begin{Df}{Df4.4.3 (path-connected sets (道路连通集))}
+    Suppose $E\subseteq\mathbb{R}^n$ and there are at least two distinct points in $E$. Then $E$ is said to be path-connected if for any two distinct points $\pmb{x}, \pmb{y}\in E$, there is a continuous curve $l\subseteq E$ that connects $\pmb{x}$ and $\pmb{y}$.
+\end{Df}
+
+\begin{Th}{Th4.4.3.1 (path-connected $\Rightarrow$ connected)}
+    Suppose $E\subseteq\mathbb{R}^n$. Then $E$ is connected if $E$ is path-connected.
+    \tcblower
+    \textcolor{P}{\textit{Analytically}: To verify that either $A$ or $B$ contains a limit point of the other given $E = A\cup B$, the same idea with the proof of Th \{, ID: 4.4.2\} — dichotomy and nested closed intervals — can be adopted.}\\
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    This definition also reveals some kind of ``connectedness'' of a set, and we can see that the path-connectedness is much more intuitive than connectedness defined before. Actually this concept is proposed as an identification tool for connected sets since we are generally much more able to judge if a set is path-connected.
+\end{Rmk}
+
+\begin{Th}{Th4.4.3.2 (for open sets, path-connected $\Leftrightarrow$ connected)}
+    Suppose $E\subseteq\mathbb{R}^n$ is an open set. Then $E$ is connected iff $E$ is path-connected.
+    \tcblower
+    \textit{Pf}: If otherwise $E$ is connected but not path-connected, then there are two points $\pmb{x}, \pmb{y}\in E$ which cannot be connected by a continuous curve in $E$. Consider the set $P(\pmb{x})$ of all points in $E$ that can be path-connected to $\pmb{x}$. Then for each $\pmb{x}^\prime\in P(\pmb{x})$, there is some $B_r(\pmb{x}^\prime)\subseteq E$. Hence $\pmb{x}$ can be path-connected to every points in $B_r(\pmb{x}^\prime)$ and thus $B_r(\pmb{x}^\prime)\subseteq P(\pmb{x})$, implying that $P(\pmb{x})$ is open. Also, we know that for each $\pmb{a}\in E$, the set $P(\pmb{a})$ defined similarly is open. \\
+    Now consider the non-empty-disjoint partition $E = P(\pmb{x})\cup \bigcup_{\pmb{a}\in E\setminus P(\pmb{x})}P(\pmb{a})\triangleq A\cup B$, where both $A$ and $B$ are open. Contradicts that $E$ is connected.\\
+    \textcolor{P}{\textit{Thoughtfully}: Firstly, prove by contradiction to convert the constructive proof to verifiable proof. Secondly, to find a path starting from $\pmb{x}$ to the destination $\pmb{y}$, do not stick to paving the path with open balls, try other possible larger paving stones instead by making use of the conditions.}
+\end{Th}
+
+\begin{Th}{Ex4.4.3.3 (connected $\nRightarrow$ path-connected)}
+    Find an example of a connected set that is not path-connected.
+    \tcblower
+    \textit{Solution}: In $\mathbb{R}^2$, consider the set $E = \{(x, \sin\frac{1}{x}): x\in (0,\frac{2}{\pi}]\}$. Then we prove that $\overline{E}$ is connected but not path-connected. \\
+    (Note: here $\sin$ is the sine function. Although we have not learned the triangular functions for the sake of rigor (as we need power series to define them), we have learned their basic properties in high school. Just work with them now as there is no cycle reasoning.)\\
+    A trivial lemma: \textcolor{Th}{Suppose $E\subseteq\mathbb{R}^n$ is connected. Then $\overline{E}$ is connected.} Then since $E$ defined here is path-connected, $\overline{E}$ is connected. \\
+    Now we prove that $\overline{E}$ is not path-connected. Since $\overline{E} = E\cup\{(0, y): y\in [-1,1]\}$, we claim that there is no continuous curve in $\overline{E}$ that connects $(0,0)$ and $(2/\pi, 1)$. \\
+    If otherwise $l = \{(x(t), y(t)): t\in [a,b]\}\subseteq \overline{E}$ connects $(0,0)$ and $(2/\pi, 1)$, say $a=0$, $b=1$, $(x(0), y(0)) = (0,0)$ and $(x(1), y(1)) = (2/\pi, 1)$, then 
+    \begin{compactenum}
+        \item $\lim\limits_{t\to 0^+} x(t) = x(0) = 0$;
+        \item $\lim\limits_{t\to 0^+} y(t) = y(0) = 0$;
+    \end{compactenum}
+    Now let $m_0 = 0$, $t_0=1$ and $x_0 = 2/[(1+4m_0)\pi] = 2/\pi$, then $x(t_0) = x_0$. 
+    \begin{compactenum}
+        \item Since $x(\cdot)$ is continuous on $[0,1/2]$, the range of $x(\cdot)$ on $[0,1/2]$ is $[0, M_1]$ ($M_1 = \max_{t\in[0,1/2]}x(t)$). Then choose an integer $m_1$ s.t. $m_1>m_0$ and $x_1\triangleq 2/[(1+4m_1)\pi]\in [0, M_1]$, so that $x_1 = x(t_1)$ for some $t_1\in (0, 1/2]$.
+        \item Since $x(\cdot)$ is continuous on $[0,1/4]$, the range of $x(\cdot)$ on $[0,1/4]$ is $[0, M_2]$ ($M_2 = \max_{t\in[0,1/4]}x(t)$). Then choose an integer $m_2$ s.t. $m_2>m_1$ and $x_2\triangleq 2/[(1+4m_2)\pi]\in [0, M_2]$, so that $x_2 = x(t_2)$ for some $t_2\in (0, 1/4]$.
+        \item $\cdots$
+    \end{compactenum}
+    Then we obtain a sequence $\{t_i\}$ s.t.
+    \begin{compactenum}
+        \item $t_i\rightarrow 0$ and $t_i\neq 0$;
+        \item $x_i = x(t_i) = 2/[(1+4m_i)\pi]\rightarrow 0$ (since $m_i\rightarrow\infty$);
+    \end{compactenum}
+    Hence we find the following contradiction:
+    $$ 0 = \lim\limits_{t\to 0^+} y(t) = \lim\limits_{i\to\infty} y(t_i) \overset{x_i\neq 0}{=} \lim\limits_{i\to\infty} \sin\frac{1}{x_i} = \lim\limits_{i\to\infty} \sin\left(\frac{\pi}{2}+2m_i\pi\right) = 1. $$
+    \textcolor{P}{\textit{Thoughtfully}: See the next page.}
+\end{Th}
+
+\begin{Th}{Ex4.4.3.3 (connected $\nRightarrow$ path-connected) — continued}
+    \textcolor{P}{\textit{Thoughtfully}: it is how to find such a set $E$ that troubles us.\\
+    To find and prove such a set $E$, we cannot avoid such statement ``there is no path in $E$ connecting $\pmb{x}$ and $\pmb{y}$'' or ``if otherwise there is a path in $E$ connecting $\pmb{x}$ and $\pmb{y}$'', which would brought immense troubles as we often cannot enumerate all the possible paths connecting $\pmb{x}$ and $\pmb{y}$, of a huge variety of shapes especially in some trivial suspects (balls, rectangles, \dots). But what if we can limit the shape of the path? The ideal case is that $E$ is a curve, say, a line segment, so that every path in $E$ becomes very trivial.\\
+    A line-segment $AB$ is path-connected, so we need some modification for it. A set $E$ which contains some path-separated pair $(x,y)$ of points must have:
+    \begin{compactenum}
+        \item Every path connecting $x$ and $y$ is cut off by some point not in $E$;
+        \item Every path in $E$ starting from $x$ can never reaches $y$.
+    \end{compactenum}
+    If we construct $E$ by (1), we are to remove some points from the line segment $AB$. Removing one point, finitely many points, or a convergent sequence of points will not work, as this will directly lead to an unconnected $E$, neither will removing all rational points.
+    If we construct $E$ by (2), we are to add some points to $AB$ which cannot be reached by any path starting from $AB$. Sadly the newly added points cannot be isolated (i.e., not in the derived set of $AB$) as otherwise $E$ is again unconnected, and then we have no idea since no extra point is a limit point of $AB$.\\
+    But can we find such an extra limit point if $AB$ is not a line segment? Or can we twist the shape of $AB$ to make some other point $y$ approachable in any extent but never reachable? Imagine drawing $AB$ horizontally on a piece of paper, say $A=(0,0)$ and $B=(1,0)$, and choosing $y=(1,1)$. Then we can make the line segment repeatedly bulge upwards as moving from $A$ to $B$, in every effort, for infinitely many times, to approach $y$. This way we finally achieve the goal.\\
+    So far we have see the key to find such a set $E$: a curve, unlimitedly twisted or oscillating in a limited space. And there is a typical example of such characteristic: the curve $\{(x,y): y=\sin(1/x)\}$.}
+\end{Th}
 \end{document}

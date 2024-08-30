@@ -158,3 +158,13 @@ Exercises is a good way to test and consolidate the knowledge. Within the folder
 > Begin at score 0, each time I want to try on the exercise I will update the rate. If I can solve it, then add $i$ to the rating; if I cannot answer it or I finally give a wrong solution, then add $1+i$ to the rating. Each trial on solving an exercise, it is recommended to be familiar with the corresponding content beforehand and to limit the time.
 
 So the rating $r$ of an exercise is a complex number, where a larger $\text{Re}(r)$ means a higher difficulty and a larger $\text{Im}(r)$ means a higher importance. The square of the absolute value $|r|^2$ is the **overall score** of the exercise.
+
+### 8.10 Pre-exercise and Post-exercise
+Exercises needs reflection and summerization. If a proof or a solution is complete in your own work, it is worthwhile to record the **train of thought** called the **pre-exercise**. After solving the exercise — especially when you must refer to some other materials to solve it — it is suggested to write down some **experiences** called the **post-exercise**.
+
+> **Pre & Post Exercise pattern**: 
+> optional pre-exercise part + concise formal solution + optional post-exercise part.
+
+In note files, you are strongly recommended to follow the *pre & post exercise pattern*; while in insight files it does not matter since there we often take a more flexible writing style.
+
+In insight files, it is not necessary to follow the pre-exercise and post-exercise pattern.
