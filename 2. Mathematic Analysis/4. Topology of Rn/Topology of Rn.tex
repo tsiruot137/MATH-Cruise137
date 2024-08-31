@@ -52,8 +52,11 @@ This is the 4th chapter of Mathematical Analysis, which is about \textbf{Topolog
 Here is the \textbf{Quick Search} for this chapter:
 \begin{Th}{Quick Search}
     \begin{compactdesc}
-        \item[] (4.2.*): Open sets and closed sets.
-        \item[] (4.3.*): Sequentially compact $\Leftrightarrow$ compact $\Leftrightarrow$ bounded closed.
+        \item (4.2.*): Open sets and closed sets.
+        \item (4.3.*): Sequentially compact $\Leftrightarrow$ compact $\Leftrightarrow$ bounded closed.
+        \item (4.4.*): Connected sets.
+        \item (4.5.*): Continuity of $n$-real functions.
+        \item (4.6.*): Continuity of $n$-real $m$-functions.
     \end{compactdesc}
 \end{Th}
 
@@ -367,5 +370,248 @@ Then with everything prepared, here we go.
     If we construct $E$ by (2), we are to add some points to $AB$ which cannot be reached by any path starting from $AB$. Sadly the newly added points cannot be isolated (i.e., not in the derived set of $AB$) as otherwise $E$ is again unconnected, and then we have no idea since no extra point is a limit point of $AB$.\\
     But can we find such an extra limit point if $AB$ is not a line segment? Or can we twist the shape of $AB$ to make some other point $y$ approachable in any extent but never reachable? Imagine drawing $AB$ horizontally on a piece of paper, say $A=(0,0)$ and $B=(1,0)$, and choosing $y=(1,1)$. Then we can make the line segment repeatedly bulge upwards as moving from $A$ to $B$, in every effort, for infinitely many times, to approach $y$. This way we finally achieve the goal.\\
     So far we have see the key to find such a set $E$: a curve, unlimitedly twisted or oscillating in a limited space. And there is a typical example of such characteristic: the curve $\{(x,y): y=\sin(1/x)\}$.}
+\end{Th}
+
+\begin{Df}{Df4.5.-1 ($n$-real function)}
+    Suppose $f$ is a function. Then $f$ is called an $n$-real function if $\text{dom}(f)\subseteq\mathbb{R}^n$ and $f: \text{dom}(f)\rightarrow\mathbb{R}$.
+\end{Df}
+
+\begin{Rmk}{}
+    $1$-real function is just the real function.
+\end{Rmk}
+
+\begin{Df}{Df4.5 (limit of $n$-real function)}
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in(\text{dom}(f))^\prime$. Suppose also $l\in\mathbb{R}$. Then $l$ is called the limit of $f$ at $\pmb{x}_0$, denoted by $\lim\limits_{\pmb{x}\to\pmb{x}_0}f(\pmb{x}) = l$, if:
+    $$ \forall\varepsilon>0, \exists\delta>0, \forall\pmb{x}\in\text{dom}(f)\cap \check{B}_\delta(\pmb{x}_0), f(\pmb{x})\in B_\varepsilon(l). $$
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is merely an extension of the limit of real function.\\
+    \textcolor{Df}{For an $n$-real function $f$, we say that $\lim\limits_{\pmb{x}\to \pmb{x}_0} f(\pmb{x})$ exists if there is some real number $l$ such that $\lim\limits_{\pmb{x}\to \pmb{x}_0} f(\pmb{x}) = l$.}\\
+    \textcolor{Th}{From this definition, we can easily prove the following basic properties, just copy all the proof of those of real function:
+    \begin{compactenum}
+        \item (Uniqueness)
+        \item (Local boundness)
+        \item (Heine's theorem) (resolution principle) Suppose $f$ is an $n$-real function, $x_0\in(\text{dom}(f))^\prime$ and $l\in\mathbb{R}$. Then $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0}f(\pmb{x}) = l$ if and only if:\\
+        For any sequence $\{\pmb{x}_n:n\in\mathbb{N^\ast}\}$ in $\text{dom}(f)$ s.t. (1) $\pmb{x}_n\neq \pmb{x}_0$ for all $n\in\mathbb{N^\ast}$ and (2) $\lim\limits_{n\rightarrow\infty}\pmb{x}_n = \pmb{x}_0$, we have $\lim\limits_{n\rightarrow\infty}f(\pmb{x}_n) = l$.
+        \item (Arithmetics of limits) If both $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} f(\pmb{x})$ and $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} g(\pmb{x})$ exist, and $\pmb{x}_0$ is a limit point of each function below, then:
+        \begin{compactitem}
+            \item $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} (f(\pmb{x})\pm g(\pmb{x})) = \lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} f(\pmb{x}) \pm \lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} g(\pmb{x})$;
+            \item $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} (f(\pmb{x})g(\pmb{x})) = \lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} f(\pmb{x}) \cdot \lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} g(\pmb{x})$;
+            \item If $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} g(\pmb{x})\neq 0$, then $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} \frac{f(\pmb{x})}{g(\pmb{x})} = \frac{\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} f(\pmb{x})}{\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} g(\pmb{x})}$.
+        \end{compactitem}
+        \item (Limit of composite function) Suppose $\varphi$ is a real function, $f$ is an $n$-real function and $\varphi\circ f$ is composible. If:
+        \begin{compactenum}
+            \item $\lim\limits_{\pmb{x}\to\pmb{x}_0} f(\pmb{x}) = t_0$;
+            \item $\lim\limits_{t\to t_0} \varphi(t) = l$;
+            \item $\exists \check{B}_\eta(\pmb{x}_0)$ s.t. $f(\pmb{x})\neq t_0$ for all $\pmb{x}\in\check{B}_\eta(\pmb{x}_0)$,
+        \end{compactenum}
+        Then $\lim\limits_{\pmb{x}\to\pmb{x}_0} \varphi(f(\pmb{x}_0)) = l$.
+        \item (Cauchy criterion) Suppose $f$ is an $n$-real function and $\pmb{x}_0\in(\text{dom}{f})^\prime$. Then $\lim\limits_{\pmb{x}\to\pmb{x}_0} f(\pmb{x})$ exists iff:
+        $$\forall \varepsilon>0, \exists \delta>0, \forall \pmb{x}_1, \pmb{x}_2\in\text{dom}(f)\cap \check{B}_\delta(\pmb{x}_0), |f(\pmb{x}_1)-f(\pmb{x}_2)|<\varepsilon.$$
+    \end{compactenum}}
+    These are merely the trivial extension of those real-function counterparts.
+\end{Rmk}
+
+\begin{Df}{Df4.5.1 (continuity of $n$-real function)}
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in\text{dom}(f)$. Then $f$ is called continuous at $\pmb{x}_0$ (or, $\pmb{x}_0$ is called a continuity point of $f$) if:
+    $$\forall\varepsilon>0, \exists\delta>0, \forall \pmb{x}\in\text{dom}(f)\cap B_\delta(\pmb{x}_0), f(\pmb{x})\in B_\varepsilon(f(\pmb{x}_0)).$$
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is merely a trivial extension of the continuity of real function, and so are the following definitions and theorems (along their proofs).
+    \begin{compactenum}
+        \item \textcolor{Df}{Suppose $f$ is an $n$-real function and $D\subseteq\text{dom}(f)$. Then $f$ is called continuous on $D$ if $f$ is continuous at every point in $D$. Suppose also $\pmb{y}\in\mathbb{R}^n$, then $f$ is called discontinuous at $\pmb{y}$ (or $\pmb{y}$ is called a discontinuous point of $f$) if $f$ is not continuous at $\pmb{y}$.}
+        \item \textcolor{Th}{Suppose $f$ is an $n$-real function and $\pmb{y}\notin (\text{dom}(f))^\prime$. Then $f$ is continuous at $\pmb{y}$.}
+        \item \textcolor{Th}{Suppose $f$ is an $n$-real function and $\pmb{x}_0\in\text{dom}(f)\cap (\text{dom}(f))^\prime$. Then $f$ is continuous at $\pmb{x}_0$ iff $\lim\limits_{\pmb{x}\to\pmb{x}_0} f(\pmb{x}) = f(\pmb{x}_0)$.}
+        \item \textcolor{Th}{(Arithmetics) If $n$-real functions $f$ and $g$ are both continuous at $\pmb{x}_0$, then: 
+        \begin{compactenum}
+            \item $f\pm g$, $f\cdot g$ are all continuous at $\pmb{x}_0$;
+            \item if $g(\pmb{x}_0)\neq 0$, then $f/g$ is also continuous at $\pmb{x}_0$. 
+        \end{compactenum}}
+        \item \textcolor{Th}{(Continuity of composite function) Suppose real function $\varphi$ and $n$-real function $f$ are composable ($\varphi\circ f$). If $f$ is continuous at $\pmb{x}_0$ and $\varphi$ is continuous at $f(\pmb{x}_0)$, then $\varphi\circ f$ is continuous at $\pmb{x}_0$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df4.5.2 (uniform continuity)}
+    Suppose $f$ is an $n$-real function and $D\subseteq\text{dom}(f)$. Then $f$ is called uniformly continuous on $D$ if:
+    $$\forall\varepsilon>0, \exists\delta>0, \left(\forall \pmb{x}_1, \pmb{x}_2\in D\text{ and } \Vert\pmb{x}_1-\pmb{x}_2\Vert <\delta\right), |f(\pmb{x}_1)-f(\pmb{x}_2)|<\varepsilon.$$
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is merely a trivial extension of the uniform continuity of real function, and so are the following definitions and theorems (along their proofs).
+    \begin{compactenum}
+        \item \textcolor{Th}{Suppose $f$ is an $n$-real function. If $f$ is uniformly continuous on $\text{dom}(f)$, then $f$ is continuous on $\text{dom}(f)$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th4.5.3.1 (continuous function on a compact set is uniformly continuous)}
+    Suppose $f$ is an $n$-real function. If
+    \begin{compactenum}
+        \item $\text{dom}(f)$ is compact and
+        \item $f$ is continuous on $\text{dom}(f)$,
+    \end{compactenum}
+    then $f$ is uniformly continuous on $\text{dom}(f)$.
+    \tcblower
+    \textit{Pf}: Completely the same method with the proof of \{, ID: 2.4.1\}.
+\end{Th}
+
+\begin{Th}{Th4.5.3.2 (continuous function maps a compact set to a compact set)}
+    Suppose $f$ is an $n$-real function. If
+    \begin{compactenum}
+        \item $\text{dom}(f)$ is compact and
+        \item $f$ is continuous on $\text{dom}(f)$,
+    \end{compactenum}
+    then $\text{range}(f)$ is also compact.
+    \tcblower
+    \textit{Pf}: To prove that $\text{range}(f)$ is compact, namely, sequentially compact, we find a limit for some subsequence of an arbitrary sequence $\{y_k\}\subseteq\text{range}(f)$. Let $y_k = f(\pmb{x}_k)$ for some sequence $\{\pmb{x}_k\}\subseteq\text{dom}(f)$. Since $\text{dom}(f)$ is compact, a subsequence $\{\pmb{x}_{m_k}\}$ of $\{\pmb{x}_k\}$ converges to some $\pmb{x}_0\in\text{dom}(f)$.
+    \begin{compactenum}
+        \item If $\pmb{x}_{m_k} = \pmb{x}_0$ for $k>N$, then $y_{m_k} = f(\pmb{x}_{m_k}) = f(\pmb{x}_0)\rightarrow f(\pmb{x}_0)\in\text{range}(f)$;
+        \item If for every $N$ there is always $k>N$ s.t. $\pmb{x}_{m_k}\neq \pmb{x}_0$, let us say that $\pmb{x}_{m_k}\neq \pmb{x}_0$ for all $k$. Then $\pmb{x}_0\in\text{dom}(f)\cap (\text{dom}(f))^\prime$ and
+        $$ \lim\limits_{k\to\infty} y_{m_k} = \lim\limits_{k\to\infty} f(\pmb{x}_{m_k}) = \lim\limits_{\pmb{x}\to\pmb{x}_0} f(\pmb{x}) = f(\pmb{x}_0)\in\text{range}(f). $$
+    \end{compactenum}
+    And thus $\text{range}(f)$ is sequentially compact.
+\end{Th}
+
+\begin{Th}{Th4.5.3.3 (continuous function maps a connected set to a connected set)}
+    Suppose $f$ is an $n$-real function. If
+    \begin{compactenum}
+        \item $\text{dom}(f)$ is connected and $\text{range}(f)$ has at least 2 distinct points;
+        \item $f$ is continuous on $\text{dom}(f)$;
+    \end{compactenum}
+    then $\text{range}(f)$ is also connected.
+    \tcblower
+    \textit{Pf}: For every non-empty-disjoint partition $\text{range}(f) = A\cup B$, it is clear that $\text{dom}(f) = f^{-1}[A]\cup f^{-1}[B]$ is a non-empty-disjoint partition of $\text{dom}(f)$ (here $f^{-1}[A] = \{\pmb{x}\in\text{dom}(f): f(\pmb{x})\in A\})$ (see \{course: 0, ID: 1.5.2\}). Let us say that some sequence $\{\pmb{a}_k\}\subseteq f^{-1}[A]$ converges to some point $\pmb{b}\in f^{-1}[B]$, then $\pmb{a}_k\rightarrow\pmb{b}$ so that $\pmb{b}\in\text{dom}(f)\cap(\text{dom}(f))^\prime$, so that $\lim\limits_{\pmb{x}\to\pmb{b}} f(\pmb{x}) = f(\pmb{b})$ and so that:
+    $$ \lim\limits_{k\to\infty} f(\pmb{a}_k) = \lim\limits_{\pmb{x}\to\pmb{b}} f(\pmb{x}) = f(\pmb{b})$$
+    and thus $f(\pmb{b})\in A^\prime\cap B$.
+\end{Th}
+
+\begin{Th}{Th4.5.3.3.1 (intermediate value property)}
+    Suppose $f$ is an $n$-real function. If
+    \begin{compactenum}
+        \item $\text{dom}(f)$ is connected and
+        \item $f$ is continuous on $\text{dom}(f)$,
+    \end{compactenum}
+    then for any $a, b\in\text{range}(f)$ and any $c$ s.t. $a<c<b$, there is some $\pmb{x}_0\in\text{dom}(f)$ s.t. $f(\pmb{x}_0) = c$.
+    \tcblower
+    \textit{Pf}: Obvious by \{, ID: 4.5.3.3\}
+\end{Th}
+
+\begin{Df}{Df4.5.4.-1 (convex $n$-real function)}
+    Suppose $f$ is an $n$-real function and $\varnothing\neq A\subseteq\text{dom}(f)$ where $A$ is convex. Then the restriction of $f$ on $A$ is called a convex (resp. strict convex) $n$-real function or $f$ is said to be convex on $A$ (resp. strict convex on $A$) if: \\
+    $\forall \pmb{x}_1, \pmb{x}_2\in A$, $\forall \lambda_1, \lambda_2\in (0,1) \text{ s.t. } \lambda_1+\lambda_2=1$, we have $f(\lambda_1 \pmb{x}_1 + \lambda_2 \pmb{x}_2) \leq \lambda_1 f(\pmb{x}_1) + \lambda_2 f(\pmb{x}_2)$ (resp. $f(\lambda_1 \pmb{x}_1 + \lambda_2 \pmb{x}_2) < \lambda_1 f(\pmb{x}_1) + \lambda_2 f(\pmb{x}_2)$).
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is merely a trivial extension of the one of convex real function.
+\end{Rmk}
+
+\begin{Th}{Ex4.5.4 (convex functions on convex regions are continuous)}
+    Suppose $f$ is an $n$-real function. If
+    \begin{compactenum}
+        \item $\text{dom}(f)$ is a convex region (i.e. convex, open and connected) and
+        \item $f$ is convex on $\text{dom}(f)$,
+    \end{compactenum}
+    then $f$ is continuous on $\text{dom}(f)$.
+    \tcblower
+    \textit{Pf}: First we prove that $f$ is bounded on every compact subset $K$ of $\text{dom}(f)$. 
+    \begin{compactenum}
+        \item $f$ has an upper bound on $K$. Take arbitrarily a closed rectangle $H\subseteq\text{dom}(f)$, then we claim that $f$ has an upper bound on $H$: since $f(\lambda\pmb{x}+(1-\lambda)\pmb{y})\leq\max\{f(\pmb{x}), f(\pmb{y})\}$ holds for each line segment with endpoints $\pmb{x}, \pmb{y}\in H$, we can see that $f(\pmb{x})$ is not greater than the maximum of $f$ at the $2^n$ vertices of $H$. Hence $f$ has an upper bound on every closed rectangle $H$ in $\text{dom}(f)$, and thus on $K$ by the Heine-Borel theorem (just choose a open rectangle centered at each point in $K$, join these rectangles to form an open cover of $K$, and then a finite subcover can upper bound $f$ on $K$).
+        \item $f$ has a lower bound on every compact subset $K$ of $\text{dom}(f)$. If otherwise $f$ has no lower bound on $H$, then there is a sequence $\{\pmb{x}_k\}\subseteq K$ convergent to some $\pmb{x}_0\in K$ s.t. $f(\pmb{x}_k)\rightarrow -\infty$. Since $\text{dom}(f)$ is open, we choose some $B_\eta(\pmb{x}_0)\subseteq\text{dom}(f)$, and inspect those $\pmb{x}_k$ in $B_\eta(\pmb{x}_0)$. For each $\pmb{x}_k$, consider its symmetric point $2\pmb{x}_0-\pmb{x}_k\in B_\eta(\pmb{x}_0)$ with respect to $\pmb{x}_0$, then we have
+        $$ f(\pmb{x}_0)\leq \frac{1}{2}f(\pmb{x}_k)+\frac{1}{2}f(2\pmb{x}_0-\pmb{x}_k), $$
+        which is a contradiction. That is because $\{2\pmb{x}_0-\pmb{x}_k\}$ is a bounded sequence (and thus is a compact subset of $\text{dom}(f)$), so that $f(2\pmb{x}_0-\pmb{x}_k)$ has an upper bound, but $\{f(\pmb{x}_k)\}$ has no lower bound. Hence $f$ has a lower bound on $K$.
+    \end{compactenum}
+    Second we prove that $f$ is uniformly continuous on $\bar{B}_r(\pmb{x}_0)$ for every $\pmb{x}_0\in\text{dom}(f)$ so that $f$ is continuous on each $\pmb{x}_0\in\text{dom}(f)$. Let us say that $\bar{B}_{2r}(x_0)\subseteq\text{dom}(f)$. For every distinct $\pmb{x}, \pmb{y}\in \bar{B}_r(\pmb{x}_0)$, say $f(\pmb{x})\leq f(\pmb{y})$, we extend the line segment $\pmb{x}\pmb{y}$ intersecting the boundary of $\bar{B}_{2r}(\pmb{x}_0)$ at $\pmb{z}$. Then $\pmb{y} = (1-\lambda)\pmb{x}+\lambda\pmb{z}$ for some $\lambda\in(0,1)$, and thus
+    $$ |f(\pmb{y}) - f(\pmb{x})| = f(\pmb{y}) - f(\pmb{x}) \leq \lambda [f(\pmb{z})-f(\pmb{x})] \leq \lambda M = \frac{\Vert\pmb{y}-\pmb{x}\Vert}{\Vert\pmb{z}-\pmb{x}\Vert}M\leq \frac{M}{r}\Vert\pmb{y}-\pmb{x}\Vert, $$
+    (where $M$ is an upper bound for $\{f(\pmb{z}) - f(\pmb{x}): \pmb{z}, \pmb{x}\in\bar{B}_r(\pmb{x}_0)\}$) which is a Lipschitz condition, implying that $f$ is uniformly continuous on $\bar{B}_r(\pmb{x}_0)$.\\
+    \textcolor{P}{\textit{Thoughtfully}: Normally we prove the continuity of $f$, at every point $\pmb{x}_0$, by verifying the limit $\lim\limits_{\pmb{x}\to\pmb{x}_0} f(\pmb{x}) = f(\pmb{x}_0)$, and by using the resolution principle since no explicit formula for $f$ is given. But here we have only the convexity inequality which can only exemplify the behavior of $f$ on line segments, and thus cannot deal with the limit $\lim\limits_{i\to \infty} f(\pmb{x}_i)$ directly. So we have to change our mind to prove by uniform continuity, which is sometimes easier if we can find a Lipschitz condition.\\
+    \textbf{Keep in mind: to prove continuity, use definition, arithmetics or uniform continuity.}}
+\end{Th}
+
+\begin{Df}{Df4.6.-1 ($n$-real $m$-function)}
+    Suppose $\pmb{f}$ is a function. Then $\pmb{f}$ is called an $n$-real $m$-function if $\text{dom}(\pmb{f})\subseteq\mathbb{R}^n$ and $\pmb{f}: \text{dom}(\pmb{f})\rightarrow\mathbb{R}^m$.
+\end{Df}
+
+\begin{Rmk}{}
+    $n$-real $1$-function is just the $n$-real function.
+\end{Rmk}
+
+\begin{Df}{Df4.6 (limit of $n$-real $m$-function)}
+    Suppose $\pmb{f}$ is an $n$-real $m$-function and $\pmb{x}_0\in(\text{dom}(\pmb{f}))^\prime$. Suppose also $\pmb{l}\in\mathbb{R}^m$. Then $\pmb{l}$ is called the limit of $\pmb{f}$ at $\pmb{x}_0$, denoted by $\lim\limits_{\pmb{x}\to\pmb{x}_0}\pmb{f}(\pmb{x}) = \pmb{l}$, if:
+    $$ \forall\varepsilon>0, \exists\delta>0, \forall\pmb{x}\in\text{dom}(\pmb{f})\cap \check{B}_\delta(\pmb{x}_0), \pmb{f}(\pmb{x})\in B_\varepsilon(\pmb{l}). $$
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is merely an extension of the limit of $n$-real function.\\
+    \textcolor{Df}{For an $n$-real $m$-function $\pmb{f}$, we say that $\lim\limits_{\pmb{x}\to \pmb{x}_0} \pmb{f}(\pmb{x})$ exists if there is some $\pmb{l}\in\mathbb{R}^m$ such that $\lim\limits_{\pmb{x}\to \pmb{x}_0} \pmb{f}(\pmb{x}) = \pmb{l}$}\\
+    \textcolor{Th}{From this definition, we can copy all the properties (along their proofs) below from those of $n$-real function, just bold $f$ to $\pmb{f}$:
+    \begin{compactenum}
+        \item (Uniqueness)
+        \item (Converge by components) Suppose $\pmb{f}$ is an $n$-real $m$-function with $\pmb{f} = (f_1, \cdots, f_m)$, and $\pmb{l} = (l_1, \cdots, l_m)$. Then $\lim\limits_{\pmb{x}\to\pmb{x}_0}\pmb{f}(\pmb{x}) = \pmb{l}$ iff $\lim\limits_{\pmb{x}\to\pmb{x}_0}f_i(\pmb{x}) = l_i$ for all $i\in\{1,\cdots,m\}$.
+        \item (Local boundness)
+        \item (Heine's theorem) (resolution principle) 
+        \item (Arithmetics of limits) Let $\pmb{f}$ and $\pmb{g}$ are both $n$-real $m$-functions. If both $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} \pmb{f}(\pmb{x})$ and $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} \pmb{g}(\pmb{x})$ exist, and $\pmb{x}_0$ is a limit point of the domain of each function below, then:
+        \begin{compactitem}
+            \item $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} (\pmb{f}(\pmb{x})\pm \pmb{g}(\pmb{x})) = \lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} \pmb{f}(\pmb{x}) \pm \lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} \pmb{g}(\pmb{x})$;
+            \item $\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} \lambda\pmb{f}(\pmb{x}) = \lambda\lim\limits_{\pmb{x}\rightarrow \pmb{x}_0} \pmb{f}(\pmb{x})$ for any $\lambda\in\mathbb{R}$;
+        \end{compactitem}
+        \item (Limit of composite function) Suppose $\pmb{f}$ is an $n$-real $m$-function, $\pmb{g}$ is a $p$-real $n$-function and $\pmb{f}\circ\pmb{g}$ is composible. If:
+        \begin{compactenum}
+            \item $\lim\limits_{\pmb{t}\to\pmb{t}_0} \pmb{g}(\pmb{t}) = \pmb{x}_0$;
+            \item $\lim\limits_{\pmb{x}\to\pmb{x}_0} \pmb{f}(\pmb{x}) = \pmb{l}$;
+            \item $\exists \check{B}_\eta(\pmb{t}_0)$ s.t. $\pmb{g}(\pmb{t})\neq \pmb{x}_0$ for all $\pmb{t}\in\check{B}_\eta(\pmb{t}_0)$,
+        \end{compactenum}
+        Then $\lim\limits_{\pmb{t}\to\pmb{t}_0} \pmb{f}(\pmb{g}(\pmb{t}_0)) = \pmb{l}$.
+        \item (Cauchy criterion) 
+    \end{compactenum}}
+    These are merely the trivial extension of those $n$-real function counterparts.
+\end{Rmk}
+
+\begin{Df}{Df4.6.1 (continuity of $n$-real $m$-function)}
+    Suppose $\pmb{f}$ is an $n$-real $m$-function and $\pmb{x}_0\in\text{dom}(\pmb{f})$. Then $\pmb{f}$ is called continuous at $\pmb{x}_0$ (or, $\pmb{x}_0$ is called a continuity point of $\pmb{f}$) if:
+    $$\forall\varepsilon>0, \exists\delta>0, \forall \pmb{x}\in\text{dom}(\pmb{f})\cap B_\delta(\pmb{x}_0), \pmb{f}(\pmb{x})\in B_\varepsilon(\pmb{f}(\pmb{x}_0)).$$
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is merely a trivial extension of the continuity of $n$-real function, and so are the following definitions and theorems (along their proofs). Just copy all those in the Rmk \{, ID: 4.5.1\}.
+    \begin{compactenum}
+        \item \textcolor{Df}{Suppose \dots}
+        \item \textcolor{Th}{Suppose \dots}
+        \item \textcolor{Th}{Suppose \dots}
+        \item \textcolor{Th}{(Arithmetics) If \dots}
+        \item \textcolor{Th}{(Continuity of composite function) Suppose $n$-real $m$-function $\pmb{f}$ and $p$-real $n$-function $\pmb{g}$ are composable ($\pmb{f}\circ\pmb{g}$). If $\pmb{g}$ is continuous at $\pmb{t}_0$ and $\pmb{f}$ is continuous at $\pmb{g}(\pmb{t}_0)$, then $\pmb{f}\circ\pmb{g}$ is continuous at $\pmb{t}_0$.}
+        \item \textcolor{Th}{(Continuous by components) Suppose $\pmb{f}$ is an $n$-real $m$-function with $\pmb{f} = (f_1, \cdots, f_m)$, and $\pmb{x}_0\in\text{dom}(\pmb{f})$. Then $\pmb{f}$ is continuous at $\pmb{x}_0$ iff each $f_i$ is continuous at $\pmb{x}_0$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df4.6.2 (uniform continuity)}
+    Suppose $\pmb{f}$ is an $n$-real $m$-function and $D\subseteq\text{dom}(\pmb{f})$. Then $\pmb{f}$ is called uniformly continuous on $D$ if:
+    $$\forall\varepsilon>0, \exists\delta>0, \left(\forall \pmb{x}_1, \pmb{x}_2\in D\text{ and } \Vert\pmb{x}_1-\pmb{x}_2\Vert <\delta\right), \Vert\pmb{f}(\pmb{x}_1)-\pmb{f}(\pmb{x}_2)\Vert<\varepsilon.$$
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is merely a trivial extension of the uniform continuity of $n$-real function, and so are the following definitions and theorems (along their proofs).
+    \begin{compactenum}
+        \item \textcolor{Th}{Suppose \dots}
+        \item \textcolor{Th}{(Uniformly continuous by components) Suppose $\pmb{f}$ is an $n$-real $m$-function with $\pmb{f} = (f_1, \cdots, f_m)$, and $D\subseteq\text{dom}(\pmb{f})$. Then $\pmb{f}$ is uniformly continuous on $D$ iff each $f_i$ is uniformly continuous on $D$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th4.6.3}
+    Suppose $\pmb{f}$ is an $n$-real $m$-function. If $\text{dom}(f)$ is open, then $\pmb{f}$ is continuous on $\text{dom}(f)$ iff: \\
+    for every open set $G$ in $\mathbb{R}^m$, $\pmb{f}^{-1}[G]$ is open in $\mathbb{R}^n$.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th4.6.4 (copy of Th \{, ID: 4.5.3.1\}, Th \{, ID:4.5.3.2\}, Th \{, ID: 4.5.3.3\})}
+    Suppose $\pmb{f}$ is an $n$-real $m$-function. 
+    \begin{compactenum}
+        \item (4.5.3.1) \dots
+        \item (4.5.3.2) \dots
+        \item (4.5.3.3) \dots
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: \dots
 \end{Th}
 \end{document}

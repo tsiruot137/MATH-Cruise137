@@ -70,7 +70,7 @@ By the way, we now pre-claim some commonly-used notations and terms:
     $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
     \item Since in this course we major in the basic analysis on $\mathbb{R}$, we will use the term ``real function'' to refer to a function $f: A\rightarrow \mathbb{R}$ where $A\subseteq \mathbb{R}$.
     \item $\infty$: positive infinity; $-\infty$: negative infinity; $\pm\infty$: infinity.
-    \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists and is a finite real number.
+    \item For the existence of a limit, ``the limit exists'' means the limit is a finite real number; ``the limit exists in $\mathbb{R}_\infty$'' refers to that the limit is either a finite real number or positive or negative infinity.
     \item An interval is a subset of $\mathbb{R}$ of one of the following forms: $(a,b)$, $[a,b]$, $(a,b]$, $[a,b)$, $(a, \infty)$, $(-\infty, b)$, $(-\infty, \infty)$, where $a, b\in\mathbb{R}$ and $a<b$. Please identify whether $(a,b)$ stands for a tuple or an open interval from the context by yourself.
     \item Monotonic function: ``increasing'' for ``$\geq$'', ``strictly increasing'' for ``$>$''.
 \end{compactenum} 
@@ -121,8 +121,8 @@ Then with everything prepared, here we go.
     \textcolor{Df}{As for the pre-conditions ``Suppose $f$ is a real function and $x_0$ is a limit point of $\text{dom}(f)$'', we can refer to it by ``real function $f$ is defined near $x_0$''.} In 1-dimensional analysis, we often assume that a function is well-defined on some simple intervals. \textcolor{Df}{Hence we will often explicitly claim later that $f$ ``is well-defined near $x_0$'' when talking about some local properties, which means that there is some $\delta>0$ such that $\text{dom}(f)\supseteq \check{B}_\delta(x_0)$.}\\
     \textcolor{Th}{From this definition, we can easily verified these basic properties:
     \begin{compactenum}
-        \item If $\lim\limits_{x\rightarrow x_0}f(x) = l$, then the limit $l$ is unique.
-        \item If $\lim\limits_{x\rightarrow x_0}f(x) = l$, then $f$ is bounded on some neighborhood of $x_0$ (namely, there is some $\delta>0$ and some $M>0$ s.t. $|f(x)|<M$ for all $x\in\text{dom}(f)\cap\check{B}_\delta(x_0)$).
+        \item (Uniqueness) If $\lim\limits_{x\rightarrow x_0}f(x) = l$, then the limit $l$ is unique.
+        \item (Local boundness) If $\lim\limits_{x\rightarrow x_0}f(x) = l$, then $f$ is bounded on some neighborhood of $x_0$ (namely, there is some $\delta>0$ and some $M>0$ s.t. $|f(x)|<M$ for all $x\in\text{dom}(f)\cap\check{B}_\delta(x_0)$).
         \item (Heine's theorem) (resolution principle) Suppose $f$ is defined near $x_0$ and $l$ is a real number. Then $\lim\limits_{x\rightarrow x_0}f(x) = l$ if and only if:\\
         For any sequence $\{x_n:n\in\mathbb{N^\ast}\}$ in $\text{dom}(f)$ s.t. (1) $x_n\neq x_0$ for all $n\in\mathbb{N^\ast}$ and (2) $\lim\limits_{n\rightarrow\infty}x_n = x_0$, we have $\lim\limits_{n\rightarrow\infty}f(x_n) = l$.
         \item (sandwich theorem) Suppose $f, g, h$ are well-defined near $x_0$ and the inequality $f(x)\leq h(x)\leq g(x)$ holds for all $x$ in some $\check{B}_\delta(x_0)$. Suppose also $l\in\mathbb{R}$. If $\lim\limits_{x\to x_0} f(x) = \lim\limits_{x\to x_0} g(x) = l$, then $\lim\limits_{x\to x_0} h(x) = l$.
