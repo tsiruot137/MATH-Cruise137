@@ -1,0 +1,310 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Differentiation on $\mathbb{R}^n$}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\dif}{\mathop{}\!\mathrm{d}}
+    \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
+\begin{document}
+\maketitle
+
+This is the 4th chapter of Mathematical Analysis, which is about \textbf{Topology of $\mathbb{R}^n$}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item $\mathbb{R}^n$: without extra specification, $n\in\mathbb{N}^\ast$; 
+        \item You may see some statements like ``this Df/Th is merely an extension of the previous one'', which means that the current Df/Th can be reduced to the previous one on some conditions.
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
+        \item The inner product and norm in $\mathbb{R}^n$ are the typical ones: $\langle \pmb{x}, \pmb{y}\rangle = x_1y_1 + \dots + x_ny_n$, $\Vert \pmb{x}\Vert = \sqrt{\langle \pmb{x}, \pmb{x}\rangle}$.
+        \item $E^c$: Let $E\subseteq\mathbb{R}^n$. Then $E^c\triangleq \mathbb{R}^n\setminus E$.
+        \item A set of sets is called a collection or a family.
+        \item A vector in $\mathbb{R}^n$, without explicit specification, is written as a column vector, i.e. an $n\times 1$ matrix.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (5.1.*): Directional Derivatives and partial derivatives.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go.
+
+\begin{Df}{Df5.1.1.-1 (direction (方向))}
+    Suppose $\pmb{u}\in\mathbb{R}_n$. Then $\pmb{u}$ is called a direction in $\mathbb{R}_n$ if $\Vert \pmb{u}\Vert = 1$.
+\end{Df}
+
+\begin{Df}{Df5.1.1 (directional derivative)}
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Suppose also $\pmb{u}$ is a direction in $\mathbb{R}_n$. If the limit
+    $$\lim_{t\to 0}\frac{f(\pmb{x}_0 + t\pmb{u}) - f(\pmb{x}_0)}{t}$$ 
+    exists, then it is called the \textbf{directional derivative} of $f$ at $\pmb{x}_0$ in the direction $\pmb{u}$, denoted by $\parfrac{f}{\pmb{u}}(\pmb{x}_0)$ (or $\parfrac{y}{\pmb{u}}(\pmb{x}_0)$ if we write the dependent variable $f(\pmb{x})$ as $y$), $\parfrac{f}{\pmb{u}}(\pmb{x}_0)$ is said to exist, and $f$ is said to be derivable at $\pmb{x}_0$ in the direction $\pmb{u}$.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Th}{This definition is an extension of the one of the derivative of real functions. In $\mathbb{R}$, the directions are just $1$ or $-1$, and $\parfrac{f}{u}(x_0)$ in the direction $u=1$ is just $f'(x_0)$.}
+        \item \textcolor{Df}{Suppose $f$ is an $n$-real function and $\pmb{u}$ is a direction. If $\parfrac{f}{\pmb{u}}(\pmb{x})$ exists for every $\pmb{x}$ in some set $E\subseteq\mathbb{R}_n$, then we say that $f$ is derivable in the direction $\pmb{u}$ on $E$.}
+        \item \textcolor{Th}{Suppose $f$ is an $n$-real function derivable at $\pmb{x}_0$ in the direction $\pmb{u}$. Let $\varphi(t) = f(\pmb{x}_0 + t\pmb{u})$, then $\varphi'(0) = \parfrac{f}{\pmb{u}}(\pmb{x}_0)$.}
+        \item \textcolor{Th}{Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then for any direction $\pmb{u}$ in $\mathbb{R}_n$, $\parfrac{f}{\pmb{u}}(\pmb{x}_0)$ coexists with $\parfrac{f}{(-\pmb{u})}(\pmb{x}_0)$ and $\parfrac{f}{(-\pmb{u})}(x_0) = -\parfrac{f}{\pmb{u}}(x_0)$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df5.1.2 (partial derivative)}
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then the directional derivatives $\parfrac{f}{\pmb{e}_i}(\pmb{x}_0)$, $i = 1, \dots, n$, are called the \textbf{partial derivatives} of $f$ at $\pmb{x}_0$, denoted by 
+    $$\Dif_i f(\pmb{x}_0) = \parfrac{f}{\pmb{e}_i}(\pmb{x}_0).$$ 
+    Here $\pmb{e}_i$ is the $i$-th one-hot vector in $\mathbb{R}^n$, and $\Dif_i f(\pmb{x}_0)$ is called the $i$-th partial derivative of $f$ at $\pmb{x}_0$. If we write $y = f(\pmb{x}) = f(x_1, \cdots, x_n)$, then $\Dif_i f(\pmb{x}_0)$ is also denoted by $\parfrac{f}{x_i}(\pmb{x}_0)$ or $\parfrac{y}{x_i}(\pmb{x}_0)$.
+\end{Df}
+
+\begin{Df}{Df5.1.3 (directional derivative functions)}
+    Suppose $f$ is an $n$-real function derivable in some direction $\pmb{u}$ on $D\subseteq\mathbb{R}_n$. Then the function $\pmb{x}\mapsto \parfrac{f}{\pmb{u}}(\pmb{x})$ defined on $D$ is called the directional derivative function of $f$ in the direction $\pmb{u}$ on $D$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{If $D$ in this definition equals $\text{dom}(f)$, we say that $f$ is a derivable function in the direction $\pmb{u}$.}
+\end{Rmk}
+
+\begin{Df}{Df5.1.4 (gradient (梯度))}
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then the $1\times n$ matrix 
+    $$(\Dif_1 f(\pmb{x}_0), \cdots, \Dif_n f(\pmb{x}_0))$$
+    is called the \textbf{gradient} or the \textbf{Jacobian matrix} of $f$ at $\pmb{x}_0$, denoted by $\text{grad}\,f(\pmb{x}_0)$ or $\pmb{J}f(\pmb{x}_0)$.
+\end{Df}
+
+\begin{Df}{Df5.2.1 (differential (微分))}
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. If there exists some $\pmb{\lambda}\in\mathbb{R}^{1,n}$ s.t. the differential equality
+    $$ f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = \pmb{\lambda}\pmb{h} + R(\pmb{h}) $$
+    holds for $\pmb{h}$ in some $B_\delta(\pmb{0})$, and where 
+    $$\lim_{\pmb{h}\to \pmb{0}}\frac{R(\pmb{h})}{\Vert \pmb{h}\Vert} = 0,$$
+    then the linear function $\pmb{\lambda h}$ of $\pmb{h}$ is called the \textbf{differential} of $f$ at $\pmb{x}_0$, denoted by $\dif f(\pmb{x}_0)$, and $f$ is said to be differentiable at $\pmb{x}_0$.
+\end{Df}
+
+\begin{Rmk}{}
+    It is easy to verify \textcolor{Th}{the uniqueness of differential:} if $f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = \pmb{\lambda}_1\pmb{h} + R_1(\pmb{h}) = \pmb{\lambda}_2\pmb{h} + R_2(\pmb{h})$, then $(\pmb{\lambda}_1 - \pmb{\lambda}_2)\pmb{h} = R_2(\pmb{h}) - R_1(\pmb{h}) = o(\Vert \pmb{h}\Vert)$, (\textcolor{Df}{where $o(\Vert \pmb{h}\Vert)$ merely extends the notation of $o(\cdot)$ in $\mathbb{R}$, i.e. infinitely small of a higher order.}) and this is impossible unless $\pmb{\lambda}_1 = \pmb{\lambda}_2$.
+\end{Rmk}
+
+\begin{Th}{Th5.2.1.1 (differential is gradient)}
+    Suppose $f$ is an $n$-real function. If $f$ is differentiable at $\pmb{x}_0$, then the gradient of $f$ at $\pmb{x}_0$ exists and
+    $$\dif f(\pmb{x}_0) = \pmb{J}f(\pmb{x}_0)\,\pmb{h}.$$
+    \tcblower
+    \textit{Pf}: Obvious. Suppose $\dif f(\pmb{x}_0) = \pmb{\lambda h}$ where $\pmb{\lambda} = (\lambda_1, \cdots, \lambda_n)^\mathrm{T}$. Let $\pmb{h}$ be, say, $(h_1, 0, \cdots, 0)^\mathrm{T}$, then the differential equality just implies $\lambda_1 = \Dif_1 f(\pmb{x}_0)$.
+\end{Th}
+
+\begin{Th}{Th5.2.2 (differentiable $\Rightarrow$ continuous)}
+    Suppose $f$ is an $n$-real function. If $f$ is differentiable at $\pmb{x}_0$, then $f$ is continuous at $\pmb{x}_0$.
+    \tcblower
+    \textit{Pf}: Obvious. Just let $\pmb{h}\rightarrow \pmb{0}$ in the differential equality.
+\end{Th}
+
+\begin{Th}{Th5.2.3 (linear decomposition for $R(\pmb{h})$)}
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then $f$ is differentiable at $\pmb{x}_0$ iff the following equality holds (for $\pmb{h}$ in some $B_\delta(\pmb{0})$):
+    $$ f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = \pmb{J}f(\pmb{x}_0)\,\pmb{h} + \pmb{\beta}(\pmb{h})\,\pmb{h}, $$
+    where $\pmb{\beta}(\pmb{h}) = (\beta_1(\pmb{h}), \cdots, \beta_n(\pmb{h}))$ converges to $\pmb{0}$ as $\pmb{h}\rightarrow \pmb{0}$.
+    \tcblower
+    \textit{Pf}: ``if'' is obvious. \\
+    For ``only if'', let the remainder $R(\pmb{h}) = f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) - \pmb{J}f(\pmb{x}_0)\,\pmb{h}$, then $R(\pmb{h}) = o(\Vert \pmb{h}\Vert)$, and we can write $R(\pmb{h}) = \pmb{\beta}(\pmb{h})\,\pmb{h}$ by
+    $$\beta_i(\pmb{h}) = \frac{R(\pmb{h})h_i}{\Vert \pmb{h}\Vert^2}, \quad (i=1,\cdots,n).$$
+\end{Th}
+
+\begin{Df}{Df5.2.4.-1 (neighborhood)}
+    Suppose $\pmb{x}_0\in\mathbb{R}^n$ and $E\subseteq\mathbb{R}^n$. Then $E$ is called a \textbf{neighborhood} of $\pmb{x}_0$ if $E$ is open and $\pmb{x}_0\in E$.
+\end{Df}
+
+\begin{Th}{Th5.2.4 (gradient exists near $\pmb{x}_0$ and continuous at $\pmb{x}_0$ $\Rightarrow$ differentiable)}
+    Suppose $f$ is an $n$-real function. If for all $i=1,\cdots,n$, 
+    \begin{compactenum}
+        \item $\Dif_i f(\pmb{x})$ exists for $\pmb{x}$ in some neighborhood of $\pmb{x}_0$;
+        \item $\Dif_i f(\cdot)$ is continuous at $\pmb{x}_0$,
+    \end{compactenum}
+    then $f$ is differentiable at $\pmb{x}_0$.
+    \tcblower
+    \textit{Pf}: Induction on $n$. The proposition holds for $n=1$. Suppose it holds for all $k=1,\cdots, n$, then for $n+1$, we decompose the increment of $f(\pmb{x}_0)$ as:
+    $$ f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = K_1 + K_2, $$
+    where
+    $$
+    \begin{aligned}
+    K_1 &= f(x_1+h_1, \cdots, x_n+h_n, x_{n+1} + h_{n+1}) - f(x_1+h_1, \cdots, x_n+h_n, x_{n+1}),\\
+    K_2 &= f(x_1+h_1, \cdots, x_n+h_n, x_{n+1}) - f(x_1, \cdots, x_n, x_{n+1}).
+    \end{aligned}
+    $$
+    According to the induction hypothesis, $f$ is differentiable at $\pmb{x}_0$ after $x_{n+1}$ is fixed, and thus by Th \{, ID: 5.2.3\}, 
+    $$ K_2 = \sum_{i=1}^{n} \parfrac{f}{x_i}(\pmb{x}_0)h_i + \sum_{i=1}^{n} \beta_i (\pmb{h}) h_i, $$
+    where $\beta_i(\pmb{h})\rightarrow 0$ as $\pmb{h} = (h_1, \cdots, h_n, h_{n+1})\rightarrow \pmb{0}$.
+    For $K_1$, apply the Lagrange intermediate value theorem:
+    $$ K_1 = \parfrac{f}{x_{n+1}}(x_1+h_1, \cdots, x_n+h_n, x_{n+1}+\theta h_{n+1})\;h_{n+1},\quad\theta\in (0,1).$$
+    And we write $K_1$ as
+    $$ K_1 = \parfrac{f}{x_{n+1}}(x_1+h_1, \cdots, x_n+h_n, x_{n+1})\;h_{n+1} + \beta_{n+1}(\pmb{h}) h_{n+1}. $$
+    and 
+    $\beta_{n+1}(\pmb{h}) = \parfrac{f}{x_{n+1}}(x_1+h_1, \cdots, x_n+h_n, x_{n+1}+\theta h_{n+1}) - \parfrac{f}{x_{n+1}}(x_1+h_1, \cdots, x_n+h_n, x_{n+1})$.
+    Let $\pmb{h}\rightarrow \pmb{0}$ we have $\beta_{n+1}(\pmb{h})\rightarrow 0$, and we complete the proof after combining $K_1$ and $K_2$.
+\end{Th}
+
+\begin{Th}{Ex5.2.4.1 (the converse of Th5.2.4)}
+    Prove that the converse of Th \{, ID: 5.2.4\} is not true.
+    \tcblower
+    \textit{Soluiton}: A counterexample is
+    $$ f(x,y) = \begin{cases}
+        (x^2+y^2)\sin\frac{1}{x^2+y^2},\quad &(x,y)\neq (0,0)\\
+        \;0, \quad &(x,y) = (0,0)
+    \end{cases}
+    $$
+    whose $\parfrac{f}{x}$ is discontinuous at $(0,0)$.
+\end{Th}
+
+\begin{Th}{Th5.2.5 (differentiable $\Rightarrow$ all directional derivatives exist)}
+    Suppose $f$ is an $n$-real function. If $f$ is differentiable at $\pmb{x}_0$, then the directional derivative of $f$ at $\pmb{x}_0$ in every direction $\pmb{u} = (u_1, \cdots, u_n)^\mathrm{T}$ exist, and
+    $$ \parfrac{f}{\pmb{u}}(\pmb{x}_0) = \sum_{i=1}^{n} \parfrac{f}{x_i}(\pmb{x}_0)\,u_i. $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Df}{Df5.2.6 (differential of $n$-real $m$-functions)}
+    Suppose $\pmb{f}$ is an $n$-real $m$-function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. If there exists some $\pmb{A}\in\mathbb{R}^{m,n}$ s.t. the differential equality
+    $$ \pmb{f}(\pmb{x}_0 + \pmb{h}) - \pmb{f}(\pmb{x}_0) = \pmb{Ah} + \pmb{R}(\pmb{h}) $$
+    holds for $\pmb{h}$ in some $B_\delta(\pmb{0})$, and where 
+    $$\lim_{\pmb{h}\to \pmb{0}}\frac{\pmb{R}(\pmb{h})}{\Vert \pmb{h}\Vert} = \pmb{0},$$
+    then the linear function $\pmb{Ah}$ of $\pmb{h}$ is called the \textbf{differential} of $\pmb{f}$ at $\pmb{x}_0$, denoted by $\dif \pmb{f}(\pmb{x}_0)$, and $\pmb{f}$ is said to be differentiable at $\pmb{x}_0$.
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is merely an extension of Df \{, ID: 5.2.1\}, and so are some of the following definitions and theorems.
+    \begin{compactenum}
+        \item \textcolor{Th}{(Uniqueness of differential)}
+        \item \textcolor{Th}{(Differential by components) Let $\pmb{f} = (f_1, \cdots, f_m)$ be an $n$-real $m$-function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then $\pmb{f}$ is differentiable at $\pmb{x}_0$ iff each $f_i$ is differentiable at $\pmb{x}_0$.}
+        \item \textcolor{Th}{$\dif \pmb{f}(\pmb{x}_0) = \pmb{Jf}(\pmb{x}_0)\,\pmb{h}$,} \textcolor{Df}{where $\pmb{Jf}(\pmb{x}_0)$ denotes the \textbf{Jacobian matrix} of $\pmb{f}$ at $\pmb{x}_0$: (let $\pmb{f} = (f_1, \cdots, f_m)$ and $\pmb{x} = (x_1, \cdots, x_n)$)
+        $$ \pmb{Jf}(\pmb{x}_0) = \begin{bmatrix}
+            \parfrac{f_1}{x_1}(\pmb{x}_0) & \cdots & \parfrac{f_1}{x_n}(\pmb{x}_0)\\
+            \vdots & \ddots & \vdots\\
+            \parfrac{f_m}{x_1}(\pmb{x}_0) & \cdots & \parfrac{f_m}{x_n}(\pmb{x}_0)
+        \end{bmatrix}
+        $$}
+        \item \textcolor{Th}{(Differentiable $\Rightarrow$ continuous)}
+        \item \textcolor{Th}{Suppose $\pmb{f}$ is an $n$-real $m$-function. If $\pmb{Jf}(\pmb{x})$ exists for $\pmb{x}$ in some neighborhood of $\pmb{x}_0$, and $\pmb{Jf}(\cdot)$ is continuous at $\pmb{x}_0$, then $\pmb{f}$ is differentiable at $\pmb{x}_0$.}
+        \item The condition 
+        $$ \lim_{\pmb{h}\to \pmb{0}}\frac{\pmb{R}(\pmb{h})}{\Vert \pmb{h}\Vert} = \pmb{0} $$
+        is equivalent to 
+        $$ \lim_{\pmb{h}\to \pmb{0}}\frac{\Vert \pmb{R}(\pmb{h})\Vert}{\Vert \pmb{h}\Vert} = 0, $$
+        and the latter is often more convenient to use since we have more arithmetic tools to deal with the norm compared to the vector.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df5.2.7 ($\pmb{f}\in\mathcal{C}(D)$, $\pmb{f}\in\mathcal{C}^1(D)$)}
+    Suppose $D\subseteq\mathbb{R}^n$ is open, and $\pmb{f}: D\rightarrow\mathbb{R}^m$. If $\pmb{f}$ is continuous on $D$, then we denote $\pmb{f}\in\mathcal{C}(D)$; if $\pmb{Jf}(\cdot)$ is continuous on $D$ \textcolor{Th}{(which implies that $\pmb{f}$ is differentiable at every point of $D$)}, then we say that $\pmb{f}$ is \textbf{continuously differentiable (连续可微)}, denoted by $\pmb{f}\in\mathcal{C}^1(D)$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{$\pmb{f}\in\mathcal{C}^1(D) \Rightarrow \pmb{f}\in\mathcal{C}(D)$.}
+\end{Rmk}
+
+\begin{Df}{Df5.2.8.-1 (norm of a matrix)}
+    Suppose $\mathbb{F}$ is a number field and $m, n\in\mathbb{N}^\ast$. In the matrix space $\mathbb{F}^{m,n}$, consider every matrix as an tuple $m\times n$ long, then the inner product of two matrices $\pmb{A}$ and $\pmb{B}$ is defined as the inner product of the two corresponding tuples, and the norm of $\pmb{A}$ is defined accordingly as the positive square root of the inner product. The norm of a matrix $\pmb{A}$ is denoted by $\Vert \pmb{A}\Vert$.
+\end{Df}
+
+\begin{Th}{Th5.2.8.-1.1 (basic properties of $\Vert\pmb{A}\Vert$)}
+    Suppose $\pmb{A}, \pmb{B}$ are matrices over $\mathbb{R}$ that suit the following operations. Then
+    \begin{compactenum}
+        \item $\Vert \pmb{A} + \pmb{B}\Vert \leq \Vert \pmb{A}\Vert + \Vert \pmb{B}\Vert$.
+        \item $\Vert \pmb{A}\pmb{B}\Vert \leq \Vert \pmb{A}\Vert\Vert \pmb{B}\Vert$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Only prove the second one. Let $\pmb{A} = (a_{ij})$, $\pmb{B} = (b_{ij})$ and $\pmb{AB} = (c_{ij})$. Then
+    $$ 
+    \begin{aligned}
+        & \Vert \pmb{AB}\Vert^2 = \sum_i\sum_j c_{ij}^2 = \sum_i\sum_j\left(\sum_k a_{ik}b_{kj}\right)^2 \\
+        & \leq \sum_i\sum_j\left(\sum_k a_{ik}^2\right)\left(\sum_k b_{kj}^2\right) \\
+        & = \left( \sum_i\sum_k a_{ik}^2 \right)\left( \sum_j\sum_k b_{kj}^2 \right) = \Vert \pmb{A}\Vert^2\Vert \pmb{B}\Vert^2.
+    \end{aligned}
+    $$
+    where the inequality is just the Cauchy-Schwarz inequality. Hence \textcolor{Th}{$\Vert \pmb{AB}\Vert = \Vert \pmb{A}\Vert\Vert \pmb{B}\Vert$ iff each row vector of $\pmb{A}$ is parallel to each column vector of $\pmb{B}$.}
+\end{Th}
+
+\begin{Th}{Th5.2.8 (chain-rule of Jacobian matrix)}
+    Suppose $p$-real $n$-function $\pmb{g}$ is differentiable at $\pmb{x}_0$, and $n$-real $m$-function $\pmb{f}$ is differentiable at $\pmb{g}(\pmb{x}_0)$. Then their composition $\pmb{f}\circ\pmb{g}$ ($\pmb{f}\circ\pmb{g}$ may be not composable overall, but it is composable on some $B(\pmb{x}_0)$) is differentiable at $\pmb{x}_0$, and
+    $$ \pmb{J}(\pmb{f}\circ\pmb{g})(\pmb{x}_0) = \pmb{Jf}(\pmb{g}(\pmb{x}_0))\;\pmb{Jg}(\pmb{x}_0). $$
+    \tcblower
+    \textit{Pf}: First we write down the differential equalities:
+    $$ 
+    \begin{aligned}
+        \pmb{f}(\pmb{g}(\pmb{x_0}) + \pmb{l}) &- \pmb{f}(\pmb{g}(\pmb{x_0})) = \pmb{A\,l} + \pmb{R}_1(\pmb{l}), \quad\;\; \pmb{R}_1(\pmb{l})/\Vert\pmb{l}\Vert\rightarrow\pmb{0},\\
+        \pmb{g}(\pmb{x}_0 + \pmb{h}) &- \pmb{g}(\pmb{x}_0) = \pmb{B\,h} + \pmb{R}_2(\pmb{h}), \quad \pmb{R}_2(\pmb{h})/\Vert\pmb{h}\Vert\rightarrow\pmb{0}.
+    \end{aligned}
+    $$
+    Then
+    $$ 
+    \begin{aligned}
+        & \pmb{f}(\pmb{g}(\pmb{x}_0 + \pmb{h})) - \pmb{f}(\pmb{g}(\pmb{x}_0)) = \pmb{f}(\pmb{g}(\pmb{x}_0) + \pmb{l}) - \pmb{f}(\pmb{g}(\pmb{x}_0)) \\
+        = & \pmb{A\,l} + \pmb{R}_1(\pmb{l}) = \pmb{A}(\pmb{g}(\pmb{x}_0 + \pmb{h}) - \pmb{g}(\pmb{x}_0)) + \pmb{R}_1(\pmb{l}) \\
+        = & \pmb{A}(\pmb{B\,h} + \pmb{R}_2(\pmb{h})) + \pmb{R}_1(\pmb{l}) = \pmb{AB\,h} + \pmb{A\,R}_2(\pmb{h}) + \pmb{R}_1(\pmb{l}).
+    \end{aligned}
+    $$
+    And we only need to show that 
+    $$ \lim_{\pmb{h}\to\pmb{0}}\frac{\Vert\pmb{A\,R}_2(\pmb{h}) + \pmb{R}_1(\pmb{l})\Vert}{\Vert\pmb{h}\Vert} = \pmb{0}, $$
+    and since $\pmb{R}_2(\pmb{h})/\Vert\pmb{h}\Vert\rightarrow\pmb{0}$, we only need to show that
+    \begin{equation}
+        \lim\limits_{\pmb{h}\to\pmb{0}}\frac{\Vert\pmb{R}_1(\pmb{l})\Vert}{\Vert\pmb{h}\Vert} = \lim\limits_{\pmb{h}\to\pmb{0}}\frac{\Vert\pmb{R}_1(\pmb{Bh} + \pmb{R}_2(\pmb{h}))\Vert}{\Vert\pmb{h}\Vert} = \pmb{0}.
+        \label{e1}
+    \end{equation}
+    Now let $\pmb{\alpha}(\cdot)$ and $\pmb{\beta}(\cdot)$ be the functions s.t. 
+    $$ \pmb{R}_1(\pmb{l}) = \pmb{\alpha}(\pmb{l})\,\pmb{l},\quad \pmb{R}_2(\pmb{h}) = \pmb{\beta}(\pmb{h})\pmb{h}, $$
+    here $\pmb{\alpha} = (\alpha_1, \cdots, \alpha_m)$ where each $\alpha_i(\cdot)$ is the function constructed as in Th \{, ID: 5.2.3\} (and so is $\pmb{\beta}$). 
+    then the equation \eqref{e1} becomes
+    $$ \lim\limits_{\pmb{h}\to\pmb{0}}\frac{\Vert\pmb{\alpha}([\pmb{B} + \pmb{\beta}(\pmb{h})]\pmb{h})\Vert \cdot \Vert [\pmb{B} + \pmb{\beta}(\pmb{h})]\pmb{h}\Vert}{\Vert\pmb{h}\Vert} = \pmb{0}. $$
+    And we can prove it by
+    $$ 
+    \begin{aligned}
+        & \frac{\Vert\pmb{\alpha}([\pmb{B} + \pmb{\beta}(\pmb{h})]\pmb{h})\Vert \cdot \Vert [\pmb{B} + \pmb{\beta}(\pmb{h})]\pmb{h}\Vert}{\Vert\pmb{h}\Vert} \\
+        \leq & \Vert\pmb{\alpha}([\pmb{B} + \pmb{\beta}(\pmb{h})]\pmb{h})\Vert \cdot \frac{\Vert \pmb{B} + \pmb{\beta}(\pmb{h})\Vert \cdot \Vert\pmb{h}\Vert}{\Vert\pmb{h}\Vert} \\
+        = & \Vert\pmb{\alpha}([\pmb{B} + \pmb{\beta}(\pmb{h})]\pmb{h})\Vert \cdot \Vert \pmb{B} + \pmb{\beta}(\pmb{h})\Vert \rightarrow 0.
+    \end{aligned}
+    $$
+    where the last step ``$\rightarrow 0$'' is guaranteed by the continuity of $\pmb{\alpha}$ and $\pmb{\beta}$ at $\pmb{0}$.
+\end{Th}
+
+\begin{Df}{Df5.2.9.-1}
+    Denote the Jacobian matrix of an $n$-real $m$-function $\pmb{f}$ as $\parfrac{\pmb{f}}{\pmb{x}}$ or $\parfrac{\pmb{y}}{\pmb{x}}$ if we write $\pmb{f}$ as $\pmb{y} = \pmb{f}(\pmb{x})$. Also, denote $\dif\pmb{f}$ as $\dif\pmb{y}$.
+\end{Df}
+
+\begin{Th}{Th5.2.9 (invariant form of one-order differential (一阶微分的形式不变性))}
+    Let $\pmb{y} = \pmb{f}(\pmb{x})$. Then the differential of $\pmb{f}$ is
+    \begin{equation}
+        \dif\pmb{y} = \parfrac{\pmb{y}}{\pmb{x}}\dif\pmb{x}
+        \label{e2}
+    \end{equation}
+    where $\dif\pmb{x}$ is the differential of the identity function $\pmb{x}$ about $\pmb{x}$.
+    If further $\pmb{x} = \pmb{g}(\pmb{t})$ so that for $\pmb{y} = \pmb{f}(\pmb{g}(\pmb{t}))$ can be applied the Th \{, ID: 5.2.8\}, then
+    $$ \dif\pmb{x} = \parfrac{\pmb{x}}{\pmb{t}}\dif\pmb{t}, $$
+    and we have
+    $$ \dif\pmb{y} = \parfrac{\pmb{y}}{\pmb{t}}\dif\pmb{t} = \parfrac{\pmb{y}}{\pmb{x}}\parfrac{\pmb{x}}{\pmb{t}}\dif\pmb{t} = \parfrac{\pmb{y}}{\pmb{x}}\dif\pmb{x}. $$
+    This implies that the equation \eqref{e2} holds no matter whether $\pmb{x}$ is a independent variable or a dependent variable, \textcolor{Df}{which is called the invariant form of one-order differential.}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\end{document}
