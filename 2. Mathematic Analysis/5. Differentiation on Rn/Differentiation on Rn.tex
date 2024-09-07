@@ -269,12 +269,12 @@ Then with everything prepared, here we go.
     and since $\pmb{R}_2(\pmb{h})/\Vert\pmb{h}\Vert\rightarrow\pmb{0}$, we only need to show that
     \begin{equation}
         \lim\limits_{\pmb{h}\to\pmb{0}}\frac{\Vert\pmb{R}_1(\pmb{l})\Vert}{\Vert\pmb{h}\Vert} = \lim\limits_{\pmb{h}\to\pmb{0}}\frac{\Vert\pmb{R}_1(\pmb{Bh} + \pmb{R}_2(\pmb{h}))\Vert}{\Vert\pmb{h}\Vert} = \pmb{0}.
-        \label{e1}
+        \tag{1}
     \end{equation}
     Now let $\pmb{\alpha}(\cdot)$ and $\pmb{\beta}(\cdot)$ be the functions s.t. 
     $$ \pmb{R}_1(\pmb{l}) = \pmb{\alpha}(\pmb{l})\,\pmb{l},\quad \pmb{R}_2(\pmb{h}) = \pmb{\beta}(\pmb{h})\pmb{h}, $$
     here $\pmb{\alpha} = (\alpha_1, \cdots, \alpha_m)$ where each $\alpha_i(\cdot)$ is the function constructed as in Th \{, ID: 5.2.3\} (and so is $\pmb{\beta}$). 
-    then the equation \eqref{e1} becomes
+    then the equation (1) becomes
     $$ \lim\limits_{\pmb{h}\to\pmb{0}}\frac{\Vert\pmb{\alpha}([\pmb{B} + \pmb{\beta}(\pmb{h})]\pmb{h})\Vert \cdot \Vert [\pmb{B} + \pmb{\beta}(\pmb{h})]\pmb{h}\Vert}{\Vert\pmb{h}\Vert} = \pmb{0}. $$
     And we can prove it by
     $$ 
@@ -287,6 +287,22 @@ Then with everything prepared, here we go.
     where the last step ``$\rightarrow 0$'' is guaranteed by the continuity of $\pmb{\alpha}$ and $\pmb{\beta}$ at $\pmb{0}$.
 \end{Th}
 
+\begin{Th}{Th5.2.8.1 (chain-rules of $\mathcal{C}$, $\mathcal{C}^1$)}
+    \begin{compactenum}
+        \item \textcolor{Df}{Suppose $\pmb{x}_0\in\mathbb{R}^n$. Then we term the adverbial modifier ``on some neighborhood of $\pmb{x}_0$'' (or ``on $B(\pmb{x}_0)$'', as they are equivalent) ``at $\pmb{x}_0$ locally'' (在$\pmb{x}_0$的近旁) for short.} For example, ``$\pmb{f}\in\mathcal{C}$ at $\pmb{x}_0$ locally'' means that for some neighborhood $D$ of $\pmb{x}_0$, $\pmb{f}\in\mathcal{C}(D)$.
+        \item Suppose $\pmb{g}$ is a $p$-real $n$-function and $\pmb{f}$ is an $n$-real $m$-function. Then: \begin{compactenum}
+            \item $\pmb{g}\in\mathcal{C}$ at $\pmb{t}_0$ locally and $\pmb{f}\in\mathcal{C}$ at $\pmb{x}_0 = \pmb{g}(\pmb{t}_0)$ locally $\Rightarrow$ $\pmb{f}\circ\pmb{g}\in\mathcal{C}$ at $\pmb{t}_0$ locally.
+            \item $\pmb{g}\in\mathcal{C}^1$ at $\pmb{t}_0$ locally and $\pmb{f}\in\mathcal{C}^1$ at $\pmb{x}_0 = \pmb{g}(\pmb{t}_0)$ locally $\Rightarrow$ $\pmb{f}\circ\pmb{g}\in\mathcal{C}^1$ at $\pmb{t}_0$ locally.
+        \end{compactenum}
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem greatly simplifies the discussion of the differentiability of composite functions in future, expecially in the proof of the hidden function theorem.
+\end{Rmk}
+
 \begin{Df}{Df5.2.9.-1}
     Denote the Jacobian matrix of an $n$-real $m$-function $\pmb{f}$ as $\parfrac{\pmb{f}}{\pmb{x}}$ or $\parfrac{\pmb{y}}{\pmb{x}}$ if we write $\pmb{f}$ as $\pmb{y} = \pmb{f}(\pmb{x})$. Also, denote $\dif\pmb{f}$ as $\dif\pmb{y}$.
 \end{Df}
@@ -295,14 +311,14 @@ Then with everything prepared, here we go.
     Let $\pmb{y} = \pmb{f}(\pmb{x})$. Then the differential of $\pmb{f}$ is
     \begin{equation}
         \dif\pmb{y} = \parfrac{\pmb{y}}{\pmb{x}}\dif\pmb{x}
-        \label{e2}
+        \tag{1}
     \end{equation}
     where $\dif\pmb{x}$ is the differential of the identity function $\pmb{x}$ about $\pmb{x}$.
     If further $\pmb{x} = \pmb{g}(\pmb{t})$ so that for $\pmb{y} = \pmb{f}(\pmb{g}(\pmb{t}))$ can be applied the Th \{, ID: 5.2.8\}, then
     $$ \dif\pmb{x} = \parfrac{\pmb{x}}{\pmb{t}}\dif\pmb{t}, $$
     and we have
     $$ \dif\pmb{y} = \parfrac{\pmb{y}}{\pmb{t}}\dif\pmb{t} = \parfrac{\pmb{y}}{\pmb{x}}\parfrac{\pmb{x}}{\pmb{t}}\dif\pmb{t} = \parfrac{\pmb{y}}{\pmb{x}}\dif\pmb{x}. $$
-    This implies that the equation \eqref{e2} holds no matter whether $\pmb{x}$ is a independent variable or a dependent variable, \textcolor{Df}{which is called the invariant form of one-order differential.}
+    This implies that the equation (1) holds no matter whether $\pmb{x}$ is a independent variable or a dependent variable, \textcolor{Df}{which is called the invariant form of one-order differential.}
     \tcblower
     \textit{Pf}: Obvious.
 \end{Th}
