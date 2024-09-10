@@ -54,6 +54,9 @@ Here is the \textbf{Quick Search} for this chapter:
 \begin{Th}{Quick Search}
     \begin{compactdesc}
         \item (5.1.*): Directional Derivatives and partial derivatives.
+        \item (5.2.*): Differential.
+        \item (5.3.1.*): Theorem of implicit function.
+        \item (5.3.2.*): Theorem of inverse function.
     \end{compactdesc}
 \end{Th}
 
@@ -62,6 +65,10 @@ Then with everything prepared, here we go.
 \begin{Df}{Df5.1.1.-1 (direction (方向))}
     Suppose $\pmb{u}\in\mathbb{R}_n$. Then $\pmb{u}$ is called a direction in $\mathbb{R}_n$ if $\Vert \pmb{u}\Vert = 1$.
 \end{Df}
+
+\begin{Th}{Th5.1.1.0.-1 ($\Vert A\Vert$ and its properties)}
+    This is a copy-back of Df \{, ID: 5.2.8.-1\} and Th \{, ID: 5.2.8.-1.1\}.
+\end{Th}
 
 \begin{Df}{Df5.1.1 (directional derivative)}
     Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Suppose also $\pmb{u}$ is a direction in $\mathbb{R}_n$. If the limit
@@ -75,6 +82,13 @@ Then with everything prepared, here we go.
         \item \textcolor{Df}{Suppose $f$ is an $n$-real function and $\pmb{u}$ is a direction. If $\parfrac{f}{\pmb{u}}(\pmb{x})$ exists for every $\pmb{x}$ in some set $E\subseteq\mathbb{R}_n$, then we say that $f$ is derivable in the direction $\pmb{u}$ on $E$.}
         \item \textcolor{Th}{Suppose $f$ is an $n$-real function derivable at $\pmb{x}_0$ in the direction $\pmb{u}$. Let $\varphi(t) = f(\pmb{x}_0 + t\pmb{u})$, then $\varphi'(0) = \parfrac{f}{\pmb{u}}(\pmb{x}_0)$.}
         \item \textcolor{Th}{Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then for any direction $\pmb{u}$ in $\mathbb{R}_n$, $\parfrac{f}{\pmb{u}}(\pmb{x}_0)$ coexists with $\parfrac{f}{(-\pmb{u})}(\pmb{x}_0)$ and $\parfrac{f}{(-\pmb{u})}(x_0) = -\parfrac{f}{\pmb{u}}(x_0)$.}
+        \item Obviously the arithmetics holds. \textcolor{Th}{The following equalities mean that if the right side can be computed, then so is the left side, and the left equals right: (let $\pmb{u}$ is a direction)
+        \begin{compactenum}
+            \item $\parfrac{(f\pm g)}{\pmb{u}}(\pmb{x}_0) = \parfrac{f}{\pmb{u}}(\pmb{x}_0)\pm\parfrac{g}{\pmb{u}}(\pmb{x}_0)$;
+            \item $\parfrac{(fg)}{\pmb{u}}(\pmb{x}_0) = \parfrac{f}{\pmb{u}}(\pmb{x}_0) g(\pmb{x}_0) + f(\pmb{x}_0)\parfrac{g}{\pmb{u}}(\pmb{x}_0)$;
+            \item $\parfrac{(f/g)}{\pmb{u}}(\pmb{x}_0) = [g(\pmb{x}_0)]^{-2} \bigl[\parfrac{f}{\pmb{u}}(\pmb{x}_0)g(\pmb{x}_0) - f(\pmb{x}_0)\parfrac{g}{\pmb{u}}(\pmb{x}_0)\bigr]$.
+        \end{compactenum}
+        which shows no difference from the derivative of real functions.}
     \end{compactenum}
 \end{Rmk}
 
@@ -98,6 +112,16 @@ Then with everything prepared, here we go.
     is called the \textbf{gradient} or the \textbf{Jacobian matrix} of $f$ at $\pmb{x}_0$, denoted by $\text{grad}\,f(\pmb{x}_0)$ or $\pmb{J}f(\pmb{x}_0)$.
 \end{Df}
 
+\begin{Rmk}{}
+    We certainly have the arithmetics for the gradient \textcolor{Th}{(still for each equality, the left side can be computed if the right side can, and the left equals right): 
+    \begin{compactenum}
+        \item $\pmb{J}(f\pm g)(\pmb{x}_0) = \pmb{J}f(\pmb{x}_0)\pm\pmb{J}g(\pmb{x}_0)$;
+        \item $\pmb{J}(fg)(\pmb{x}_0) = \pmb{J}f(\pmb{x}_0)g(\pmb{x}_0) + f(\pmb{x}_0)\pmb{J}g(\pmb{x}_0)$;
+        \item $\pmb{J}(f/g)(\pmb{x}_0) = [g(\pmb{x}_0)]^{-2} \bigl[\pmb{J}f(\pmb{x}_0)g(\pmb{x}_0) - f(\pmb{x}_0)\pmb{J}g(\pmb{x}_0)\bigr]$.
+    \end{compactenum}
+    }
+\end{Rmk}
+
 \begin{Df}{Df5.2.1 (differential (微分))}
     Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. If there exists some $\pmb{\lambda}\in\mathbb{R}^{1,n}$ s.t. the differential equality
     $$ f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = \pmb{\lambda}\pmb{h} + R(\pmb{h}) $$
@@ -116,6 +140,16 @@ Then with everything prepared, here we go.
     \tcblower
     \textit{Pf}: Obvious. Suppose $\dif f(\pmb{x}_0) = \pmb{\lambda h}$ where $\pmb{\lambda} = (\lambda_1, \cdots, \lambda_n)^\mathrm{T}$. Let $\pmb{h}$ be, say, $(h_1, 0, \cdots, 0)^\mathrm{T}$, then the differential equality just implies $\lambda_1 = \Dif_1 f(\pmb{x}_0)$.
 \end{Th}
+
+\begin{Rmk}{}
+    We certainly have the arithmetics for the differential \textcolor{Th}{(still for each equality, the left side can be computed if the right side can, and the left equals right):
+    \begin{compactenum}
+        \item $\dif(f\pm g)(\pmb{x}_0) = \dif f(\pmb{x}_0)\pm\dif g(\pmb{x}_0)$;
+        \item $\dif(fg)(\pmb{x}_0) = \dif f(\pmb{x}_0)g(\pmb{x}_0) + f(\pmb{x}_0)\dif g(\pmb{x}_0)$;
+        \item $\dif(f/g)(\pmb{x}_0) = [g(\pmb{x}_0)]^{-2} \bigl[\dif f(\pmb{x}_0)g(\pmb{x}_0) - f(\pmb{x}_0)\dif g(\pmb{x}_0)\bigr]$.
+    \end{compactenum}
+    }
+\end{Rmk}
 
 \begin{Th}{Th5.2.2 (differentiable $\Rightarrow$ continuous)}
     Suppose $f$ is an $n$-real function. If $f$ is differentiable at $\pmb{x}_0$, then $f$ is continuous at $\pmb{x}_0$.
@@ -205,6 +239,13 @@ Then with everything prepared, here we go.
             \parfrac{f_m}{x_1}(\pmb{x}_0) & \cdots & \parfrac{f_m}{x_n}(\pmb{x}_0)
         \end{bmatrix}
         $$}
+        \item We certainly have the arithmetics for $\pmb{Jf}(\pmb{x}_0)$ and $\dif\pmb{f}(\pmb{x}_0)$ (still for each equality, the left side can be computed if the right side can, and the left equals right):
+        \begin{compactenum}
+            \item $\pmb{J}(\pmb{f\pm g})(\pmb{x}_0) = \pmb{Jf}(\pmb{x}_0)\pm\pmb{Jg}(\pmb{x}_0)$;
+            \item $\pmb{J}(c\pmb{f})(\pmb{x}_0) = c\,\pmb{Jf}(\pmb{x}_0)$, where $c\in\mathbb{R}$;
+            \item $\dif(\pmb{f}\pm\pmb{g})(\pmb{x}_0) = \dif \pmb{f}(\pmb{x}_0)\pm\dif \pmb{g}(\pmb{x}_0)$;
+            \item $\dif(c\pmb{f})(\pmb{x}_0) = c\dif \pmb{f}(\pmb{x}_0)$, where $c\in\mathbb{R}$.
+        \end{compactenum}
         \item \textcolor{Th}{(Differentiable $\Rightarrow$ continuous)}
         \item \textcolor{Th}{Suppose $\pmb{f}$ is an $n$-real $m$-function. If $\pmb{Jf}(\pmb{x})$ exists for $\pmb{x}$ in some neighborhood of $\pmb{x}_0$, and $\pmb{Jf}(\cdot)$ is continuous at $\pmb{x}_0$, then $\pmb{f}$ is differentiable at $\pmb{x}_0$.}
         \item The condition 
@@ -321,6 +362,134 @@ Then with everything prepared, here we go.
     This implies that the equation (1) holds no matter whether $\pmb{x}$ is a independent variable or a dependent variable, \textcolor{Df}{which is called the invariant form of one-order differential.}
     \tcblower
     \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th5.3.1 (theorem of implicit function (隐函数))}
+    Suppose $F$ is a 2-real function and $(x_0, y_0)\in (\text{dom}(F))^\circ$. If
+    \begin{compactenum}
+        \item $F\in\mathcal{C}^1$ at $(x_0, y_0)$ locally;
+        \item $F(x_0, y_0) = 0$;
+        \item $\parfrac{F}{y}(x_0, y_0)\neq 0$;
+    \end{compactenum}
+    then there is some open rectangle $I\times J$ (``open rectangle'' means it is an open interval in each dimension) containing $(x_0, y_0)$ s.t.
+    \begin{compactenum}
+        \item[(i)] $\forall x\in I$, $\exists!\, f(x)\in J$ s.t. $F(x, f(x)) = 0$ (and hence we can define the function $f: I\rightarrow J$);
+        \item[(ii)] $f\in\mathcal{C}^1(I)$;
+        \item[(iii)] For any $x\in I$,
+        \begin{equation}
+            f^\prime (x) = -\frac{\parfrac{F}{x}(x, y)}{\parfrac{F}{y}(x, y)}
+            \tag{1}
+        \end{equation}
+        where $y=f(x)$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: First we prove the existence of $f$. Since $\parfrac{F}{y}$ is continuous at $(x_0, y_0)$ locally, and $\parfrac{F}{y}(x_0, y_0)\neq 0$, say, $\parfrac{F}{y}(x_0, y_0) > 0$, we can find an open rectangle $I_1\times J$ containing $(x_0, y_0)$ where $\parfrac{F}{y}(x, y) > 0$. 
+    Let $J = (c, d)$, then fix $x\in I$, the function $g(y) = F(x, y)$ defined on $y\in [c,d]$ (assumed $g$ is continuous at $c$ and $d$, otherwise we can shrink $(c,d)$ a little bit into $(c^\prime, d^\prime)$ so that it is continuous at $c$ and $d$) is interval-derivable, and thus is increasing since $g^\prime = \parfrac{F}{y} > 0$. Hence
+    $$ F(x_0,c) < F(x_0, y_0) = 0 < F(x_0,d). $$
+    Also due to continuity, we can find an open interval $I$ containing $x_0$ s.t. $ F(x,c) < 0 < F(x,d) $ for any $x\in I$, so that we can find a unique $f(x)\in (c,d)$ s.t. $F(x, f(x))=0$ and thus $I\times J$ is what we want.\\
+    Then we prove that $f\in\mathcal{C}^1 (I)$. We must first prove that $f$ is continuous on $I$, especially, at $x_0$. From the analysis above, we can find that no matter how narrow $J$ is, we can always find the desired $I$, which indicates that $f$ is continuous at $x_0$. Secondly, for any $x_1\in I$, repeat the analysis above to get a function $f_1$ s.t. $F(x, f_1(x)) = 0$ and $f_1$ is continuous at $x_1$. Since the uniqueness of $f$, $f_1$ must be $f$, so that $f$ is continuous at $x_1$.\\
+    At $(x_0, y_0)$ locally,
+    $$ F(x_0+h, y_0+k) = F(x_0+h, y_0+k) - F(x_0, y_0) = Ah + Bk + \alpha h+\beta k $$
+    where $A$, $B$ are the corresponding partial derivatives, $\alpha = \alpha (h,k)$, $\beta = \beta (h,k)$ and $\alpha, \beta\rightarrow 0$ when $(h,k)\rightarrow\pmb{0}$. Then let $k = f(x_0+h)-f(x_0)$ to rewrite the equation:
+    $$ 0 = F(x_0+h, f(x_0+h)) = Ah + B[f(x_0+h)-f(x_0)] + \alpha h+\beta [f(x_0+h)-f(x_0)] $$
+    where $\alpha = \alpha (h, f(x_0+h)-f(x_0))\rightarrow 0$ as $h\rightarrow 0$, and so does $\beta$. Then we can prove (ii) and (iii) by dividing the equation by $h$ and then taking $h\rightarrow 0$.
+\end{Th}
+
+\begin{Rmk}{}
+    The formula (1) needs no rote, as it can be easily derived by composite differentiating to the equation $F(x,f(x)) = 0$.
+\end{Rmk}
+
+\begin{Th}{Th5.3.1.1 (theorem of implicit function) (extension of Th \{, ID: 5.3.1\})}
+    Suppose $F$ is a $(n+1)$-real function ($n\geq 1$) and $(\pmb{x}_0, y_0)\in (\text{dom}(F))^\circ$. If
+    \begin{compactenum}
+        \item $F\in\mathcal{C}^1$ at $(\pmb{x}_0, y_0)$ locally;
+        \item $F(\pmb{x}_0, y_0) = 0$;
+        \item $\parfrac{F}{y}(\pmb{x}_0, y_0)\neq 0$;
+    \end{compactenum}
+    then there is some open rectangle $\pmb{I}\times J$ ($\pmb{I}\subseteq\mathbb{R}^n$) containing $(\pmb{x}_0, y_0)$ s.t.
+    \begin{compactenum}
+        \item[(i)] $\forall \pmb{x}\in \pmb{I}$, $\exists!\, f(\pmb{x})\in J$ s.t. $F(\pmb{x}, f(\pmb{x})) = 0$ (and hence we can define the function $f: \pmb{I}\rightarrow J$);
+        \item[(ii)] $f\in\mathcal{C}^1(\pmb{I})$;
+        \item[(iii)] For any $\pmb{x}\in\pmb{I}$,
+        $$ \parfrac{f}{x_i}(\pmb{x}) = -\frac{\parfrac{F}{x_i}(\pmb{x}, y)}{\parfrac{F}{y}(\pmb{x}, y)}, \quad (i=1, \cdots, n)$$
+        where $y=f(\pmb{x})$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: As what we have done in Th \{, ID: 5.3.1\}.
+\end{Th}
+
+\begin{Rmk}{}
+    This can be further extended to the theorem of implicit map (see the next theorem). Before state the theorem, we first claim this notation: \textcolor{Df}{Consider the $(n+m)$-real $m$-function ($n,m\geq 1$) $\pmb{F}$, written as $\pmb{F}(\pmb{x}, \pmb{y})$ ($\pmb{x}\in\mathbb{R}^n$, $\pmb{y}\in\mathbb{R}^m$). Then block $\pmb{JF}$ as $\pmb{J F} = \big[\pmb{J_x F}\;\; \pmb{J_y F}\big]$, where
+    $$ 
+    \pmb{J_x F} = \begin{bmatrix}
+        \parfrac{F_1}{x_1} & \cdots & \parfrac{F_1}{x_n} \\
+        \vdots & & \vdots \\
+        \parfrac{F_m}{x_1} & \cdots & \parfrac{F_m}{x_n}
+    \end{bmatrix}
+    \quad\text{ and }\quad
+    \pmb{J_y F} = \begin{bmatrix}
+        \parfrac{F_1}{y_1} & \cdots & \parfrac{F_1}{y_m} \\
+        \vdots & \ddots & \vdots \\
+        \parfrac{F_m}{y_1} & \cdots & \parfrac{F_m}{y_m}
+    \end{bmatrix}.
+    $$
+    }
+\end{Rmk}
+
+\begin{Th}{Th5.3.1.2 (theorem of implicit function) (extension of Th \{, ID: 5.3.1.1\})}
+    Suppose $\pmb{F}$ is an $(n+m)$-real $m$-function ($n,m\geq 1$) and $(\pmb{x}_0, \pmb{y}_0)\in (\text{dom}(\pmb{F}))^\circ$. If
+    \begin{compactenum}
+        \item $\pmb{F}\in\mathcal{C}^1$ at $(\pmb{x}_0, \pmb{y}_0)$ locally;
+        \item $\pmb{F}(\pmb{x}_0, \pmb{y}_0) = \pmb{0}$;
+        \item $\det \pmb{J}_{\pmb{y}} \pmb{F}(\pmb{x}_0, \pmb{y}_0)\neq 0$;
+    \end{compactenum}
+    then there is some open rectangle $\pmb{I}\times\pmb{J}$ ($\pmb{I}\subseteq\mathbb{R}^n$, $\pmb{J}\subseteq\mathbb{R}^m$) containing $(\pmb{x}_0, \pmb{y}_0)$ s.t.
+    \begin{compactenum}
+        \item[(i)] $\forall \pmb{x}\in \pmb{I}$, $\exists!\, \pmb{f}(\pmb{x})\in J$ s.t. $\pmb{F}(\pmb{x}, \pmb{f}(\pmb{x})) = 0$ (and hence we can define the function $\pmb{f}: \pmb{I}\rightarrow \pmb{J}$);
+        \item[(ii)] $\pmb{f}\in\mathcal{C}^1(\pmb{I})$;
+        \item[(iii)] For any $\pmb{x}\in\pmb{I}$,
+        $$ \pmb{Jf}(\pmb{x}) = -[\pmb{J}_{\pmb{y}} \pmb{F}(\pmb{x}, \pmb{y})]^{-1} \pmb{J}_{\pmb{x}} \pmb{F}(\pmb{x}, \pmb{y}), $$
+        where $\pmb{y} = \pmb{f}(\pmb{x})$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Omit here, and we leave it to the exercise file so that you can find the answer from the source.
+\end{Th}
+
+\begin{Th}{Th5.3.2 (theorem of local inverse function (局部反函数定理))}
+    Suppose $D\subseteq\mathbb{R}^n$ is open and $\pmb{f}:D\rightarrow\mathbb{R}^n$. If
+    \begin{compactenum}
+        \item $\pmb{f}\in\mathcal{C}^1(D)$;
+        \item There is some $\pmb{x}_0\in D$ s.t. $\det \pmb{Jf}(\pmb{x}_0)\neq 0$;
+    \end{compactenum}
+    then there are a neighborhood $U$ of $\pmb{x}_0$ and a neighborhood $V$ of $\pmb{y}_0$ s.t.
+    \begin{compactenum}
+        \item[(i)] $\pmb{f}[U] = V$, and $\pmb{f}: U\rightarrow V$ (the restriction of $\pmb{f}$ to $U$) is bijective (and thus $\pmb{f}$ has an inverse function $\pmb{f}^{-1}: V\rightarrow U$);
+        \item[(ii)] $\pmb{f}^{-1}\in\mathcal{C}^1(V)$;
+        \item[(iii)] For any $\pmb{y}\in V$,
+        $$ \pmb{Jf}^{-1}(\pmb{y}) = \left(\pmb{Jf}(\pmb{x})\right)^{-1}, $$
+        where $\pmb{x} = \pmb{f}^{-1}(\pmb{y})$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Just apply the theorem of implicit function to $\pmb{F}(\pmb{y}, \pmb{x}) = \pmb{f}(\pmb{x})-\pmb{y}$.
+\end{Th}
+
+\begin{Th}{Th5.3.2.1 (theorem of inverse function)}
+    Suppose $D\subseteq\mathbb{R}^n$ is open and $\pmb{f}:D\rightarrow\mathbb{R}^n$. If
+    \begin{compactenum}
+        \item $\pmb{f}\in\mathcal{C}^1(D)$;
+        \item $\det \pmb{Jf}(\pmb{x})\neq 0$ for any $\pmb{x}\in D$ (and thus $E\triangleq\pmb{f}[D]$ is open);
+        \item $\pmb{f}$ is injective (and thus $\pmb{f}$ has an inverse funcion $\pmb{f}^{-1}: E\rightarrow D$);
+    \end{compactenum}
+    then
+    \begin{compactenum}
+        \item[(i)] $\pmb{f}^{-1}\in\mathcal{C}^1(E)$;
+        \item[(ii)] For any $\pmb{y}\in V$,
+        $$ \pmb{Jf}^{-1}(\pmb{y}) = \left(\pmb{Jf}(\pmb{x})\right)^{-1}, $$
+        where $\pmb{x} = \pmb{f}^{-1}(\pmb{y})$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: First we prove that $E$ is open. Since we can apply the theorem of local inverse function to each point $\pmb{x}$ in $D$, we then find the local inverse function $\pmb{f}_{\pmb{x}_0}^{-1}: V_{\pmb{x}_0}\rightarrow U_{\pmb{x}_0}$ for each $\pmb{x}_0$, where $U_{\pmb{x}_0}$ and $V_{\pmb{x}_0}$ are open. Then $E = \bigcup_{\pmb{x}\in D}\pmb{f}[U_{\pmb{x}}] = \bigcup_{\pmb{x}\in D} V_{\pmb{x}}$ is open. \\
+    Since $\pmb{f}^{-1}$ coincides with the local inverse function $\pmb{f}_{\pmb{x}}^{-1}$ locally, we have (i) and (ii).
 \end{Th}
 
 \end{document}
