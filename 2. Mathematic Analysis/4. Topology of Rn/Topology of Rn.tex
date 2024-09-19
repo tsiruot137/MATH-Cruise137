@@ -55,6 +55,7 @@ Here is the \textbf{Quick Search} for this chapter:
         \item (4.4.*): Connected sets.
         \item (4.5.*): Continuity of $n$-real functions.
         \item (4.6.*): Continuity of $n$-real $m$-functions.
+        \item (4.7.*): Iterated limit.
     \end{compactdesc}
 \end{Th}
 
@@ -616,4 +617,32 @@ Then with everything prepared, here we go.
     \tcblower
     \textit{Pf}: \dots
 \end{Th}
+
+\begin{Df}{Df4.7 (iterated limit)}
+    Suppose $f$ is an $2$-real function written as $f(x, y)$. Then the limits
+    $$ \lim\limits_{x\to x_0} \lim\limits_{y\to y_0} f(x, y) \quad\text{and}\quad \lim\limits_{y\to y_0} \lim\limits_{x\to x_0} f(x, y) $$
+    are called the iterated limits of $f$ at $(x_0, y_0)$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{Similarly we can define the iterated limits for $n$-real functions.} \\
+    \textcolor{Th}{In general, the order of variables in an iterated limit matters. The theorem following proposes a sufficient condition for a iterated limit to be irrelevant with the order of the variables.} 
+\end{Rmk}
+
+\begin{Th}{Th4.7.1 (symmetry of iterated limit)}
+    Suppose $f$ is a $2$-real function. If:
+    \begin{compactenum}
+        \item $\lim\limits_{x\to x_0,\; y\to y_0} f(x,y) = l\in\mathbb{R}$; \textcolor{Df}{($\lim\limits_{x\to x_0,\; y\to y_0}$ is $\lim\limits_{(x,y)\to (x_0, y_0)}$)}
+        \item $\lim\limits_{x\to x_0} f(x,y)$ exists for any $y\in B(y_0)$ ($B(y_0)$ is some open ball centered at $y_0$);
+    \end{compactenum}
+    then $\lim\limits_{y\to y_0}\lim\limits_{x\to x_0} f(x,y)$ exists, and equals $l$.
+    \tcblower
+    \textit{Pf}: Prove by the resolution principle. Suppose $y_k\rightarrow y_0$ and $y_k\neq y_0$. Then for each $y_k$, find some sequence $x_{k,i}\rightarrow x_0$ as $i\rightarrow\infty$. Then for each $k$, there is some $N(k)\in\mathbb{N}$ s.t. $|x_{k,N(k)}-x_0|<1/k$ and $|f(x_{k,N(k)}, y_k)-h(y_k)|<1/k$. Then:
+    $$ f(x_{k,N(k)}, y_k)-\frac{1}{k} < h(y_k) < f(x_{k,N(k)}, y_k)+\frac{1}{k}. $$
+    Let us assume $N(1)<N(2)<\cdots\rightarrow\infty$, so that $x_{k,N(k)}\rightarrow x_0$. Then we complete the proof by taking limit at $k\rightarrow\infty$ for the inequality above.
+\end{Th}
+
+\begin{Rmk}{}
+    This immediately implies that \textcolor{Th}{For $f(x,y)$, if the limit at $(x_0,y_0)$ and both of the corresponding iterated limits exist, then these three limit are equal.}
+\end{Rmk}
 \end{document}

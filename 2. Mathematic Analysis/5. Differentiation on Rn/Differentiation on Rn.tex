@@ -28,6 +28,7 @@
 
     % new commands for formula typying
     \newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\biparfrac}[2]{\frac{\partial^2 #1}{#2}}
     \newcommand{\dif}{\mathop{}\!\mathrm{d}}
     \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
 \begin{document}
@@ -57,6 +58,7 @@ Here is the \textbf{Quick Search} for this chapter:
         \item (5.2.*): Differential.
         \item (5.3.1.*): Theorem of implicit function.
         \item (5.3.2.*): Theorem of inverse function.
+        \item (5.4.*): Partial derivatives of higher orders.
     \end{compactdesc}
 \end{Th}
 
@@ -203,7 +205,7 @@ Then with everything prepared, here we go.
 \begin{Th}{Ex5.2.4.1 (the converse of Th5.2.4)}
     Prove that the converse of Th \{, ID: 5.2.4\} is not true.
     \tcblower
-    \textit{Soluiton}: A counterexample is
+    \textit{Solution}: A counterexample is
     $$ f(x,y) = \begin{cases}
         (x^2+y^2)\sin\frac{1}{x^2+y^2},\quad &(x,y)\neq (0,0)\\
         \;0, \quad &(x,y) = (0,0)
@@ -491,5 +493,89 @@ Then with everything prepared, here we go.
     \textit{Pf}: First we prove that $E$ is open. Since we can apply the theorem of local inverse function to each point $\pmb{x}$ in $D$, we then find the local inverse function $\pmb{f}_{\pmb{x}_0}^{-1}: V_{\pmb{x}_0}\rightarrow U_{\pmb{x}_0}$ for each $\pmb{x}_0$, where $U_{\pmb{x}_0}$ and $V_{\pmb{x}_0}$ are open. Then $E = \bigcup_{\pmb{x}\in D}\pmb{f}[U_{\pmb{x}}] = \bigcup_{\pmb{x}\in D} V_{\pmb{x}}$ is open. \\
     Since $\pmb{f}^{-1}$ coincides with the local inverse function $\pmb{f}_{\pmb{x}}^{-1}$ locally, we have (i) and (ii).
 \end{Th}
+
+\begin{Df}{Df5.4 (partial derivatives of higher orders)}
+    For an $n$-real function $f$, if the partial derivatives have their own partial derivatives, then it yields the partial derivatives of $f$ of a higher order. For example, for $f(x,y,z)$, each of the following partial derivatives
+    $$ \biparfrac{f}{\partial x^2} \triangleq \parfrac{}{x}\left(\parfrac{f}{x}\right), \quad \biparfrac{f}{\partial y\,\partial x} \triangleq \parfrac{}{y}\left(\parfrac{f}{x}\right) $$
+    is called a \textbf{2-order partial derivative} of $f$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{A higher-order partial derivative that involves different variables (e.g. $\biparfrac{f}{\partial y\,\partial x}$) is called a \textbf{mixed partial derivative}. (For those that involve the same variable, let us call them \textbf{pure partial derivatives}.)} \textcolor{Df}{Also we have the term ``\textbf{partial derivative function of higher orders}''.}
+    In most of the time, the order of variables in the mixed partial derivative does not matter. \textcolor{Th}{But here is a typical counterexample:
+    $$ f(x,y) = \begin{cases}
+        xy\frac{x^2-y^2}{x^2+y^2},\quad & (x,y)\neq\pmb (0,0)\\
+        0, & (x,y) = (0,0)
+    \end{cases}
+    $$
+    for which $\biparfrac{f}{\partial y\,\partial x}(0,0)\neq\biparfrac{f}{\partial x\,\partial y}(0,0)$.}
+    The next theorem proposes a sufficient condition for the mixed derivatives to be independent of the order of the variables.
+\end{Rmk}
+
+\begin{Th}{Th5.4.1 (symmetry of 2-order mixed derivatives)}
+    Suppose $f$ is a $2$-real function written as $f(x,y)$. If:
+    \begin{compactenum}
+        \item $\biparfrac{f}{\partial y\,\partial x}$ exists on some neighborhood of $(x_0, y_0)$;
+        \item $\biparfrac{f}{\partial y\,\partial x}$ is continuous at $(x_0, y_0)$;
+        \item $\parfrac{f}{y}$ exists on some neighborhood of $(x_0, y_0)$;
+    \end{compactenum}
+    then $\biparfrac{f}{\partial x\,\partial y}(x_0, y_0)$ exists and 
+    $$ \biparfrac{f}{\partial x\,\partial y}(x_0, y_0) = \biparfrac{f}{\partial y\,\partial x}(x_0, y_0). $$
+    \tcblower
+    \textit{Pf}: Let us assume that $(x_0, y_0) = (0,0)$. Then denote $F(x,y) = f(x,y)-f(x,0)-f(0,y)+f(0,0)$ and $g(t) = f(t,y) - f(t,0)$. According to the Lagrange intermediate-value theorem,
+    $$ \begin{aligned}
+        F(x,y) &= g(x) - g(0) = g^\prime (\theta_1 x) x \\
+        &= \left(\parfrac{f}{x}(\theta_1 x, y) - \parfrac{f}{x}(\theta_1x, 0)\right)x \\
+        &= \biparfrac{f}{\partial y\,\partial x}(\theta_1 x, \theta_2 y)\, yx
+    \end{aligned}
+    $$
+    where $\theta_1, \theta_2\in (0,1)$.
+    Then:
+    $$
+    \begin{aligned}
+        \biparfrac{f}{\partial x\, \partial y}(0,0) &= \lim_{x\to 0}\frac{1}{x}\left(\parfrac{f}{y}(x,0) - \parfrac{f}{y}(0,0)\right) \\
+        &= \lim_{x\to 0}\frac{1}{x}\left(\lim_{y\to 0}\frac{f(x,y)-f(x,0)}{y} - \lim_{y\to 0}\frac{f(0,y)-f(0,0)}{y}\right) \\
+        &= \lim_{x\to 0}\frac{1}{x}\lim_{y\to 0}\frac{f(x,y)-f(x,0)-f(0,y)+f(0,0)}{y} \\
+        &= \lim_{x\to 0}\lim_{y\to 0}\frac{F(x,y)}{xy} = \biparfrac{f}{\partial y\,\partial x}(0,0).
+    \end{aligned}
+    $$
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem can be further extended to the cases of $n$-real function $f(x_1, \cdots, x_n)$.\\ \textcolor{Th}{Suppose $f$ is an $n$-real function written as $f(x_1, \cdots, x_n)$, $x_i, x_j$ are two certain variables ($i\neq j$), and $\pmb{x}_0 = (x_{10}, \cdots, x_{n0})$. If:
+    \begin{compactenum}
+        \item $\biparfrac{f}{\partial x_j\,\partial x_i}$ exists on some neighborhood of $\pmb{x}_0$;
+        \item $\biparfrac{f}{\partial x_j\,\partial x_i}$ is continuous at $\pmb{x}_0$;
+        \item $\parfrac{f}{x_j}$ exists on some neighborhood of $\pmb{x}_0$;
+    \end{compactenum}
+    then $\biparfrac{f}{\partial x_i\,\partial x_j}(\pmb{x}_0)$ exists and
+    $$ \biparfrac{f}{\partial x_i\,\partial x_j}(\pmb{x}_0) = \biparfrac{f}{\partial x_j\,\partial x_i}(\pmb{x}_0). $$} \\
+    Also, we can simplify the theorem with a stronger premise. \textcolor{Th}{Suppose $f: D\rightarrow\mathbb{R}$ and $D\subseteq\mathbb{R}^n$ is open. For two certain variables $x_i, x_j$ ($i\neq j$) in the expression $f(x_1, \cdots, x_n)$, if both $\biparfrac{f}{\partial x_i\,\partial x_j}$ and $\biparfrac{f}{\partial x_j\,\partial x_i}$ are continuous on $D$, then they are equal at any point $\pmb{x}$ in $D$.} \\
+    And we would like to further extend this to the mixed partial derivatives of higher orders, in the Th \{, ID: 5.4.2\}. 
+\end{Rmk}
+
+\begin{Df}{Df5.4.2.-1 ($\mathcal{C}^m$)}
+    Suppose $f$ is an $n$-real function and $D\subseteq\text{dom}(f)$ is open. Then we say $f\in\mathcal{C}^m(D)$ ($m\in\mathbb{N}$) if all the $m$-order partial derivative functions (no matter pure or mixed) are continuous on $D$.
+\end{Df}
+
+\begin{Rmk}{}
+    Note that $m$ here can be $0$, and $\mathcal{C}^0$ is just $\mathcal{C}$ we defined before. Of course, this definition is an extension of the previous $\mathcal{C}$ and $\mathcal{C}^1$.\\
+    Here we just require $D\subseteq\text{dom}(f)$ rather than forcing $f: D\rightarrow\mathbb{R}$, since the simply restriction of $f$ on an subset of its domain keeps all the differentiation behavior of $f$ as long as the subset is open. \\
+    \textcolor{Th}{$\mathcal{C}^m(D)$ is a very strong statement, as it implies all of $\mathcal{C}^k$ ($k=0,1,\cdots, m-1$).}
+\end{Rmk}
+
+\begin{Th}{Th5.4.2 (symmetry of higher-order partial derivatives)}
+    Suppose $f$ is an $n$-real function written as $f(x_1, \cdots, x_n)$. If $f\in\mathcal{C}^m(D)$, then on $D$, all those $k$-order partial derivatives functions ($k\leq m$) are symmetric. (Here the ``symmetric'' means that: if two $k$-order partial derivatives differ only in the sequence of variables, then they are equal at any point in $D$.)
+    \tcblower
+    \textit{Pf}: Given a higher-order partial derivative function (with the denominator $\partial x_{k_1}\cdots\partial x_{k_l}$), we can arbitrarily swap any adjacent pair of $\partial x_{k_i}$'s according to the Rmk \{, ID: 5.4.1\}, by which we can achieve any sequence of variables.
+\end{Th}
+
+\begin{Df}{Df5.4.2.1 (indices-notation of higher-order partial derivatives)}
+    \begin{compactenum}
+        \item An $n$-tuple $\pmb{\alpha} = (\alpha_1, \cdots, \alpha_n)$ made up of non-negative integers $\alpha_1, \cdots, \alpha_n$ is called a \textbf{multiple index}, and we denote $|\pmb{\alpha}| = \sum_{i=1}^{n} \alpha_i$, $\pmb{\alpha !} = \prod_{i=1}^{n}(\alpha_i!)$.
+        \item Suppose $f$ is an $n$-real function written as $f(x_1, \cdots, x_n)$, and $\pmb{x}\in\mathbb{R}^n$. Given a multiple index $\pmb{\alpha} = (\alpha_1, \cdots, \alpha_n)$, then denote 
+        $$ \mathrm{D}^{\pmb{\alpha}} f(\pmb{x}) \triangleq \frac{\partial^{\alpha_1+\cdots+\alpha_n} f}{\partial x_1^{\alpha_1}\cdots\partial x_n^{\alpha_n}} (\pmb{x}) $$
+    \end{compactenum}
+\end{Df}
 
 \end{document}
