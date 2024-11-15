@@ -10,7 +10,7 @@
     \usepackage{paralist}
     \usepackage{cancel}
 
-    \usepackage{ctex}
+    % \usepackage{ctex}
     \usepackage{amssymb}
     \usepackage{amsmath}
 
@@ -70,9 +70,18 @@ By the way, we now reiterate some commonly-used notations and conventions:
     \item $\mathbb{F}$: a number field.
     \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
     \item $A = \{a_{i,j}\}$: a matrix $A$ with the element $a_{i,j}$ at the $i$-th row and the $j$-th column. In this chapter, we usually use the capital letters to represent the matrices, small and bold letters to represent the row or column vectors, and the small letters to represent the elements of the matrices.
-    \item Since you have known that the matrices and the linear maps are isomorphic, we turn the point of discussion to the matrices as they are powerful tools. Once have fixed the bases, the matrix of a linear map is uniquely determined. Hence please associate any matrix with an underlying map, taking the standard bases in $\mathbb{F}^n$ (the standard bases are those bases of so called ``one-hot'' from).
+    \item Since you have known that the matrices and the linear maps are isomorphic, we turn the point of discussion to the matrices as they are powerful tools. Once have fixed the bases, the matrix of a linear map is uniquely determined. Hence please associate any matrix with an underlying map, taking the standard basis in $\mathbb{F}^n$ (the standard bases are those bases of so called ``one-hot'' from).
     \item The matrix product $KA$ is referred as ``$A$ left-multiplied by $K$'' or ``left-multiply $A$ by $K$''; $AK$ is similar.
 \end{compactenum} 
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (5.2.2 ~ 5.2.4): Gaussian elimination.
+        \item (5.3.*): Block matrices.
+    \end{compactdesc}
+\end{Th}
+
 Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
 
 \begin{Df}{$\bullet$ Df5.1 (linear system)}
@@ -86,7 +95,7 @@ Please check the notations and definitions by yourself from the previous chapter
 \begin{Th}{$\bullet$ Th5.1.1 (solutions of a linear system)}
     \begin{compactenum}
         \item A linear system has no solution, a unique solution, or infinitely many solutions.
-        \item When a linear system $A\pmb{x} = \pmb{b}$ has solutions, its set of solutions is the affine set $\pmb{x_p} + N(T)$, where $\pmb{x_p}$ is a particular solution (s.t. $A\pmb{x_p} = \pmb{b}$) and $T$ is the underlying linear map of $A$.
+        \item When a linear system $A\pmb{x} = \pmb{b}$ has solutions, its set of solutions is the affine set $\pmb{x}_p + N(T) = \pmb{x}_p + \{\pmb{x}_0: A\pmb{x}_0 = \pmb{0}\}$, where $\pmb{x}_p$ is a particular solution (s.t. $A\pmb{x}_p = \pmb{b}$) and $T$ is the underlying linear map of $A$.
         \item Linear systems $A\pmb{x} = \pmb{b}$ (with the underlying linear map $T$ of $A$) has at least one solution if $T$ is surjective, and has at most one solution if $T$ is injective. 
     \end{compactenum}
     \tcblower
@@ -206,8 +215,8 @@ Please check the notations and definitions by yourself from the previous chapter
     For a linear system $A\pmb{x} = \pmb{b}$, apply the forward-Gaussian elimination on the augmented matrix $[A\;\;\pmb{b}]$ and obtain the matrix $[A_s\;\; \pmb{b}_s]$ (where $A_s$ is the resulted stair-form matrix). Then:
     \begin{compactenum}
         \item The resulted system $A_s\pmb{x} = \pmb{b}_s$ has the same solutions as the original system $A\pmb{x} = \pmb{b}$.
-        \item $A\pmb{x} = \pmb{b}$ has at least one solution iff there are no zero row of $A_s$ meeting a non-zero component of $\pmb{b}_s$ on the right (that is, no row in $[A_s\;\;\pmb{b}_s]$ like $[0, \dots, 0, b]$ with non-zero $b$).
-        \item Remove all zero rows of $[A_s\;\;\pmb{b}_s]$. Then $A\pmb{x} = \pmb{b}$ has a solution iff the pivot of the last row of $[A_s\;\;\pmb{b}_s]$ exists; $A\pmb{x} = \pmb{b}$ has a unique solution iff the pivot of the last row of $[A_s\;\;\pmb{b}_s]$ exists and reaches the right end.
+        \item $A\pmb{x} = \pmb{b}$ has at least one solution iff there are no zero row of $A_s$ meeting a non-zero component of $\pmb{b}_s$ on the right (that is, no row in $[A_s\;\;\pmb{b}_s]$ has the form $[0, \dots, 0, b]$ with non-zero $b$).
+        \item Assume the system has solution(s). Remove all zero rows of $[A_s\;\;\pmb{b}_s]$ and the system is now $[A_r\;\;\pmb{b}_r]$. Then the last row of $A_r$ must have a pivot $a$. Then $A\pmb{x} = \pmb{b}$ has a unique solution iff $a$ reaches the right end of $A_r$ (namely, $a$ is in the last column of $A_r$). 
     \end{compactenum}
     \tcblower
     \textit{Pf}: Trivial.
@@ -250,7 +259,7 @@ Please check the notations and definitions by yourself from the previous chapter
     \textit{Pf}: Trivial, just think of the range space implications of rank.
 \end{Th}
 
-\begin{Df}{$\bullet$ Df5.3 (block matrix (分块矩阵))}
+\begin{Df}{$\bullet$ Df5.3 (block matrix)}
     \begin{compactenum}
         \item Check this definition by yourself.
         \item Let $A$ be a block matrix:

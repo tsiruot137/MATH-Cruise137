@@ -34,7 +34,7 @@
 \begin{document}
 \maketitle
 
-This is the 4th chapter of Mathematical Analysis, which is about \textbf{Topology of $\mathbb{R}^n$}. By the way, we now pre-claim some commonly-used notations and terms:
+This is the 5th chapter of Mathematical Analysis, which is about \textbf{Differentiation on $\mathbb{R}^n$}. By the way, we now pre-claim some commonly-used notations and terms:
 \begin{Df}{Notations and Terms}
     \begin{compactenum}
         \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
@@ -133,7 +133,8 @@ Then with everything prepared, here we go.
 \end{Df}
 
 \begin{Rmk}{}
-    It is easy to verify \textcolor{Th}{the uniqueness of differential:} if $f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = \pmb{\lambda}_1\pmb{h} + R_1(\pmb{h}) = \pmb{\lambda}_2\pmb{h} + R_2(\pmb{h})$, then $(\pmb{\lambda}_1 - \pmb{\lambda}_2)\pmb{h} = R_2(\pmb{h}) - R_1(\pmb{h}) = o(\Vert \pmb{h}\Vert)$, (\textcolor{Df}{where $o(\Vert \pmb{h}\Vert)$ merely extends the notation of $o(\cdot)$ in $\mathbb{R}$, i.e. infinitely small of a higher order.}) and this is impossible unless $\pmb{\lambda}_1 = \pmb{\lambda}_2$.
+    It is easy to verify \textcolor{Th}{the uniqueness of differential:} if $f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = \pmb{\lambda}_1\pmb{h} + R_1(\pmb{h}) = \pmb{\lambda}_2\pmb{h} + R_2(\pmb{h})$, then $(\pmb{\lambda}_1 - \pmb{\lambda}_2)\pmb{h} = R_2(\pmb{h}) - R_1(\pmb{h}) = o(\Vert \pmb{h}\Vert)$, (\textcolor{Df}{where $o(\Vert \pmb{h}\Vert)$ merely extends the notation of $o(\cdot)$ in $\mathbb{R}$, i.e. infinitely small of a higher order.}) and this is impossible unless $\pmb{\lambda}_1 = \pmb{\lambda}_2$. \\
+    \textcolor{Df}{$f$ is said to be differentiable on $D$ if $f$ is differentiable at every point in $D$. And we will still keep this agreement for the $n$-real $m$-functions (talked about later).}
 \end{Rmk}
 
 \begin{Th}{Th5.2.1.1 (differential is gradient)}
@@ -241,13 +242,13 @@ Then with everything prepared, here we go.
             \parfrac{f_m}{x_1}(\pmb{x}_0) & \cdots & \parfrac{f_m}{x_n}(\pmb{x}_0)
         \end{bmatrix}
         $$}
-        \item We certainly have the arithmetics for $\pmb{Jf}(\pmb{x}_0)$ and $\dif\pmb{f}(\pmb{x}_0)$ (still for each equality, the left side can be computed if the right side can, and the left equals right):
+        \item \textcolor{Th}{We certainly have the arithmetics for $\pmb{Jf}(\pmb{x}_0)$ and $\dif\pmb{f}(\pmb{x}_0)$ (still for each equality, the left side can be computed if the right side can, and the left equals right):
         \begin{compactenum}
             \item $\pmb{J}(\pmb{f\pm g})(\pmb{x}_0) = \pmb{Jf}(\pmb{x}_0)\pm\pmb{Jg}(\pmb{x}_0)$;
             \item $\pmb{J}(c\pmb{f})(\pmb{x}_0) = c\,\pmb{Jf}(\pmb{x}_0)$, where $c\in\mathbb{R}$;
             \item $\dif(\pmb{f}\pm\pmb{g})(\pmb{x}_0) = \dif \pmb{f}(\pmb{x}_0)\pm\dif \pmb{g}(\pmb{x}_0)$;
             \item $\dif(c\pmb{f})(\pmb{x}_0) = c\dif \pmb{f}(\pmb{x}_0)$, where $c\in\mathbb{R}$.
-        \end{compactenum}
+        \end{compactenum}}
         \item \textcolor{Th}{(Differentiable $\Rightarrow$ continuous)}
         \item \textcolor{Th}{Suppose $\pmb{f}$ is an $n$-real $m$-function. If $\pmb{Jf}(\pmb{x})$ exists for $\pmb{x}$ in some neighborhood of $\pmb{x}_0$, and $\pmb{Jf}(\cdot)$ is continuous at $\pmb{x}_0$, then $\pmb{f}$ is differentiable at $\pmb{x}_0$.}
         \item The condition 
@@ -570,12 +571,40 @@ Then with everything prepared, here we go.
     \textit{Pf}: Given a higher-order partial derivative function (with the denominator $\partial x_{k_1}\cdots\partial x_{k_l}$), we can arbitrarily swap any adjacent pair of $\partial x_{k_i}$'s according to the Rmk \{, ID: 5.4.1\}, by which we can achieve any sequence of variables.
 \end{Th}
 
-\begin{Df}{Df5.4.2.1 (indices-notation of higher-order partial derivatives)}
+\begin{Df}{Df5.4.2.2 (indices-notation of higher-order partial derivatives)}
     \begin{compactenum}
         \item An $n$-tuple $\pmb{\alpha} = (\alpha_1, \cdots, \alpha_n)$ made up of non-negative integers $\alpha_1, \cdots, \alpha_n$ is called a \textbf{multiple index}, and we denote $|\pmb{\alpha}| = \sum_{i=1}^{n} \alpha_i$, $\pmb{\alpha !} = \prod_{i=1}^{n}(\alpha_i!)$.
         \item Suppose $f$ is an $n$-real function written as $f(x_1, \cdots, x_n)$, and $\pmb{x}\in\mathbb{R}^n$. Given a multiple index $\pmb{\alpha} = (\alpha_1, \cdots, \alpha_n)$, then denote 
-        $$ \mathrm{D}^{\pmb{\alpha}} f(\pmb{x}) \triangleq \frac{\partial^{\alpha_1+\cdots+\alpha_n} f}{\partial x_1^{\alpha_1}\cdots\partial x_n^{\alpha_n}} (\pmb{x}) $$
+        $$ \mathrm{D}^{\pmb{\alpha}} f(\pmb{x}) \triangleq \frac{\partial^{\alpha_1+\cdots+\alpha_n} f}{\partial x_1^{\alpha_1}\cdots\partial x_n^{\alpha_n}} (\pmb{x}), $$
+        if the symmetry of higher-order partial derivatives holds.
     \end{compactenum}
+\end{Df}
+
+\begin{Th}{Ex5.4.2.1 ($\mathcal{P}_\mathbb{F}(x_1,\cdots, x_n)\sim\mathcal{P}(\mathbb{F}^n)$)}
+    Prove that two $n$-variate polynomial functions $f$ and $g$ in $\mathcal{P}(\mathbb{R}^n)$ are equal iff their corresponding coefficients are all equal (so that $\mathcal{P}(\mathbb{R}^n)$ and $\mathcal{P}_\mathbb{R}(x_1, \cdots, x_n)$ can be deemed identical (see the Rmk \{, ID: 1.13\})).
+    \textit{Pf}: Only need to prove that the $n$-variate polynomial function $f$ has only zero-coefficients if $f$ is zero. Write $f$ as
+    $$ f(\pmb{x}) = \sum_{\pmb{\alpha}} \varphi(\pmb{\alpha}) \pmb{x}^{\pmb{\alpha}}, $$
+    then we assume that $f(\pmb{x}) = 0$ for any $\pmb{x}$, and try to prove that $\varphi(\pmb{\alpha}) = 0$ for any $\pmb{\alpha}$. Like the unary polynomial functions, we can specifically diminish a term with some certain $\pmb{\alpha}$ via some appropriate ways of partial derivative. Now we clarify this with an example case of $f$:
+    $$ f(x,y,z) = ax^2y+bxyz^2+cx^2y^3z = 0 $$
+    For the term $ax^2y$, since the powers of $x$ and $y$ are $2$ and $1$ respectively, we consider this mixed partial derivative function of $f$: 
+    $$ \frac{\partial^{2+1} f}{\partial x^2\,\partial y}(x,y,z) = 2a+0+6cy^2z = 0 $$
+    And we let $x=y=z=0$ here to yield that $a=0$. So forth, we can in the same way prove that $b=c=0$.
+\end{Th}
+
+\begin{Rmk}{}
+    Actually this theorem can be strengthened: \textcolor{Th}{If $f(\pmb{x})=0$ for any $\pmb{x}\in B$, where $B = B(\pmb{x}_0)$ is an open ball centered at some point $\pmb{x}_0$, then all the coefficients of $f$ are zeros.} Actually to prove this, you can first let $\pmb{x}_0 = \pmb{x}$, and then just copy the proof above.
+\end{Rmk}
+
+\begin{Df}{Df5.4.2.3 (Hessian matrix)}
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0$. Then
+    $$ \pmb{H} f(x_0) \triangleq 
+    \begin{bmatrix}
+        \biparfrac{f}{\partial x_1^2}(\pmb{x}_0) & \cdots & \biparfrac{f}{\partial x_1 \partial x_n}(\pmb{x}_0) \\
+        \vdots & \ddots & \vdots \\
+        \biparfrac{f}{\partial x_n \partial x_1}(\pmb{x}_0) & \cdots & \biparfrac{f}{\partial x_n^2}(\pmb{x}_0)
+    \end{bmatrix}
+    $$
+    is called the Hessian matrix of $f$. \textcolor{Th}{If $f\in\mathcal{C}^2(B(x_0))$, then $\pmb{H}f(x_0)$ exists, and it is a symmetric square matrix.}
 \end{Df}
 
 \end{document}

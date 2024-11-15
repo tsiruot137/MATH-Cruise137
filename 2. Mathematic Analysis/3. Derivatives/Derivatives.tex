@@ -177,8 +177,8 @@ Then with everything prepared, here we go.
 
 \begin{Df}{Df3.5.0.-1 (extremum)}
     \begin{compactenum}
-        \item Suppose $f$ is a real function and $x_0\in\mathbb{R}$. We say $x_0$ is a peak point of $f$ (resp. a valley point of $f$) and $f(x_0)$ is the corresponding peak (resp. valley) if there exists some $B_\delta(x_0)$ s.t. $f(x_0)\geq f(x)$ (resp. $f(x_0)\leq f(x)$) for every $x\in B_\delta(x_0)$.
-        \item Suppose $f$ is a real function and $x_0\in\mathbb{R}$. We say $x_0$ is an extremal point of $f$ and $f(x_0)$ is the corresponding extremum if $x_0$ is a peak point or a valley point of $f$.
+        \item Suppose $f$ is a real function well-defined near and at $x_0\in\mathbb{R}$. We say $x_0$ is a peak point of $f$ (resp. a valley point of $f$) and $f(x_0)$ is the corresponding peak (resp. valley) if there exists some $B_\delta(x_0)$ s.t. $f(x_0)\geq f(x)$ (resp. $f(x_0)\leq f(x)$) for every $x\in B_\delta(x_0)$.
+        \item Suppose $f$ is a real function well-defined near and at $x_0\in\mathbb{R}$. We say $x_0$ is an extremal point of $f$ and $f(x_0)$ is the corresponding extremum if $x_0$ is a peak point or a valley point of $f$.
     \end{compactenum}
 \end{Df}
 
@@ -228,6 +228,12 @@ Then with everything prepared, here we go.
     $$ h(x) = f(x)\Big[g(b)-g(a)\Big] - g(x)\Big[f(b)-f(a)\Big], $$
     which can be verified to satisfy $h(a) = h(b)$, done.
 \end{Th}
+
+\begin{Rmk}{}
+    Here is an equivalent statement of the Cauchy's intermediate-value theorem: \textcolor{Th}{Suppose $f$ and $\lambda$ are real functions that are interval-derivable on $[a,b]$ ($a,b\in\mathbb{R}$) and $\lambda(b)-\lambda(a) = 1$. Then there exists some $\xi\in (a,b)$ s.t. 
+    $$ f^\prime(\xi) = \lambda^\prime(\xi)\Big[f(b)-f(a)\Big]. $$
+    } This is just the Cauchy's intermediate-value theorem with $g(b) - g(a) = 1$, and this form is sometimes more elegant in its geometric interpretation.
+\end{Rmk}
 
 \begin{Th}{Th3.5.4 (Darboux's theorem)}
     Suppose $f$ is a real function that is derivable on $[a, b]$ ($a, b\in\mathbb{R}$). Then:

@@ -1,0 +1,218 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Taylor's Formula}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\biparfrac}[2]{\frac{\partial^2 #1}{#2}}
+    \newcommand{\dif}{\mathop{}\!\mathrm{d}}
+    \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
+\begin{document}
+\maketitle
+
+This is the 6th chapter of Mathematical Analysis, which is about \textbf{Taylor's Formula}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item $\mathbb{R}^n$: without extra specification, $n\in\mathbb{N}^\ast$; 
+        \item You may see some statements like ``this Df/Th is merely an extension of the previous one'', which means that the current Df/Th can be reduced to the previous one on some conditions.
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
+        \item The inner product and norm in $\mathbb{R}^n$ are the typical ones: $\langle \pmb{x}, \pmb{y}\rangle = x_1y_1 + \dots + x_ny_n$, $\Vert \pmb{x}\Vert = \sqrt{\langle \pmb{x}, \pmb{x}\rangle}$.
+        \item $E^c$: Let $E\subseteq\mathbb{R}^n$. Then $E^c\triangleq \mathbb{R}^n\setminus E$.
+        \item A set of sets is called a collection or a family.
+        \item A vector in $\mathbb{R}^n$, without explicit specification, is written as a column vector, i.e. an $n\times 1$ matrix.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (6.1.*, 6.2.*): Unary Taylor's formula.
+        \item (6.3.*): Multivariate intermediate value theorems.
+        \item (6.4.*): Multivariate Taylor's formula.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Th}{Ex6.1.-1 (polynomial approximation of a function)}
+    Let $f$ be a real function well-defined near and at $x_0\in\mathbb{R}$. By what means can we approximate $f$ by a polynomial $p(x) = a_0 + a_1(x-x_0) + \cdots + a_n(x-x_0)^n$ near $x_0$ s.t. 
+    $$ f(x) = p(x) + o[(x-x_0)^n]\quad (x\rightarrow x_0)\quad ? $$
+    \tcblower
+    \begin{compactenum}
+        \item If such $p(x)$ exists, then plug into $x = x_0$ to get $a_0 = f(x_0)$ (here we assume $f$ is continuous at $x_0$);
+        \item Derivating to get $f^\prime (x) = a_1 + 2a_2(x-x_0) + \cdots + na_n(x-x_0)^{n-1} + R_{n-1}(x) $ (where $R_{n-1}(x) = R_n^\prime (x)$ and $R_n(x) = f(x) - p(x)$), and plugging $x = x_0$ to get $a_1 = f^\prime (x_0)$ (here we assume $f$ is derivable at $x_0$);
+        \item Derivating again to get $f^{\prime\prime} (x) = 2a_2 + \cdots + n(n-1)a_n(x-x_0)^{n-2} + R_{n-2}(x)$, and plugging $x = x_0$ to get $a_2 = f^{\prime\prime} (x_0)/2$ (here we assume $f$ is twice derivable at $x_0$);
+        \item Derivating again to get $f^{(3)} (x) = 3!a_3 + \cdots + n(n-1)(n-2)a_n(x-x_0)^{n-3} + R_{n-3}(x)$, and plugging $x = x_0$ to get $a_3 = f^{(3)} (x_0)/3!$ (here we assume $f$ is thrice derivable at $x_0$);
+        \item $\cdots$
+    \end{compactenum}
+    Thus the polynomial $p(x) = \sum_{i=0}^{n} \left(f^{(k)}(x_0)/k!\right) (x-x_0)^k$ is the only choice of the desired approximation, given that $f$ is $n$-times derivable at $x_0$. Now we wonder whether it satisfies $f(x) = p(x) + o[(x-x_0)^n]$. Actually, it does as we apply the L'Hospital's rule for $n$ times to the limit
+    $$ \lim\limits_{x\to x_0}\frac{f(x)-p(x)}{(x-x_0)^n}. $$
+\end{Th}
+
+\begin{Rmk}{}
+    This brief study, however, yields what is called ``the peak of unary differentiation''— the Taylor's formula.
+\end{Rmk}
+
+\begin{Df}{Df6.1.0.-1 (Taylor's polynomials)}
+    Suppose $f$ is a real function well-defined near and at $x_0\in\mathbb{R}$. If $f$ is $n$-times derivable at $x_0$ ($n\geq 1$), then the polynomial
+    $$ T_n(f,x_0;x) \triangleq \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x-x_0)^k $$
+    is called the Taylor's polynomial (of $f$, near $x_0$, with the $n$-degree).
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Let $n>1$, then $T_n^\prime (f,x_0;x) = T_{n-1}^\prime (f^\prime,x_0;x)$.}
+\end{Rmk}
+
+\begin{Th}{Th6.1 (Taylor's formula with the Peano's remainder)}
+    Suppose $f$ is a real function well-defined near and at $x_0\in\mathbb{R}$. If $f$ is $n$-times derivable at $x_0$ ($n\geq 1$), then $T_n(f,x_0;x)$ is the only $n$-degree polynomial $p(x)$ (in $\mathcal{P}_\mathbb{R}(x)$) s.t. for any $x$ near $x_0$,
+    $$ f(x) = p(x) + o[(x-x_0)^n] \quad (x\rightarrow x_0). $$
+    Here $o[(x-x_0)^n]$ is called the Peano's remainder.
+    \tcblower
+    \textit{Pf}: Already done in the Ex \{, ID: 6.1.-1\}.
+\end{Th}
+
+\begin{Th}{Th6.1.1 (Taylor's formula for identifying extremum)}
+    Suppose the real function $f$ is $k$-times derivable at $x_0\in\mathbb{R}$ ($k\geq 1$) and
+    $$ f^\prime (x_0) = \cdots = f^{(k-1)}(x_0) = 0, \quad f^{(k)}(x_0)\neq 0. $$
+    Then:
+    \begin{compactenum}
+        \item if $k$ is odd, then $x_0$ is not an extremal point of $f$;
+        \item if $k$ is even, then $x_0$ is a valley point (resp. a peak point) of $f$ if $f^{(k)}>0$ (resp. $f^{(k)}<0$).
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious as we approximate $f(x)$ by $T_k(f,x_0;x)$.
+\end{Th}
+
+\begin{Th}{Th6.2 (Taylor's formula with the Lagrange's remainder and the Cauchy remainder)}
+    Suppose $f: (a,b)\rightarrow\mathbb{R}$. If $f$ is $(n+1)$-times derivable on $(a,b)$ ($n\geq 1$), then for any $x_0, x\in(a,b)$ with $x_0\neq x$, there exists some $\xi\in (x_0,x)$ (or $\xi\in (x,x_0)$) s.t.
+    $$ f(x) = T_n(f,x_0;x) + R_n(x), $$
+    where 
+    $$ R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1} \quad \text{(Lagrange's remainder)} \quad \text{or} $$
+    $$ R_n(x) = \frac{f^{(n+1)}(\xi)}{n!} (x-\xi)^n (x-x_0) \quad \text{(Cauchy remainder)}. $$
+    Note that the $\xi$'s in the Lagrange's remainder and the Cauchy remainder are usually different.
+    \tcblower
+    \textit{Pf}: Let $F(t) = T_n(f,t;x)$, then
+    \begin{equation}
+        F^\prime (t) = \frac{f^{(n+1)}(t)}{n\,!}(x-t)^n, \tag{1}
+    \end{equation}
+    Consider the equivalent form of the Cauchy's intermediate value theorem
+    $$ F^\prime (\xi) = \lambda^\prime (\xi) [F(x) - F(x_0)] $$
+    where $\lambda(x) - \lambda(x_0) = 1$. Then the theorem can be proved by taking
+    $$ \lambda(t) = -\left(\frac{x-t}{x-x_0}\right)^{n+1} \quad\text{and}\quad\lambda(t) = -\frac{x-t}{x-x_0} $$
+    for the Lagrange's remainder and the Cauchy remainder respectively. \\
+    \textcolor{P}{\textit{Thoughtfully}: See the next page.}
+\end{Th}
+
+\begin{Th}{Th6.2 (Taylor's formula with the Lagrange's remainder and the Cauchy remainder) — continued}
+    \textcolor{P}{\textit{Thoughtfully}: Obviously this is some form of those ``intermediate value theorems'', and what we need is just to construct the proper function suitable for them. In the target equation $f(x) = T_n(f,x_0;x) + R_n(x)$, the only construction of $F(x)$ suitable for the intermediate value theorems, that can yield $f^{(n+1)}(\xi)$ in the expression of $F^\prime(\xi)$, is $F(t) = T_n(f,t;x)$. And we can quickly notice that $F(x) - F(x_0) = R_n(x)$. After studying the higher-order derivatives of this $F(t)$, namely, the equation (1), we can make such an analysis (e.g. for the Lagrange's remainder):
+    $$
+    \begin{aligned}
+        F(x) - F(x_0) &= R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)\,!} (x-x_0)^{n+1} \\
+        \overset{?}{=} F^\prime(\xi) / \lambda^\prime(\xi) &= \frac{f^{(n+1)}(\xi)}{n\,!}(x-\xi)^n \Big/ \lambda^\prime(\xi)
+    \end{aligned}
+    $$
+    namely, $\lambda^\prime(\xi) = \frac{(n+1)(x-\xi)^n}{(x-x_0)^{n+1}}$. So we can then choose $ \lambda(t) = -\left(\frac{x-t}{x-x_0}\right)^{n+1} $. \\
+    You may also wonder why choose the Cauchy among those intermediate value theorems. This is, of course, because the Cauchy is the most ``powerful'' among these theorems (although different intermediate value theorems are actually equivalent, merely with different construction of functions), as we have spent more time to prove it than to prove others.
+    }
+\end{Th}
+
+\begin{Th}{Th6.3.1 (intermediate value theorem of $n$-real functions)}
+    Suppose $f$ is an $n$-real function defined on some convex region $D$, and $f$ is differentiable on $D$. Then for any $\pmb{a}, \pmb{b}\in D$ (say, $\pmb{a} \neq \pmb{b}$), there exists some $\pmb{\xi}$ on the line segment $\{(1-\lambda)\pmb{a}+\lambda\pmb{b}: \lambda\in (0,1)\}$ connecting $\pmb{a}$ and $\pmb{b}$ s.t.
+    $$ f(\pmb{b}) - f(\pmb{a}) = \pmb{J}f(\pmb{\xi})(\pmb{b}-\pmb{a}). $$
+    \tcblower
+    \textit{Pf}: Let $g(\lambda) = f\left((1-\lambda)\pmb{a}+\lambda\pmb{b}\right)$ and apply the Lagrange's intermediate value theorem to $g$.
+\end{Th}
+
+\begin{Rmk}{}
+    Now we might wonder whether it still holds for $n$-real $m$-functions, i.e. it still holds that, say, 
+    $$
+    \begin{cases}
+        f_1(b) - f_1(a) = f_1^\prime(\xi) (b-a) \\
+        f_2(b) - f_2(a) = f_2^\prime(\xi) (b-a)
+    \end{cases}
+    $$
+    where $f_1$, $f_2$ are arbitrary derivable real functions on $[a,b]$. Actually, no, just as what we would see at the first glance at the Cauchy's intermediate value theorem, where we cannot prove it by simply applying the Lagrange's intermediate value theorem respectively for the two functions. More exactly, a counterexample $(f_1, f_2)$ should stagger the $\xi$'s for the different component functions, for example:
+    $$ \pmb{f}(x) = 
+    \begin{cases}
+        f_1(x) = x^2 \\
+        f_2(x) = x^3
+    \end{cases}
+    $$
+    and $[a,b] = [0,1]$. \\
+    However, we can instead develop the quasi intermediate value theorem of derivatives, which substitudes the equality in the intermediate value theorem with inequality.
+\end{Rmk}
+
+\begin{Th}{Th6.3.2 (quasi intermediate value theorem of real $m$-functions)}
+    Suppose $\pmb{f}$ is a $1$-real $m$-function defined on $[a,b]$, and each component function $f_i$ of $\pmb{f} = (f_1, \cdots, f_m)$ is interval-derivable on $[a,b]$. Then there exists $\xi\in (a,b)$ s.t.
+    $$ \Vert \pmb{f}(b) - \pmb{f}(a) \Vert \leq \Vert \pmb{J f}(\xi) (b-a) \Vert $$
+    \tcblower
+    \textit{Pf}: Let $g(t) = \langle \pmb{f}(t), \pmb{f}(b)-\pmb{f}(a)\rangle$ and then apply the Lagrange's intermediate value theorem.
+\end{Th}
+
+\begin{Th}{Th6.3.3 (quasi intermediate value theorem of $n$-real $m$-functions)}
+    Suppose $\pmb{f}$ is an $n$-real $m$-function defined on some convex region $D$, and $\pmb{f}$ is differentiable on $D$. Then for any $\pmb{a}, \pmb{b}\in D$ (say, $\pmb{a} \neq \pmb{b}$), there exists some $\pmb{\xi}$ on the line segment $\{(1-\lambda)\pmb{a}+\lambda\pmb{b}: \lambda\in (0,1)\}$ connecting $\pmb{a}$ and $\pmb{b}$ s.t.
+    $$ \Vert \pmb{f}(\pmb{b}) - \pmb{f}(\pmb{a}) \Vert \leq \Vert \pmb{J}f(\pmb{\xi})(\pmb{b}-\pmb{a}) \Vert. $$
+    \tcblower
+    \textit{Pf}: Let $\pmb{g}(\lambda) = \pmb{f}\left((1-\lambda)\pmb{a}+\lambda\pmb{b}\right)$ and apply Th \{, ID: 6.3.2\} to $\pmb{g}$.
+\end{Th}
+
+\begin{Th}{Th6.4.1 (Taylor's formula for $n$-real functions with the Lagrange's remainder)}  
+    Suppose $D\subseteq\mathbb{R}^n$ is a convex region and $f: D\rightarrow\mathbb{R}$ satisfies $f\in\mathcal{C}^{m+1}(D)$ ($m\geq 0$). Then for any $\pmb{a}, \pmb{a}+\pmb{h}\in D$ (say, $\pmb{h}\neq \pmb{0}$), there exists some $\theta\in (0,1)$ s.t.
+    $$ f(\pmb{a}+\pmb{h}) = \sum_{k=0}^{m} \sum_{|\pmb{\alpha|} = k}\frac{\Dif^{\pmb{\alpha}} f(\pmb{a})}{\pmb{\alpha}\,!} \pmb{h}^{\pmb{\alpha}} + R(\pmb{h}), $$
+    where 
+    $$ R(\pmb{h}) = \sum_{|\pmb{\alpha}| = m+1} \frac{\Dif^{\pmb{\alpha}} f(\pmb{a}+\theta\pmb{h})}{\pmb{\alpha}\,!} \pmb{h}^{\pmb{\alpha}}. $$
+    (for the meaning of the notations, refer to Df \{, ID: 5.4.2.1\}.)
+    \tcblower
+    \textit{Pf}: Let $g(t) = f(\pmb{a}+t\pmb{h})$ and complete the proof by expanding $g(1)$ w.r.t. $t=0$, with the Taylor's formula with the Lagrange's remainder. The key is to derivating $g$ to higher orders. \\
+    Given $f\in\mathcal{C}^1(D)$, we have $g$ is derivable on $[0,1]$ and 
+    $$ g^\prime (t) = \left(h_1\parfrac{}{x_1} + \cdots + h_n\parfrac{}{x_n}\right) f(\pmb{a}+t\pmb{h}) $$
+    Then we can easily obtain:
+    $$ g^{(k)}(t) = \left(h_1\parfrac{}{x_1} + \cdots + h_n\parfrac{}{x_n}\right)^k f(\pmb{a}+t\pmb{h}), $$
+    given that $f\in\mathcal{C}^{k}(D)$. 
+\end{Th}
+
+\begin{Th}{Th6.4.2 (Taylor's formula for $n$-real functions with the Peano's remainder)}  
+    Suppose $D\subseteq\mathbb{R}^n$ is a convex region and $f: D\rightarrow\mathbb{R}$ satisfies $f\in\mathcal{C}^{m}(D)$ ($m\geq 0$). Then for any $\pmb{a}\in D$, we have:
+    $$ f(\pmb{a}+\pmb{h}) = \sum_{k=0}^{m} \sum_{|\pmb{\alpha}| = k}\frac{\Dif^{\pmb{\alpha}} f(\pmb{a})}{\pmb{\alpha}\,!} \pmb{h}^{\pmb{\alpha}} + o(\Vert \pmb{h}\Vert^m) \quad (\pmb{h}\rightarrow \pmb{0}) $$
+    \tcblower
+    \textit{Pf}: It obviously holds when $m=0$. For $m>0$, apply Th \{, ID: 6.4.1\} at the case of $\mathcal{C}^{m-1}$, and verify that the remainder satisfies the condition of infinite small quantity.
+\end{Th}
+
+\begin{Rmk}{}
+    Now we have learn that \textcolor{Df}{the multivariate Taylor's polynomial takes on the form
+    $$ T_m(f,\pmb{a};\pmb{a}+\pmb{h}) = \sum_{k=0}^{m} \sum_{|\pmb{\alpha}| = k}\frac{\Dif^{\pmb{\alpha}} f(\pmb{a})}{\pmb{\alpha}\,!} \pmb{h}^{\pmb{\alpha}}. $$}
+    Then, the last but not least, we illustrate the uniqueness of the Taylor's polynomial: \textcolor{Th}{$T_m(f,\pmb{a};\pmb{a}+\pmb{h})$ is the only $m$-degree polynomial
+    $$ p(\pmb{h}) = \sum_{k=0}^{m} \sum_{|\pmb{\alpha}| = k} \varphi(\pmb{\alpha}) \pmb{h}^{\pmb{\alpha}} $$
+    such that $f(\pmb{a}+\pmb{h}) = p(\pmb{h}) + o(\Vert \pmb{h} \Vert^m) \quad (\pmb{h}\rightarrow\pmb{0}).$} \\
+    Actually, we can understand this by just letting $g(t) = f(\pmb{a}+t\pmb{h})$, applying the unary Taylor's formula and then simply comparing the coefficients. 
+\end{Rmk}
+
+\end{document}

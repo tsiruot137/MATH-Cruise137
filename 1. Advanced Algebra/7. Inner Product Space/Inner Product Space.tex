@@ -10,7 +10,7 @@
     \usepackage{paralist}
     \usepackage{cancel}
 
-    \usepackage{ctex}
+    % \usepackage{ctex}
     \usepackage{amssymb}
     \usepackage{amsmath}
 
@@ -175,6 +175,30 @@ Please check the notations and definitions by yourself from the previous chapter
     \textit{Pf}: Trivial if you notice that a vector is never shorter than its orthogonal projection.
 \end{Th}
 
+\begin{Th}{$\bullet$ Th7.3.4.1 (average inequality)}
+    Suppose $a_1, \cdots, a_n\in\mathbb{R}^+$ ($n\geq 1$). Then:
+    $$ H_n \leq G_n \leq A_n \leq Q_n,$$
+    where 
+    $$ H_n = \frac{n}{\frac{1}{a_1} + \cdots + \frac{1}{a_n}} \\
+    G_n = \sqrt[n]{a_1\cdots a_n} \\
+    A_n = \frac{a_1 + \cdots + a_n}{n} \\
+    Q_n = \sqrt{\frac{a_1^2 + \cdots + a_n^2}{n}} $$
+    are called the \textbf{harmonic mean}, \textbf{geometric mean}, \textbf{arithmetic mean}, and \textbf{quadratic mean} of $a_1, \cdots, a_n$ respectively. \\
+    Here each inequality is an equality iff $a_1 = \cdots = a_n$.
+    \tcblower
+    \textit{Pf}: We first prove $G_n\leq A_n$, recording Cauchy's proof here. \\
+    For $n=2$, we have proved that during our middle school. For $n=4$, we have:
+    $$\begin{aligned}
+        & \frac{a_1+a_2+a_3+a_4}{4} = \frac{\frac{a_1+a_2}{2} + \frac{a_3+a_4}{2}}{2} \\
+        & \geq \frac{\sqrt{a_1a_2} + \sqrt{a_3a_4}}{2} \geq \sqrt{\sqrt{a_1a_2}\sqrt{a_3a_4}} = \sqrt[4]{a_1a_2a_3a_4}.
+    \end{aligned}$$
+    and so forth we can prove that $G_n\leq A_n$ holds for any $n = 2^k$. \\
+    For general $n$, let $k$ be the smallest integer such that $2^k > n$, and let $n+r = 2^k$, $A = (a_1+\cdots+a_n)/n$. Then apply what we have just proved to the $2^k$ numbers 
+    $$a_1, \cdots, a_n, \underbrace{A, \cdots, A}_{r}$$
+    to complete the proof. \\
+    Now we have $G_n\leq A_n$, with the equality iff $a_1 = \cdots = a_n$. Then for $H_n\leq G_n$, just replace $a_i$ in $G_n\leq A_n$ with $1/a_i$. For $A_n\leq Q_n$, just apply the Cauchy-Schwarz inequality (for the inner product space $\mathbb{R}^n$) to the vectors $(a_1, \cdots, a_n)$ and $(1, \cdots, 1)$.
+\end{Th}
+
 \begin{Th}{$\bullet$ Th7.3.5 (triangle inequality)}
     Suppose $V$ is an inner product space. Then $\forall u, v\in V$:
     $$\|u+v\|\leq \|u\| + \|v\|.$$
@@ -218,7 +242,7 @@ Please check the notations and definitions by yourself from the previous chapter
 \end{Rmk}
 
 \begin{Th}{$\circ$ Th7.4.2.1 (upper-triangular matrix w.r.t. orthonormal basis)}
-    Suppose $T\in\mathcal{L}(V)$ where $V$ is a non-zero finite-dimensional inner product space. If $\mathcal{M}(T)$ is upper-triangular w.r.t. some basis of $V$, then $\mathcal{T}$ is upper-triangular w.r.t. some orthonormal basis of $V$.
+    Suppose $T\in\mathcal{L}(V)$ where $V$ is a non-zero finite-dimensional inner product space. If $\mathcal{M}(T)$ is upper-triangular w.r.t. some basis of $V$, then $\mathcal{M}(T)$ is upper-triangular w.r.t. some orthonormal basis of $V$.
     \tcblower
     \textit{Pf}: Just perform the Gram-Schmidt process on the known basis, and the resulted orthonormal basis is as desired.
 \end{Th}
@@ -354,7 +378,7 @@ Please check the notations and definitions by yourself from the previous chapter
 
 \begin{Th}{$\bullet$ Th7.7.1 (constructure of projection operator)}
     Suppose $V$ is a finite-dimensional inner product space and $P\in\mathcal{L}(V)$. Then:\\
-    $P$ is a \textcolor{red}{(orthogonal)} projection operator iff there is some \textcolor{red}{(orthogonal)} basis $\{u_1, \dots, u_m, w_1, \dots, w_n\}$ of $V$ ($m, n\in\mathbb{N}$) s.t. $P$ is the operator that only keeps the $u$'s components of each $v\in V$. 
+    $P$ is a projection operator (resp. orthogonal projection operator) iff there is some basis (resp. orthogonal basis) $\{u_1, \dots, u_m, w_1, \dots, w_n\}$ of $V$ ($m, n\in\mathbb{N}$) s.t. $P$ is the operator that only keeps the $u$'s components of each $v\in V$. 
     \tcblower
     \textit{Pf}: Trivial.
 \end{Th}

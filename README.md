@@ -165,6 +165,13 @@ Exercises needs reflection and summerization. If a proof or a solution is comple
 > **Pre & Post Exercise pattern**: 
 > optional pre-exercise part + concise formal solution + optional post-exercise part.
 
-In note files, you are strongly recommended to follow the *pre & post exercise pattern*; while in insight files it does not matter since there we often take a more flexible writing style.
+In note files, you are strongly recommended to follow the **pre & post exercise pattern**; while in insight files it does not matter since there we often take a more flexible writing style.
 
 In insight files, it is not necessary to follow the pre-exercise and post-exercise pattern.
+
+### 8.11 Restatement of Definitions and Theorems
+Sometimes there is no time to formulate a decent insight file for the newly learned content (or I am just not capable for that extent of comprehension). In this case, it is encouraged to temporarily write down the knowledge in the note file, and then supplement the insight file whenever possible. 
+
+In the insight file at that time, some, or most, of the definitions and theorems may have been proposed in the note file. Then we can just restate them wherever in need in the insight file, for the convenience and the coherence of the writing.
+
+This time of restatement can be assigned with new blocks (including new block IDs) in the insight file. But these blocks do not yield validity, instead, they are just copies of the original blocks in the previously written note file. And now that these new blocks are not to hold validity, especially for theorem blocks, they can be proposed without a rigorous proof.

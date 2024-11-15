@@ -107,7 +107,7 @@ Then with everything prepared, here we go.
             \item $f(x)+g(x) = (\pmb{a}+\pmb{b}, x)$;
             \item $f(x)\cdot g(x) = (\{c_n: n\in\mathbb{Z}\}, x)$ where $c_n = \sum_{i+j = n} a_ib_j$.
         \end{compactitem}}
-        And we can see that this definition of addition and multiplication is consistent with the one we learnt before. \textcolor{Th}{Now if for a sequence $\{a_n\}$ that has only one non-zero element $a_i$, we denote the polynomial $(\{a_n\}, x)$ by $a_ix^i$, we can see that any polynomial $f(x) = (\{a_n\}, x)$ where $n$ is an integer such that $a_N=0$ for all $N>n$, can be written as $f(x) = a_nx^n + \dots + a_0x^0$ or $f(x) = \sum_{i=0}^{n} a_ix^i$} \textcolor{Df}{Here we define the largest $n$ such that $a_n\neq 0$ (if there are any non-zero elements in $\{a_n$\}) as the degree of $f(x)$, denoted by $\deg f(x) = n$; if all elements of $\{a_n\}$ is $0$, we call $f(x)$ the zero polynomial, whose degree is defined as $\deg f(x) = \-infty$.}
+        And we can see that this definition of addition and multiplication is consistent with the one we learnt before. \textcolor{Th}{Now if for a sequence $\{a_n\}$ that has only one non-zero element $a_i$, we denote the polynomial $(\{a_n\}, x)$ by $a_ix^i$, we can see that any polynomial $f(x) = (\{a_n\}, x)$ where $n$ is an integer such that $a_N=0$ for all $N>n$, can be written as $f(x) = a_nx^n + \dots + a_0x^0$ or $f(x) = \sum_{i=0}^{n} a_ix^i$} \textcolor{Df}{Here we define the largest $n$ such that $a_n\neq 0$ (if there are any non-zero elements in $\{a_n$\}) as the degree of $f(x)$, denoted by $\deg f(x) = n$; if all elements of $\{a_n\}$ is $0$, we call $f(x)$ the zero polynomial, whose degree is defined as $\deg f(x) = -\infty$.}
         \item For a polynomial $f(x) = (\{a_n\}, x)$, the sequence of numbers $\{a_n\}$ is called the coefficients of $f(x)$ and $a_k$ is called the $k$-th coefficient.
         \item \textcolor{Df}{In convention, we write $a_0x^0$ as $a_0$ as if $x^0 = 1$. Although inaccurate since $0^0$ is meaningless, this handling shows its convenience in algebra.}
         \item From the definition of polynomial addition and multiplication, we should clearly understand that \textcolor{Th}{any number field $\mathbb{F}$ makes the collection of all polynomials in it closed under polynomial addition, subtraction and multiplication.}
@@ -239,7 +239,7 @@ Then with everything prepared, here we go.
     \end{compactenum}
     \tcblower
     \textit{Pf}: \begin{compactenum}
-        \item Consider the Euclidean algorithm and let the remainders of the sequence of division equations $E1, E2, \dots, E_n$ are $r_1(x), r_2(x), \dots, r_n(x)$. Then by replacing $r_1$ in $E2$ using $E1$, replacing $r_2$ in $E3$ using $E2$, and so forth, we obtain $u(x)$ and $v(x)$.
+        \item Consider the Euclidean algorithm and let the remainders of the sequence of division equations $E_1, E_2, \dots, E_n$ are $r_1(x), r_2(x), \dots, r_n(x)$. Then by replacing $r_1$ in $E_2$ using $E_1$, replacing $r_2$ in $E_3$ using $E_2$, and so forth, we obtain $u(x)$ and $v(x)$.
         \item `only if' now follows 1., and we now prove `if'. If $u(x)f(x)+v(x)g(x) = 1$ for some $u(x)$ and $v(x)$, then the gcd $d(x)$ of $f(x)$ and $g(x)$ divides both of them, and thus divides their combination $u(x)f(x)+v(x)g(x)$, namely, divides $1$. Therefore $d(x) = 1$
     \end{compactenum}
 \end{Th}
@@ -294,7 +294,7 @@ Then with everything prepared, here we go.
     \end{compactenum}
 \end{Rmk}
 
-\begin{Th}{$\bullet$ Th1.8.1 (the only factors of irreducible a polynomial are $1$ and itself)}
+\begin{Th}{$\bullet$ Th1.8.1 (the only factors of an irreducible polynomial are $1$ and itself)}
     Suppose $p(x)\in\mathcal{P}_\mathbb{F}(x)$ and $\deg p(x)\geq 1$. Then:\\
     $p(x)$ is irreducible $\Leftrightarrow$ A factor of $p(x)$ is either $1$ or $p(x)$ itself (regardless of a non-zero constant multiplier).
     \tcblower
@@ -367,19 +367,15 @@ Then with everything prepared, here we go.
 \begin{Rmk}{}
     \textcolor{Th}{Suppose $f(x), p(x)\in \mathcal{P}_\mathbb{F}(x)$ with $\deg f(x)\geq 1$ and $p(x)$ irreducible. Then:
     \begin{compactitem}
-        \item p(x) is a multiple factor of $f(x)$ $\Leftrightarrow$ $p(x)$ is a common factor of $f(x)$ and $f'(x)$;
+        \item $p(x)$ is a multiple factor of $f(x)$ $\Leftrightarrow$ $p(x)$ is a common factor of $f(x)$ and $f'(x)$;
         \item $f(x)$ and $f'(x)$ have no common multiple factors $\Leftrightarrow$ $f(x)$ and $f'(x)$ are coprime.
     \end{compactitem}}
     This theorem can be used to remove the multiplicities of a polynomial. Actually, if $f(x) = c[p_1(x)]^{n_1} \dots [p_m(x)]^{n_m}$, then $\frac{f(x)}{\gcd(f(x), f'(x))} = cp_1(x)\dots p_m(x)$, where the multiplicity of each factor is reduced to 1, and we keep all the original factors of $f(x)$.
 \end{Rmk}
 
 \begin{Df}{$\bullet$ Df1.11 (polynomial functions)}
-    Suppose $f(x)\in\mathcal{P}_\mathbb{F}(x)$. If we let $x$ takes values in $\mathbb{F}$, then $f(x)$ defines a function $f(x): \mathbb{F}\rightarrow\mathbb{F}$ (according to the arithmetic rules we have learnt before) which is called a polynomial function in $\mathbb{F}$. And we call the collection of all polynomial functions in $\mathbb{F}$ as $\mathcal{P}(\mathbb{F})$.
+    Suppose $f(x)\in\mathcal{P}_\mathbb{F}(x)$. If we let $x$ take values in $\mathbb{F}$, then $f(x)$ defines a function $f(x): \mathbb{F}\rightarrow\mathbb{F}$ (according to the arithmetic rules we have learnt before) which is called a polynomial function in $\mathbb{F}$. And we call the collection of all polynomial functions in $\mathbb{F}$ as $\mathcal{P}(\mathbb{F})$.
 \end{Df}
-
-\begin{Rmk}{}
-    Since the definition of the symbolic expression of polynomials is an abstraction of the one of the polynomial functions, we can confidently say that the properties of the polynomial functions keep the same as the ones of the polynomials. \textcolor{Th}{Actually, after checking that two polynomial functions are equal iff all their matched coefficients are equal, and that the addition and multiplication of polynomial functions show the same form with polynomials, we can claim that all properties of polynomials holds for polynomial functions, including the exact division theory.} For example, every polynomial function can be factored into a unique product of irreducible polynomial functions. Besides, we are about to discuss more properties of the polynomial functions, which is pretty useful in most scenes of applications.
-\end{Rmk}
 
 \begin{Th}{$\bullet$ Th1.11.1 (remainder theorem)}
     Suppose $f(x)\in\mathcal{P}_\mathbb{F}(x)$ and $\alpha\in\mathbb{F}$. Then the remainder of $f(x)$ divided by polynomial $x-\alpha$ is the constant polynomial $f(\alpha)$.
@@ -412,11 +408,12 @@ Then with everything prepared, here we go.
     Suppose $f(x), g(x)\in\mathcal{P}_\mathbb{F}(x)$ and $\deg f(x)=\deg g(x)= n\geq 0$. Then:\\
     $f(\alpha) = g(\alpha)$ for $n+1$ different $\alpha\in\mathbb{F}$ $\Rightarrow$ $f(x) = g(x)$
     \tcblower
-    \textit{Pf}: If there are $n+1$ different $\alpha\in\mathbb{F}$ such that $f(\alpha) = g(\alpha)$, namely, $f(x)-g(x) = 0$, then $f-g$ has $n+1$ roots. If $f(x)-g(x)\neq 0$, then $\deg(f(x)-g(x))\leq n$, which indicates that the roots of $f-g$ are no more than $n$, contradicting the theorem \{course: 1, ID: 1.12\}. Hence $f(x)-g(x) = 0$, namely, $f(x) = g(x)$.
+    \textit{Pf}: If there are $n+1$ different $\alpha\in\mathbb{F}$ such that $f(\alpha) = g(\alpha)$, namely, $f(\alpha)-g(\alpha) = 0$, then $f-g$ has $n+1$ or more roots. If $f(x)-g(x)\neq 0$, then $\deg(f(x)-g(x))\leq n$, which indicates that the roots of $f-g$ are no more than $n$, contradicting the theorem \{course: 1, ID: 1.12\}. Hence $f(x)-g(x) = 0$, namely, $f(x) = g(x)$.
 \end{Th}
 
 \begin{Rmk}{}
-    This theorem indicates that an $n$-degree polynomial is determined by exactly $n+1$ different points. (As for an $-\infty$-degree polynomial, namely, $0$, it is determined by (let us say) $-infty+1=0$ point, which is also true.) 
+    This theorem indicates that an $n$-degree polynomial function is determined by exactly $n+1$ different points. (As for an $-\infty$-degree polynomial, namely, $0$, it is determined by (let us say) $-infty+1=0$ point, which is also true.) \\ 
+    We then have a natural but essential collary: \textcolor{Th}{For any number field $\mathbb{F}$, two polynomial functions are equal iff they correspond to the same polynomial,} i.e., the map $f(x)\mapsto f$ from $\mathcal{P}_\mathbb{F}(x)$ to $\mathcal{P}(\mathbb{F})$ is a bijection, and thus everything about the polynomials (including the exact division, gcd, irreducible factorization and other properties we have discussed) hold for the corresponding polynomial functions. To further illustrate this fact, we assume that $f(x) = g(x)$ for all $x\in\mathbb{F}$. Since there must be infinitely many $x$ in $\mathbb{F}$ (as $\mathbb{F}\supseteq\mathbb{Q}$), we can see that $f(x) = g(x)$ for infinitely many $x$, and thus the two polynomials are equal.
 \end{Rmk}
 
 \begin{Th}{$\bullet$ Th1.14 (the fundamental theorem of algebra)}
@@ -505,5 +502,17 @@ Then with everything prepared, here we go.
     According to this theorem, we would like to show an interesting fact about $\mathcal{P}_\mathbb{Q}(x)$. That is: \textcolor{Th}{there are irreducible polynomials of any degree in $\mathcal{P}_\mathbb{Q}(x)$. For example, we can easily verify that $x^n+2$ is irreducible for any $n\geq 1$.} This is a contrast to the situations in $\mathcal{P}_\mathbb{R}(x)$ where the irreducible polynomials are all of 1-degree, and in $\mathcal{P}_\mathbb{C}(x)$ where the irreducible polynomials are all of 1-degree or 2-degree.
 \end{Rmk}
 
+\begin{Df}{$\bullet$ Df1.18 (multi-variable polynomial)}
+    Suppose $\mathbb{F}$ is a number field, $n\in\mathbb{N}^\ast$, and $\varphi$ is a function s.t. 
+    \begin{compactenum}
+        \item $\varphi: \mathbb{N}^n\rightarrow\mathbb{F}$;
+        \item there are finitely many tuples $(\alpha_1, \cdots, \alpha_n)$ in $\mathbb{N}^n$ s.t. $\varphi(\alpha_1, \cdots, \alpha_n)\neq 0$. 
+    \end{compactenum}
+    Suppose also $x_1, \cdots, x_n$ are $n$ charactors, then the tuple $(\varphi, x_1, \dots, x_n)$ is called an $n$-variate polynomial in $\mathbb{F}^n$ about $x_1, \cdots, x_n$.
+\end{Df}
 
+\begin{Rmk}{}
+    \textcolor{Th}{This is just an extension of Df \{, ID: 1.2\},} \textcolor{Df}{and we can define the addition and multiplication in the same way, so that we can write an $n$-variate polynomial $(\varphi, x_1, \cdots, x_n)$ in the so-called \textbf{``$n$-variate polynomial ring on $\mathbb{F}$''} $\mathcal{P}_\mathbb{F}(x_1,\cdots, x_n)$ as
+    $$\sum_{(\alpha_1, \cdots, \alpha_n)\in\mathbb{N}^n}\varphi(\alpha_1, \cdots, \alpha_n)\, x_1^{\alpha_1}\cdots x_n^{\alpha_n}$$}
+\end{Rmk}
 \end{document}
