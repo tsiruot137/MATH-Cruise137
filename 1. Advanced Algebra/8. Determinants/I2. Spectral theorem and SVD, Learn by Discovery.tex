@@ -71,13 +71,13 @@ to make, say $\lambda_{12} = \langle Te_2, e_1\rangle = \langle e_2, T^*e_1\rang
 $$ T^*T = TT^* $$
 which is obviously a necessary condition for the diagonalizability of $T$ w.r.t. an orthonormal basis. This is the \textbf{normality} of $T$:
 
-\begin{Df}{Df 8\_I2.1 (normal operators)}
+\begin{Df}{Df 8\_I2.6.1 (normal operators)}
     Suppose $V$ is an finite-dimensional inner product space over $\mathbb{F}$. Suppose $T\in\mathcal{L}(V)$ (resp. $A\in\mathbb{F}^{n, n}$). Then $T$ (resp. $A$) is said to be \textbf{normal} if $T^*T = TT^*$ (resp. $A^*A = AA^*$).
 \end{Df}
 
 We just showed that the condition that $Tv = \lambda v$ implies $T^*v = \overline{\lambda}v$ is equivalent to the diagonalizability of $T$ w.r.t. an orthonormal basis. Now we just need to show that the normality of $T$ implies this condition, after we study some basic properties of normal operators.
 
-\begin{Th}{Th 8\_I2.1.1 (basic properties of normal operators)}
+\begin{Th}{Th 8\_I2.6.1.1 (basic properties of normal operators)}
     Suppose $T\in\mathcal{L}(V)$ is normal. Then:
     \begin{compactenum}
         \item $\Vert Tv\Vert = \Vert T^*v\Vert$ for all $v\in V$;
@@ -97,7 +97,7 @@ We just showed that the condition that $Tv = \lambda v$ implies $T^*v = \overlin
 
 We have proved that $Tv = \lambda v \Rightarrow T^*v = \overline{\lambda}v$ holds for normal $T$, and so does the diagonalizability of $T$ w.r.t. an orthonormal basis (given that the characteristic polynomial splits). Also, if $T$ is diagonalizable w.r.t. an orthonormal basis, its characteristic polynomial splits of course. Now we can state the spectral theorem for this case:
 
-\begin{Th}{Th 8\_I2.1.2 (spectral theorem)}
+\begin{Th}{Th 8\_I2.6.1.2 (spectral theorem)}
     Suppose $V$ is a finite-dimensional inner product space and $T\in\mathcal{L}(V)$. Then:
     $$ \left. \begin{matrix}
     \text{the characteristic polynomial of } T \text{ splits} \\ 
@@ -107,7 +107,7 @@ We have proved that $Tv = \lambda v \Rightarrow T^*v = \overline{\lambda}v$ hold
 
 For the complex operators, we have further:
 
-\begin{Th}{Th 8\_I2.1.3 (complex spectral theorem)}
+\begin{Th}{Th 8\_I2.6.1.3 (complex spectral theorem)}
     Suppose $V$ is a finite-dimensional inner product space over $\mathbb{C}$ and $T\in\mathcal{L}(V)$. Then $T$ is diagonalizable w.r.t. an orthonormal basis iff $T$ is normal.
 \end{Th}
 
@@ -128,7 +128,7 @@ which rotates every vector in $\mathbb{R}^2$ counterclockwise by $\theta$. Since
 
 \subsubsection{Complexification}
 
-\begin{Th}{Th 8\_I2.4 (complexification of vector spaces)}
+\begin{Th}{Th 8\_I2.6.4 (complexification of vector spaces)}
     Suppose $V$ is a finite-dimensional vector space over $\mathbb{R}$. Then $V\times V$, \textcolor{Df}{written as $V+iV$ or $V_{\mathbb{C}}$}, is a vector space over $\mathbb{C}$, with the addition and scalar-multiplication defined as (clearly every vector in $V+iV$ can be uniquely written as $u+iv$ for some $u, v\in V$):
     \begin{compactenum}
         \item $(u_1+iv_1) + (u_2+iv_2) \triangleq (u_1+u_2) + i(v_1+v_2)$;
@@ -139,14 +139,14 @@ which rotates every vector in $\mathbb{R}^2$ counterclockwise by $\theta$. Since
     \textit{Pf}: Trivial.
 \end{Th}
 
-\begin{Th}{Th 8\_I2.4.1 (complexification of operators)}
+\begin{Th}{Th 8\_I2.6.4.1 (complexification of operators)}
     Suppose $V$ is a finite-dimensional vector space over $\mathbb{R}$ and $T\in\mathcal{L}(V)$. Then $T$ can be complexified to an operator $T_{\mathbb{C}}\in\mathcal{L}(V_{\mathbb{C}})$ \textcolor{Df}{defined as:
     $$ T_{\mathbb{C}}(u+iv) \triangleq Tu + iTv \quad (u, v\in V). $$}
 \end{Th}
 
 We definitely want to look at the dimension of $V+iV$. What we have done during the complexification is just an analogy to the extension of $\mathbb{R}$ to $\mathbb{C}$, and thus we can naturally see that:
 
-\begin{Th}{Th 8\_I2.4.2 (dimension of $V+iV$)}
+\begin{Th}{Th 8\_I2.6.4.2 (dimension of $V+iV$)}
     Suppose $V$ is a finite-dimensional vector space over $\mathbb{R}$ with a basis $\{v_1, \cdots, v_n\}$. Then:
     \begin{compactenum}
         \item As a vector space over $\mathbb{R}$, $V+iV = V\times V$ has the basis $\{v_1, iv_1, \cdots, v_n, iv_n\}$, and thus $\dim_{\mathbb{R}}(V+iV) = 2n$;
@@ -158,7 +158,7 @@ We definitely want to look at the dimension of $V+iV$. What we have done during 
 
 Now back to our central target, what happens when $T$ is complexified as $T_{\mathbb{C}}$? Naturally:
 
-\begin{Th}{Th 8\_I2.4.3 (properties of $T_{\mathbb{C}}$)}
+\begin{Th}{Th 8\_I2.6.4.3 (properties of $T_{\mathbb{C}}$)}
     Suppose $V$ is a finite-dimensional vector space over $\mathbb{R}$ and $T\in\mathcal{L}(V)$. Then:
     \begin{compactenum}
         \item $T_\mathbb{C}(v) = Tv$ for all $v\in V$
@@ -172,7 +172,7 @@ Now back to our central target, what happens when $T$ is complexified as $T_{\ma
 
 We must also ``complexify'' the inner product for real inner product spaces:
 
-\begin{Th}{Th 8\_I2.4.4 (complexification of inner products)}
+\begin{Th}{Th 8\_I2.6.4.4 (complexification of inner products)}
     Suppose $V$ is a finite-dimensional inner product space over $\mathbb{R}$. Then $V_{\mathbb{C}}$ is an inner product space over $\mathbb{C}$ with the inner product defined as:
     $$ 
     \begin{aligned}
@@ -199,13 +199,13 @@ Furthermore we put (1) and (2) together, we find that for $T_\mathbb{C}v = \lamb
 $$ T_\mathbb{C}^\ast v = \overline{\lambda} v = \lambda v = T_\mathbb{C}v. $$
 Since the eigenvectors of $T_\mathbb{C}$ contain some basis, this immediately tells that $T^\ast_\mathbb{C} = T_\mathbb{C}$, and thus that $T^\ast = T$. Now is the converse true? Sure! Then we name these operators as ``self-adjoint'':
 
-\begin{Df}{Df 8\_I2.5 (self-adjoint operators)}
+\begin{Df}{Df 8\_I2.6.5 (self-adjoint operators)}
     Suppose $V$ is an finite-dimensional inner product space over $\mathbb{F}$. Suppose $T\in\mathcal{L}(V)$ (resp. $A\in\mathbb{F}^{n,n}$). Then $T$ (resp. $A$) is said to be \textbf{self-adjoint} or \textbf{Hermitian} if $T^\ast = T$ (resp. $A^\ast = A$).
 \end{Df}
 
 And now their basic properties:
 
-\begin{Th}{Th 8\_I2.5.1 (basic properties of self-adjoint operators)}
+\begin{Th}{Th 8\_I2.6.5.1 (basic properties of self-adjoint operators)}
     Suppose $T\in\mathcal{L}(V)$ is self-adjoint. Then:
     \begin{compactenum}
         \item All eigenvalues of $T$ are real numbers;
@@ -218,7 +218,7 @@ And now their basic properties:
 
 Since $T^\ast = T$ implies back $T^\ast_{\mathbb{C}}$, the (real) spectral theorem just follows:
 
-\begin{Th}{Th 8\_I2.6 (real spectral theorem)}
+\begin{Th}{Th 8\_I2.6.6 (real spectral theorem)}
     Suppose $V$ is a finite-dimensional inner product space over $\mathbb{R}$. Then $T$ is diagonalizable w.r.t. an orthonormal basis iff $T$ is self-adjoint.
 \end{Th}
 
@@ -228,7 +228,7 @@ namely, $A = U\Lambda U^{-1}$ with the diagonal matrix $\Lambda$ of the eigenval
 
 \subsubsection{Isometries}
 
-\begin{Df}{Df 8\_I2.7 (isometry)}
+\begin{Df}{Df 8\_I2.6.7 (isometry)}
     \begin{compactenum}
         \item Suppose $V$ is a finite-dimensional inner product space and $S\in\mathcal{L}(V)$. Then $S$ is called an \textbf{isometry} if it maps an orthonormal basis to another orthonormal basis. 
         \item Suppose $U\in\mathbb{C}^{n,n}$ (resp. $Q\in\mathbb{R}^{n,n}$). Then $U$ (resp. $Q$) is called an \textbf{unitary matrix} (resp. \textbf{orthogonal matrix}) if it corresponds to an isometry.
@@ -237,7 +237,7 @@ namely, $A = U\Lambda U^{-1}$ with the diagonal matrix $\Lambda$ of the eigenval
 
 \textcolor{Df}{Obviously not every operator is an isometry}, as a simple scaling operator $Sv = 2v$ is not. Then we question the properties of isometries, including their matrices, their inverses and something else. Here we just list them:
 
-\begin{Th}{Th 8\_I2.7.1 (equivalent conditions for isometries)}
+\begin{Th}{Th 8\_I2.6.7.1 (equivalent conditions for isometries)}
     Suppose $V$ is a finite-dimensional inner product space and $S\in\mathcal{L}(V)$. Then the following are equivalent:
     \begin{compactenum}
         \item $S$ is an isometry;
@@ -291,12 +291,12 @@ where $S$ is an isometry and $D$ is a diagonalizable operator (w.r.t. an orthono
 
 Worthy to mention, we have furthermore the requirement for the interpretation of this decomposition, i.e., we desire that all the scaling ratios (eigenvalues) are real numbers. If not, say, $\mathcal{M}(D) = \text{diag}(z_1, \cdots, z_n)$ with complex $z_i$'s, then we can throw the imaginary compositions $\text{diag}(z_1/|z_1|, \cdots, z_n/|z_n|)$ to $S$. Better still, this way the scaling ratios are all non-negative real numbers. We then turn to study this types of operators $D$, the \text{positive operators}.
 
-\begin{Df}{Df 8\_I2.8 (positive operators)}
+\begin{Df}{Df 8\_I2.6.8 (positive operators)}
     Suppose $V$ is a finite-dimensional inner product space over $\mathbb{F}$ and $D\in\mathcal{L}(V)$. Then $D$ is said to be \textbf{positive} if $D$ is diagonalizable w.r.t. an orthonormal basis and all its eigenvalues are non-negative real numbers. The matrices corresponding to the positive operators are called \textbf{positive-semidefinite matrices}.
 \end{Df}
 
 Obviously \textcolor{Th}{positive operators are self-adjoint.} And:
-\begin{Th}{Th 8\_I2.8.1 (equivalent conditions for positive operators)}
+\begin{Th}{Th 8\_I2.6.8.1 (equivalent conditions for positive operators)}
     Suppose $V$ is a finite-dimensional inner product space and $D\in\mathcal{L}(V)$. Then the following are equivalent:
     \begin{compactenum}
         \item $D$ is positive;
@@ -316,7 +316,7 @@ Obviously \textcolor{Th}{positive operators are self-adjoint.} And:
 
 If an operator $T$ has the polar decomposition $T = SD$, then what $D$ should be? Since $T^\ast T = D^\ast S^\ast S D = D^\ast D = D^2$, the polar decomposition now becomes $T = S\sqrt{T^\ast T}$:
 
-\begin{Th}{Th 8\_I2.9 (polar decomposition)}
+\begin{Th}{Th 8\_I2.6.9 (polar decomposition)}
     Suppose $V$ is a finite-dimensional inner product space and $T\in\mathcal{M}(V)$. Then there is an isometry $S$ such that
     $T = S\sqrt{T^\ast T}$
     \tcblower
@@ -328,7 +328,7 @@ If we perform polar decomposition to $T^\ast$, by $T^\ast = S\sqrt{TT^\ast}$, th
 \subsection{SVD}
 Extending the polar decomposition, SVD deals with a general map $T\in\mathcal{L}(V,W)$, where $V$ and $W$ are inner product spaces with dimensions $n$ and $m$ respectively. When $W = V$, the eigenvalues of $\sqrt{T^\ast T}$ are important, so we call them the \textbf{singular values} of $T$.
 
-\begin{Df}{Df 8\_I2.10.-1 (singular values)}
+\begin{Df}{Df 8\_I2.6.10.-1 (singular values)}
     Suppose $V$ and $W$ are finite-dimensional inner product spaces and $T\in\mathcal{L}(V,W)$. Then the eigenvalues of $\sqrt{T^\ast T}$ are called the \textbf{singular values} of $T$.
 \end{Df}
 
@@ -342,7 +342,7 @@ $$\mathcal{M}(C)_{\pmb{e}, \pmb{w}} =
 \end{pmatrix}$$
 where $I_r$ is the $r\times r$ identity matrix). Then the SVD is $ T = SC\sqrt{T^\ast T} $, and we state and prove it:
 
-\begin{Th}{Th 8\_I2.10 (SVD)}
+\begin{Th}{Th 8\_I2.6.10 (SVD)}
     Suppose $V$ and $W$ are finite-dimensional inner product spaces and $T\in\mathcal{L}(V,W)$. Then there are an isometry $S\in\mathcal{L}(W)$ such that
     $$ T = SC\sqrt{T^\ast T}, $$
     where $C$ maps one orthonormal basis of $\text{range } \sqrt{T^\ast T}$ to an orthonormal list of vectors in $W$.
@@ -404,7 +404,7 @@ $$ \Sigma =
 \end{bmatrix} $$
 Then it comes to computing $E$ and $F$. Of course $E = \mathcal{M}(R)_{\pmb{v,v}} = [e_1\cdots e_n]$, and the first $r$ columns of $F$ are $(Sw_1,\cdots,Sw_r)$. Since $Sw_1 = SCe_1 = SCD(e_1/d_1) = T(e_1/d_1) = Te_1/d_1$, we conplete the computation, with the steps concluded in the theorem below:
 
-\begin{Th}{Th 8\_I2.10.1 (compute the SVD)}
+\begin{Th}{Th 8\_I2.6.10.1 (compute the SVD)}
     \begin{compactenum}
         \item Suppose $A\in\mathbb{F}^{m,n}$. Then the eigenvalues of $A^\ast A$ are $\lambda_1,\cdots,\lambda_r,\underbrace{0,\cdots,0}_{n-r}$ where all these $\lambda_i$'s are positive real numbers and $r = \text{rank}(A)$. 
         \item The eigenspaces of $A^\ast A$ sums to the whole space, and different eigenspaces are mutually orthogonal, thus we can solve the orthonormal eigenbasis $(e_1,\cdots,e_r,e_{r+1},\cdots,e_n)$ corresponding to $\lambda_1,\cdots,\lambda_r,\underbrace{0,\cdots,0}_{n-r}$.

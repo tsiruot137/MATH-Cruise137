@@ -1,0 +1,89 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{2em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    % \usepackage{hyperref}
+    % \hypersetup{hidelinks,
+	% colorlinks=true,
+	% allcolors=black,
+	% pdfstartview=Fit,
+	% breaklinks=true}
+
+    \usepackage{float}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Natural Logarithm}}
+    \author{\large Jiawei Hu}
+
+\begin{document}
+\maketitle
+
+This is a problem (that has been solved early but essential for modern mathematics) about the \textbf{Natural Logarithm}. 
+
+\begin{Rmk}{}
+    \textbf{Before reading:}
+    \begin{compactenum}
+        \item Since the discovery of the base of natural logarithm $e$ includes many aspects, we just omit almost all this background information in this file, and just instead list the result of the foundation of $e$ here. As for the background, feel free to learn online by yourself.
+        \item Also, we do not have to record the proofs of the theorems in this file, as they can be all found in the reference book (the book [1] in the reference list in the \verb|exercises.md| file). Actually, this file is just a transcription of the corresponding section (section 6 of chapter 1) of that book.
+    \end{compactenum}
+\end{Rmk}
+
+By the way, we now reiterate some commonly-used notations and conventions:
+\begin{compactenum}
+    \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{R}^+$: the set of the positive real numbers;
+    \item $\mathbb{Z}$: the set of the integers;
+    \item $\mathbb{N}$: the set of the natural numbers;
+    \item $\mathbb{N^\ast}$ or $\mathbb{N}^+$: the set of the positive integers.
+    \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+\end{compactenum} 
+Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
+
+\noindent\rule{\textwidth}{2pt}
+
+Many studies show that the limits
+$$ \lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n \qquad\text{and}\qquad \lim_{n\to\infty}\left(1+\frac{1}{1!}+\frac{1}{2!}+\cdots+\frac{1}{n!}\right) $$
+matter. Then denote
+$$ e_n = \left(1+\frac{1}{n}\right)^n\qquad s_n = 1+\frac{1}{1!}+\frac{1}{2!}+\cdots+\frac{1}{n!} $$ 
+and we have
+
+\begin{Th}{Th 1\_P1.3.2.1 (monotonicity of $e_n$ and $s_n$)}
+    Both $\{e_n\}$ and $\{s_n\}$ are strictly increasing.
+\end{Th}
+
+\begin{Th}{Th 1\_P1.3.2.2}
+    $e_n \leq s_n < 3$ for all $n\in\mathbb{N}^\ast$. So both $\{e_n\}$ and $\{s_n\}$ have limits.
+\end{Th}
+
+\begin{Th}{Th 1\_P1.3.2.3}
+    $\lim_{n\to\infty}e_n = \lim_{n\to\infty}s_n \textcolor{Df}{\triangleq e}$.
+\end{Th}
+
+\begin{Th}{Th 1\_P1.3.2.4 (error estimate of $s_n$ to $e$)}
+    $0<e-s_n<\frac{1}{n!\,n}$ for all $n\in\mathbb{N}^\ast$.
+\end{Th} 
+
+\begin{Th}{Th 1\_P1.3.2.5}
+    $e$ is irrational.
+\end{Th}
+\end{document}

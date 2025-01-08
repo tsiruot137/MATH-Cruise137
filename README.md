@@ -38,7 +38,7 @@ Problems files record the mathematical problems I have done research on. Actuall
 
 No problems recorded yet. To be done.
 
-### 4.4 Insights
+### 4.3 Insights
 Insights files record the insights I have summarized. In the insights files, the order in which I propose the definitions and theorems is not only chronological, but also logical, fluent, and reasonable for the readers to understand. In other words, the insights files focus more on the ideas, connections, motivations and applications, rather than the details of the proofs. 
 
 In the insights files, a remark block is often rather long, as it must act as a connecting link between the preceding and the following blocks. 
@@ -71,7 +71,7 @@ The physical structures of different hierarchy levels must be coded in a unified
   + `3.2` is before `3.3`, `3.3.1` is before `3.3.2` and `3.3.4` is before `3.4.3`.
   + `3.2` is before `3.2.1`, as `3.2` is actually `3.2.0` (exactly, it is `3.2.0.0.0. ...`). A block ID within the chapter is a lexical sequence infinite of integers, where those digits after the last presented digit are all zeros.
   + Each digit in the ID can be any integer, even negative. For example, `3.2.-1` is before `3.2` and `3.2.-2` is before `3.2.-1`.
-  + As for the blocks in different genres of files, the first digit of the block ID is claimed to be equal. For example, in the 3rd chapter, the prefixes `3`, `3_I1`, `3_P2`, `3_P3`, `3_E4`, `3_E5` or others are equal. This design is just as claimed above that I just distribute the chapters into the four genres of files.
+  + As for the blocks in different genres of files, the first digit of the block ID is claimed to be equal. For example, in the 3rd chapter, the prefixes `3`, `3_I1`, `3_P2`, `3_P3` or others are equal. This design is just as claimed above that I just distribute the chapters into the four genres of files.
 
 ### 7.1 Reference to the Timestamp
 To refer to a certain block in the writing, the **entire ID** of the block must be presented. The entire ID is the lexical tuple concatenating the course ID and the block ID, in the format `{course: [course ID], ID: [block ID]}`. For example, `{course: 3, ID: 4.5}` refers to the block with the block ID `4.5` in the 3rd course, and `{course: 3, ID: 4_P2.3.1}` refers to the block with the block ID `4_P2.3.1` in the 3rd course. Sometimes for convenience, we can omit the course ID, like `{, ID: 4_P2.3.1}`, if the referred block is in the current course. 
@@ -148,7 +148,7 @@ Exercises is a good way to test and consolidate the knowledge. Within the folder
 
 (1) One chapter or one course can have **at most one** exercise bank, where you extract some valuable exercises from the corresponding chapter or course and put them all in this bank. 
 
-(2) This bank has no definition or theorem validity, as it is not allowed to propose any definition or theorem in this bank.
+(2) **This bank has no definition or theorem validity**, as it is not allowed to propose any definition or theorem in this bank.
 
 (3) When including some exercise block into the bank, you are required to specify the entire reference of the block (see 7.1). You do not need to copy any content of the exercise after you correctly refer to the block.
 
@@ -158,6 +158,8 @@ Exercises is a good way to test and consolidate the knowledge. Within the folder
 > Begin at score 0, each time I want to try on the exercise I will update the rate. If I can solve it, then add $i$ to the rating; if I cannot answer it or I finally give a wrong solution, then add $1+i$ to the rating. Each trial on solving an exercise, it is recommended to be familiar with the corresponding content beforehand and to limit the time.
 
 So the rating $r$ of an exercise is a complex number, where a larger $\text{Re}(r)$ means a higher difficulty and a larger $\text{Im}(r)$ means a higher importance. The square of the absolute value $|r|^2$ is the **overall score** of the exercise.
+
+(6) Exercises and examples: the two types of blocks — exercises (Ex) and examples (Eg) — differ little actually. Assign either an Ex block or an Eg block to record a given instance. Since then, **the influential Eg blocks (essential, introductive to the understanding of knowledge) should be included in the exercise bank.** 
 
 ### 8.10 Pre-exercise and Post-exercise
 Exercises needs reflection and summerization. If a proof or a solution is complete in your own work, it is worthwhile to record the **train of thought** called the **pre-exercise**. After solving the exercise — especially when you must refer to some other materials to solve it — it is suggested to write down some **experiences** called the **post-exercise**.
@@ -174,4 +176,16 @@ Sometimes there is no time to formulate a decent insight file for the newly lear
 
 In the insight file at that time, some, or most, of the definitions and theorems may have been proposed in the note file. Then we can just restate them wherever in need in the insight file, for the convenience and the coherence of the writing.
 
-This time of restatement can be assigned with new blocks (including new block IDs) in the insight file. But these blocks do not yield validity, instead, they are just copies of the original blocks in the previously written note file. And now that these new blocks are not to hold validity, especially for theorem blocks, they can be proposed without a rigorous proof.
+This time of restatement can be assigned with new blocks (including new block IDs) in the insight file. But these blocks do not yield validity, instead, they are just copies of the original blocks in the previously written note file. **Thus we should mark these blocks with a non-validity sign** "nv". And now that these new blocks are not to hold validity, especially for theorem blocks, they can be proposed without a rigorous proof.
+
+### 8.12 Maintain the Consistency during Block-Insertion
+It is often the case that you turn back to insert a new block in a previously written file. For example, in some moment, you may want to supplement a new theorem `Th` for the moment to use, and you open an appropriate note file `N` and find the appropriate place, say, between the adjacent blocks `{, ID: 1.3.1}` and `{, ID: 1.4}`. And, you assign the ID `1.3.2` to `Th` and insert it at the empty lines in the file `N` between the two blocks.
+
+Since within `N` all blocks are in the main-branch order, this process seems OK. However, you must be cautious if there are some other files in the same chapter. For example, if there is an insight file `I` in the same chapter, and the ID `{, ID: 1_I.3.2}` has been used, then things go wrong as you would overlook the file `I`.
+
+To solve this problem, we make the following regulation:
+> 1. Every time new a chapter folder, the corresponding note file `N` must be first initialized, and the other genres of files (if you have) follow second.
+> 2. In general you edit a file in the ``append-only'' mode — append in the main-branch order. If in some moment you are not **appending**, but writing a block with (either Df or Th) validity elsewhere in the file, you are just doing **insertion**. Besides, **every time you write a block with validity in some other file besides** `N`, **you are also doing insertion.** Insertion must follow the regulations below.
+> 3. **Insertion by newing a non-note file (which is about to hold validity) `I`**: write a **reminder block** at the desired position — say, between the adjacent blocks `{, ID: 1.3.1}` and `{, ID: 1.4}` — to indicate that some blocks with validity are inserted here.
+> 4. **Insertion by write a block with validity in `I`**: suppose the reminder block of `I` is **exactly between** the blocks with IDs `id1` and `id2` (`id1` is before `id2`) in this moment, **keep the written block's timestamp after `id1`, before `id2` and in the right order within `I`**. 
+> 5. **Insertion by write a block with validity in `N`**: if in that moment, one or both of the adjacent positions of the written block are some reminder blocks, say, the next (resp. the last) position is, then keep the timestamp of the written block **before the first block (resp. after the last block) with validity in the file referred by the reminder block**.

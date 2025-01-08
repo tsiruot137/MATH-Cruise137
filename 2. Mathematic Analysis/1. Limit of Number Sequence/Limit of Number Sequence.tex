@@ -10,7 +10,7 @@
     \usepackage{paralist}
     \usepackage{cancel}
 
-    \usepackage{ctex}
+    % \usepackage{ctex}
     \usepackage{amssymb}
     \usepackage{amsmath}
 
@@ -68,6 +68,21 @@ By the way, we now pre-claim some commonly-used notations:
     \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
     \item $\mathbb{R}_\infty = \mathbb{R}\cup\{\infty, -\infty\}$: the set of the extended real numbers.
 \end{compactenum} 
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (1.1.*): The limit of a number sequence (finite or infinite limit).
+        \item (1.2.*, 1.3.*): The monotonicity, the monotonicity-boundedness theorem.
+        \item (1.4.*): The theorem of nested closed intervals.
+        \item (1.5.*): The Bolzano-Weierstrass theorem.
+        \item (1.6.*, 1.7.*): Cauchy sequence and the Cauchy criterion.
+        \item (1.8.*, 1.9.*): Supremum, infimum, and the supremum-infimum principle.
+        \item (1.10.*): The finite covering theorem (Heine-Borel theorem).
+        \item (1.11.*): Limit superior and limit inferior.
+    \end{compactdesc}
+\end{Th}
+
 Then with everything prepared, here we go.
 
 \begin{Df}{$\bullet$ Df1.1 (the limit of a number sequence)}
@@ -91,6 +106,22 @@ Then with everything prepared, here we go.
         }
     \end{compactenum}
 \end{Rmk}
+
+\begin{Th}{Ex1.1.0.1 (the convergence of $\frac{1}{n}\sum_{k=1}^{n} a_k$)}
+    Prove that 
+    $$\lim\limits_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n} a_k = a$$
+    if $\lim\limits_{n\to\infty}a_n=a$.
+    \tcblower
+    \textit{Solution}: See the reference book.
+\end{Th}
+
+\begin{Th}{Ex1.1.0.2 (the convergence of $\frac{1}{n}\sum_{k=1}^{n} a_k b_{n+1-k}$)}
+    Prove that 
+    $$\lim\limits_{n\to\infty}\frac{1}{n}\sum_{k=1}^{n} a_k b_{n+1-k} = a b$$
+    if $\lim\limits_{n\to\infty}a_n=a$ and $\lim\limits_{n\to\infty}b_n=b$.
+    \tcblower
+    \textit{Solution}: See the reference book.
+\end{Th}
 
 \begin{Df}{$\circ$ Df1.1.1 (infinite small)}
     A sequence $\{a_n\}$ in $\mathbb{R}$ is called an infinite small sequence if $\lim\limits_{n\to\infty}a_n=0$.
@@ -157,6 +188,15 @@ Then with everything prepared, here we go.
     \end{aligned}
     $$
     Since monotonic $\{a_n\}$ is bounded, we can see that $\{x_{n0}\}$ is a bounded sequence in $\mathbb{N}$, and thus it will finally reach a maximum $x_0\in\mathbb{N}$. Then we can see that $\{x_{n1}\}$ is a bounded sequence in $\mathbb{N}$, and thus it will finally reach a maximum $x_1\in\mathbb{N}$. So forth, we can find a number $x = x_0.x_1x_2x_3\dots$, which can be verified as the limit of $\{a_n\}$.
+\end{Th}
+
+\begin{Th}{$\bullet$ Ex1.3.1 ($\sum_{n=1}^{\infty} \frac{1}{n^\alpha}$)}
+    Suppose $\alpha>0$ and $a_n = \frac{1}{n^\alpha}$. Let $S_n = \sum_{k=1}^n a_k$. Then does $\{S_n\}$ converge?
+    \tcblower
+    \textit{Solution}: The conclusion is that $\{S_n\}$ converges iff $\alpha>1$. The proof can be seen in the reference book (see the \verb|exercises.md| file for the reference information).
+\end{Th}
+
+\begin{Th}{$\bullet$ Blocks from the file P1}
 \end{Th}
 
 \begin{Th}{$\bullet$ Th1.4 (theorem of nested closed intervals)}
@@ -259,7 +299,7 @@ Then with everything prepared, here we go.
     It is easy to notice that any type 1 interval is disjoint with any type 2 interval, or exactly speaking, the right end point of any type-1 interval is less than the left point of any type-2 interval. Now apply the finite covering theorem to obtain a finite sub-covering. Since $a_0$ can be covered only by a type-1 interval and $A$, only by a type-2 interval, there are both type-1 and type-2 intervals in the sub-covering. But since the sub-covering is finitely many, there is always a ``gap'' between the type-1 and the type-2 intervals, which is impossible for the covering of the entire $[a_0, A]$. Contradiction!
 \end{Rmk}
 
-\begin{Df}{$\bullet$ Df1.11 (limit superior (上极限), limit inferior (下极限))}
+\begin{Df}{$\bullet$ Df1.11 (limit superior, limit inferior)}
     Suppose $\{a_n\}$ is a sequence in $\mathbb{R}$. Consider the set
     $$ E = \{\lim\limits_{n\to\infty} a_{k_n}: a_{k_n} \text{ is a subsequence of } a_n\} $$
     i.e., $E$ is the set of all limits of subsequences of $\{a_n\}$, where the ``limit'' can be $\infty$ or $-\infty$ (but not $\pm\infty$). Then we called $\sup E$ (resp. $\inf E$) the limit superior (resp. limit inferior) of $\{a_n\}$, denoted by $\limsup\limits_{n\to\infty}a_n$ or $\mathop{\overline{\lim}}\limits_{n\to\infty} a_n$ (resp. $\liminf\limits_{n\to\infty}a_n$ or $\mathop{\underline{\lim}}\limits_{n\to\infty} a_n$).
@@ -269,11 +309,22 @@ Then with everything prepared, here we go.
     \textcolor{Th}{Clearly for every sequence $\{a_n\}$ in $\mathbb{R}$, the set $E$ defined above is non-empty} (since if $\{a_n\}$ is bounded, then $\{a_n\}$ has some convergent subsequence, and if $\{a_n\}$ is unbounded, then $\{a_n\}$ has some infinite large subsequence), \textcolor{Th}{hence $\liminf\limits_{n\to\infty}a_n\leq \limsup\limits_{n\to\infty}a_n$.}
 \end{Rmk}
 
+\begin{Th}{$\circ$ Th1.11.0.1 (the set of limits of subsequences is additive)}
+    Suppose $\{a_n\}$ is a sequence in $\mathbb{R}$ consisting of finitely many subsequences $\{a_{k_1(n)}\}, \dots, \{a_{k_m(n)}\}$ (e.g. $\{a_n\}$ consists of the ``odd sequence'' $\{a_{2k-1}\}$ and the ``even sequence'' $\{a_{2k}\}$). Let $E$ be the set of limits of subsequences of $\{a_n\}$, and $E_i$ ($i=1, \dots, m$) be the set of limits of subsequences of $\{a_{k_i(n)}\}$. Then
+    $$ E = \bigcup\limits_{i=1}^m E_i. $$
+    \tcblower
+    \textit{Pf}: For any convergent subsequence $\{a_{k(n)}\}$ (convergent to some $l$ in $\mathbb{R}_\infty$) of $\{a_n\}$, it must contain infinitely many terms of some $\{a_{k_i(n)}\}$. These terms form a subsequence of both $\{a_{k(n)}\}$ and $\{a_{k_i(n)}\}$, and thus is convergent to $l$ and $l\in E_i$. 
+\end{Th}
+
+\begin{Df}{$\circ$ Df1.11.1.-1 (sufficiently large)}
+    Introduce the term ``sufficiently large''. Let $P(n)$ be a statement about $n$. Then we say that \textbf{$P(n)$ is true for sufficiently large $n$} if there is some $N\in\mathbb{N}$ s.t. $P(n)$ is true for all $n>N$. 
+\end{Df}
+
 \begin{Th}{$\bullet$ Th1.11.1 (basic properties of $\mathop{\overline{\lim}}$ and $\mathop{\underline{\lim}}$)}
     Suppose $\{a_n\}$ is a sequence in $\mathbb{R}$, and $E$ is the ``set of subsequences' limits'' defined in Df1.11. Then:
     \begin{compactenum}
         \item $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n$ (resp. $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n$) $\in E$;
-        \item $\forall x>\mathop{\overline{\lim}}\limits_{n\to\infty}a_n$ (resp. $\forall x<\mathop{\underline{\lim}}\limits_{n\to\infty}a_n$), $\exists N\in\mathbb{N}$ s.t. $a_n<x$ (resp. $a_n>x$) for all $n>N$;
+        \item $\forall x>\mathop{\overline{\lim}}\limits_{n\to\infty}a_n$ (resp. $\forall x<\mathop{\underline{\lim}}\limits_{n\to\infty}a_n$), \bigg[$a_n<x$ (resp. $a_n>x$) for sufficiently large $n$ \bigg];
         \item $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n$ (resp. $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n$) is the only one in $\mathbb{R}_\infty$ that satisfies the properties (1) and (2);
         \item $\mathop{\underline{\lim}}\limits_{n\to\infty}a_n \leq \mathop{\overline{\lim}}\limits_{n\to\infty}a_n$;
         \item Let $l\in\mathbb{R}_\infty$. Then $\lim\limits_{n\to\infty}a_n=l$ iff $\mathop{\overline{\lim}}\limits_{n\to\infty}a_n=\mathop{\underline{\lim}}\limits_{n\to\infty}a_n=l$;

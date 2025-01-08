@@ -1,0 +1,274 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Integral}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\biparfrac}[2]{\frac{\partial^2 #1}{#2}}
+    \newcommand{\dif}{\mathop{}\!\mathrm{d}}
+    \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
+\begin{document}
+\maketitle
+
+This is the 7th chapter of Mathematical Analysis, which is about \textbf{Integral}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
+        \item A set of sets is called a collection or a family.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (7.1): Definition of definite integral.
+            \subitem (7.1.*): The theory of integrability (file P1).
+        \item (7.2.*): Basic properties of integrable functions.
+        \item (7.3.*): Indefinite integral, Newton-Leibniz formula.
+        \item (7.4.*): Integration by substitution.
+        \item (7.5.*): Integration by parts.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df7.1.-1 (segmentation)}
+    \begin{compactenum}
+        \item Suppose $[a, b]\subseteq\mathbb{R}$. Then a set of points $\pmb{\pi} = \{x_i\in\mathbb{R}: i = 0,1,\cdots,n\}$ is called a \textbf{segmentation} of $[a, b]$ if
+            $$a = x_0 < x_1 < \cdots < x_n = b.$$ 
+        \item Given a segmentation $\pmb{\pi} = \{x_i\in\mathbb{R}: i = 0,1,\cdots,n\}$ of $[a, b]$, the \textbf{size} of $\pmb{\pi}$, denoted by $\Vert \pmb{\pi}\Vert$, is defined as
+            $$ \Vert \pmb{\pi}\Vert = \max_i\{x_i - x_{i-1}\}. $$
+        \item A segmentation $\pmb{\pi} = \{x_i\in\mathbb{R}: i = 0,1,\cdots,n\}$ of $[a, b]$ partitions the interval $[a, b]$ into $n$ subintervals $[x_{i-1}, x_i]$ for $i = 1,2,\cdots,n$. Denote $\Delta x_i = x_i - x_{i-1}$ for $i = 1,2,\cdots,n$, and a set of points $\{\xi_i\in[x_{i-1}, x_i]: i = 1,2,\cdots,n\}$ is called a \textbf{tagging} of $\pmb{\pi}$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Df}{Df7.1 (definite integral / Riemann's integral)}
+    Suppose $f$ is a real function, $[a, b]\subseteq \text{dom}(f)$ and $I\in\mathbb{R}$. If for any $\varepsilon>0$, there exists a $\delta>0$ such that for any segmentation $\pmb{\pi}$ of $[a, b]$ with $\Vert \pmb{\pi}\Vert < \delta$, and any tagging $\{\xi_i\}$ of $\pmb{\pi}$, 
+    $$\left| \sum_{i=1}^n f(\xi_i)\Delta x_i - I \right| < \varepsilon,$$
+    then we say that $f$ is \textbf{integrable} on $[a, b]$ and $I$ is the \textbf{definite integral} (or Riemann's integral ) of $f$ over $[a, b]$, denoted by
+    $$\int_a^b f(x)\dif x = I.$$
+    The sum $\sum_{i=1}^n f(\xi_i)\Delta x_i$ is called a \textbf{Riemann sum} of $f$ over $[a, b]$.
+\end{Df}
+
+\begin{Rmk}{}
+    Some basic properties of the definite integral:
+    \begin{compactenum}
+        \item If a real function $f$ is integrable on $[a, b]$, then $f$ is bounded on $[a, b]$;
+        \item (Preserve the inequality) If a real function $f$ is integrable on $[a, b]$, and $f(x)\geq 0$ for all $x\in[a, b]$, then $\int_a^b f(x)\dif x \geq 0$;
+        \item (Linearity) If real functions $f$ and $g$ are integrable on $[a, b]$, and $\alpha, \beta\in\mathbb{R}$, then $\alpha f + \beta g$ is integrable on $[a, b]$ and
+            $$\int_a^b \left(\alpha f(x) + \beta g(x)\right)\dif x = \alpha\int_a^b f(x)\dif x + \beta\int_a^b g(x)\dif x.$$
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Blocks from the P1 file.}
+\end{Th}
+
+\begin{Th}{Th7.2 (basic properties of integrable functions (supplementary))}
+    \begin{compactenum}
+        \item Let $f$ be a real function defined on $[a, b]$. If $f$ is bounded, and has at-most-countable discontinuous points on $[a, b]$, then $f$ is integrable on $[a, b]$.
+        \item Let $f$ be a real function defined on $[a, b]$. If $f$ is integrable on $[a, b]$, then so is $|f|$, and 
+            $$\left| \int_a^b f(x)\dif x \right| \leq \int_a^b |f(x)|\dif x.$$
+        \item Let $f$ and $g$ are real functions integrable on $[a, b]$. Then $f\cdot g$ is integrable on $[a, b]$.
+        \item Let $f$ be a real function integrable on $[a, b]$. If $\text{dom}(1/f)\supseteq [a,b]$ and $1/f$ is bounded on $[a, b]$, then $1/f$ is integrable on $[a, b]$.
+        \item If real function $f$ is integrable on $[a, b]$, then so is it on any subinterval of $[a, b]$.
+        \item If real function $f$ is integrable on $[a, c]$ and $[c, b]$, then so is it on $[a, b]$, and
+            $$\int_a^b f(x)\dif x = \int_a^c f(x)\dif x + \int_c^b f(x)\dif x.$$
+        \item Suppose on $[a, b]\subseteq\mathbb{R}$, $f(x) = g(x)$ except for a finite number of points. If $f$ is integrable on $[a, b]$, then so is $g$ and
+            $$\int_a^b f(x)\dif x = \int_a^b g(x)\dif x.$$
+        \item If real function $f$ is continuous and non-negative on $[a, b]$, and $f$ is not identically zero, then 
+            $$\int_a^b f(x)\dif x > 0.$$
+        \item (Average value theorem) Suppose $f$ and $g$ are real functions integrable on $[a, b]$. If $f$ is continuous on $[a, b]$ and $g$ is non-negative (or non-positive) on $[a, b]$, then there exists a $\xi\in[a, b]$ such that
+            $$\int_a^b f(x)g(x)\dif x = f(\xi)\int_a^b g(x)\dif x.$$
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Many of these statements are direct collaries of the Lebesgue's criterion (see the P1 file). Let $D(f)$ be the set of discontinuous points of the real function $f$ on $[a, b]$.  
+    \begin{compactenum}
+        \item Obvious.
+        \item Because $D(|f|) \subseteq D(f)$. The inequality can be verified by
+        $$ \left| \sum_{i} f(\xi_i)\Delta x_i \right| \leq \sum_{i} |f(\xi_i)|\Delta x_i. $$
+        \item Because $D(f\cdot g) = D(f)\cup D(g)$.
+        \item Because $D(1/f) = D(f)$. \qquad 5. Obvious.
+        \item[6.] Because $D(f, [a, b]) = D(f, [a, c])\cup D(f, [c, b])$. The equality can be verified by simply dividing equally and taking limits.
+        \item[7.] Obvious. \qquad 8. Obvious.
+        \item[9.] Obvious by the intermediate value property of continuous functions.
+    \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item For the (2) above, the converse is not true, as the function $f$ defined by $f(x) = 1$ if $x\in\mathbb{Q}$ and $f(x) = -1$ if $x\notin\mathbb{Q}$ is not integrable on any interval, but $|f|$ is integrable on any interval.
+        \item For the (7) above, the condition ``except for a finite number of points'' cannot be loosened as ``except for a zero-measure set of points'', as the Dirichlet function equals to $0$ except for a zero-measure set of points (the rational points), but it is discontinuous everywhere so that it is not integrable.
+        \item For (9) above, if let $g(x) = 1$, then it can be written as
+            $$\int_{t_1}^{t_2} v(t)\dif t = v(t_0)(t_2 - t_1),$$
+        interpreted as that there is always some moment $t_0$ during the movement of the particle at which the velocity equals to the average rate.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df7.3 (primitive function / indefinite integral)}
+    Suppose $f$ is a real function defined on some open set in $\mathbb{R}$. If there exists a real function $F$ defined on the same domain as $f$ such that $F'(x) = f(x)$ for all $x\in\text{dom}(F)$, then $F$ is called a \textbf{primitive function} of $f$. The set of all primitive functions of $f$ is called the \textbf{indefinite integral} of $f$, denoted by
+    $$\int f(x)\dif x.$$
+    \textcolor{Th}{Since, as we can verify, different primitive functions of $f$ differ by a constant}, the indefinite integral of $f$ can be written as
+    $$\int f(x)\dif x = F(x) + C.$$
+    Or we can just omit $C$ to express that $F(x)$ is a primitive function of $f$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Basic properties of the indefinite integral:
+    \begin{compactenum}
+        \item $\int \left(f(x) + g(x)\right) \dif x = \int f(x)\dif x + \int g(x)\dif x$ (suppose $f$ and $g$ are real functions defined on some open set $X$);
+        \item $\int c f(x)\dif x = c\int f(x)\dif x$ for any $c\in\mathbb{R}$;
+    \end{compactenum}
+    Here the two equalities means that, if the right side exists, then the left side exists and equals to the right side.}
+\end{Rmk}
+
+\begin{Th}{Th7.3.1 (the fundamental theorem of calculus / Newton-Leibniz formula)}
+    \begin{compactenum}
+        \item Suppose $f$ is a real function integrable on $[a, b]$. Then the function $F$ defined by
+            $$F(x) = \int_a^x f(t)\dif t \qquad x\in [a,b]$$
+        (\textcolor{Df}{say $\int_a^a f(t)\dif t = 0$}) is continuous.
+        \item Suppose $f$ is a real function integrable on $[a, b]$. If $f$ is continuous at some point $x_0\in[a, b]$, then the function $F$ defined above is derivable at $x_0$ (if $x_0 = a$ or $x_0 = b$, then ``right derivable'' or ``left derivable'') and $F'(x_0) = f(x_0)$.
+        \item Suppose $f$ is a real function integrable on $[a, b]$. If $f$ is interval-continuous on $[a, b]$, then 
+            $$\frac{\dif}{\dif x}\int_a^x f(t)\dif t = f(x) \qquad x\in [a, b].$$
+        The derivative is right-derivative at $x=a$ and left-derivative at $x=b$.
+        \item (Newton-Leibniz) \textcolor{Df}{Denote $F(x)\Big|_a^b = F(b)-F(a)$.} Suppose $f$ is a real function interval-continuous on $[a, b]$ (here $a$ can equal to $b$). Then
+            $$\int_a^b f(x)\dif x = \left(\int f(x)\dif x\right)\Bigg|_a^b $$
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    For the (3) above, it also indicates that \textcolor{Th}{every continuous functions has primitive function}. \textcolor{Df}{We can also define
+    $$\int_a^b f(x)\dif x \triangleq -\int_b^a f(x)\dif x. $$}
+\end{Rmk}
+
+\begin{Th}{Th7.4 (indefinite integration by substitution)}
+    Suppose
+    \begin{compactenum}
+        \item $\varphi$ is a real function derivable on its open domain $T$;
+        \item $F$ is a real function derivable on its open domain $X$ (with $F^\prime = f$ on $X$);
+        \item $\varphi[T]\subseteq X$ so that $F\circ\varphi$ is composable,
+    \end{compactenum}
+    then
+    $$\int f(\varphi(t))\varphi'(t)\dif t\, \left(\textcolor{Df}{ \triangleq \int f(\varphi(t))\dif \varphi(t) \triangleq \int f(x)\dif x} = F(x)\right) = F(\varphi(t)). $$
+    \tcblower
+    \textit{Pf}: Obvious by the chain rule of the derivative of composite functions.
+\end{Th}
+
+\begin{Rmk}{}
+    This way we are clear about the invariant form of the indefinite integral, due to the invariant form of the 1-order differential (Th \{, ID: 5.2.9\}) — where no matter the ``integrated'' variable $x$ is the independent variable or the dependent variable of some other variable $t$, the equation $\int F^\prime(x)\dif x = F(x)$ always holds.
+\end{Rmk}
+
+\begin{Th}{Th7.4.1 (definite integration by substitution)}
+    Suppose
+    \begin{compactenum}
+        \item $\varphi$ is a real function derivable on $[\alpha, \beta]$, and $\varphi'$ is continuous on $[\alpha, \beta]$;
+        \item $f$ is a real function continuous on some interval containing $\varphi[\,[\alpha, \beta]\,]$ (remember that $\varphi[\,[\alpha, \beta]\,]$ is the image of $[\alpha, \beta]$ under $\varphi$),
+    \end{compactenum}
+    then
+    $$\int_{\alpha}^{\beta} f(\varphi(t))\varphi'(t)\dif t \textcolor{Df}{\left(\triangleq \int_{\alpha}^{\beta} f(\varphi(t)) \dif \varphi(t) \right)} = \int_{\varphi(\alpha)}^{\varphi(\beta)} f(x)\dif x.$$
+    \tcblower
+    \textit{Pf}: Obvious by Th \{, ID: 7.4\}.
+\end{Th}
+
+\begin{Th}{Th7.5 (indefinite integration by parts)}
+    Suppose $u = u(x)$ and $v = v(x)$ are real functions defined on the same open domain $X$. If $u$, $v$ are both derivable on $X$, and their derivative functions are both continuous on $X$. Then
+    $$\int u(x)v'(x)\dif x = u(x)v(x) - \int u'(x)v(x)\dif x.$$
+    (or briefly, $\int u\dif v = uv - \int v\dif u$)
+    \tcblower
+    \textit{Pf}: Obvious by the product rule of the derivative.
+\end{Th}
+
+\begin{Th}{Th7.5.1 (definite integration by parts)}
+    Suppose $u = u(x)$ and $v = v(x)$ are real functions derivable on $[a, b]$. And $u'$, $v'$ are both continuous on $[a, b]$. Then
+    $$\int_a^b u(x)v'(x)\dif x = \left(u(x)v(x)\right)\Big|_a^b - \int_a^b u'(x)v(x)\dif x.$$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Df}{Df7.6.1 (infinite integral)}
+    \begin{compactenum}
+        \item Suppose $f$ is a real function and $[a, \infty)\subseteq\text{dom}(f)$. If $f$ is integrable on $[a, b]$ for any $b>a$, then 
+        $$\int_a^\infty f(x)\dif x \triangleq \lim_{b\to\infty}\int_a^b f(x)\dif x$$
+        is called the \textbf{infinite integral} of $f$ on $[a, \infty)$. If the limit exists (by convention that is, the limit is a finite real number), then we say that $f$ is \textbf{integrable} on $[a, \infty)$, or the infinite integral $\int_a^\infty f(x)\dif x$ \textbf{converges} (otherwise, diverges).
+        \item Suppose $f$ is a real function and $(-\infty, b]\subseteq\text{dom}(f)$. Define the infinite integral $\int_{-\infty}^b f(x)\dif x$ similarly.
+        \item Suppose $f$ is a real function and $(-\infty, \infty)\subseteq\text{dom}(f)$. If for some $c\in\mathbb{R}$ (\textcolor{Th}{and thus, as we can verify, for any $c\in\mathbb{R}$}), both of the two infinite integrals
+        $$ \int_{-\infty}^c f(x)\dif x \quad \text{and} \quad \int_c^\infty f(x)\dif x $$
+        converge, then we say that $f$ is \textbf{integrable} on $(-\infty, \infty)$, or the infinite integral 
+        $$\int_{-\infty}^\infty f(x)\dif x \triangleq \int_{-\infty}^c f(x)\dif x + \int_c^\infty f(x)\dif x$$
+        \textbf{converges} (otherwise, diverges).
+    \end{compactenum}
+\end{Df}
+
+\begin{Df}{Df7.6.2 (improper integral)}
+    \begin{compactenum}
+        \item Suppose $f$ is a real function and $[a, b]\subseteq\text{dom}(f)$. If 
+        \begin{compactenum}
+            \item $\lim\limits_{x\to a^+}f(x) = \pm\infty$ but
+            \item $f$ is integrable on $[a+\varepsilon, b]$ for any $\varepsilon>0$,
+        \end{compactenum}
+        then 
+        $$\int_a^b f(x)\dif x \triangleq \lim_{\varepsilon\to 0^+}\int_{a+\varepsilon}^b f(x)\dif x$$
+        is called the \textbf{(left-sided) improper integral} of $f$ on $[a, b]$, and $a$ is called an \textbf{improper point} of this integral. If the limit exists (by convention that is, the limit is a finite real number), then we say that $f$ is \textbf{(improperly) integrable} on $[a, b]$, or the improper integral $\int_a^b f(x)\dif x$ \textbf{converges} (otherwise, diverges).
+        \item Suppose $f$ is a real function and $[a, b]\subseteq\text{dom}(f)$. Define the (right-sided) improper integral $\int_a^b f(x)\dif x$ similarly for the case that $\lim\limits_{x\to b^-}f(x) = \pm\infty$.
+        \item Suppose $f$ is a real function and $[a, b]\subseteq\text{dom}(f)$. If 
+        $$ \lim_{x\to a^+}f(x) = \pm\infty \quad \text{and} \quad \lim_{x\to b^-}f(x) = \pm\infty, $$
+        then we say that both $a$ and $b$ are \textbf{improper points} of the improper integral $\int_a^b f(x)\dif x$. In this case, if for some $c\in(a, b)$ (\textcolor{Th}{and thus, as we can verify, for any $c\in(a, b)$}), both of the two improper integrals
+        $$ \text{left-sided}\;\; \int_a^c f(x)\dif x \quad \text{and} \quad \text{right-sided}\;\; \int_c^b f(x)\dif x $$ 
+        converge, then we say that $f$ is \textbf{(improperly) integrable} on $[a, b]$, or the (two-sided) improper integral
+        $$\int_a^b f(x)\dif x \triangleq \int_a^c f(x)\dif x + \int_c^b f(x)\dif x$$
+        \textbf{converges} (otherwise, diverges).
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    Make full use of the properties of the definite integral when we treat with the \textcolor{Df}{\textbf{anomalous integrals} — the infinite integrals and the improper integrals}.
+\end{Rmk}
+
+\begin{Th}{Eg7.6.3 $\int_a^\infty \frac{1}{x^p}\dif x$, $\int_0^a \frac{1}{x^p}\dif x$}
+    Given a positive real number $p$, how about the convergence of the infinite integral $\int_a^\infty \frac{1}{x^p}\dif x$ and the improper integral $\int_0^a \frac{1}{x^p}\dif x$?
+    \tcblower
+    \textit{Solution}:
+    \begin{compactenum}
+        \item The infinite integral $\int_a^\infty \frac{1}{x^p}\dif x$ converges iff $p>1$.
+        \item The improper integral $\int_0^a \frac{1}{x^p}\dif x$ converges iff $p<1$.
+    \end{compactenum}
+    The proof is left as an exercise.
+\end{Th}
+
+\begin{Th}{Eg7.6.4 $\int_2^\infty \frac{1}{x(\ln x)^p}\dif x$}
+    Given a positive real number $p$, how about the convergence of the infinite integral $\int_2^\infty \frac{1}{x(\ln x)^p}\dif x$?
+    \tcblower
+    \textit{Solution}: The infinite integral $\int_2^\infty \frac{1}{x(\ln x)^p}\dif x$ converges iff $p>1$. The key step is
+    $$\int_2^\infty \frac{1}{x(\ln x)^p}\dif x = \int_2^\infty \frac{1}{(\ln x)^p}\dif (\ln x).$$    
+\end{Th}
+
+\end{document}

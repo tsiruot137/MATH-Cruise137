@@ -1,0 +1,354 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Series of Functions}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\biparfrac}[2]{\frac{\partial^2 #1}{#2}}
+    \newcommand{\dif}{\mathop{}\!\mathrm{d}}
+    \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
+\begin{document}
+\maketitle
+
+This is the 9th chapter of Mathematical Analysis, which is about \textbf{Series of functions}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
+        \item A set of sets is called a collection or a family.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (9.1.*, 9.2.*): Uniform convergence and its criteria (Cauchy, Weierstrass, Dirichlet, Abel).
+        \item (9.3.*): Uniform convergence and continuity, integrability, differentiability.
+        \item (9.4.*): Power series.
+        \item (9.5.*): Expand a function into a power series (Taylor's series).
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df9.1.1 (sequence of functions, series of functions)}
+    \begin{compactenum}
+        \item Suppose $\{f_n: n\in\mathbb{N}^\ast\}$ is a sequence of real functions with the same domain $I$. Let $f$ be a real function also defined on $I$. Then we say that the sequence $\{f_n\}$ \textbf{converges} to $f$ \textbf{pointwise} (on $I$), or that $f$ is the \textbf{limit function} of $\{f_n\}$, if 
+        $$\lim_{n\to\infty} f_n(x) = f(x)$$
+        holds for every $x\in I$.
+        \item Suppose $\{a_n(\cdot)\}$ is a sequence of real functions with the same domain $I$. Then the sum of the series $\sum_{n=1}^{\infty} a_n(x)$, or, the \textbf{sum function}, is defined as the limit function of the sequence of partial sums $S_n(x) = \sum_{k=1}^{n} a_k(x)$, that is, 
+        $$\sum_{n=1}^{\infty} a_n(x) \triangleq \lim_{n\to\infty} S_n(x).$$
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    The series we talked about in the 8th chapter is the series of numbers. \textcolor{Df}{For a series of functions $\sum_{n=1}^{\infty} a_n(x)$, we call the set
+    $$\left\{x\in \mathbb{R}: \sum_{n=1}^{\infty} a_n(x) \text{ converges}\right\}$$
+    the \textbf{set of convergence} of the series.} \\
+    Then we will discuss the uniform convergence of sequences (or series) of functions, which is motivated by the problems of the commutativity of the limit operation with the continuity, the differentiation, the integration. See the reference book for more insights.
+\end{Rmk}
+
+\begin{Df}{Df9.2.1 (uniform convergence)}
+    \begin{compactenum}
+        \item Suppose $\{f_n\}$ is a sequence of real functions defined on $I$. We say that $\{f_n\}$ \textbf{converges uniformly} to a real function $f$ on $I$ if
+        $$ \forall \varepsilon > 0, \exists N\in\mathbb{N}^\ast, \forall n\geq N, \forall x\in I, |f_n(x) - f(x)| < \varepsilon. $$
+        \item Suppose $\{a_n\}$ is a sequence of real functions defined on $I$. We say that the series $\sum_{n=1}^{\infty} a_n(x)$ \textbf{converges uniformly} to the function $S$ on $I$ if the sequence 
+        $$ \left\{\sum_{k=1}^{n} a_k(x): n\in\mathbb{N}^\ast \right\} $$ 
+        converges uniformly to $S$ on $I$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Clearly, uniform convergence to $f$ implies pointwise convergence to $f$.} Then is the meaning of ``uniform''. For the sequence of functions $\{f_n\}$, we compare like:
+    $$
+    \begin{aligned}
+        \text{Pointwise convergence:} & \quad (\forall x\in I) \,(\forall \varepsilon) \,(\exists N) \,(\forall n\geq N) \;\;|f_n(x) - f(x)| < \varepsilon; \\
+        \text{Uniform convergence:} & \quad (\forall \varepsilon) \,(\exists N) \,(\forall n\geq N) \,(\forall x\in I) \;\;|f_n(x) - f(x)| < \varepsilon.
+    \end{aligned}
+    $$
+    where we see the $N$ in the pairwise convergence depends on both $x$ and $\varepsilon$, while in the uniform convergence, it only depends on $\varepsilon$.
+\end{Rmk}
+
+\begin{Th}{Th9.2.2 (an equivalent criterion for uniform convergence)}
+    Suppose $\{f_n\}$ is a sequence of real functions defined on $I$. Then $\{f_n\}$ converges uniformly to $f$ on $I$ iff:
+    $$ \lim\limits_{n\to\infty} \sup_{x\in I} |f_n(x) - f(x)| = 0. $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    This criterion is useful for denying the uniform convergence of a sequence of functions.
+\end{Rmk}
+
+\begin{Th}{Th9.2.3 (Cauchy's criterion for uniform convergence)}
+    Suppose $\{f_n\}$ is a sequence of real functions defined on $I$. Then $\{f_n\}$ converges uniformly on $I$ iff:
+    $$ \forall \varepsilon > 0, \exists N\in\mathbb{N}^\ast,\; \forall m,n \geq N,\; \forall x\in I, |f_m(x) - f_n(x)| < \varepsilon. $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Clry9.2.3.1}
+    If the series $\sum_{n=1}^{\infty} a_n(x)$ of functions converges uniformly on $I$, then the sequence $\{a_n\}$ of functions converges uniformly to the zero function on $I$.
+    \tcblower
+    \textit{Pf}: Obvious if let $m-n = 1$ in the Cauchy's criterion of the series version.
+\end{Th}
+
+\begin{Th}{Th9.2.4 (Weierstrass criterion)}
+    \begin{compactenum}
+        \item (superior series) A series $\sum_{n=1}^{\infty} M_n$ is called a \textbf{superior series} of the series $\sum_{n=1}^{\infty} a_n(x)$ of functions on $I$ if
+        $$ |a_n(x)| \leq M_n $$
+        holds for all $n\in\mathbb{N}^\ast$ and all $x\in I$.
+        \item If $\sum_{n=1}^{\infty} a_n(x),\; (x\in I)$ has a convergent superior series, then it converges uniformly on $I$. 
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df9.2.5.-1 (uniform bounded)}
+    Suppose $\{f_n\}$ is a sequence of real functions defined on $I$. We say that $\{f_n\}$ is \textbf{uniformly bounded} on $I$ if there exists $M\in\mathbb{R}$ such that
+    $$ |f_n(x)| \leq M $$
+    holds for all $n\in\mathbb{N}^\ast$ and all $x\in I$.
+\end{Df}
+
+\begin{Rmk}{}
+    You must have understood the meaning of ``uniform'' here.
+\end{Rmk}
+
+\begin{Th}{Th9.2.5 (Dirichlet's criterion)}
+    Suppose $\{a_n(x): n\in\mathbb{N}^\ast\}$ and $\{b_n(x): n\in\mathbb{N}^\ast\}$ are two sequences of real functions defined on $I$. Denote $A_n(x) = \sum_{k=1}^{n} a_k(x)$. If
+    \begin{compactenum}
+        \item $\{A_n(x)\}$ is uniformly bounded on $I$;
+        \item For all $x\in I$ the sequence $\{b_n(x)\}$ is monotonic, and $\{b_n(x)\}$ is uniformly convergent to zero on $I$;
+    \end{compactenum}
+    Then the series $\sum_{n=1}^{\infty} a_n(x)b_n(x)$ of functions converges uniformly on $I$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Th}{Th9.2.6 (Abel's criterion)}
+    Suppose $\{a_n(x): n\in\mathbb{N}^\ast\}$ and $\{b_n(x): n\in\mathbb{N}^\ast\}$ are two sequences of real functions defined on $I$. Denote $A_n(x) = \sum_{k=1}^{n} a_k(x)$. If
+    \begin{compactenum}
+        \item $\{A_n(x)\}$ is uniformly convergent on $I$;
+        \item For all $x\in I$ the sequence $\{b_n(x)\}$ is monotonic, and $\{b_n(x)\}$ is uniformly bounded on $I$;
+    \end{compactenum}
+    Then the series $\sum_{n=1}^{\infty} a_n(x)b_n(x)$ of functions converges uniformly on $I$.
+\end{Th}
+
+\begin{Rmk}{}
+    To keep in mind these two criteria, just remember their ``series of numbers'' versions in the 8th chapter, and add the word ``uniform'' respectively to the premises and the conclusions.
+\end{Rmk}
+
+\begin{Th}{Th9.3.1 (uniform convergence $\overset{?}{\Rightarrow}$ continuity)}
+    Suppose $\{f_n\}$ is a sequence of real functions defined on $I$. If
+    \begin{compactenum}
+        \item Each $f_n$ is continuous on $I$;
+        \item $\{f_n\}$ converges uniformly to the function $f$ on $I$;
+    \end{compactenum}
+    Then $f$ is continuous on $I$.
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Easy to get the series version of this theorem.
+\end{Rmk}
+
+\begin{Th}{Th9.3.1.1 (Dini's theorem) (uniform convergence $\overset{?}{\Leftarrow}$ continuity)}
+    Suppose $\{f_n\}$ is a sequence of real functions defined on the closed interval $[a,b]$. If
+    \begin{compactenum}
+        \item Each $f_n$ is continuous on $[a,b]$;
+        \item For each $x\in [a,b]$, the sequence $\{f_n(x)\}$ decreasingly converges to $0$;
+    \end{compactenum}
+    Then $\{f_n\}$ converges uniformly to $0$ on $[a,b]$.
+    \tcblower
+    \textit{Pf}: The idea is, use the finite covering theorem and select the uniform $N$ provided finiteness.
+\end{Th}
+
+\begin{Th}{Th9.3.1.2 (Dini's theorem of the series version)}
+    Suppose $\{a_n(x)\}$ is a sequence of real functions defined on $[a,b]$. If
+    \begin{compactenum}
+        \item Each $a_n(x)$ is continuous and non-negative on $[a,b]$;
+        \item The sum function $S(x)$ of $\{a_n(x)\}$ is defined, and is continuous on $[a,b]$;
+    \end{compactenum}
+    Then the series $\sum_{n=1}^{\infty} a_n(x)$ converges uniformly to $S(x)$ on $[a,b]$.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th9.3.2 (uniform convergence $\overset{?}{\Rightarrow}$ integrability)}
+    Suppose $\{f_n\}$ is a sequence of real functions defined on $[a,b]$. If
+    \begin{compactenum}
+        \item Each $f_n$ is integrable on $[a,b]$;
+        \item $\{f_n\}$ converges uniformly to the function $f$ on $[a,b]$;
+    \end{compactenum}
+    Then $f$ is integrable on $[a,b]$, with
+    $$ \int_{a}^{b} f(x) \dif x = \lim_{n\to\infty} \int_{a}^{b} f_n(x) \dif x. $$
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Easy to get the series version of this theorem.
+\end{Rmk}
+
+\begin{Th}{Th9.3.3 (uniform convergence $\overset{?}{\Rightarrow}$ differentiability)}
+    Suppose $\{f_n\}$ is a sequence of real functions defined on $[a,b]$. If
+    \begin{compactenum}
+        \item $f_n\in\mathcal{C}^1([a,b])$ for each $n$; \\
+        (recall that $\mathcal{C}^1$ here means the derivative function is continuous. Since $[a,b]$ is not open, the definition of $f_n'$ at $a$ (resp. at $b$) is intepreted as the right-derivative at $a$ (resp. the left-derivative at $b$.), and the continuity of $f_n'$ at $a$ (resp. at $b$) is interpreted as the right-continuity at $a$ (resp. the left-continuity at $b$.))
+        \item $\{f_n^\prime\}$ converges uniformly to a function $g$ on $[a,b]$;
+        \item For some $x_0\in [a,b]$, the sequence $\{f_n(x_0)\}$ converges;
+    \end{compactenum}
+    Then $\{f_n\}$ converges uniformly to a function $f\in\mathcal{C}^1([a,b])$ on $[a,b]$, and $f^\prime = g$ (still, $f'(a)$ and $f'(b)$ are interpreted as the one-sided derivatives).
+    \tcblower
+    \textit{Pf}: Trivial.
+\end{Th}
+
+\begin{Rmk}{}
+    Easy to get the series version of this theorem. \\
+    \textcolor{Th}{Only the uniform convergence of $\{f_n\}$ itself cannot guarantee the conclusion here. For example, the sequence $f_n(x) = \frac{\sin nx}{n}$ defined on $x\in [0,2\pi]$.}
+\end{Rmk}
+
+\begin{Df}{Df9.4 (power series)}
+    A series of functions of the form
+    $$ \sum_{n=0}^{\infty} f_n(x) = \sum_{n=0}^{\infty} a_n(x - x_0)^n $$
+    is called a \textbf{power series} centered at $x_0$.
+\end{Df}
+
+\begin{Th}{Th9.4.1 (Abel's theorem)}    
+    Consider the power series $\sum_{n=0}^{\infty} a_n x^n$. Then:
+    \begin{compactenum}
+        \item If the series converges at $x = x_0\neq 0$, then it converges absolutely at any $x$ with $|x| < |x_0|$.
+        \item If the series diverges at $x = x_1\neq 0$, then it diverges at any $x$ with $|x| > |x_1|$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Trivial as 
+    $$ \sum_{n=0}^{\infty} |a_n x^n| = \sum_{n=0}^{\infty} |a_n x_0^n| \cdot \left|\frac{x}{x_0}\right|^n. $$
+\end{Th}
+
+\begin{Rmk}{}
+    From this we know that the set of convergence of the power series is symmetric with respect to its center (except for the two endpoints). In other words, \textcolor{Th}{there is a (unique)} \textcolor{Df}{\textbf{radius of convergence} $R\in [0, \infty]$} \textcolor{Th}{such that the power series $\sum_{n=0}^{\infty} a_n x^n$ converges absolutely for all $x$ with $|x| < R$ and diverges for all $x$ with $|x| > R$.} The following theorem gives the formula for $R$.
+\end{Rmk}
+
+\begin{Th}{Th9.4.1.1 (Hadamard's formula)}
+    The radius of convergence $R$ of the power series $\sum_{n=0}^{\infty} a_n x^n$ is given by
+    $$ R = \frac{1}{\limsup\limits_{n\to\infty} \sqrt[n]{|a_n|}}, $$
+    taking the convention that $1/0 = \infty$ and $1/\infty = 0$.
+    \tcblower
+    \textit{Pf}: Trivial by applying the Cauchy's root criterion (Th \{, ID: 8.2.2.1\}) for the non-negative series. \\
+    \textcolor{P}{\textit{Thoughtfully}: The power series converges for $|x| < R$ and diverges for $|x| > R$, and the convergence within $R$ is absolute, which reminds us of the Cauchy's theorem for non-negative series.}
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Df}{For the radius of convergence $R$ of the power series $\sum_{n=0}^{\infty} a_n x^n$, call the interval $(-R, R)$ the \textbf{interval of convergence} of the series (taking the convention that $(-0, 0) = \varnothing$ and $(-\infty, \infty) = \mathbb{R}$).} \\
+    We must study the uniform convergence of the power series before discussing the continuity, integrability and differentiability of the sum function.
+\end{Rmk}
+
+\begin{Th}{Th9.4.2 (closed uniform convergence of power series)}
+    For the power series $\sum_{n=0}^{\infty} a_n x^n$ with the radius of convergence $R$, the series converges uniformly on any closed interval $[-r, r]$ with $0 < r < R$ (if $R>0$).
+    \tcblower
+    \textit{Pf}: Trivial, as $\sum_{n=0}^{\infty} |a_n r^n|$ converges.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Df}{This property is called the \textbf{closed uniform convergence} within $(-R, R)$ of the power series.} 
+\end{Rmk}
+
+\begin{Th}{Th9.4.2.1 (continuity, integrability and differentiability of the power series)}
+    For the power series $S(x) = \sum_{n=0}^{\infty} a_n x^n$ with the radius of convergence $R$ ($R>0$):
+    \begin{compactenum}
+        \item $S(x)$ is continuous on $(-R, R)$.
+        \item $S(x)$ is indefinitely derivable on $(-R, R)$, with (differentiate term by term)
+        $$ S^{(k)}(x) = \sum_{n=k}^{\infty} n(n-1)\cdots(n-k+1)\, a_n x^{n-k}, \quad \left(x\in (-R, R), \;\;k\in\mathbb{N}^\ast \right). $$
+        Obviously, the derivative of a power series is still a power series with the same radius of convergence as the primitive.
+        \item $S(x)$ is integrable on any closed interval contained in $(-R, R)$, with (integrate term by term)
+        $$ \int_{0}^{x} S(t) \dif t = \sum_{n=0}^{\infty} \frac{a_n}{n+1} x^{n+1}, \quad (x\in (-R, R)). $$
+    \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Although the power series converges absolutely within its interval of convergence, what happens at the endpoints is uncertain. Consider the following examples with the interval $(-1, 1)$ of convergence:
+    $$ \sum_{n=1}^{\infty} \frac{x^n}{n}, \quad \sum_{n=1}^{\infty} \frac{x^n}{n^2}, \quad \sum_{n=1}^{\infty} nx^n. $$}
+    But we have the following theorems.
+\end{Rmk}
+
+\begin{Th}{Th9.4.3 (Abel's theorem of the endpoints)}
+    Consider the power series $S(x) = \sum_{n=0}^{\infty} a_n x^n$ with the radius of convergence $R$ ($0<R<\infty$). If the series converges at $x = R$ (resp. $x = -R$), then the sum function $S(x)$ is left-continuous at $x = R$ (resp. right-continuous at $x = -R$).
+    \tcblower
+    \textit{Pf}: Prove the uniform convergence of the power series on $[0, R]$ (resp. $[-R, 0]$) using the Abel's criterion for uniform convergence (Th \{, ID: 9.2.6\}).
+\end{Th}
+
+\begin{Th}{Th9.4.3.1 (the converse of Abel's theorem of the endpoints) (Tauber's theorem)}
+    See the exercises, and then the reference book.
+\end{Th}
+
+\begin{Rmk}{}
+    \textit{Exercise}: Recall the Taylor's formulae, and then explore the conditions for expanding a general function $f$ into a power series (local expansion near a point $x_0$):
+    $$ f(x) = \sum_{n=0}^{\infty} a_n (x - x_0)^n, \qquad x\in (x_0 - r, x_0 + r). $$
+    \tcblower
+    \textit{Solution}: See the following blocks of text.
+\end{Rmk}
+
+\begin{Th}{Th9.5.1 (Taylor's series) (the uniqueness of the power series expansion)}
+    If a real function $f$ \textcolor{Df}{can be expanded into a power series near a point $x_0\in\mathbb{R}$:
+    $$ f(x) = \sum_{n=0}^{\infty} a_n (x - x_0)^n, \qquad x\in (x_0 - r, x_0 + r) $$
+    (with $r>0$),} then the series is the \textcolor{Df}{\textbf{Taylor's series} of $f$ at $x_0$, i.e.
+    $$ a_n = \frac{f^{(n)}(x_0)}{n!}, \quad (n\in\mathbb{N}). $$} 
+    so that
+    $$ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n\,!} (x - x_0)^n, \qquad x\in (x_0 - r, x_0 + r). $$
+    \tcblower
+    \textit{Pf}: If $f(x) = \sum_{n=0}^{\infty} a_n (x - x_0)^n$ on $(x_0 - r, x_0 + r)$, then the series is indefinitely derivable on $(x_0 - r, x_0 + r)$, with
+    $$ f^{(k)}(x) = \sum_{n=k}^{\infty} n(n-1)\cdots(n-k+1)\, a_n (x - x_0)^{n-k}, \quad (k\in\mathbb{N}^\ast). $$
+    Let $x = x_0$ to get $a_n = f^{(n)}(x_0)/n!$.
+\end{Th}
+
+\begin{Th}{Th9.5.2 (the existence of the power series expansion)}
+    Suppose $f$ is a real function indefinitely derivable on $(x_0 - r, x_0 + r)$ ($x_0\in\mathbb{R}$ and $0<r<\infty$). If there exists $M$ such that for sufficiently large $n$,
+    $$ |f^{(n)}(x)| \leq M $$
+    holds for all $x\in (x_0 - r, x_0 + r)$, then
+    \begin{equation}
+        f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n\,!} (x - x_0)^n, \qquad x\in (x_0 - r, x_0 + r). 
+        \label{eq:Taylors_expansion}
+    \end{equation}
+    \tcblower
+    \textit{Pf}: To ask exactly when \eqref{eq:Taylors_expansion} holds, is to ask exactly when
+    $$ \lim\limits_{n\to\infty} \left(f(x) - \sum_{n=0}^{N} \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n \right) = 0 $$
+    holds for all $x\in (x_0 - r, x_0 + r)$, is to ask, according to the Taylor's formula with the Lagrange's remainder, exactly when
+    $$ \lim\limits_{n\to\infty} \frac{f^{(n)}(\xi)}{n\, !} (x - x_0)^n = 0 $$
+    (with $\xi = \xi (x)$ between $x$ and $x_0$) holds for all $x\in (x_0 - r, x_0 + r)$.
+    \textcolor{Th}{This actually gives a sufficient and necessary condition for the expansion of $f$ into Taylor's series.} If $|f^{(n)}(x)| \leq M$ as we assumed here, then
+    $$ \left|\frac{f^{(n)}(\xi)}{n\, !} (x - x_0)^n\right| \leq \frac{M}{n\,!} r^n \to 0, $$
+    fulfilling the condition.
+\end{Th}
+
+\begin{Rmk}{}
+    The sufficient condition for the expansion of $f$ here is more convenient for applications than the equivalent condition.
+\end{Rmk}
+
+\end{document}

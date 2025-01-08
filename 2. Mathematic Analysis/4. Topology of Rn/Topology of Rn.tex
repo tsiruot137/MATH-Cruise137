@@ -10,7 +10,7 @@
     \usepackage{paralist}
     \usepackage{cancel}
 
-    \usepackage{ctex}
+    % \usepackage{ctex}
     \usepackage{amssymb}
     \usepackage{amsmath}
 
@@ -166,7 +166,7 @@ Then with everything prepared, here we go.
         \item $[B_r(\pmb{a})]^\prime = [\check{B}_r(\pmb{a})]^\prime = [\bar{B}_r(\pmb{a})]^\prime = \bar{B}_r(\pmb{a})$;
         \item $E^\circ$ is the largest open set contained in $E$, $\overline{E}$ is the smallest closed set containing $E$.
     \end{compactenum}}
-    \textcolor{Df}{For a subset $E$ of $\mathbb{R}^n$, we call those points in $(E^c)^\circ$ the \textbf{exterior points} of $E$, the set of all outer points of $E$ the \textbf{exterior} of $E$, denoted by $\text{ext}(E)$; call those points that are neither interior points nor exterior points of $E$ the \textbf{boundary points} of $E$, and the set of all boundary points of $E$ the \textbf{boundary} of $E$, denoted by $\partial E$.} 
+    \textcolor{Df}{For a subset $E$ of $\mathbb{R}^n$, we call those points in $(E^c)^\circ$ the \textbf{exterior points} of $E$, the set of all outer points of $E$ the \textbf{exterior} of $E$, denoted by $\text{ext}(E)$; call those points that are neither interior points nor exterior points of $E$ the \textbf{boundary points} of $E$, and the set of all boundary points of $E$ the \textbf{boundary} of $E$, denoted by $\partial E$.} \textcolor{Th}{We can verify that $\partial E = \overline{E}\setminus E^\circ$.}
 \end{Rmk}
 
 \begin{Th}{Th4.2.4 ($E$ is closed iff $E = \overline{E}$)}
@@ -212,7 +212,7 @@ Then with everything prepared, here we go.
     Easy to verify that $\bigcap\limits_{i=1}^\infty F_i$ contains only $\pmb{x}$.
 \end{Th}
 
-\begin{Df}{Df4.3.1 (sequentially compact sets (列紧集))}
+\begin{Df}{Df4.3.1 (sequentially compact sets)}
     Suppose $E\subseteq\mathbb{R}^n$. Then $E$ is said to be sequentially compact if every sequence in $E$ has some subsequence who converges to some limit in $E$.
 \end{Df}
 
@@ -222,11 +222,11 @@ Then with everything prepared, here we go.
     \textit{Pf}: Obvious.
 \end{Th}
 
-\begin{Df}{Df4.3.2.-1 (open cover (开覆盖))}
+\begin{Df}{Df4.3.2.-1 (open cover)}
     Suppose $E\subseteq\mathbb{R}^n$ and $\{A_\lambda: \lambda\in\Lambda\}$ is a collection of open sets in $\mathbb{R}^n$. Then $\{A_\lambda\}$ is called an \textbf{open cover} of $E$ if $E\subseteq\bigcup\limits_{\lambda\in\Lambda} A_\lambda$.
 \end{Df}
 
-\begin{Df}{Df4.3.2 (compact sets (紧致集))}
+\begin{Df}{Df4.3.2 (compact sets)}
     Suppose $E\subseteq\mathbb{R}^n$. Then $E$ is said to be compact if: \\
     For every open cover $\{A_\lambda: \lambda\in\Lambda\}$ of $E$, there are finitely many $\lambda_1, \dots, \lambda_m$ s.t. $E\subseteq \bigcup_{i=1}^m A_{\lambda_i}$.
 \end{Df}
@@ -262,7 +262,7 @@ Then with everything prepared, here we go.
     This very literal definition is proposed just for the convenience of the following narrative.
 \end{Rmk}
 
-\begin{Df}{Df4.4 (connected sets (连通集))}
+\begin{Df}{Df4.4 (connected sets)}
     Suppose $E\subseteq\mathbb{R}^n$ and there is at least two distinct points in $E$. Then $E$ is said to be connected if for any non-empty-disjoint partition $E = A\cup B$ of $E$, \\
     $A\cap B^\prime\neq\varnothing$ or $A^\prime\cap B\neq\varnothing$.
 \end{Df}
@@ -272,13 +272,13 @@ Then with everything prepared, here we go.
     The premise that there are at least two distinct points in $E$ is for the convenience that there must exist some non-empty-disjoint partition $E = A\cup B$ of $E$.
 \end{Rmk}
 
-\begin{Df}{Df4.4.1.-1 (region (区域))}
+\begin{Df}{Df4.4.1.-1 (region)}
     In $\mathbb{R}^n$, a connected open set is called a \textbf{region}, and the closure of a region is called a \textbf{closed region}.
 \end{Df}
 
-\begin{Th}{Th4.4.1 (equivalent definition for regions)}
-    Suppose $E\subseteq\mathbb{R}^n$ is an open set that contains at least two distinct points. Then $E$ is connected iff for any non-empty-disjoint partition $E = A\cup B$ of $E$, \\
-    one of $A$ and $B$ is not open.
+\begin{Th}{Th4.4.1 (equivalent definition for the connectness of open and closed sets)}
+    Suppose $E\subseteq\mathbb{R}^n$ is an open (resp. closed) set that contains at least two distinct points. Then $E$ is connected iff for any non-empty-disjoint partition $E = A\cup B$ of $E$, \\
+    one of $A$ and $B$ is not open (resp. one of $A$ and $B$ is not closed).
     \tcblower
     \textit{Pf}: Obvious.
 \end{Th}
@@ -306,7 +306,7 @@ Then with everything prepared, here we go.
     Here each of the $\varphi_i$ is defined on and is continuous on $[a,b]$. Actually it is more appropriate to say ``interval-continuous'' according to our convention, but never mind since for a real function defined on a closed interval, ``continuous'' is the same as ``interval-continuous''.
 \end{Rmk}
 
-\begin{Df}{Df4.4.3 (path-connected sets (道路连通集))}
+\begin{Df}{Df4.4.3 (path-connected sets)}
     Suppose $E\subseteq\mathbb{R}^n$ and there are at least two distinct points in $E$. Then $E$ is said to be path-connected if for any two distinct points $\pmb{x}, \pmb{y}\in E$, there is a continuous curve $l\subseteq E$ that connects $\pmb{x}$ and $\pmb{y}$.
 \end{Df}
 
@@ -422,7 +422,7 @@ Then with everything prepared, here we go.
     \begin{compactenum}
         \item \textcolor{Df}{Suppose $f$ is an $n$-real function and $D\subseteq\text{dom}(f)$. Then $f$ is called continuous on $D$ if $f$ is continuous at every point in $D$. Suppose also $\pmb{y}\in\mathbb{R}^n$, then $f$ is called discontinuous at $\pmb{y}$ (or $\pmb{y}$ is called a discontinuous point of $f$) if $f$ is not continuous at $\pmb{y}$.}
         \item \textcolor{Th}{(Compatible) Suppose $f$ is an $n$-real function. If $f$ is continuous on $D\subseteq\text{dom}(f)$, then the restriction of $f$ on $D$ is continuous on $D$.}
-        \item \textcolor{Th}{Suppose $f$ is an $n$-real function and $\pmb{y}\notin (\text{dom}(f))^\prime$. Then $f$ is continuous at $\pmb{y}$.}
+        \item \textcolor{Th}{Suppose $f$ is an $n$-real function and $\pmb{y}\in \text{dom}(f)\setminus(\text{dom}(f))^\prime$. Then $f$ is continuous at $\pmb{y}$.}
         \item \textcolor{Th}{Suppose $f$ is an $n$-real function and $\pmb{x}_0\in\text{dom}(f)\cap (\text{dom}(f))^\prime$. Then $f$ is continuous at $\pmb{x}_0$ iff $\lim\limits_{\pmb{x}\to\pmb{x}_0} f(\pmb{x}) = f(\pmb{x}_0)$.}
         \item \textcolor{Th}{(Arithmetics) If $n$-real functions $f$ and $g$ are both continuous at $\pmb{x}_0$, then: 
         \begin{compactenum}
@@ -455,6 +455,17 @@ Then with everything prepared, here we go.
     then $f$ is uniformly continuous on $\text{dom}(f)$.
     \tcblower
     \textit{Pf}: Completely the same method with the proof of \{, ID: 2.4.1\}.
+\end{Th}
+
+\begin{Th}{Th4.5.3.1.1 (continuous function on a compact set has a maximum and a minimum)}
+    Suppose $f$ is an $n$-real function. If
+    \begin{compactenum}
+        \item $\text{dom}(f)$ is compact and
+        \item $f$ is continuous on $\text{dom}(f)$,
+    \end{compactenum}
+    then $f$ attains its maximum and minimum on $\text{dom}(f)$.
+    \tcblower
+    \textit{Pf}: Obvious.
 \end{Th}
 
 \begin{Th}{Th4.5.3.2 (continuous function maps a compact set to a compact set)}

@@ -10,7 +10,7 @@
     \usepackage{paralist}
     \usepackage{cancel}
 
-    \usepackage{ctex}
+    % \usepackage{ctex}
     \usepackage{amssymb}
     \usepackage{amsmath}
 
@@ -162,7 +162,7 @@ Then with everything prepared, here we go.
     \tcblower
 \end{Th}
 
-\begin{Df}{$\bullet$ Df2.3.2 (direct sum (直和) of subspaces)}
+\begin{Df}{$\bullet$ Df2.3.2 (direct sum of subspaces)}
     Suppose $V$ is a vector space and $U_1, \dots, U_n$ are subspaces of $V$. Then the sum $U_1+\dots+U_n$ is called the \textbf{direct sum} of $U_1$, \dots, $U_n$, denoted by $U_1\oplus\dots\oplus U_n = U_1+\dots+U_n$, if:\\
         $\forall u\in (U_1+\dots+U_n), \exists! (u_1, \dots, u_n)\in (U_1\times\dots\times U_n) \text{  s.t.  } u = u_1+\dots u_n$
     When we write $U_1\oplus\dots\oplus U_n$, we indicate that $U_1+\dots+U_n$ is the direct sum of $U_1$, \dots, $U_n$.
@@ -186,7 +186,7 @@ Then with everything prepared, here we go.
     For a vector space $V$ over $\mathbb{F}$, $a_1v_1+\dots+a_mv_m$ (where $a_1,\dots, a_m\in \mathbb{F}$ and $v_1,\dots, v_m\in V$) is called a linear combination of $v_1, \dots, v_m$.
 \end{Df}
 
-\begin{Df}{$\bullet$ Df2.5 (span (生成))}
+\begin{Df}{$\bullet$ Df2.5 (span)}
     Suppose $V$ is a vector space over $\mathbb{F}$ and $v_1, \dots, v_m\in V$. Then the set $\{a_1v_1+\dots+a_mv_m: a_1,\dots,a_m\in\mathbb{F}\}$ (of course is a subspace of $V$) is called the span of $v_1, \dots, v_m$, or we say that $v_1, \dots, v_m$ spans this space, denoted by 
     $$\text{span} (v_1, \dots, v_m) = \{a_1v_1+\dots+a_mv_m: a_1,\dots,a_m\in\mathbb{F}\}$$
 \end{Df}
@@ -214,7 +214,7 @@ Then with everything prepared, here we go.
     \end{compactitem}
 \end{Rmk}
 
-\begin{Df}{$\bullet$ Df2.7 (linear dependence (线性相关) and linear independence (线性无关))}
+\begin{Df}{$\bullet$ Df2.7 (linear dependence and linear independence)}
     Please check this definition online by yourself.
 \end{Df}
 
@@ -310,7 +310,7 @@ Then with everything prepared, here we go.
     As a collary of this theorem, we have: \textcolor{Th}{$\dim (U\oplus W) = \dim U+\dim W$, $\dim (U_1+\dots +U_n)\leq \dim U_1 + \dots + \dim U_n$ and $\dim (U_1\oplus\dots\oplus U_n) = \dim U_1 + \dots + \dim U_n$}.
 \end{Rmk}
 
-\begin{Df}{$\bullet$ Df2.10 (linear maps (线性映射))}
+\begin{Df}{$\bullet$ Df2.10 (linear maps)}
     Suppose $V$ and $W$ are both vector spaces over $\mathbb{F}$ and $T: V\rightarrow W$. Then $T$ is called a linear map if:
     \begin{compactenum}
         \item (Additivity): $T(u+v) = Tu+Tv$ for all $u, v\in V$;
@@ -510,7 +510,7 @@ Then with everything prepared, here we go.
     \end{compactenum}}
 \end{Rmk}
 
-\begin{Df}{$\bullet$ Df2.22 (isomorphism (同构) of vector spaces)}
+\begin{Df}{$\bullet$ Df2.22 (isomorphism of vector spaces)}
     Suppose $V, W$ are both vector spaces over $\mathbb{F}$. Then $V$ and $W$ are called isomorphic if there exists a bijective $T\in\mathcal{L}(V, W)$. And an bijective linear map between two isomorphic vector spaces is called an isomorphism.
 \end{Df}
 
@@ -540,4 +540,8 @@ Then with everything prepared, here we go.
     \textcolor{Th}{
     $$\mathcal{M}(T)_{\pmb{v^\ast}} = \mathcal{M}(S)_{\pmb{v}}^{-1} \mathcal{M}(T)_{\pmb{v}} \mathcal{M}(S)_{\pmb{v}}$$}
 \end{Rmk}
+
+\begin{Th}{Blocks from the file I1}
+\end{Th}
+
 \end{document}

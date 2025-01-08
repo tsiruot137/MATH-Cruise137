@@ -5,12 +5,12 @@
     \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
     \usepackage{setspace}
     \setstretch{1.2} 
-    \setlength{\parindent}{0em}
+    \setlength{\parindent}{2em}
 
     \usepackage{paralist}
     \usepackage{cancel}
 
-    \usepackage{ctex}
+    % \usepackage{ctex}
     \usepackage{amssymb}
     \usepackage{amsmath}
 
@@ -331,7 +331,7 @@ $$
      & & & A_{m+1}
 \end{bmatrix}
 $$
-where $J_i$'s are Jordan blocks. If those $G(\lambda)$'s fill the whole space, then those $A_i$ will collapse to $0\times 0$ matrices, indicating that the matrix representation is upper-triangular. And we can think of that an operator has an upper-triangular matrix representation if its characteristic polynomial splits (Schur's Theorem). Then we can accordingly make this speculatation.
+where $J_i$'s are Jordan blocks. If those $G(\lambda)$'s fill the whole space, then those $A_i$ will collapse to $0\times 0$ matrices, indicating that the matrix representation is upper-triangular. And we can think of that an operator has an upper-triangular matrix representation if its characteristic polynomial splits (Schur's Theorem). Then we can accordingly make this speculation.
 
 \begin{Th}{Th 9\_I1.3.5 ($G(\lambda)$ fill the whole space if characteristic polynomial splits)}
     Suppose $T\in\mathcal{L}(V)$ for some finite-dimensional $V$ and $\lambda_1, \cdots, \lambda_m$ are all the distinct eigenvalues of $T$. If the characteristic polynomial of $T$ splits, then $V = \bigoplus_{i=1}^m G(\lambda_i)$.

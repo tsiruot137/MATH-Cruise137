@@ -1,0 +1,441 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Series}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\biparfrac}[2]{\frac{\partial^2 #1}{#2}}
+    \newcommand{\dif}{\mathop{}\!\mathrm{d}}
+    \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
+\begin{document}
+\maketitle
+
+This is the 8th chapter of Mathematical Analysis, which is about \textbf{Series}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
+        \item A set of sets is called a collection or a family.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (8.1.*): Basic properties of series.
+        \item (8.2.*): Positive series.
+            \subitem (8.2.1.*): Comparison criterion.
+            \subitem (8.2.2.*): Other secondary criteria.
+        \item (8.3.*): Criteria for arbitrary series.
+            \subitem (8.3.3.*): Criteria for $ \sum_{n=1}^{\infty} a_n b_n $.
+        \item (8.4.*): Riemann's rearrangement theorem.
+        \item (8.5.*): Product of series.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df8.1 (Series (of real terms))}
+    For a sequence $\{a_n\in\mathbb{R}: n\in\mathbb{N}^\ast\}$ in $\mathbb{R}$, the sum $\sum_{n=1}^{\infty} a_n$ is called a \textbf{series}. The series is said to be \textbf{convergent} if the \textcolor{Df}{partial sum sequence 
+    $$ \{\sum_{i=1}^{n} a_n: n\in\mathbb{N}^\ast\} $$}
+    is convergent (to some $S\in\mathbb{R}$), and this case we define the \textbf{sum of the series} as the limit of the sequence, i.e.,
+    $$ \sum_{n=1}^{\infty} a_n \triangleq \lim_{n\to\infty} \sum_{i=1}^{n} a_n; $$
+    otherwise, the series is said to be \textbf{divergent}.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Basic properties of series:
+    \begin{compactenum}
+        \item If the series $\sum_{n=1}^{\infty} a_n$ converges, then $\lim\limits_{n\to\infty} a_n = 0$;
+        \item (linearity) If $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ are convergent, then so are $\sum_{n=1}^{\infty} (a_n\pm b_n)$ and 
+        $$ \sum_{n=1}^{\infty} (a_n\pm b_n) = \sum_{n=1}^{\infty} a_n \pm \sum_{n=1}^{\infty} b_n; $$ If $\sum_{n=1}^{\infty} a_n$ is convergent, then so are $\sum_{n=1}^{\infty} ca_n$ for any $c\in\mathbb{R}$, and 
+        $$ \sum_{n=1}^{\infty} ca_n = c\sum_{n=1}^{\infty} a_n; $$ 
+        \item Changing / Adding / Removing a finite number of terms in a series $\sum_{n=1}^{\infty}$ does not affect its convergence or divergence, but may affect its sum;
+    \end{compactenum}
+    }
+\end{Rmk}
+
+\begin{Th}{Eg8.1.1 (convergence of equal-ratio-series / geometric series)}
+    Learn the definition of geometric series by yourself. //
+    For a geometric series $\sum_{n=1}^{\infty} q^{n}$, it converges iff $|q|<1$, and in this case we have 
+    $$ \sum_{n=1}^{\infty} q^{n-1} = \frac{1}{1-q}. $$
+    \tcblower
+    \textit{Solution}: Easy.
+\end{Th}
+
+\begin{Th}{Th8.1.2 (associativity of infinite sums)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ converges. Arbitrarily combine the terms of the series into a new series
+    $$ \sum_{n=0}^{\infty} \left(\sum_{i = k_n+1}^{k_{n+1}} a_{i}\right), $$
+    where $0 = k_0 < k_1 < k_2 < \dots$. Then the new series converges and has the same sum as the original series.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{The converse of this theorem is not true.} For example, the series $\sum_{n=1}^{\infty} (-1)^{n}$ diverges, but combining the $1$'s and $-1$'s in pairs gives the zero series, which converges. However, \textcolor{Th}{if for each $n$, the terms $a_{k_n+1}, \cdots, a_{k_{n+1}}$ are all non-negative (or all non-positive), then the converse is true (see the corresponding position of the reference book).}
+\end{Rmk}
+
+\begin{Df}{Df8.2 (Positive series)}
+    A series $\sum_{n=1}^{\infty} a_n$ is called \textbf{positive} (resp. \textbf{non-negative}) if $a_n>0$ (resp. $a_n\geq 0$) for all $n\in\mathbb{N}^\ast$.
+\end{Df}
+
+\begin{Th}{Th8.2.0.1 (convergence of positive series)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a non-negative series. Then the series either converges or diverges to $\infty$.
+    \tcblower
+    \textit{Pf}: Obviously, the series converges iff its partial sum sequence is bounded. 
+\end{Th}
+
+\begin{Th}{Eg8.2.0.1 (convergence of $\sum_{n=1}^{\infty} \frac{1}{n^\alpha}$)}
+    Let $\alpha>0$. Then the series $\sum_{n=1}^{\infty} \frac{1}{n^\alpha}$ converges iff $\alpha>1$.
+    \tcblower
+    \textit{Solution}: See the Ex \{, ID: 1.3.1\}.
+\end{Th}
+
+\begin{Th}{Th8.2.1 (comparison criterion of positive series)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ are two non-negative series. If
+    $$ a_n \leq b_n $$
+    holds for sufficiently large $n$, then
+    \begin{compactitem}
+        \item $\sum_{n=1}^{\infty} b_n$ converges $\Rightarrow$ $\sum_{n=1}^{\infty} a_n$ converges;
+        \item $\sum_{n=1}^{\infty} a_n$ diverges $\Rightarrow$ $\sum_{n=1}^{\infty} b_n$ diverges.
+    \end{compactitem}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th8.2.1.1 (comparison criterion under self-ratio)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ are two positive series. If
+    $$ \frac{a_{n+1}}{a_n} \leq \frac{b_{n+1}}{b_n} $$
+    holds for sufficiently large $n$, then
+    \begin{compactitem}
+        \item $\sum_{n=1}^{\infty} b_n$ converges $\Rightarrow$ $\sum_{n=1}^{\infty} a_n$ converges;
+        \item $\sum_{n=1}^{\infty} a_n$ diverges $\Rightarrow$ $\sum_{n=1}^{\infty} b_n$ diverges.
+    \end{compactitem}
+    \tcblower
+    \textit{Pf}: Obvious, using Th \{, ID: 8.2.1\}.
+\end{Th}
+
+\begin{Th}{Th8.2.1.2 (comparison criterion under limit)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ are two positive series. If
+    $$ \lim_{n\to\infty} \frac{a_n}{b_n} = l, $$
+    then:
+    \begin{compactitem}
+        \item if $0\leq l < \infty$, then $\sum_{n=1}^{\infty} b_n$ converges $\Leftrightarrow$ $\sum_{n=1}^{\infty} a_n$ converges;
+        \item if $l = 0$, then $\sum_{n=1}^{\infty} b_n$ converges $\Rightarrow$ $\sum_{n=1}^{\infty} a_n$ converges;
+        \item if $l = \infty$, then $\sum_{n=1}^{\infty} b_n$ diverges $\Rightarrow$ $\sum_{n=1}^{\infty} a_n$ diverges.
+    \end{compactitem}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th8.2.1.3 (Cauchy's integral criterion)}
+    Suppose $f$ is a real function defined on $[1, \infty]$. If $f$ is decreasing and non-negative, then the series $\sum_{n=1}^{\infty} f(n)$ converges iff the infinite integral $\int_{1}^{\infty} f(x)\dif x$ converges.
+    \tcblower
+    \tcblower
+    \textit{Pf}: Obvious, as ($S(x) = \int_{1}^{x} f(t)\dif t$, $S_n = \sum_{k=1}^{n} f(k)$):
+    $$ S_n \geq S(n) \geq S_{n+1}-S_1. $$
+\end{Th}
+
+\begin{Th}{Eg8.2.1.3.1 ($\sum_{n=1}^{\infty} \frac{1}{n^\alpha}$, $\sum_{n=2}^{\infty} \frac{1}{n(\ln n)^\alpha}$)}
+    Suppose $\alpha>0$. Then
+    \begin{compactenum}
+        \item $\sum_{n=1}^{\infty} \frac{1}{n^\alpha}$ converges $\Leftrightarrow$ $\alpha>1$;
+        \item $\sum_{n=2}^{\infty} \frac{1}{n(\ln n)^\alpha}$ converges $\Leftrightarrow$ $\alpha>1$.
+    \end{compactenum}
+    \tcblower
+    \textit{Solution}: See the Eg \{, ID: 7.6.4\}.
+\end{Th}
+
+\begin{Th}{Th8.2.2.1 (Cauchy's root criterion) ($\sqrt[n]{a_n}$)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a non-negative series. 
+    \begin{compactenum}
+        \item If there is some $q<1$ s.t. $\sqrt[n]{a_n} \leq q$ for sufficiently large $n$, then the series converges;
+        \item If $\sqrt[n]{a_n} \geq 1$ for infinitely many $n$, then the series diverges.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Compare with the geometric series $\sum_{n=1}^{\infty} q^{n}$, using Th \{, ID: 8.2.1\}.
+\end{Th}
+
+\begin{Th}{Th8.2.2.1.1 (Cauchy's root criterion under limit)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a non-negative series. Let $q = \limsup\limits_{n\to\infty} \sqrt[n]{a_n}$. Then
+    \begin{compactenum}
+        \item if $q<1$, then the series converges;
+        \item if $q>1$, then the series diverges;
+        \item if $q = 1$, yet to see.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious. For the case $q = 1$, consider the series $\sum_{n=1}^{\infty} \frac{1}{n}$ and $\sum_{n=1}^{\infty} \frac{1}{n^2}$.
+\end{Th}
+
+\begin{Th}{Th8.2.2.2 (d'Alembert's criterion) ($\frac{a_{n+1}}{a_n}$)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a positive series.
+    \begin{compactenum}
+        \item If there is some $q<1$ s.t. $\frac{a_{n+1}}{a_n} \leq q$ for sufficiently large $n$, then the series converges;
+        \item If $\frac{a_{n+1}}{a_n} \geq 1$ for sufficiently large $n$, then the series diverges.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Compare with the geometric series, using Th \{, ID: 8.2.1.1\}.
+\end{Th}
+
+\begin{Th}{Th8.2.2.2.1 (d'Alembert's criterion under limit)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a positive series. Let
+    $$ q = \limsup_{n\to\infty} \frac{a_{n+1}}{a_n} \qquad \text{and} \qquad q^\prime = \liminf_{n\to\infty} \frac{a_{n+1}}{a_n}. $$
+    Then
+    \begin{compactenum}
+        \item if $q < 1$, then the series converges;
+        \item if $q^\prime > 1$, then the series diverges;
+        \item if $q = 1$ or $q^\prime = 1$, yet to see.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious. For the case $q = 1$ or $q^\prime = 1$, still consider the series $\sum_{n=1}^{\infty} \frac{1}{n}$ and $\sum_{n=1}^{\infty} \frac{1}{n^2}$.
+\end{Th}
+
+\begin{Th}{Th8.2.2.2.2 (Cauchy's root criterion is stronger than d'Alembert's criterion)}
+    Suppose $a_n>0$. Then
+    $$ \liminf_{n\to\infty} \frac{a_{n+1}}{a_n} \leq \liminf_{n\to\infty} \sqrt[n]{a_n} \leq \limsup_{n\to\infty} \sqrt[n]{a_n} \leq \limsup_{n\to\infty} \frac{a_{n+1}}{a_n}. $$
+\end{Th}
+
+\begin{Th}{Th8.2.2.3 (Raabe's criterion) ($n(\frac{a_n}{a_{n+1}}-1)$)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a positive series. 
+    \begin{compactenum}
+        \item If there is some $\alpha>1$ s.t. $n(\frac{a_n}{a_{n+1}}-1) \geq \alpha$ for sufficiently large $n$, then the series converges;
+        \item If $n\left(\frac{a_n}{a_{n+1}}-1\right) \leq 1$ for sufficiently large $n$, then the series diverges.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Compare with the series $\sum_{n=1}^{\infty} \frac{1}{n^\alpha}$, using Th \{, ID: 8.2.1.1\}.
+\end{Th}
+
+\begin{Th}{Th8.2.2.3.1 (Raabe's criterion under limit)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a positive series. Let
+    $$ \alpha = \limsup_{n\to\infty} n\left(\frac{a_n}{a_{n+1}}-1\right) \qquad \text{and} \qquad \alpha^\prime = \liminf_{n\to\infty} n\left(\frac{a_n}{a_{n+1}}-1\right). $$
+    Then
+    \begin{compactenum}
+        \item if $\alpha > 1$, then the series converges;
+        \item if $\alpha^\prime \leq 1$, then the series diverges.
+        \item if $\alpha = 1$ or $\alpha^\prime = 1$, yet to see.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious. For the case $\alpha = 1$ or $\alpha^\prime = 1$, see the exercise below.
+\end{Th}
+
+\begin{Rmk}{}
+    If $\lim\limits_{n\to\infty} n\left(\frac{a_n}{a_{n+1}}-1\right) = l$, we often write it as 
+    $$ \frac{a_n}{a_{n+1}} = 1 + \frac{l}{n} + o\left(\frac{1}{n}\right), $$
+    which is convenient for both proofs and calculations.
+\end{Rmk}
+
+\begin{Th}{Ex8.2.2.4.-1 (the grey area of Raabe's criterion)}
+    Find a series in the grey area of Raabe's criterion.
+    \tcblower
+    \textit{Solution}: $\sum_{n=1}^{\infty} \frac{1}{n(\ln n)^\alpha}$.
+\end{Th}
+
+\begin{Th}{Th8.2.2.4 (Gauss' criterion)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a positive series. If
+    $$ \frac{a_n}{a_{n+1}} = 1 + \frac{1}{n} + \frac{\alpha}{n\ln n} + o\left(\frac{1}{n\ln n}\right), $$
+    then
+    \begin{compactenum}
+        \item if $\alpha > 1$, then the series converges;
+        \item if $\alpha < 1$, then the series diverges.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Compare with the series $\sum_{n=1}^{\infty} \frac{1}{n(\ln n)^\alpha}$, using Th \{, ID: 8.2.1.1\}.
+\end{Th}
+
+\begin{Th}{Th8.3.1 (Cauchy's criterion)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a series. Then the series converges iff for any $\varepsilon>0$, 
+    $$ \left|\sum_{k=n+1}^{n+p} a_k\right| < \varepsilon $$
+    holds for sufficiently large $n$ and for all $p\in\mathbb{N}^\ast$.
+    \tcblower
+    \textit{Pf}: Obviously this is the Cauchy's criterion for the convergence of a sequence.
+\end{Th}
+
+\begin{Th}{Th8.3.2 (Leibniz's criterion)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a non-negative series. If the sequence $\{a_n\}$ is decreasing and $\lim\limits_{n\to\infty} a_n = 0$, then the series
+    $$ \sum_{n=1}^{\infty} (-1)^{n} a_n $$
+    converges.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Df}{A series $\sum_{n=1}^{\infty} (-1)^n a_n$ with $a_n\geq 0$ (or $a_n\leq 0$) is called an \textbf{alternating series}, and the alternating series $\sum_{n=1}^{\infty} (-1)^n a_n$ satisfying the conditions of Leibniz's criterion is called a \textbf{Leibniz series}.}
+\end{Rmk}
+
+\begin{Th}{Lma8.3.3.-2 (Abel's partial sum formula)}
+    Suppose $\{a_n\}$ and $\{b_n\}$ ($n\in\mathbb{N}^\ast$) are two sequences in $\mathbb{R}$. Then:
+    $$ \sum_{k=1}^{n} a_k b_k = A_n b_n - \sum_{k=1}^{n-1} A_k(b_{k+1}-b_k) $$
+    holds for all $n\in\mathbb{N}^\ast$, where $A_n = \sum_{k=1}^{n} a_k$.
+    \tcblower
+    \textit{Pf}: Obvious. This is just the discrete version of the integration by parts.
+\end{Th}
+
+\begin{Th}{Lma8.3.3.-1 (Abel's bound for $\sum_{k=1}^{n} a_k b_k$)}
+    Suppose $\{a_k\}$ and $\{b_k\}$ ($k=1,\cdots,n$) are two $n$-arrays in $\mathbb{R}$. If
+    \begin{compactenum}
+        \item $\{A_k\}$ is bounded by $|A_k|\leq M$ and
+        \item $\{b_k\}$ is monotonic,
+    \end{compactenum}
+    then
+    $$ \left|\sum_{k=1}^{n} a_k b_k\right| \leq M(|b_1|+2|b_n|). $$
+    \tcblower
+    \textit{Pf}: Obvious by the Abel's partial sum formula.
+\end{Th}
+
+\begin{Th}{Th8.3.3.1 (Dirichlet's criterion)}
+    Suppose $\{a_n\}$ and $\{b_n\}$ ($n\in\mathbb{N}^\ast$) are two sequences in $\mathbb{R}$. Denote $A_n = \sum_{k=1}^{n} a_k$. If
+    \begin{compactenum}
+        \item $\{A_n\}$ is bounded and
+        \item $\{b_n\}$ monotonically converges to $0$,
+    \end{compactenum}
+    then the series $\sum_{n=1}^{\infty} a_n b_n$ converges.
+    \tcblower
+    \textit{Pf}: Obvious by the Lma \{, ID: 8.3.3.-1\}
+\end{Th}
+
+\begin{Th}{Th8.3.3.2 (Abel's criterion)}
+    Suppose $\{a_n\}$ and $\{b_n\}$ ($n\in\mathbb{N}^\ast$) are two sequences in $\mathbb{R}$. Denote $A_n = \sum_{k=1}^{n} a_k$. If
+    \begin{compactenum}
+        \item $\{A_n\}$ converges and
+        \item $\{b_n\}$ is monotonic and bounded,
+    \end{compactenum}
+    then the series $\sum_{n=1}^{\infty} a_n b_n$ converges.
+    \tcblower
+    \textit{Pf}: Obvious by the Dirichlet's criterion.
+\end{Th}
+
+\begin{Th}{Th8.4 (absolute convergence and conditional convergence)}
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a series. Then the convergence of $\sum_{n=1}^{\infty} |a_n|$ implies the convergence of $\sum_{n=1}^{\infty} a_n$, but the converse is false. \textcolor{Df}{The case that both series converge is called the \textbf{absolute convergence}; while the case that $\sum_{n=1}^{\infty} a_n$ converges but $\sum_{n=1}^{\infty} |a_n|$ diverges is called the \textbf{conditional convergence}}.
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item $\sum_{n=1}^{\infty} |a_n|$ converges $\Rightarrow$ $\sum_{n=1}^{\infty} a_n $ converges: $|\sum_{k=n+1}^{n+p} a_k| \leq \sum_{k=n+1}^{n+p} |a_k| < \varepsilon$ by the Cauchy's criterion;
+        \item $\sum_{n=1}^{\infty} |a_n|$ converges $\nLeftarrow$ $\sum_{n=1}^{\infty} a_n $ converges: let $a_n = (-1)^n/n$.
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th8.4.1 (Riemann's rearrangement theorem)}
+    \begin{compactenum}
+        \item \textcolor{Df}{A bijection $\varphi: \mathbb{N}^\ast\rightarrow\mathbb{N}^\ast$ is called a \textbf{permutation} (or a \textbf{order}) of $\mathbb{N}^\ast$. \textbf{To rearrange a series } $\sum_{n=1}^{\infty} a_n$ \textbf{by the order $\varphi$} means to compute the sum of the new series $\sum_{n=1}^{\infty} a_{\varphi(n)}$.}
+        \item For absolutely convergent series, any rearrangement does not affect the convergence and the exact sum of the series.
+        \item For conditionally convergent series, the sum of the series can be changed to any real number, or even to $\infty$ or $-\infty$, by a suitable rearrangement. 
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item First verify that rearrangement does not affect a non-negative series. Suppose $\{a_n\}$ is non-negative. Then for the partial sum 
+        $$ S_n^\varphi = \sum_{k=1}^{n} a_{\varphi(k)} \leq \sum_{k=1}^{m(n)} a_k = S_{m(n)} \rightarrow S $$
+        where $m(n) = \max\{\varphi(1), \cdots, \varphi(n)\}$. Then $S_n^\varphi$, and thus $\sum_{n=1}^{\infty} a_{\varphi(n)}$, converges to some $S^\varphi\leq S$. In the same way we quickly get $S\leq S^\varphi$ so that $S = S^\varphi$, as $S_n = (S^\varphi)_n^{\varphi^{-1}}$.
+        \item Next extend to any absolutely convergent series $\sum_{n=1}^{\infty} a_n$. Consider the following two non-negative series:
+        $$ a_n^+ = \max\{a_n, 0\}, \quad a_n^- = \max\{-a_n, 0\} $$
+        then $a_n = a_n^+ - a_n^-$ and $|a_n| = a_n^+ + a_n^-$. Then the rearrangement of $\sum_{n=1}^{\infty} a_n$ corresponds to the same rearrangement of $\sum_{n=1}^{\infty} a_n^+$ and $\sum_{n=1}^{\infty} a_n^-$.
+        \item Finally consider the conditionally convergent $\sum_{n=1}^{\infty} a_n$. As
+        $$ a_n^+ = \frac{a_n + |a_n|}{2}, \quad a_n^- = \frac{|a_n| - a_n}{2}, $$
+        where $\sum_{n=1}^{\infty} a_n$ converges but $\sum_{n=1}^{\infty} |a_n|$ diverges, both of $\sum_{n=1}^{\infty} a_n^+$ and $\sum_{n=1}^{\infty} a_n^-$ diverge to $\infty$. \\ 
+        Let us say $a_n\neq 0$ for convenience. Then the $a_n^+$ and $a_n^-$ are both positive. And let $\{a_{k(n)}\}$ and $\{a_{l(n)}\}$ be the corresponding subsequences of $a_n$ to $\{a_n^+\}$ and $\{a_n^-\}$ respectively, so that $a_{k(n)}>0$ and $a_{l(n)}<0$. Then achieve $\sum_{n=1}^{\infty} a_{\varphi(n)} = S\in (-\infty, \infty)$ inductively by:
+        \begin{compactenum}
+            \item[(i)] if $S^\varphi_n \leq S$, let $a_{\varphi(n+1)}$ be the next term from $\{a_{k(n)}\}$ that has not been used;
+            \item[(ii)] if $S^\varphi_n > S$, let $a_{\varphi(n+1)}$ be the next term from $\{a_{l(n)}\}$ that has not been used. 
+        \end{compactenum}
+        And achieve $\sum_{n=1}^{\infty} a_{\varphi(n)} = \infty$ (similar for $-\infty$) inductively by:
+        \begin{compactenum}
+            \item[(i)] Set an ininial ``goal'' $S = 0$;
+            \item[(ii)] if $S^\varphi_n < S$, let $a_{\varphi(n+1)}$ be the next term from $\{a_{k(n)}\}$ that has not been used;
+            \item[(iii)] if $S^\varphi_n \geq S$, let $a_{\varphi(n+1)}$ be the next term from $\{a_{l(n)}\}$ that has not been used, and set $S = S + 1$.
+        \end{compactenum}
+        this way we can by rearrangement arbitrarily change the sum of the series (verify the details by yourself).
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df8.5 (product of series)}
+    For two series $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$, their \textbf{product} has many definitions. 
+    \begin{compactenum}
+        \item Their \textbf{Cauchy product} is defined by 
+        $$\Bigg[\left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right)\Bigg]_\mathsf{C} \xlongequal{\;\vartriangle \;} \sum_{n=1}^{\infty} \left(\sum_{k=1}^{n} a_k b_{n+1-k}\right);$$
+        \item Their \textbf{block product} is defined by
+        $$\Bigg[\left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right)\Bigg]_\mathsf{B} \xlongequal{\;\vartriangle \;} \lim\limits_{n\to\infty} \left(\sum_{k=1}^{n} a_k \sum_{k=1}^{n} b_k\right);$$
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    To define the product of two series $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{n} b_n$, is just to define an order to sum all the terms $\{a_n b_m: n,m\in\mathbb{N}^\ast\}$. Then the convergence of the product matters.
+\end{Rmk}
+
+\begin{Th}{Th8.5.1 (both of the multiplied series converges $\Rightarrow$ the block product converges)}
+    $$ \Bigg[\left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right)\Bigg]_\mathsf{B} = \left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right), $$
+    if both $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ converge.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th8.5.2 (Cauchy's theorem) (both of the multiplied series absolutely converge $\Rightarrow$ the product by any order converges to the same sum)}
+    If both $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ are absolutely convergent, then by any \textcolor{Df}{order $(\varphi, \psi): \mathbb{N}^\ast \rightarrow \mathbb{N}^\ast\times\mathbb{N}^\ast$ (``order'' here, still, means that $(\varphi, \psi)$ is a bijection)}, the product $ \sum_{n=1}^{\infty} a_{\varphi(n)} b_{\psi(n)} $ absolutely converges and
+    $$ \sum_{n=1}^{\infty} a_{\varphi(n)} b_{\psi(n)} = \left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right). $$
+    \tcblower
+    \textit{Pf}: For the partial sum $ \sum_{k=1}^{n} a_{\varphi(k)} b_{\psi(k)} $, let $N = \max\{\varphi(1), \cdots, \varphi(n), \psi(1), \cdots, \psi(n)\}$. Then
+    $$ \sum_{k=1}^{n} |a_{\varphi(k)} b_{\psi(k)}| \leq \sum_{i=1}^{N} \sum_{j=1}^{N} |a_i| |b_j| = \left(\sum_{i=1}^{N} |a_i|\right) \left(\sum_{j=1}^{N} |b_j|\right) \leq \left(\sum_{n=1}^{\infty} |a_n|\right) \left(\sum_{n=1}^{\infty} |b_n|\right) < \infty. $$
+    And thus the product by the order $(\varphi, \psi)$ absolutely converges, and thus the block product — which is the series obtained by combining the terms from $\sum_{n=1}^{\infty} a_{\varphi(n)} b_{\psi(n)}$ — absolutely converges to the same sum.
+    $$ \sum_{n=1}^{\infty} a_{\varphi(n)} b_{\psi(n)} = \Bigg[\left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right)\Bigg]_\mathsf{B} = \left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right). $$
+\end{Th}
+
+\begin{Th}{Th8.5.3 (Mertens' theorem) (both converges and one absolutely converges $\Rightarrow$ Cauchy product converges)}
+    $$ \Bigg[\left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right)\Bigg]_\mathsf{C} = \left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right), $$
+    if both $\sum_{n=1}^{\infty} a_n$ and $\sum_{n=1}^{\infty} b_n$ converge, and one of them absolutely converges.
+    \tcblower
+    \textit{Pf}: Say $\sum_{n=1}^{\infty} a_n$ absolutely converges. Denote $A_n = \sum_{k=1}^{n} a_k$, $B_n = \sum_{k=1}^{n} b_k$, $C_n = \sum_{k=1}^{n} \sum_{i=1}^{k}a_i b_{k+1-i}$ and $$\lim\limits_{n\to \infty} A_n = A \qquad \lim\limits_{n\to \infty} B_n = B \qquad \lim\limits_{n\to\infty} C_n = C.$$ Then it is to show that $C = AB$. Since $ C_n = a_1 B_n + \cdots + a_n B_1, $ we have
+    $$ C_n - A_n B = a_1(B_n - B) + \cdots + a_n(B_1 - B) \triangleq a_1 \beta_n + \cdots + a_n \beta_1 \triangleq \gamma_n, $$
+    and it is to show that $\gamma_n \rightarrow 0$, given that $\beta_n \rightarrow 0$. For any $\varepsilon>0$, there is some $N$ s.t. $|\beta_n| < \varepsilon$ for all $n>N$. Then for $n>N$,
+    $$ 
+    \begin{aligned}
+        |\gamma_n| & \leq \left(|a_1| |\beta_n| + \cdots + |a_{n-N}| |\beta_{N+1}|\right) + \left(|a_{n+1-N}| |\beta_{N}| + \cdots + |a_n| |\beta_1|\right) \\
+        & < \varepsilon A + |\beta_N| |a_{n+1-N}| + \cdots + |\beta_1| |a_n| 
+    \end{aligned}
+    $$
+    then fix $N$ and let $n\rightarrow \infty$, we have $\limsup\limits_{n\to\infty} |\gamma_n| \leq \varepsilon A$, namely $\gamma_n \rightarrow 0$. Thus $C = AB$.
+\end{Th}
+
+\begin{Th}{Th8.5.4 (Abel's theorem) (all converge $\Rightarrow$ equality)}
+    $$ \Bigg[\left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right)\Bigg]_\mathsf{B} = \Bigg[\left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right)\Bigg]_\mathsf{C} = \left(\sum_{n=1}^{\infty} a_n\right) \left(\sum_{n=1}^{\infty} b_n\right), $$
+    if $\sum_{n=1}^{\infty} a_n$, $\sum_{n=1}^{\infty} b_n$ and their Cauchy product all converge.
+    \tcblower
+    \textit{Pf}: Continue to use the notations in the proof of Th \{, ID: 8.5.3\}. Then
+    $$ 
+    \begin{aligned}
+        C_1 &= a_1 B_1, \\
+        C_2 &= a_1 B_2 + a_2 B_1, \\
+        C_3 &= a_1 B_3 + a_2 B_2 + a_3 B_1, \\
+        & \cdots \\
+    \end{aligned}
+    $$
+    and thus 
+    $$ \frac{1}{N} \sum_{n=1}^{N} C_n = \frac{1}{N} \sum_{n=1}^{N} A_n B_{N+1-n}. $$
+    Then complete the proof by letting $N\rightarrow \infty$ (as shown in the Ex \{, ID: 1.1.0.2\}).
+\end{Th}
+
+\end{document}

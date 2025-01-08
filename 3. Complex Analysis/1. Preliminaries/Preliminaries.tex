@@ -1,0 +1,225 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Preliminaries to the Complex Analysis}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\biparfrac}[2]{\frac{\partial^2 #1}{#2}}
+    \newcommand{\dif}{\mathop{}\!\mathrm{d}}
+    \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
+\begin{document}
+\maketitle
+
+This is the 1st chapter of Complex Analysis, which is about the \textbf{preliminaries} including the concept of complex limit, complex differentiation, integration and others extended from the basic real analysis in the course 1. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item A set of sets is called a collection or a family.
+        \item The expression $z\overset{r}{=}x+iy$ refers to the real part of $z$ being $x$ and the imaginary part of $z$ being $y$. If clear from the context, we may omit the superscript $r$.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (1.1.*): The limit of a sequence of complex numbers.
+        \item (1.2.*): Series of complex terms.
+        \item (1.3.*): Basic topology of $\mathbb{C}$.
+        \item (1.4.*): Limit and continuity of complex functions.
+        \item (1.5.*): Holomorphic functions.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df1.1 (limit of a sequence of complex numbers)}
+    Suppose $\{z_n \overset{r}{=} x_n+iy_n\}$ is a sequence of complex numbers. Then $\{z_n\}$ is said to \textbf{converge} to a complex number $z = x+iy$, denoted by $\lim\limits_{n\to\infty} z_n = z$, if the sequence of points $\{(x_n, y_n)\}$ converges to the point $(x, y)$ in $\mathbb{R}^2$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Basic properties of the limit of complex-number sequences, almost the same as the ones of real-number sequences (the Rmk \{course: 2, ID: 1.1\})
+    \begin{compactenum}
+        \item (Uniqueness)
+        \item (Boundedness)
+        \item (Subsequence)
+        \item (Arithmetic)
+        \item (Cauchy's criterion) It is clear how to define the Cauchy sequence in $\mathbb{C}$.
+    \end{compactenum}}
+    and others simply extended by the topology of $\mathbb{R}^n$ (the 4th chapter of course 2).
+\end{Rmk}
+
+\begin{Df}{Df1.2 (series of complex terms)}
+    Just like the real-number series.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Basic properties of series of complex terms:
+    \begin{compactenum}
+        \item (Convergence by part) Let $z_n = x_n+iy_n$ and $z=x+iy$, with all $x$'s and $y$'s here real. Then $\sum_{n=1}^{\infty} z_n = z$ iff $\sum_{n=1}^{\infty} x_n = x$ and $\sum_{n=1}^{\infty} y_n = y$.
+        \item (Series converges $\Rightarrow$ sequence converges to $0$) $\sum_{n=1}^{\infty} z_n$ converges $\Rightarrow$ $\lim\limits_{n\to\infty} z_n = 0$.
+        \item (Linearity)
+        \item Changing / Adding / Removing a finite number of terms in a series does not affect its convergence, but may affect its sum.
+        \item (Compare with non-negative real series) If for some non-negative real sequence $\{a_n\}$, we have $|z_n|\leq a_n$ for all $n$, then $\sum_{n=1}^{\infty} a_n$ converges $\Rightarrow$ $\sum_{n=1}^{\infty} z_n$ converges.
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Th}{Th1.2.1 (Absolute convergence)}
+    \begin{compactenum}
+        \item \textcolor{Df}{A series $\sum_{n=1}^{\infty} z_n$ of complex terms is said to \textbf{converge absolutely} if $\sum_{n=1}^{\infty} |z_n|$ converges.}
+        \item A series $\sum_{n=1}^{\infty} z_n$ converges absolutely iff both the ``real'' series (the series of the real parts) and the ``imaginary'' series converge absolutely.
+        \item For absolutely convergent series, any rearrangement does not affect the convergence and the exact sum of the series.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Lma1.2.2.-1}
+    The Th \{course: 2, ID: 1.1.0.1\} and the \{course: 2, ID: 1.1.0.2\} also hold for the complex-number sequences.
+\end{Th}
+
+\begin{Th}{Th1.2.2 (Product of series)}
+    The following results about the product of complex-terms series can be developed just by copying the previous ones for real-terms series (even their proofs):
+    \begin{compactenum}
+        \item \textcolor{Df}{Extended \{course: 2, ID: 8.5\}};
+        \item Extended \{course: 2, ID: 8.5.1\};
+        \item Extended \{course: 2, ID: 8.5.2\};
+        \item Extended \{course: 2, ID: 8.5.3\};
+        \item Extended \{course: 2, ID: 8.5.4\}.
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.3 (basic topology of $\mathbb{C}$)}
+    View $\mathbb{C}$ as $\mathbb{R}^2$, and copy all the following concepts:
+    \begin{compactenum}
+        \item Open and closed sets;
+        \item Limit point, derived set and closure;
+        \item Interior, exterior and boundary;
+        \item Diameter and boundedness;
+        \item Open cover, sequentially compact sets and compact sets;
+        \item Connected sets, regions and path-connected sets.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{Use some new notations and terms in the complex analysis here:
+    $$ 
+    \begin{aligned}
+        &\Omega^\text{c} \triangleq \mathbb{C}\setminus\Omega,\\
+        &D_r(z_0) \triangleq \{z\in\mathbb{C}: |z-z_0|<r\} \quad\text{ (open disk)},\\
+        &\bar{D}_r(z_0) \triangleq \{z\in\mathbb{C}: |z-z_0|\leq r\} \quad\text{ (closed disk)},\\
+        &C_r(z_0) \triangleq \{z\in\mathbb{C}: |z-z_0| = r\} \quad\text{ (circle)},\\
+        &\mathbb{D} = D_1(0) \quad\text{ (unit disk)}.
+    \end{aligned}
+    $$}
+\end{Rmk}
+
+\begin{Df}{Df1.4.-1 (complex function)}
+    A function $f: C \rightarrow \mathbb{C}$ with $C\subseteq\mathbb{C}$ is called a \textbf{complex function}.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item A function that maps a subset of $\mathbb{C}$ to $\mathbb{C}$ is called a complex function.
+        \item \textcolor{Df}{A function that maps a subset of $\mathbb{C}$ to $\mathbb{R}$ is called a \textbf{real-valued} complex function.}
+        \item \textcolor{Df}{A function that maps a subset of $\mathbb{R}$ to $\mathbb{C}$ is called a complex function \textbf{with real domain}.}
+        \item A function that maps a subset of $\mathbb{R}$ to $\mathbb{R}$ is called a real function.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df1.4 (limit, continuous of a complex function)}
+    View $\mathbb{C}$ as $\mathbb{R}^2$ (namely, view the complex function as a $2$-real $2$-function), and copy all the following concepts (and notations and terms) about the limit and continuity.
+\end{Df}
+
+\begin{Rmk}{}
+    Basic properties of the limit of complex functions quickly follow from the ones of $2$-real $2$-functions: (see the Rmk \{course: 2, ID: 4.6\})
+    \begin{compactenum}
+        \item \textcolor{Th}{(Uniqueness)}
+        \item \textcolor{Th}{(Convergence by part) $\lim\limits_{z\to z_0} f(z) = l$ iff $\lim\limits_{z\to z_0} \text{Re}f(z) = \text{Re}l$ and $\lim\limits_{z\to z_0} \text{Im}f(z) = \text{Im}l$.}
+        \item \textcolor{Th}{(Local boundedness)}
+        \item \textcolor{Th}{(Heine's theorem) (resolution principle)}
+        \item \textcolor{Th}{(Arithmetics of limits)}
+        \item \textcolor{Th}{(Limit of composite function)}
+        \item \textcolor{Th}{(Cauchy's criterion)}
+    \end{compactenum}
+    Basic properties of the continuity of complex functions also follow from those in Rmk \{course: 2, ID: 4.6.1\}:
+    \begin{compactenum}
+        \item \textcolor{Df}{Suppose \dots}
+        \item \textcolor{Th}{(Compatible) Suppose \dots}
+        \item \textcolor{Th}{Suppose \dots}
+        \item \textcolor{Th}{Suppose \dots}
+        \item \textcolor{Th}{(Arithmetics) If \dots}
+        \item \textcolor{Th}{(Continuity of composite function) Suppose \dots}
+        \item \textcolor{Th}{(Continuous by part) Suppose $f$ is a complex function and $z_0\in\mathbb{C}$. Then $f$ is continuous at $z_0$ iff both $\text{Re}f$ and $\text{Im}f$ are continuous at $z_0$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df1.4.0.1 (maximum and minimum of a complex function)}
+    Suppose $f$ is a complex function and $\Omega\subseteq\text{dom}(f)$. Then we say a point $z_0\in\Omega$ is a \textbf{maximal point} of $f(z)$ on $\Omega$, or $f(z)$ has a \textbf{maximum} $f(z_0)$ on $\Omega$, if
+    $$\forall z\in\Omega, |f(z)| \leq |f(z_0)|.$$
+    The definition of the \textbf{minimum} is similar.
+\end{Df}
+
+\begin{Rmk}{}
+    By the Th \{course: 2, ID: 4.5.3.1.1\}, we quickly have:
+    \textcolor{Th}{If the complex function $f$ is continuous on a compact set $\Omega$ (so that the ``absolute value'' function $z\mapsto |f(z)|$ is continuous on $\Omega$), then $f$ attains its maximum and minimum on $\Omega$.}
+\end{Rmk}
+
+\begin{Df}{Df1.5 (holomorphic)}
+    \begin{compactenum}
+        \item Suppose $f$ is a complex function, $\Omega\subseteq\text{com}(f)$ is open, and $z_0\in\Omega$. Then $f$ is said to be \textbf{holomorphic} at $z_0$ if the limit, 
+        $$f'(z_0) \triangleq \lim_{h\to 0} \frac{f(z_0+h)-f(z_0)}{h}$$
+        , called the \textbf{derivative} of $f$ at $z_0$, exists (that is, the limit is a complex number).
+        \item If the complex function $f$ is holomorphic at every point of the open set $\Omega$, then $f$ is said to be holomorphic on $\Omega$.
+        \item If the complex function $f$ is holomorphic at every point of some open set containing the closed set $\Omega$, then $f$ is said to be holomorphic on $\Omega$.
+        \item If the complex function $f$ is holomorphic on every point of $\mathbb{C}$, then $f$ is said to be \textbf{entire}.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Df}{The synonyms of ``holomorphic'' include \textbf{``regular''}, \textbf{``complex differentiable''} and \textbf{``analytic''}.}
+        \item \textcolor{Df}{For a complex function $f$ with real domain, we also define the derivative of $f$ at $t_0\in\mathbb{R}$ as $f'(t_0) = (\text{Re}f)^\prime(t_0) + i(\text{Im}f)^\prime(t_0)$.}
+    \end{compactenum}
+    Then here are the basic properties of the holomorphic complex functions: \textcolor{Th}{
+    \begin{compactenum}
+        \item (Arithmetics) If $f$ and $g$ are holomorphic at $z_0$, then so are $f\pm g$, $f\cdot g$ and
+        $$ \begin{aligned}
+            & (f \pm g)^\prime(z) = f^\prime(z) \pm g^\prime(z),\\
+            & (f\cdot g)^\prime(z) = f^\prime(z)g(z) + f(z)g^\prime(z),\\
+        \end{aligned} $$
+        if further $g(z_0)\neq 0$, then $f/g$ is holomorphic at $z_0$ and 
+        $$ \left(\frac{f}{g}\right)^\prime(z) = \frac{f^\prime(z)g(z) - f(z)g^\prime(z)}{g(z)^2}. $$
+        \item (Chain rule) If $\varphi$ is holomorphic at $w_0$ and $f$ is holomorphic at $z_0 = \varphi(w_0)$, then $f\circ\varphi$ is holomorphic at $w_0$ and
+        $$ (f\circ\varphi)^\prime(w_0) = f^\prime(z_0)\varphi^\prime(w_0). $$
+    \end{compactenum}}
+\end{Rmk}
+
+\end{document}
