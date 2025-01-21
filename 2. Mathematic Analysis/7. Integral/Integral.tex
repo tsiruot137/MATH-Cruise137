@@ -55,6 +55,8 @@ Here is the \textbf{Quick Search} for this chapter:
         \item (7.3.*): Indefinite integral, Newton-Leibniz formula.
         \item (7.4.*): Integration by substitution.
         \item (7.5.*): Integration by parts.
+        \item (7.6.*): Infinite integral and improper integral.
+        \item (7.7.*): Path length of a $\mathcal{C}^1$ curve.
     \end{compactdesc}
 \end{Th}
 
@@ -73,7 +75,7 @@ Then with everything prepared, here we go.
 \begin{Df}{Df7.1 (definite integral / Riemann's integral)}
     Suppose $f$ is a real function, $[a, b]\subseteq \text{dom}(f)$ and $I\in\mathbb{R}$. If for any $\varepsilon>0$, there exists a $\delta>0$ such that for any segmentation $\pmb{\pi}$ of $[a, b]$ with $\Vert \pmb{\pi}\Vert < \delta$, and any tagging $\{\xi_i\}$ of $\pmb{\pi}$, 
     $$\left| \sum_{i=1}^n f(\xi_i)\Delta x_i - I \right| < \varepsilon,$$
-    then we say that $f$ is \textbf{integrable} on $[a, b]$ and $I$ is the \textbf{definite integral} (or Riemann's integral ) of $f$ over $[a, b]$, denoted by
+    then we say that $f$ is \textbf{integrable} on $[a, b]$ and $I$ is the \textbf{definite integral} (or Riemann's integral) of $f$ over $[a, b]$, denoted by
     $$\int_a^b f(x)\dif x = I.$$
     The sum $\sum_{i=1}^n f(\xi_i)\Delta x_i$ is called a \textbf{Riemann sum} of $f$ over $[a, b]$.
 \end{Df}
@@ -153,7 +155,7 @@ Then with everything prepared, here we go.
     \begin{compactenum}
         \item Suppose $f$ is a real function integrable on $[a, b]$. Then the function $F$ defined by
             $$F(x) = \int_a^x f(t)\dif t \qquad x\in [a,b]$$
-        (\textcolor{Df}{say $\int_a^a f(t)\dif t = 0$}) is continuous.
+        (\textcolor{Df}{say $\int_a^a f(t)\dif t = 0$}) is continuous on $[a, b]$.
         \item Suppose $f$ is a real function integrable on $[a, b]$. If $f$ is continuous at some point $x_0\in[a, b]$, then the function $F$ defined above is derivable at $x_0$ (if $x_0 = a$ or $x_0 = b$, then ``right derivable'' or ``left derivable'') and $F'(x_0) = f(x_0)$.
         \item Suppose $f$ is a real function integrable on $[a, b]$. If $f$ is interval-continuous on $[a, b]$, then 
             $$\frac{\dif}{\dif x}\int_a^x f(t)\dif t = f(x) \qquad x\in [a, b].$$
@@ -190,7 +192,7 @@ Then with everything prepared, here we go.
 \begin{Th}{Th7.4.1 (definite integration by substitution)}
     Suppose
     \begin{compactenum}
-        \item $\varphi$ is a real function derivable on $[\alpha, \beta]$, and $\varphi'$ is continuous on $[\alpha, \beta]$;
+        \item $\varphi\in\mathcal{C}^1(\,[\alpha, \beta]\,)$ (recall that $\mathcal{C}^1$ here means the derivative function is continuous. \textcolor{Df}{Since $[\alpha,\beta]$ is not open, the definition of $\varphi'$ at $\alpha$ (resp. at $\beta$) is intepreted as the right-derivative at $\alpha$ (resp. the left-derivative at $\beta$.), and the continuity of $\varphi'$ at $\alpha$ (resp. at $\beta$) is interpreted as the right-continuity at $\alpha$ (resp. the left-continuity at $\beta$.)}).
         \item $f$ is a real function continuous on some interval containing $\varphi[\,[\alpha, \beta]\,]$ (remember that $\varphi[\,[\alpha, \beta]\,]$ is the image of $[\alpha, \beta]$ under $\varphi$),
     \end{compactenum}
     then
@@ -237,7 +239,7 @@ Then with everything prepared, here we go.
         \end{compactenum}
         then 
         $$\int_a^b f(x)\dif x \triangleq \lim_{\varepsilon\to 0^+}\int_{a+\varepsilon}^b f(x)\dif x$$
-        is called the \textbf{(left-sided) improper integral} of $f$ on $[a, b]$, and $a$ is called an \textbf{improper point} of this integral. If the limit exists (by convention that is, the limit is a finite real number), then we say that $f$ is \textbf{(improperly) integrable} on $[a, b]$, or the improper integral $\int_a^b f(x)\dif x$ \textbf{converges} (otherwise, diverges).
+        is called the \textbf{(left-sided) improper integral} of $f$ on $[a, b]$, and $a$ is called the \textbf{improper point} of this integral. If the limit exists (by convention that is, the limit is a finite real number), then we say that $f$ is \textbf{(improperly) integrable} on $[a, b]$, or the improper integral $\int_a^b f(x)\dif x$ \textbf{converges} (otherwise, diverges).
         \item Suppose $f$ is a real function and $[a, b]\subseteq\text{dom}(f)$. Define the (right-sided) improper integral $\int_a^b f(x)\dif x$ similarly for the case that $\lim\limits_{x\to b^-}f(x) = \pm\infty$.
         \item Suppose $f$ is a real function and $[a, b]\subseteq\text{dom}(f)$. If 
         $$ \lim_{x\to a^+}f(x) = \pm\infty \quad \text{and} \quad \lim_{x\to b^-}f(x) = \pm\infty, $$
@@ -270,5 +272,32 @@ Then with everything prepared, here we go.
     \textit{Solution}: The infinite integral $\int_2^\infty \frac{1}{x(\ln x)^p}\dif x$ converges iff $p>1$. The key step is
     $$\int_2^\infty \frac{1}{x(\ln x)^p}\dif x = \int_2^\infty \frac{1}{(\ln x)^p}\dif (\ln x).$$    
 \end{Th}
+
+\begin{Df}{Df7.7 (smooth curve)}
+    Suppose $I\subseteq\mathbb{R}$ is an interval, and $\gamma = \{(x(t), y(t), z(t)): t\in I\}$ is a set of points in $\mathbb{R}^3$ (with real functions $x$, $y$ and $z$ defined on $I$). Then $\gamma$ is called a \textbf{smooth curve} (w.r.t. this parametrization $(x,y,z)$) in $\mathbb{R}^3$ if
+    \begin{compactenum}
+        \item $x, y, z\in \mathcal{C}^1([a, b])$;
+        \item $(x^\prime(t))^2 + (y^\prime(t))^2 + (z^\prime(t))^2 \neq 0$ for all $t\in [a, b]$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item In this definition, the interval $I$ for $t$ may be open, closed or half-open. In the case that $I$ is not open, say, $I = (a, b]$, the derivative $x^\prime(t)$ (resp. $y^\prime(t)$, $z^\prime(t)$) at $t = b$ is interpreted as the left-derivative at $t=b$, and the continuity of $x^\prime(t)$ (resp. $y^\prime(t)$, $z^\prime(t)$) at $t = b$ is interpreted as the left-continuity at $t=b$. This convention has been proposed in Th \{, ID: 7.4.1\}, please remember that.
+        \item Similarly, we can define the smooth curves in $\mathbb{R}^n$ for any $n\in\mathbb{N}^\ast$. And removing the condition (2) above we get the definition of a $\mathcal{C}^1$ \textbf{curve}.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th7.7.1 (the path length of a $\mathcal{C}^1$ curve)}
+    Let $\gamma = \{\pmb{x}(t): t\in I\}$ be a $\mathcal{C}^1$ curve in $\mathbb{R}^n$, and $[a,b]\subseteq I$. Consider the segmentation $\pmb{\pi} = \{t_i: i = 0,1,\cdots,m\}$ of $[a, b]$ and denote $C_i = \pmb{x}(t_i)$, $|C_iC_{i-1}| = \Vert C_i - C_{i-1}\Vert$ (the $L2$ norm of $\mathbb{R}^n$). Then:
+    $$\lim_{\Vert \pmb{\pi}\Vert\to 0}\sum_{i=1}^m |C_iC_{i-1}| = \int_a^b \left\Vert \pmb{x}^\prime(t) \right\Vert \dif t, $$
+    \textcolor{Df}{(where $\pmb{x}^\prime$ is to compute the derivatives by component) which is called the \textbf{path length} of the curve $\gamma = \{\pmb{x}(t): t\in I\}$ measured from $a$ to $b$.}
+    \tcblower
+    \textit{Pf}: Trivial. See the theorem 7.1.1 in the reference book.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Df}{If in this theorem the curve $\gamma$ is $\mathcal{C}^1$, the path length is also called the \textbf{arc length} of the curve.}
+\end{Rmk}
 
 \end{document}

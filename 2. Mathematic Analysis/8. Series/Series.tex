@@ -84,7 +84,7 @@ Then with everything prepared, here we go.
 \end{Rmk}
 
 \begin{Th}{Eg8.1.1 (convergence of equal-ratio-series / geometric series)}
-    Learn the definition of geometric series by yourself. //
+    Learn the definition of geometric series by yourself. \\
     For a geometric series $\sum_{n=1}^{\infty} q^{n}$, it converges iff $|q|<1$, and in this case we have 
     $$ \sum_{n=1}^{\infty} q^{n-1} = \frac{1}{1-q}. $$
     \tcblower
@@ -148,7 +148,7 @@ Then with everything prepared, here we go.
     $$ \lim_{n\to\infty} \frac{a_n}{b_n} = l, $$
     then:
     \begin{compactitem}
-        \item if $0\leq l < \infty$, then $\sum_{n=1}^{\infty} b_n$ converges $\Leftrightarrow$ $\sum_{n=1}^{\infty} a_n$ converges;
+        \item if $0 < l < \infty$, then $\sum_{n=1}^{\infty} b_n$ converges $\Leftrightarrow$ $\sum_{n=1}^{\infty} a_n$ converges;
         \item if $l = 0$, then $\sum_{n=1}^{\infty} b_n$ converges $\Rightarrow$ $\sum_{n=1}^{\infty} a_n$ converges;
         \item if $l = \infty$, then $\sum_{n=1}^{\infty} b_n$ diverges $\Rightarrow$ $\sum_{n=1}^{\infty} a_n$ diverges.
     \end{compactitem}
@@ -271,9 +271,9 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Th}{Th8.3.1 (Cauchy's criterion)}
-    Suppose $\sum_{n=1}^{\infty} a_n$ is a series. Then the series converges iff for any $\varepsilon>0$, 
+    Suppose $\sum_{n=1}^{\infty} a_n$ is a series. Then the series converges iff for any $\varepsilon>0$, there exists an $N\in\mathbb{N}^\ast$ such that
     $$ \left|\sum_{k=n+1}^{n+p} a_k\right| < \varepsilon $$
-    holds for sufficiently large $n$ and for all $p\in\mathbb{N}^\ast$.
+    holds for all $n>N$ and for all $p\in\mathbb{N}^\ast$.
     \tcblower
     \textit{Pf}: Obviously this is the Cauchy's criterion for the convergence of a sequence.
 \end{Th}
@@ -299,7 +299,7 @@ Then with everything prepared, here we go.
 \begin{Th}{Lma8.3.3.-1 (Abel's bound for $\sum_{k=1}^{n} a_k b_k$)}
     Suppose $\{a_k\}$ and $\{b_k\}$ ($k=1,\cdots,n$) are two $n$-arrays in $\mathbb{R}$. If
     \begin{compactenum}
-        \item $\{A_k\}$ is bounded by $|A_k|\leq M$ and
+        \item $\{A_k\}$ is bounded by $|A_k|\leq M$ ($A_k\triangleq \sum_{i=1}^{k} a_i$) and
         \item $\{b_k\}$ is monotonic,
     \end{compactenum}
     then

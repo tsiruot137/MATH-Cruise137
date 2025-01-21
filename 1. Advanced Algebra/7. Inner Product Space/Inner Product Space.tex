@@ -167,6 +167,11 @@ Please check the notations and definitions by yourself from the previous chapter
     \textit{Pf}: Trivial.
 \end{Th}
 
+\begin{Rmk}{}
+    \textcolor{Df}{For the case $u=0$, define $\text{Proj}(v|u) = 0$.} And thus \textcolor{Th}{in an inner product space, any vector $v$ can be projected onto any other vector $u$, and
+    $$u \perp v \;\Leftrightarrow\; \text{Proj}(v|u) = 0 \;\Leftrightarrow\; \text{Proj}(u|v) = 0.$$}
+\end{Rmk}
+
 \begin{Th}{$\bullet$ Th7.3.4 (Cauchy-Schwarz inequality)}
     Suppose $V$ is an inner product space. Then $\forall u, v\in V$: 
     $$|\langle u, v\rangle | \leq \|u\|\cdot \|v\|.$$
@@ -354,7 +359,7 @@ Please check the notations and definitions by yourself from the previous chapter
     \end{compactenum}
     And we see that there are two essentials of a projection operator: 1. A projection space (the ground), 2. A direct-sum-complement of the projection space (the direction of the light).
 
-    Let us transform the conditions of projection operator above equivalently:
+    Let us transform the conditions of projection operator above \textcolor{Th}{equivalently}:
     \begin{compactenum}
         \item \textcolor{Th}{$P$ is linear;}
         \item \textcolor{Th}{$P|_{R(P)} = I$.}
@@ -373,7 +378,7 @@ Please check the notations and definitions by yourself from the previous chapter
         \item There is a direct-sum decomposition $V = U\oplus W$ s.t. $P|_U = I$ and $P|_W = 0$
     \end{compactenum}    
     }
-    This gives us a clear comparison with the theorem \{, ID: 7.6.2.1\}. Hence \textcolor{Df}{the projection can be classified into orthogonal projection and oblique projection, according to whether $U\perp W$.}
+    This gives us a clear comparison with the theorem \{, ID: 7.6.2.1\}. Hence \textcolor{Df}{the projection can be classified into orthogonal projection and oblique projection, according to whether $U\perp W$.} \textcolor{Th}{And then, the orthogonal projection operator defined here is just the one defined in the Df \{, ID: 7.6.2\}.}
 \end{Rmk}
 
 \begin{Th}{$\bullet$ Th7.7.1 (constructure of projection operator)}

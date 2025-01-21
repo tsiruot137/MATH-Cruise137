@@ -1,0 +1,170 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Anomalous Integrals}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+    \newcommand{\biparfrac}[2]{\frac{\partial^2 #1}{#2}}
+    \newcommand{\dif}{\mathop{}\!\mathrm{d}}
+    \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
+\begin{document}
+\maketitle
+
+This is the 10th chapter of Mathematical Analysis, which is about \textbf{Anomalous Integrals} (including the infinite integrals and the improper integrals). This chapter is a continuation of the previous 7th chapter (the content about \{, ID: 7.6\}), further facilitated by the discussion of series in the 8th and 9th chapters. \\
+By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item For the existence of a limit, if we have used the symbol $\lim\limits_{x\to x_0} f(x)$ in an expression (such as an equality, an inequality or some expressions involving some other numbers), then without explicitly specification, we imply that the limit exists (``exist'' means finite according to the chapter 1).
+        \item A set of sets is called a collection or a family.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (10.1.*): Criteria for the convergence of positive infinite integral.
+        \item (10.2.*): Criteria for the convergence of general infinite integral (including Cauchy's, Dirichlet's and Abel's criteria).
+        \item (10.3.*): Criteria for the convergence of improper integral.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df10.1 (positive infinite integral)}
+    Consider the infinite integral
+    $$\int_a^{\infty} f(x)\dif x$$
+    (where $f$ is a real function whose domain contains $[a, \infty)$, and where $\int_a^{A} f(x)\dif x$ is integrable for any $A>a$). Then this integral is called \textbf{non-negative} if $f$ is non-negative (i.e., $f(x)\geq 0$ for all $x\in [a, \infty)$). \\
+    Also, substitute the ``$\geq 0$'' with ``$>0$'' above to define the \textbf{positive infinite integral}.
+\end{Df}
+
+\begin{Rmk}{}
+    The discussion of the non-negative infinite integral can be developed from the one of the non-negative series, thus many definitions and theorems here are just counterparts of the previous ones about series. Hence, we will in this chapter use the term \textcolor{Df}{\textbf{mere analog}, meaning that the content is completely the same as the referred counterpart (about series) except for replacing the context about ``series'' with ``integral''}. \\
+    Also, the cases 
+    $$\int_{-\infty}^b (\geq 0) \dif x,\quad \int_a^\infty (\leq 0) \dif x,\quad \int_{-\infty}^b (\leq 0) \dif x $$
+    are all similar to the discussion of the non-negative infinite integral.
+\end{Rmk}
+
+\begin{Th}{Th10.1.1 (convergence of positive infinite integral)}
+    Mere analog of Th \{, ID: 8.2.0.1\}.
+\end{Th}
+
+\begin{Th}{Th10.1.2 (comparison criterion of positive infinite integrals)}
+    Mere analog of Th \{, ID: 8.2.1\}.
+\end{Th}
+
+\begin{Th}{Th10.1.3 (comparison criterion under limit)}
+    Mere analog of Th \{, ID: 8.2.1.2\}.
+\end{Th}
+
+\begin{Th}{Th10.1.4}
+    Suppose $\int_a^\infty f(x)\dif x$ is a non-negative infinite integral. Then the integral converges iff there exists an \textcolor{Df}{increasing-to-infinity number sequence $\{A_n\}$ (i.e. $\{A_n\}$ is increasing and $\lim\limits_{n\to\infty} A_n = \infty$)} such that the series
+    $$ \sum_{n=1}^\infty \int_{A_{n}}^{A_{n+1}} f(x)\dif x $$
+    converges. \\
+    Further, if the integral and the series above both converge, and if we set $A_1 = a$, then
+    $$ \int_a^\infty f(x)\dif x = \sum_{n=1}^\infty \int_{A_{n}}^{A_{n+1}} f(x)\dif x $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{The ``only if'' part of this theorem does not require the non-negativity of $f$, but the ``if'' part does.} For example, consider 
+    $$ \int_0^\infty \sin x \dif x. $$
+    By the way, \textcolor{Th}{the convergence of the non-negative infinite integral, unlike the non-negative series, does not require the integrated function $\rightarrow 0$.} This is because the Riemann's integral is invariant under the change of a zero-measured set of values of the integrated function, and under such change the limit of the function at infinity may not be $0$.
+\end{Rmk}
+
+\begin{Th}{Th10.2.1 (Cauchy's criterion)}
+    Mere analog of Th \{, ID: 8.3.1\} (of course the discussed integral is defined for every $A\in [a, \infty)$, i.e. \textcolor{Df}{$\int_a^{A} f(x)\dif x$ is integrable for any $A>a$}).
+\end{Th}
+
+\begin{Th}{Th10.2.2 (absolute convergence and conditional convergence)}
+    Mere analog of Th \{, ID: 8.4\} (of course $\int_a^A f(x)\dif x$ is defined for every $A\in [a, \infty)$), \textcolor{Df}{including the definitions of the terms ``absolute convergence'' and ``conditional convergence''.}
+\end{Th}
+
+\begin{Th}{Lma10.2.3.-1.-2 (the 2nd average value theorem of integral)}
+    See the theorem 16.2.3 in the reference book and learn by yourself.
+\end{Th}
+
+\begin{Th}{Lma10.2.3.-1.-1 (the extended 2nd average value theorem of integral)}
+    See the theorem 16.2.4 in the reference book and learn by yourself.
+\end{Th}
+
+\begin{Th}{Lma10.2.3.-1 (the Abel's bound for $\int_a^b f(x)g(x)\dif x$)}
+    Mere analog of Lma \{, ID: 8.3.3.-1\} (by $f(x) \leftrightarrow a_n$ and $g(x) \leftrightarrow b_n$, and of course, $f$ is integrable on $[a, b]$).
+\end{Th}
+
+\begin{Th}{Th10.2.3.1 (Dirichlet's criterion)}
+    Mere analog of Th \{, ID: 8.3.3.1\} (by $f(x) \leftrightarrow a_n$ and $g(x) \leftrightarrow b_n$, and of course, $\int_a^A f(x)\dif x$ is defined for every $A\in [a, \infty)$). 
+\end{Th}
+
+\begin{Th}{Th10.2.3.2 (Abel's criterion)}
+    Mere analog of Th \{, ID: 8.3.3.2\} (by $f(x) \leftrightarrow a_n$ and $g(x) \leftrightarrow b_n$, and of course, $\int_a^A f(x)\dif x$ is defined for every $A\in [a, \infty)$).
+\end{Th}
+
+\begin{Th}{Th10.3 (link an improper integral to an infinite integral)}
+    Consider the improper integral (recall the Df \{, ID: 7.6.2\})
+    $$\int_a^b f(x)\dif x$$
+    with $a$ being its (only) improper point. If $f$ is continuous on $[a, b]$, then
+    $$\int_a^b f(x)\dif x = \int_{1/(b-a)}^\infty f(a+\frac{1}{y})\frac{\dif y}{y^2}, $$
+    meaning that the improper integral on the left converges iff the infinite integral on the right converges, and that the two integrals are equal if both converge.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    The continuity of $f$ on $[a, b]$ is here quite convenient for the proof. \\
+    Since every improper integral can be converted to a infinite integral like this, we can draw the conclusions about the convergence of improper integrals from the ones about infinite integrals, simplifying the statements below with the term \textbf{``mere analog''} again.
+\end{Rmk}
+
+\begin{Th}{Th10.3.1 (convergence of positive improper integral)}
+    Mere analog of Th \{, ID: 10.1.1\} (of course, with the only improper point $a$, and with the continuity of $f$ on $[a, b]$ assumed).
+\end{Th}
+
+\begin{Th}{Th10.3.2 (comparison criterion of positive improper integrals)}
+    Mere analog of Th \{, ID: 10.1.2\} (of course, with the only improper point $a$, and with the continuity of $f$ and $g$ on $[a, b]$ assumed).
+\end{Th}
+
+\begin{Th}{Th10.3.3 (comparison criterion under limit)}
+    Mere analog of Th \{, ID: 10.1.3\} (of course, with the only improper point $a$, and with the continuity of $f$ and $g$ on $[a, b]$ assumed).
+\end{Th}
+
+\begin{Th}{Th10.3.4 (Cauchy's criterion)}
+    Mere analog of Th \{, ID: 10.2.1\} (of course, with the only improper point $a$, and with the continuity of $f$ on $[a, b]$ assumed).
+\end{Th}
+
+\begin{Th}{Th10.3.5 (absolute convergence and conditional convergence)}
+    Mere analog of Th \{, ID: 10.2.2\} (of course, with the only improper point $a$, and with the continuity of $f$ on $[a, b]$ assumed), \textcolor{Df}{including the definitions of the terms ``absolute convergence'' and ``conditional convergence''.}
+\end{Th}
+
+\begin{Th}{Blocks from the P1 file.}
+\end{Th}
+
+\end{document}
