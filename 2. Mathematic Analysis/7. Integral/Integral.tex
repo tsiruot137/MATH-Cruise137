@@ -201,6 +201,10 @@ Then with everything prepared, here we go.
     \textit{Pf}: Obvious by Th \{, ID: 7.4\}.
 \end{Th}
 
+\begin{Rmk}{}
+    The two conditions of this theorem can be briefly summerized as: (1) The inner function ($\varphi$) is $\mathcal{C}^1$ and (2) The outer function ($f$) is continuous.
+\end{Rmk}
+
 \begin{Th}{Th7.5 (indefinite integration by parts)}
     Suppose $u = u(x)$ and $v = v(x)$ are real functions defined on the same open domain $X$. If $u$, $v$ are both derivable on $X$, and their derivative functions are both continuous on $X$. Then
     $$\int u(x)v'(x)\dif x = u(x)v(x) - \int u'(x)v(x)\dif x.$$
@@ -274,17 +278,19 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Df}{Df7.7 (smooth curve)}
-    Suppose $I\subseteq\mathbb{R}$ is an interval, and $\gamma = \{(x(t), y(t), z(t)): t\in I\}$ is a set of points in $\mathbb{R}^3$ (with real functions $x$, $y$ and $z$ defined on $I$). Then $\gamma$ is called a \textbf{smooth curve} (w.r.t. this parametrization $(x,y,z)$) in $\mathbb{R}^3$ if
+    Suppose $I\subseteq\mathbb{R}$ is an interval, and $\gamma = \{(x(t), y(t), z(t)): t\in I\}$ is a set of points in $\mathbb{R}^3$ (with real functions $x$, $y$ and $z$ defined on $I$). Then $\gamma$ is called a \textbf{smooth curve} or a \textbf{regular curve} (w.r.t. this parametrization $(x,y,z)$) in $\mathbb{R}^3$ if
     \begin{compactenum}
-        \item $x, y, z\in \mathcal{C}^1([a, b])$;
-        \item $(x^\prime(t))^2 + (y^\prime(t))^2 + (z^\prime(t))^2 \neq 0$ for all $t\in [a, b]$.
+        \item $x, y, z\in \mathcal{C}^1(I)$;
+        \item $(x^\prime(t))^2 + (y^\prime(t))^2 + (z^\prime(t))^2 \neq 0$ for all $t\in I$.
     \end{compactenum}
 \end{Df}
 
 \begin{Rmk}{}
     \begin{compactenum}
         \item In this definition, the interval $I$ for $t$ may be open, closed or half-open. In the case that $I$ is not open, say, $I = (a, b]$, the derivative $x^\prime(t)$ (resp. $y^\prime(t)$, $z^\prime(t)$) at $t = b$ is interpreted as the left-derivative at $t=b$, and the continuity of $x^\prime(t)$ (resp. $y^\prime(t)$, $z^\prime(t)$) at $t = b$ is interpreted as the left-continuity at $t=b$. This convention has been proposed in Th \{, ID: 7.4.1\}, please remember that.
-        \item Similarly, we can define the smooth curves in $\mathbb{R}^n$ for any $n\in\mathbb{N}^\ast$. And removing the condition (2) above we get the definition of a $\mathcal{C}^1$ \textbf{curve}.
+        \item \textcolor{Df}{The curve $\gamma = \{(x(t), y(t), z(t)): t\in [a,b]\}$ is said to be \textbf{piecewise-smooth} if $(x(t), y(t), z(t))$ is continuous on $[a,b]$ and if there is a segmentation $a = t_0 < t_1 < \cdots < t_n = b$ such that every $\{(x(t), y(t), z(t)): t\in [t_{k-1}, t_{k}]\}$ is a smooth curve.}
+        \item \textcolor{Df}{Similarly, we can define the smooth curves (and piecewise-smooth curves) in $\mathbb{R}^n$ for any $n\in\mathbb{N}^\ast$. And removing the condition (2) above we get the definition of a $\mathcal{C}^1$ \textbf{curve}.}
+        \item \textcolor{Df}{Let $\gamma = \{\pmb{x}(t): t\in [a,b]\}$ be a smooth curve or a piecewise-smooth curve ($\pmb{x}(t) = (x_1(t), \cdots, x_n(t))$). Then $\gamma$ is said to be \textbf{closed} (w.r.t. the parametrization $\pmb{x}$) if $\pmb{x}(a) = \pmb{x}(b)$; and $\gamma$ is said to be \textbf{simple} if $\pmb{x}(t_1)\neq\pmb{x}(t_2)$ unless ($t_1 = t_2$) or ($t_1 = a$ and $t_2 = b$)}
     \end{compactenum}
 \end{Rmk}
 
@@ -297,7 +303,10 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Rmk}{}
-    \textcolor{Df}{If in this theorem the curve $\gamma$ is $\mathcal{C}^1$, the path length is also called the \textbf{arc length} of the curve.}
+    \begin{compactenum}
+        \item \textcolor{Df}{If in this theorem the curve $\gamma$ is smooth, the path length is also called the \textbf{arc length} of the curve.}
+        \item \textcolor{Df}{The arc length of a piecewise-smooth curve is defined as the sum of lengths of all the smooth pieces.}
+    \end{compactenum}
 \end{Rmk}
 
 \end{document}

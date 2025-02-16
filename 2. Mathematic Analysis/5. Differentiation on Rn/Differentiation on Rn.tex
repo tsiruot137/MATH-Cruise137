@@ -10,7 +10,7 @@
     \usepackage{paralist}
     \usepackage{cancel}
 
-    \usepackage{ctex}
+    % \usepackage{ctex}
     \usepackage{amssymb}
     \usepackage{amsmath}
 
@@ -64,7 +64,7 @@ Here is the \textbf{Quick Search} for this chapter:
 
 Then with everything prepared, here we go.
 
-\begin{Df}{Df5.1.1.-1 (direction (方向))}
+\begin{Df}{Df5.1.1.-1 (direction)}
     Suppose $\pmb{u}\in\mathbb{R}_n$. Then $\pmb{u}$ is called a direction in $\mathbb{R}_n$ if $\Vert \pmb{u}\Vert = 1$.
 \end{Df}
 
@@ -108,7 +108,7 @@ Then with everything prepared, here we go.
     \textcolor{Df}{If $D$ in this definition equals $\text{dom}(f)$, we say that $f$ is a derivable function in the direction $\pmb{u}$.}
 \end{Rmk}
 
-\begin{Df}{Df5.1.4 (gradient (梯度))}
+\begin{Df}{Df5.1.4 (gradient)}
     Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then the $1\times n$ matrix 
     $$(\Dif_1 f(\pmb{x}_0), \cdots, \Dif_n f(\pmb{x}_0))$$
     is called the \textbf{gradient} or the \textbf{Jacobian matrix} of $f$ at $\pmb{x}_0$, denoted by $\text{grad}\,f(\pmb{x}_0)$ or $\pmb{J}f(\pmb{x}_0)$.
@@ -124,12 +124,12 @@ Then with everything prepared, here we go.
     }
 \end{Rmk}
 
-\begin{Df}{Df5.2.1 (differential (微分))}
+\begin{Df}{Df5.2.1 (differential)}
     Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. If there exists some $\pmb{\lambda}\in\mathbb{R}^{1,n}$ s.t. the differential equality
     $$ f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = \pmb{\lambda}\pmb{h} + R(\pmb{h}) $$
-    holds for $\pmb{h}$ in some $B_\delta(\pmb{0})$, and where 
-    $$\lim_{\pmb{h}\to \pmb{0}}\frac{R(\pmb{h})}{\Vert \pmb{h}\Vert} = 0,$$
-    then the linear function $\pmb{\lambda h}$ of $\pmb{h}$ is called the \textbf{differential} of $f$ at $\pmb{x}_0$, denoted by $\dif f(\pmb{x}_0)$, and $f$ is said to be differentiable at $\pmb{x}_0$.
+    (where 
+    $$\lim_{\pmb{h}\to \pmb{0}}\frac{R(\pmb{h})}{\Vert \pmb{h}\Vert} = 0 $$
+    ) holds for $\pmb{h}$ in some $B_\delta(\pmb{0})$. Then the linear function $\pmb{\lambda h}$ of $\pmb{h}$ is called the \textbf{differential} of $f$ at $\pmb{x}_0$, denoted by $\dif f(\pmb{x}_0)$, and $f$ is said to be differentiable at $\pmb{x}_0$.
 \end{Df}
 
 \begin{Rmk}{}
@@ -161,12 +161,11 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Th}{Th5.2.3 (linear decomposition for $R(\pmb{h})$)}
-    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then $f$ is differentiable at $\pmb{x}_0$ iff the following equality holds (for $\pmb{h}$ in some $B_\delta(\pmb{0})$):
+    Suppose $f$ is an $n$-real function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. Then $f$ is differentiable at $\pmb{x}_0$ iff the equality
     $$ f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) = \pmb{J}f(\pmb{x}_0)\,\pmb{h} + \pmb{\beta}(\pmb{h})\,\pmb{h}, $$
-    where $\pmb{\beta}(\pmb{h}) = (\beta_1(\pmb{h}), \cdots, \beta_n(\pmb{h}))$ converges to $\pmb{0}$ as $\pmb{h}\rightarrow \pmb{0}$.
+    (where $\pmb{\beta}(\pmb{h}) = (\beta_1(\pmb{h}), \cdots, \beta_n(\pmb{h}))$ converges to $\pmb{0}$ as $\pmb{h}\rightarrow \pmb{0}$) holds (for $\pmb{h}$ in some $B_\delta(\pmb{0})$).
     \tcblower
-    \textit{Pf}: ``if'' is obvious. \\
-    For ``only if'', let the remainder $R(\pmb{h}) = f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) - \pmb{J}f(\pmb{x}_0)\,\pmb{h}$, then $R(\pmb{h}) = o(\Vert \pmb{h}\Vert)$, and we can write $R(\pmb{h}) = \pmb{\beta}(\pmb{h})\,\pmb{h}$ by
+    \textit{Pf}: ``if'' is obvious. For ``only if'', let the remainder $R(\pmb{h}) = f(\pmb{x}_0 + \pmb{h}) - f(\pmb{x}_0) - \pmb{J}f(\pmb{x}_0)\,\pmb{h}$, then $R(\pmb{h}) = o(\Vert \pmb{h}\Vert)$, and we can write $R(\pmb{h}) = \pmb{\beta}(\pmb{h})\,\pmb{h}$ by
     $$\beta_i(\pmb{h}) = \frac{R(\pmb{h})h_i}{\Vert \pmb{h}\Vert^2}, \quad (i=1,\cdots,n).$$
 \end{Th}
 
@@ -225,9 +224,9 @@ Then with everything prepared, here we go.
 \begin{Df}{Df5.2.6 (differential of $n$-real $m$-functions)}
     Suppose $\pmb{f}$ is an $n$-real $m$-function and $\pmb{x}_0\in (\text{dom}(f))^\circ$. If there exists some $\pmb{A}\in\mathbb{R}^{m,n}$ s.t. the differential equality
     $$ \pmb{f}(\pmb{x}_0 + \pmb{h}) - \pmb{f}(\pmb{x}_0) = \pmb{Ah} + \pmb{R}(\pmb{h}) $$
-    holds for $\pmb{h}$ in some $B_\delta(\pmb{0})$, and where 
-    $$\lim_{\pmb{h}\to \pmb{0}}\frac{\pmb{R}(\pmb{h})}{\Vert \pmb{h}\Vert} = \pmb{0},$$
-    then the linear function $\pmb{Ah}$ of $\pmb{h}$ is called the \textbf{differential} of $\pmb{f}$ at $\pmb{x}_0$, denoted by $\dif \pmb{f}(\pmb{x}_0)$, and $\pmb{f}$ is said to be differentiable at $\pmb{x}_0$.
+    (where 
+    $$\lim_{\pmb{h}\to \pmb{0}}\frac{\pmb{R}(\pmb{h})}{\Vert \pmb{h}\Vert} = \pmb{0} $$
+    ) holds for $\pmb{h}$ in some $B_\delta(\pmb{0})$. Then the linear function $\pmb{Ah}$ of $\pmb{h}$ is called the \textbf{differential} of $\pmb{f}$ at $\pmb{x}_0$, denoted by $\dif \pmb{f}(\pmb{x}_0)$, and $\pmb{f}$ is said to be differentiable at $\pmb{x}_0$.
 \end{Df}
 
 \begin{Rmk}{}
@@ -260,7 +259,7 @@ Then with everything prepared, here we go.
 \end{Rmk}
 
 \begin{Df}{Df5.2.7 ($\pmb{f}\in\mathcal{C}(D)$, $\pmb{f}\in\mathcal{C}^1(D)$)}
-    Suppose $D\subseteq\mathbb{R}^n$ is open, and $\pmb{f}: D\rightarrow\mathbb{R}^m$. If $\pmb{f}$ is continuous on $D$, then we denote $\pmb{f}\in\mathcal{C}(D)$; if $\pmb{Jf}(\cdot)$ is continuous on $D$ \textcolor{Th}{(which implies that $\pmb{f}$ is differentiable at every point of $D$)}, then we say that $\pmb{f}$ is \textbf{continuously differentiable (连续可微)}, denoted by $\pmb{f}\in\mathcal{C}^1(D)$.
+    Suppose $D\subseteq\mathbb{R}^n$ is open, and $\pmb{f}: D\rightarrow\mathbb{R}^m$. If $\pmb{f}$ is continuous on $D$, then we denote $\pmb{f}\in\mathcal{C}(D)$; if $\pmb{Jf}(\cdot)$ is continuous on $D$ \textcolor{Th}{(which implies that $\pmb{f}$ is differentiable at every point of $D$)}, then we say that $\pmb{f}$ is \textbf{continuously differentiable}, denoted by $\pmb{f}\in\mathcal{C}^1(D)$.
 \end{Df}
 
 \begin{Rmk}{}
@@ -268,11 +267,11 @@ Then with everything prepared, here we go.
 \end{Rmk}
 
 \begin{Df}{Df5.2.8.-1 (norm of a matrix)}
-    Suppose $\mathbb{F}$ is a number field and $m, n\in\mathbb{N}^\ast$. In the matrix space $\mathbb{F}^{m,n}$, consider every matrix as an tuple $m\times n$ long, then the inner product of two matrices $\pmb{A}$ and $\pmb{B}$ is defined as the inner product of the two corresponding tuples, and the norm of $\pmb{A}$ is defined accordingly as the positive square root of the inner product. The norm of a matrix $\pmb{A}$ is denoted by $\Vert \pmb{A}\Vert$.
+    Suppose $\mathbb{F}$ is a number field and $m, n\in\mathbb{N}^\ast$. In the matrix space $\mathbb{F}^{m,n}$, consider every matrix as an tuple $m\times n$ long, then the inner product of two matrices $\pmb{A}$ and $\pmb{B}$ is defined as the inner product of the two corresponding tuples, (i.e. $\langle\pmb{A}, \pmb{B}\rangle \triangleq \sum_{(i,j)} a_{(i,j)} b_{(i,j)}$) and the norm of $\pmb{A}$ is defined accordingly as the positive square root of the inner product. The norm of a matrix $\pmb{A}$ is denoted by $\Vert \pmb{A}\Vert$.
 \end{Df}
 
 \begin{Th}{Th5.2.8.-1.1 (basic properties of $\Vert\pmb{A}\Vert$)}
-    Suppose $\pmb{A}, \pmb{B}$ are matrices over $\mathbb{R}$ that suit the following operations. Then
+    Suppose $\pmb{A}, \pmb{B}$ are matrices over $\mathbb{R}$ that suit the following operations respectively. Then
     \begin{compactenum}
         \item $\Vert \pmb{A} + \pmb{B}\Vert \leq \Vert \pmb{A}\Vert + \Vert \pmb{B}\Vert$.
         \item $\Vert \pmb{A}\pmb{B}\Vert \leq \Vert \pmb{A}\Vert\Vert \pmb{B}\Vert$.
@@ -333,7 +332,7 @@ Then with everything prepared, here we go.
 
 \begin{Th}{Th5.2.8.1 (chain-rules of $\mathcal{C}$, $\mathcal{C}^1$)}
     \begin{compactenum}
-        \item \textcolor{Df}{Suppose $\pmb{x}_0\in\mathbb{R}^n$. Then we term the adverbial modifier ``on some neighborhood of $\pmb{x}_0$'' (or ``on $B(\pmb{x}_0)$'', as they are equivalent) ``at $\pmb{x}_0$ locally'' (在$\pmb{x}_0$的近旁) for short.} For example, ``$\pmb{f}\in\mathcal{C}$ at $\pmb{x}_0$ locally'' means that for some neighborhood $D$ of $\pmb{x}_0$, $\pmb{f}\in\mathcal{C}(D)$.
+        \item \textcolor{Df}{Suppose $\pmb{x}_0\in\mathbb{R}^n$. Then we term the adverbial modifier ``on some neighborhood of $\pmb{x}_0$'' (or ``on $B(\pmb{x}_0)$'', as they are equivalent) ``at $\pmb{x}_0$ locally'' for short.} For example, ``$\pmb{f}\in\mathcal{C}$ at $\pmb{x}_0$ locally'' means that for some neighborhood $D$ of $\pmb{x}_0$, $\pmb{f}\in\mathcal{C}(D)$.
         \item Suppose $\pmb{g}$ is a $p$-real $n$-function and $\pmb{f}$ is an $n$-real $m$-function. Then: \begin{compactenum}
             \item $\pmb{g}\in\mathcal{C}$ at $\pmb{t}_0$ locally and $\pmb{f}\in\mathcal{C}$ at $\pmb{x}_0 = \pmb{g}(\pmb{t}_0)$ locally $\Rightarrow$ $\pmb{f}\circ\pmb{g}\in\mathcal{C}$ at $\pmb{t}_0$ locally.
             \item $\pmb{g}\in\mathcal{C}^1$ at $\pmb{t}_0$ locally and $\pmb{f}\in\mathcal{C}^1$ at $\pmb{x}_0 = \pmb{g}(\pmb{t}_0)$ locally $\Rightarrow$ $\pmb{f}\circ\pmb{g}\in\mathcal{C}^1$ at $\pmb{t}_0$ locally.
@@ -351,7 +350,7 @@ Then with everything prepared, here we go.
     Denote the Jacobian matrix of an $n$-real $m$-function $\pmb{f}$ as $\parfrac{\pmb{f}}{\pmb{x}}$ or $\parfrac{\pmb{y}}{\pmb{x}}$ if we write $\pmb{f}$ as $\pmb{y} = \pmb{f}(\pmb{x})$. Also, denote $\dif\pmb{f}$ as $\dif\pmb{y}$.
 \end{Df}
 
-\begin{Th}{Th5.2.9 (invariant form of one-order differential (一阶微分的形式不变性))}
+\begin{Th}{Th5.2.9 (invariant form of one-order differential)}
     Let $\pmb{y} = \pmb{f}(\pmb{x})$. Then the differential of $\pmb{f}$ is
     \begin{equation}
         \dif\pmb{y} = \parfrac{\pmb{y}}{\pmb{x}}\dif\pmb{x}
@@ -367,7 +366,7 @@ Then with everything prepared, here we go.
     \textit{Pf}: Obvious.
 \end{Th}
 
-\begin{Th}{Th5.3.1 (theorem of implicit function (隐函数))}
+\begin{Th}{Th5.3.1 (theorem of implicit function)}
     Suppose $F$ is a 2-real function and $(x_0, y_0)\in (\text{dom}(F))^\circ$. If
     \begin{compactenum}
         \item $F\in\mathcal{C}^1$ at $(x_0, y_0)$ locally;
@@ -458,7 +457,7 @@ Then with everything prepared, here we go.
     \textit{Pf}: Omit here, and we leave it to the exercise file so that you can find the answer from the source.
 \end{Th}
 
-\begin{Th}{Th5.3.2 (theorem of local inverse function (局部反函数定理))}
+\begin{Th}{Th5.3.2 (theorem of local inverse function)}
     Suppose $D\subseteq\mathbb{R}^n$ is open and $\pmb{f}:D\rightarrow\mathbb{R}^n$. If
     \begin{compactenum}
         \item $\pmb{f}\in\mathcal{C}^1(D)$;

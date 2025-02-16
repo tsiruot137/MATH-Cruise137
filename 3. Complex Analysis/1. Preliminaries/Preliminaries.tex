@@ -44,6 +44,7 @@ This is the 1st chapter of Complex Analysis, which is about the \textbf{prelimin
         $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
         \item A set of sets is called a collection or a family.
         \item The expression $z\overset{r}{=}x+iy$ refers to the real part of $z$ being $x$ and the imaginary part of $z$ being $y$. If clear from the context, we may omit the superscript $r$.
+        \item ``\textbf{Mere extension}'': In this text we will say that a Df or Th is a mere extension of (or, merely extended from) a previous counterpart in the real analysis (the course 2), if the Df or Th is the same as the previous one except for the replacement of the real numbers by the complex numbers.
     \end{compactenum}
 \end{Df}
 
@@ -55,6 +56,10 @@ Here is the \textbf{Quick Search} for this chapter:
         \item (1.3.*): Basic topology of $\mathbb{C}$.
         \item (1.4.*): Limit and continuity of complex functions.
         \item (1.5.*): Holomorphic functions.
+            \subitem (1.5.2.*): Cauchy-Riemann condition.
+        \item (1.6.*): Series of complex functions.
+            \subitem (1.6.1.*): Properties of series of complex functions.
+            \subitem (1.6.3.*): Complex power series.
     \end{compactdesc}
 \end{Th}
 
@@ -71,7 +76,7 @@ Then with everything prepared, here we go.
         \item (Boundedness)
         \item (Subsequence)
         \item (Arithmetic)
-        \item (Cauchy's criterion) It is clear how to define the Cauchy sequence in $\mathbb{C}$.
+        \item (Cauchy's criterion) \textcolor{Df}{It is clear how to define the Cauchy sequence in $\mathbb{C}$.}
     \end{compactenum}}
     and others simply extended by the topology of $\mathbb{R}^n$ (the 4th chapter of course 2).
 \end{Rmk}
@@ -108,12 +113,43 @@ Then with everything prepared, here we go.
 \begin{Th}{Th1.2.2 (Product of series)}
     The following results about the product of complex-terms series can be developed just by copying the previous ones for real-terms series (even their proofs):
     \begin{compactenum}
-        \item \textcolor{Df}{Extended \{course: 2, ID: 8.5\}};
-        \item Extended \{course: 2, ID: 8.5.1\};
-        \item Extended \{course: 2, ID: 8.5.2\};
-        \item Extended \{course: 2, ID: 8.5.3\};
-        \item Extended \{course: 2, ID: 8.5.4\}.
+        \item \textcolor{Df}{Extended \{course: 2, ID: 8.5\}: (Product of series)};
+        \item Extended \{course: 2, ID: 8.5.1:\}: (both of the multiplied series converges $\Rightarrow$ the block product converges);
+        \item Extended \{course: 2, ID: 8.5.2\} (both of the multiplied series absolutely converge $\Rightarrow$ the product by any order converges to the same sum);
+        \item Extended \{course: 2, ID: 8.5.3\} (both converges and one absolutely converges $\Rightarrow$ Cauchy product converges);
+        \item Extended \{course: 2, ID: 8.5.4\} (all converge $\Rightarrow$ equality).
     \end{compactenum}
+\end{Th}
+
+\begin{Df}{Th1.2.3.-1 (variation-bounded sequence)}
+    \begin{compactenum}
+        \item A sequence $\{z_n\}$ in $\mathbb{C}$ is said to be \textbf{variation-bounded} if $\{\sum_{k=1}^{n} |z_{k+1}-z_k|: n\in\mathbb{N}^\ast\}$ is bounded (namely, $\sum_{n=1}^{\infty} |z_{n+1}-z_n|$ converges).
+        \item \textcolor{Th}{Denote $V_n = \sum_{k=1}^{n} |z_{k+1}-z_k|$. If $\{z_n\}$ is variation-bounded, then both $\{z_n\}$ and $\{V_n\}$ converge.}
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}
+    This concept is proposed to extend the Dirichlet's criterion (Th \{course: 2, ID: 8.3.3.1\}) and the Abel's criterion (Th \{course: 2, ID: 8.3.3.2\}) for the convergence of $\sum_{n=1}^{\infty} a_nb_n$ to the complex-number series. While in the real analysis the two criteria involve the monotonicity of the sequences, the complex field does not have the order relation. So we have to modify this condition to the variation-boundedness.
+\end{Rmk}
+
+\begin{Th}{Th1.2.3 (extended Dirichlet and Abel criteria for series of complex numbers)}
+    The series $\sum_{n=1}^{\infty} a_nb_n$ (with $\{a_n\}, \{b_n\}\subseteq\mathbb{C}$) converges if either of the following two conditions holds:
+    \begin{compactenum}
+        \item (Dedekind criterion) (extended Dirichlet criterion) 
+            \subitem (1) $\{a_n\}$ is variation-bounded, and $a_n\to 0$;
+            \subitem (2) $\sum_{k=1}^{n} b_k$ is bounded.
+        \item (Bois-Reymond criterion) (extended Abel criterion)
+            \subitem (1) $\{a_n\}$ is variation-bounded;
+            \subitem (2) $\sum_{n=1}^{\infty} b_n$ converges.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Denote $A_n = \sum_{k=1}^{n} a_k$ and $B_n = \sum_{k=1}^{n} b_k$. According to the Cauchy criterion for the convergence of complex-number series, we only need to prove that: for any $\varepsilon>0$, there is some $N$ s.t. 
+    $$ \left| \sum_{k=n+1}^{n+p} a_kb_k \right| < \varepsilon $$
+    whenever $n>N$ and $p\geq 1$. Then the rest of the proof is trivial if we use the Abel transformation
+    $$ \sum_{k=n+1}^{n+p} a_kb_k = \sum_{k=n+1}^{n+p} a_k (B_k-B_{k-1}) = a_{n+p}B_{n+p} - a_nB_n - \sum_{k=n+1}^{n+p} B_{k-1}(a_k-a_{k-1}). $$
+    And for both of the criteria, it suffices to prove that
+    $$ \left| a_{n+p}B_{n+p} \right| + \left| a_nB_n \right| + \left| \sum_{k=n+1}^{n+p} B_{k-1}(a_k-a_{k-1}) \right| < \varepsilon. $$
+    For the details, see the reference webpage [2] in the \verb|exercises.md| of this chapter.
 \end{Th}
 
 \begin{Df}{Df1.3 (basic topology of $\mathbb{C}$)}
@@ -132,11 +168,11 @@ Then with everything prepared, here we go.
     \textcolor{Df}{Use some new notations and terms in the complex analysis here:
     $$ 
     \begin{aligned}
-        &\Omega^\text{c} \triangleq \mathbb{C}\setminus\Omega,\\
-        &D_r(z_0) \triangleq \{z\in\mathbb{C}: |z-z_0|<r\} \quad\text{ (open disk)},\\
-        &\bar{D}_r(z_0) \triangleq \{z\in\mathbb{C}: |z-z_0|\leq r\} \quad\text{ (closed disk)},\\
+        &\varOmega^\text{c} \triangleq \mathbb{C}\setminus\varOmega,\\
+        &D_r(z_0) \triangleq \{z\in\mathbb{C}: |z-z_0|<r\} \quad\text{ (open disc)},\\
+        &\bar{D}_r(z_0) \triangleq \{z\in\mathbb{C}: |z-z_0|\leq r\} \quad\text{ (closed disc)},\\
         &C_r(z_0) \triangleq \{z\in\mathbb{C}: |z-z_0| = r\} \quad\text{ (circle)},\\
-        &\mathbb{D} = D_1(0) \quad\text{ (unit disk)}.
+        &\mathbb{D} = D_1(0) \quad\text{ (unit disc)}.
     \end{aligned}
     $$}
 \end{Rmk}
@@ -162,7 +198,7 @@ Then with everything prepared, here we go.
     Basic properties of the limit of complex functions quickly follow from the ones of $2$-real $2$-functions: (see the Rmk \{course: 2, ID: 4.6\})
     \begin{compactenum}
         \item \textcolor{Th}{(Uniqueness)}
-        \item \textcolor{Th}{(Convergence by part) $\lim\limits_{z\to z_0} f(z) = l$ iff $\lim\limits_{z\to z_0} \text{Re}f(z) = \text{Re}l$ and $\lim\limits_{z\to z_0} \text{Im}f(z) = \text{Im}l$.}
+        \item \textcolor{Th}{(Convergence by part) $\lim\limits_{z\to z_0} f(z) = l$ iff $\lim\limits_{z\to z_0} \text{Re}f(z) = \text{Re}\, l$ and $\lim\limits_{z\to z_0} \text{Im}f(z) = \text{Im}\,l$.}
         \item \textcolor{Th}{(Local boundedness)}
         \item \textcolor{Th}{(Heine's theorem) (resolution principle)}
         \item \textcolor{Th}{(Arithmetics of limits)}
@@ -182,30 +218,39 @@ Then with everything prepared, here we go.
 \end{Rmk}
 
 \begin{Df}{Df1.4.0.1 (maximum and minimum of a complex function)}
-    Suppose $f$ is a complex function and $\Omega\subseteq\text{dom}(f)$. Then we say a point $z_0\in\Omega$ is a \textbf{maximal point} of $f(z)$ on $\Omega$, or $f(z)$ has a \textbf{maximum} $f(z_0)$ on $\Omega$, if
-    $$\forall z\in\Omega, |f(z)| \leq |f(z_0)|.$$
+    Suppose $f$ is a complex function and $\varOmega\subseteq\text{dom}(f)$. Then we say a point $z_0\in\varOmega$ is a \textbf{maximal point} of $f(z)$ on $\varOmega$, or $f(z)$ has a \textbf{maximum} $f(z_0)$ on $\varOmega$, if
+    $$\forall z\in\varOmega, |f(z)| \leq |f(z_0)|.$$
     The definition of the \textbf{minimum} is similar.
 \end{Df}
 
 \begin{Rmk}{}
     By the Th \{course: 2, ID: 4.5.3.1.1\}, we quickly have:
-    \textcolor{Th}{If the complex function $f$ is continuous on a compact set $\Omega$ (so that the ``absolute value'' function $z\mapsto |f(z)|$ is continuous on $\Omega$), then $f$ attains its maximum and minimum on $\Omega$.}
+    \textcolor{Th}{If the complex function $f$ is continuous on a compact set $\varOmega$ (so that the ``absolute value'' function $z\mapsto |f(z)|$ is continuous on $\varOmega$), then $f$ attains its maximum and minimum on $\varOmega$.}
 \end{Rmk}
+
+\begin{Th}{Eg1.4.1 (some examples of continuous functions)}
+    \begin{compactenum}
+        \item Any polynomial function $p\in\mathcal{P}(\mathbb{C})$ (i.e., for some list of complex numbers $a_0, \dots, a_n$,
+        $$ p(z) = a_0 + a_1z + \cdots + a_nz^n $$
+        for all $z\in\mathbb{C}$) is continuous on $\mathbb{C}$.
+        \item For $n\in\mathbb{Z}$, the function $z\mapsto z^n$ is continuous on $\mathbb{C}$.
+    \end{compactenum}
+\end{Th}
 
 \begin{Df}{Df1.5 (holomorphic)}
     \begin{compactenum}
-        \item Suppose $f$ is a complex function, $\Omega\subseteq\text{com}(f)$ is open, and $z_0\in\Omega$. Then $f$ is said to be \textbf{holomorphic} at $z_0$ if the limit, 
-        $$f'(z_0) \triangleq \lim_{h\to 0} \frac{f(z_0+h)-f(z_0)}{h}$$
-        , called the \textbf{derivative} of $f$ at $z_0$, exists (that is, the limit is a complex number).
-        \item If the complex function $f$ is holomorphic at every point of the open set $\Omega$, then $f$ is said to be holomorphic on $\Omega$.
-        \item If the complex function $f$ is holomorphic at every point of some open set containing the closed set $\Omega$, then $f$ is said to be holomorphic on $\Omega$.
+        \item Suppose $f$ is a complex function, $\varOmega\subseteq\text{dom}(f)$ is open, and $z_0\in\varOmega$. Then $f$ is said to be \textbf{holomorphic} at $z_0$ if the limit, 
+        $$ f'(z_0) \triangleq \lim_{h\to 0} \frac{f(z_0+h)-f(z_0)}{h}, $$
+        called the \textbf{derivative} of $f$ at $z_0$, exists (that is, the limit is a complex number).
+        \item If the complex function $f$ is holomorphic at every point of the open set $\varOmega$, then $f$ is said to be holomorphic on $\varOmega$.
+        \item If the complex function $f$ is holomorphic at every point of some open set containing the closed set $\varOmega$, then $f$ is said to be holomorphic on $\varOmega$.
         \item If the complex function $f$ is holomorphic on every point of $\mathbb{C}$, then $f$ is said to be \textbf{entire}.
     \end{compactenum}
 \end{Df}
 
 \begin{Rmk}{}
     \begin{compactenum}
-        \item \textcolor{Df}{The synonyms of ``holomorphic'' include \textbf{``regular''}, \textbf{``complex differentiable''} and \textbf{``analytic''}.}
+        \item \textcolor{Df}{``Holomorphic'' is also termed as \textbf{``complex-differentiable''}.}
         \item \textcolor{Df}{For a complex function $f$ with real domain, we also define the derivative of $f$ at $t_0\in\mathbb{R}$ as $f'(t_0) = (\text{Re}f)^\prime(t_0) + i(\text{Im}f)^\prime(t_0)$.}
     \end{compactenum}
     Then here are the basic properties of the holomorphic complex functions: \textcolor{Th}{
@@ -221,5 +266,264 @@ Then with everything prepared, here we go.
         $$ (f\circ\varphi)^\prime(w_0) = f^\prime(z_0)\varphi^\prime(w_0). $$
     \end{compactenum}}
 \end{Rmk}
+
+\begin{Th}{Eg1.5.1 (some examples of holomorphic functions)}
+    \begin{compactenum}
+        \item Any polynomial function $p\in\mathcal{P}(\mathbb{C})$ (i.e., for some list of complex numbers $a_0, \dots, a_n$, 
+        $$ p(z) = a_0 + a_1z + \cdots + a_nz^n $$
+        for all $z\in\mathbb{C}$) is holomorphic on $\mathbb{C}$.
+        \item The function $z\mapsto 1/z$ is holomorphic on every open set $\varOmega\subseteq\mathbb{C}$ that does not contain $0$, and $(1/z)^\prime = -1/z^2$.
+        \item The function $z\mapsto \overline{z}$ is not holomorphic at any point of $\mathbb{C}$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Obvious.
+        \item Obvious.
+        \item Actually, $\lim\limits_{h\to 0} \frac{\overline{z+h}-\overline{z}}{h} = \lim\limits_{h\to 0} \frac{\overline{h}}{h}$ does not exist.
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.5.2 (real-differentiable)}
+    A complex function $f(z) = u(x, y) + iv(x, y)$ ($z = x+iy$ with $x, y\in\mathbb{R}$; $u$ and $v$ are two $2$-real functions) is said to be \textbf{real-differentiable} at $z_0 = x_0+iy_0$ if the $2$-real $2$-function $(u, v)$ (see the 5th chapter of course 2 for the definition of $n$-real $m$-function) is differentiable at $(x_0, y_0)$ (namely, $u$ and $v$ are both differentiable at $(x_0, y_0)$).
+\end{Df}
+
+\begin{Rmk}{}
+    This definition is proposed aimed at exploring the relationship between the complex-differentiability and the real-differentiability of a complex function, which would then lead to the Cauchy-Riemann condition.
+\end{Rmk}
+
+\begin{Th}{Th1.5.2.1 (complex-differentiable $\Leftrightarrow$ real-differentiable and Cauchy-Riemann condition)}
+    Suppose $f$ is a complex function. Then $f$ is complex-differentiable at $z_0 = x_0+iy_0$ ($x_0, y_0\in\mathbb{R}$) iff $f$ is real-differentiable at $z_0$ and the \textcolor{Df}{\textbf{Cauchy-Riemann equations (condition)} 
+    $$ \parfrac{u}{x} = \parfrac{v}{y} \qquad \qquad \parfrac{u}{y} = -\parfrac{v}{x} $$}
+    hold at $(x_0, y_0)$.
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Prove the ``only if''. Suppose $f(z) = u(x, y) + iv(x, y)$ is complex-differentiable at $z_0 = x_0+iy_0$. Then equivalently, there are some complex number $a+ib$ and some complex function $\phi$ with $\lim\limits_{h\to 0} \phi(h) = 0$ such that
+        $$ f(z_0+h) - f(z_0) = (a+ib)h + \phi(h)h. $$
+        Then separate the real and imaginary parts of this equation ($h = h_x+ih_y$, $\phi = \phi_x + i\phi_y$):
+        $$ \begin{aligned}
+            & u(x_0+h_x, y_0+h_y) - u(x_0, y_0) = (a, -b)h + (\phi_x(h), -\phi_y(h))h\\
+            & v(x_0+h_x, y_0+h_y) - v(x_0, y_0) = (b, a)h + (\phi_y(h), \phi_x(h))h.
+        \end{aligned} $$
+        (here $(a, -b)h = (a, -b)(h_x, h_y)^\mathrm{T}$) with the remainder terms being $o(\|(h_x, h_y)^\mathrm{T}\|)$ (by the inequality for matrix norms $\|AB\|\leq \|A\|\|B\|$ (Th \{course: 2, ID: 5.2.8.-1.1\})). Hence, $f$ is real-differentiable at $z_0$ with
+        $$ \pmb{J}(u,v)(x_0, y_0) = \begin{bmatrix}
+            a & -b\\
+            b & a
+        \end{bmatrix} = \begin{bmatrix}
+            \parfrac{u}{x} & \parfrac{u}{y}\\
+            \parfrac{v}{x} & \parfrac{v}{y}
+        \end{bmatrix}. $$
+        and the Cauchy-Riemann condition holds.
+        \item Prove the ``if''. Suppose $f$ is real-differentiable at $z_0$ and the Cauchy-Riemann condition holds. Then
+        $$ \begin{aligned}
+            & u(z_0+h) - u(z_0) = \parfrac{u}{x}h_x + \parfrac{u}{y}h_y + \psi_x(h)h \\
+            & v(z_0+h) - v(z_0) = \parfrac{v}{x}h_x + \parfrac{v}{y}h_y + \psi_y(h)h
+        \end{aligned} $$
+        where $\psi_x(h), \psi_y(h)\to 0$ as $h\to 0$. Then combine these two equations and apply the Cauchy-Riemann condition to get
+        $$ f(z_0+h)-f(z_0)=\left(\frac{\partial u}{\partial x}-i\frac{\partial u}{\partial y}\right)h+\psi(h)|h|, $$
+        where $\psi(h) = \psi_x(h) + i\psi_y(h) \to 0$ as $h\to 0$. Hence, $f$ is complex-differentiable at $z_0$.
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.5.2.2 (some differential operators linking the real and complex analysis)}
+    Write a complex function $f$ as $f(z) = u(x, y) + iv(x, y)$ ($z = x+iy$ with $x, y\in\mathbb{R}$; $u$ and $v$ are two $2$-real functions). Then define
+    $$ \parfrac{f}{x} \triangleq \parfrac{u}{x} + i\parfrac{v}{x} \qquad \qquad \parfrac{f}{y} \triangleq \parfrac{u}{y} + i\parfrac{v}{y} $$
+    and define this two differential operators:
+    $$ \parfrac{}{z} \triangleq \frac{1}{2}\left(\parfrac{}{x} + \frac{1}{i}\parfrac{}{y}\right) \qquad \qquad \parfrac{}{\bar{z}} \triangleq \frac{1}{2}\left(\parfrac{}{x} - \frac{1}{i}\parfrac{}{y}\right). $$
+\end{Df}
+
+\begin{Rmk}{}
+    The partial derivatives over $z$ and $\bar{z}$ does not come from nowhere. Actually, consider
+    $$ \begin{cases}
+        z = x+iy\\
+        \bar{z} = x-iy
+    \end{cases} \quad \Leftrightarrow \quad \begin{cases}
+        x = \frac{1}{2}(z+\bar{z})\\
+        y = \frac{1}{2i}(z-\bar{z})
+    \end{cases} $$
+    and then apply the chain rule to obtain the ``Jacobians'' $\left(\parfrac{f}{z}, \parfrac{f}{\bar{z}}\right)$ in terms of $\parfrac{f}{x}$ and $\parfrac{f}{y}$ (consider $f(z) = f(z, \bar{z})$).
+\end{Rmk}
+
+\begin{Th}{Th1.5.2.3}
+    Write a complex function $f$ as $f(z) = u(x+iy) + iv(x+iy)$ ($z = x+iy$ with $x, y\in\mathbb{R}$; $u$ and $v$ are real-valued complex functions). Then
+    If $f$ is holomorphic at $z_0 = x_0 + iy_0$, then
+    $$ \parfrac{f}{\bar{z}}(z_0) = 0 \qquad \text{and} \qquad f^\prime(z_0) = \parfrac{f}{z}(z_0) = 2\parfrac{u}{z}(z_0). $$
+    Also, if we write $F(x, y) = f(x+iy) = f(z)$, then
+    $$ \det\pmb{J}_F(x_0, y_0) = |f^\prime(z_0)|^2. $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Df}{Df1.6 (series of complex functions)}
+    Just like the series of real functions.
+\end{Df}
+
+\begin{Th}{Th1.6.1 (properties of series of complex functions)}
+    The following results about the series of complex functions can be easily developed:
+    \begin{compactenum}
+        \item \textcolor{Df}{(Mere extensions of \{course: 2, ID: 9.1.1\} and \{course: 2, ID: 9.2.1\}) (limit function and sum function, pointwise convergence and uniform convergence)}; Uniform convergence implies pointwise convergence; (Mere extension of \{course: 2, ID: 9.2.2\}) ($\{f_n(z)\}$ uniformly converges to $f(z)$ on $\varOmega$ iff $ \lim\limits_{n\to\infty} \sup_{x\in\varOmega} |f_n(z) - f(z)| = 0 $);
+        \item (Mere extension of \{course: 2, ID: 9.2.3\}) (Cauchy's criterion for uniform convergence); (Mere extension of \{course: 2, ID: 9.2.3.1\}) (a series of complex functions uniformly converges only if its terms uniformly converge to the zero function);
+        \item (Mere extension of Th \{course: 2, ID: 9.2.4\}) (Weierstrass' criterion)
+        \item (Mere extension of Th \{course: 2, ID: 9.3.1\}) (Uniform convergence and termwise continuity together imply the continuity of the limit function (or, the sum function).)
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}:
+    \begin{compactenum}
+        \item Trivial.
+        \item Trivial.
+        \item Trivial.
+        \item Trivial.
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th1.6.2 (extended Dirichlet and Abel criteria for series of complex functions)}
+    The series $\sum_{n=1}^{\infty} a_n(z) b_n(z)$ (with $a_n, b_n: \varOmega\mapsto\mathbb{C}$ for all $n\in\mathbb{N}^\ast$) uniformly converges if either of the following two conditions holds:
+    \begin{compactenum}
+        \item (Dedekind criterion) (extended Dirichlet criterion) 
+            \subitem (1) $\sum_{n=1}^{\infty} \left|a_{n+1}(z)-a_n(z)\right|$ uniformly converges, and $\{a_n(z)\}$ uniformly converges to $0$;
+            \subitem (2) $\sum_{k=1}^{n} b_k (z)$ is uniformly bounded.
+        \item (Bois-Reymond criterion) (extended Abel criterion)
+            \subitem (1) $\sum_{n=1}^{\infty} \left|a_{n+1}(z)-a_n(z)\right|$ is uniformly bounded;
+            \subitem (2) $\sum_{n=1}^{\infty} b_n(z)$ uniformly converges.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Still trivial by the Abel transformation (see the proof of Th \{, ID: 1.2.3\} or the reference webpage [2] in the \verb|exercises.md| of this chapter)
+\end{Th}
+
+\begin{Th}{Th1.6.3 (extended properties of power series of real function)}
+    The following facts about (complex) power series are mere extensions of their counterparts in real analysis.
+    \begin{compactenum}
+        \item (Mere extension of Th \{course: 2, ID: 9.4.1\}) (existence and uniqueness of \textcolor{Df}{radius of convergence}); \textcolor{Df}{(Let $R$ be the radius of convergence of the power series $\sum_{n=0}^{\infty} a_n(z-z_0)^n$. then $D_R(z_0)$ is called the disc of convergence)}; (Mere extensions of Th \{course: 2, ID: 9.4.1.1\}) (Hadamard formula);
+        \item (Mere extension of Th \{course: 2, ID: 9.4.2\}) (A complex power series converges uniformly on any closed disc within its disc of convergence.)
+        \item (Mere extension of a part of Th \{course: 2, ID: 9.4.2.1\}) (A complex power series $f(z) = \sum_{n=0}^{\infty} a_nz^n$ is holomorphic on its disc of convergence, and is indefinitely complex-differentiable with
+        $$ f^\prime (z) = \sum_{n=0}^{\infty} na_nz^{n-1} $$
+        (of course $f^\prime (z)$ is still a power series with the same radius of convergence with $f(z)$) and so forth. That is, the termwise differentiation suits power series.)
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Trivial.
+        \item Trivial.
+        \item Trivial.
+        \item Trivial.
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.7 (parametric curves in $\mathbb{C}$)}
+    View $\mathbb{C}$ as $\mathbb{R}^2$ and define the parametric curves in $\mathbb{C}$ (see the definitions in Df \{course: 2, ID: 7.7\}, and in the P1 file in \verb|course: 2, chapter: 10|, including parametric curves, continuous curves, smooth curves, tangent vectors, arc length, etc.)
+\end{Df}
+
+\begin{Th}{Th1.7.1 (integration along curves)}
+    Suppose the parametric curve $z: [a,b]\to\mathbb{C}$ is smooth and $f:\gamma\to\mathbb{C}$ ($\gamma = \{z(t): t\in [a,b]\}$) is continuous on $\gamma$. Denote
+    $$
+    \begin{aligned}
+        & \pmb{\pi} = \{t_0, t_1, \cdots, t_n\} \quad\text{where } a = t_0 < t_1 < \cdots < t_n = b, \\
+        & z_k \triangleq z(t_k), \qquad \Delta z_k \triangleq z_k - z_{k-1}, \\
+        & \zeta_k \triangleq z(\theta_k) \overset{r}{=} \xi_k + i\eta_k \quad\text{where } \theta_k\in [t_{k-1}, t_k], \\
+        & z(t) \overset{r}{=} x(t) + iy(t), \qquad f(z) \overset{r}{=} u(z) + iv(z).
+    \end{aligned}
+    $$
+    then
+    $$ \lim\limits_{\|\pmb{\pi}\|\to 0} \sum_{k=1}^{n} f(\zeta_k)\Delta z_k = \int_\gamma f(z)\dif z $$
+    (see the P1 file in \verb|course: 2, chapter: 7| for the meaning of the limit $\|\pmb{\pi}\|\to 0$) where \textcolor{Df}{
+    $$ 
+    \begin{aligned}
+        \int_\gamma f(z)\dif z & \triangleq \int_a^b f(z(t))\dif z(t) \triangleq \int_{a}^{b} f(z(t))z^\prime (t) \dif t \\
+        \int_\gamma f(z)\dif z & \triangleq \int_\gamma \left(u(z) + iv(z)\right)\left(\dif x + i\dif y\right) \quad\qquad (\dif z = \dif x + i\dif y) \\
+        & \triangleq \int_\gamma u(z)\dif x - \int_\gamma v(z)\dif y + i\left(\int_\gamma u(z)\dif y + \int_\gamma v(z)\dif x\right) \\
+        \int_\gamma u(z)\dif x & \triangleq \int_a^b u(z(t))\dif x(t) \triangleq \int_a^b u(z(t))x^\prime (t)\dif t \\
+    \end{aligned}
+    $$}
+    \tcblower
+    \textit{Pf}: See the next page.
+\end{Th}
+
+\begin{Th}{Th1.7.1 (integration along curves) — continued}
+    \textit{Pf}: Clearly we have
+    $$ \sum_{k=1}^{n} f(\zeta_k)\Delta z_k = \sum_k u(\zeta_k)\Delta x_k - \sum_k v(\zeta_k)\Delta y_k + i \left(\sum_k u(\zeta_k)\Delta y_k + \sum_k v(\zeta_k)\Delta x_k\right), $$
+    and we need to prove the four sums on the right hand side converge to the corresponding integrals respectively as $\|\pmb{\pi}\|\to 0$. Here we only prove $\sum_{k=1}^{n} u(\zeta_k)\Delta x_k \to \int_\gamma u(z)\dif x$. By the Lagrange intermediate-value theorem (Th \{course: 2, ID: 3.5.2\}) we have:
+    $$ \sum_{k=1}^{n} u(\zeta_k)\Delta x_k = \sum_{k=1}^{n} u(z(\theta_k))\left(x(t_k)-x(t_{k-1})\right) = \sum_{k=1}^{n} u(z(\theta_k)) x^\prime (\tau_k) \Delta t_k $$
+    where $\tau_k\in [t_{k-1}, t_k]$. Since (of course $t\mapsto u(z(t)) x^\prime (t)$ is continuous)
+    $$ \int_\gamma u(z)\dif x = \int_a^b u(z(t)) x^\prime (t) \dif t  = \lim\limits_{\|\pmb{\pi}\|\to 0} \sum_{k=1}^{n} u(z(\theta_k)) x^\prime (\theta_k) \Delta t_k $$
+    we only need to show that
+    $$ \lim\limits_{\|\pmb{\pi}\|\to 0} \sum_{k=1}^{n} u(z(\theta_k)) x^\prime (\theta_k) \Delta t_k = \lim\limits_{\|\pmb{\pi}\|\to 0} \sum_{k=1}^{n} u(z(\theta_k)) x^\prime (\tau_k) \Delta t_k, $$
+    i.e. $\sum_{k=1}^{n} u(z(\theta_k)) \Big[x^\prime (\theta_k) - x^\prime (\tau_k)\Big] \Delta t_k \rightarrow 0$ as $\|\pmb{\pi}\|\to 0$. \\
+    Then let $\varepsilon > 0$. Since $t\mapsto u(z(t))$ is continuous on $[a,b]$, it is bounded by $\big|u(z(t))\big|\leq U$; and since $t\mapsto z(t)$ is $\mathcal{C}^1$, the function $t\mapsto x^\prime (t)$ is continuous on $[a,b]$, and thus is uniformly continuous. Then by the uniform continuity, there is a $\delta>0$ s.t. $\Big|x^\prime (\theta) - x^\prime (\tau)\Big| < \varepsilon/[U(b-a)]$ whenever $|\theta-\tau|<\delta$. Then for $\|\pmb{\pi}\|<\delta$ we have
+    $$ 
+    \begin{aligned}
+        & \Bigg| \sum_{k=1}^{n} u(z(\theta_k)) \Big[x^\prime (\theta_k) - x^\prime (\tau_k)\Big] \Delta t_k \Bigg| \;\leq\; \sum_{k=1}^{n} \big|u(z(\theta_k))\big| \cdot \Big|x^\prime (\theta_k) - x^\prime (\tau_k)\Big| \Delta t_k \\
+        & \leq\; \sum_{k=1}^{n} U\, \Big|x^\prime (\theta_k) - x^\prime (\tau_k)\Big| \Delta t_k \;<\; \sum_{k=1}^{n} U \cdot \frac{\varepsilon}{U(b-a)} \Delta t_k \; = \; \frac{\varepsilon}{b-a} \sum_{k=1}^{n} \Delta t_k = \varepsilon.
+    \end{aligned}
+    $$
+    and we complete the proof.
+\end{Th}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item Like the integral $\int f(x)\dif x$ in real analysis, the integral $\int_\gamma f(z)\dif z$ should be independent of the integrated variable $z$, i.e., should be independent of which equivalent parametrization $\tilde{z}$ is chosen. Actually this is true, as you can easily verify by the notations above. \textcolor{Th}{Suppose the parametric curve $z: [a,b]\to\mathbb{C}$ is smooth and $f:\gamma\to\mathbb{C}$ ($\gamma = \{z(t): t\in [a,b]\}$) is continuous on $\gamma$. If the $\tilde{z}$ is equivalent to $z$ (see the Df \{course: 2, ID: 10\_P1.4.2.1\}), then $\int_\gamma f(z)\dif z = \int_\gamma f(\tilde{z})\dif\tilde{z}$.}
+        \item \textcolor{Df}{Suppose the parametric curve $z: [a,b]\to\mathbb{C}$ is piecewise-smooth (say, is smooth on every piece segmented by $a = \alpha_0 < \cdots < \alpha_n = b$) and $f:\gamma\to\mathbb{C}$ ($\gamma = \{z(t): t\in [a,b]\}$) is continuous on $\gamma$. Then 
+        $$ \int_\gamma f(z)\dif z \,\triangleq\, \sum_{k=1}^{n}\int_{\gamma_k} f(z)\dif z, $$
+        where $\gamma_k = \{z(t): t\in [\alpha_{k-1}, \alpha_k]\}$}.
+        Also, \textcolor{Th}{this definition is independent of which equivalent parametrization $\tilde{z}$ is chosen.} Moreover, \textcolor{Th}{it is also independent of the segmentation $\{\alpha_k\}$.} Actually, if $\{\alpha_1, \cdots, \alpha_n\}$ and $\{\beta_1, \cdots, \beta_m\}$ are both legal segmentation, then join $\{\alpha_k\}$ and $\{\beta_k\}$ to form a denser and legal segmentation (that contains all of the $\alpha$'s and $\beta$'s) $\{\delta_k\}$, we will clearly see that
+        $$ \sum_k \int_{\alpha_{k-1}}^{\alpha_k} f(z(t))\dif z(t) = \sum_k \int_{\delta_{k-1}}^{\delta_k} f(z(t))\dif z(t) = \sum_k \int_{\beta_{k-1}}^{\beta_k} f(z(t))\dif z(t). $$
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th1.7.2 (basic properties of integration along curves in $\mathbb{C}$)}
+    Suppose the parametric curve $z: [a,b]\to\mathbb{C}$ is smooth or piecewise-smooth, and $f, g:\gamma\to\mathbb{C}$ ($\gamma = \{z(t): t\in [a,b]\}$) is continuous on $\gamma$. Then the integrations along $\gamma$ have the following properties:
+    \begin{compactenum}
+        \item (Linearity) For $\alpha,\beta\in\mathbb{C}$,
+        $$ \int_\gamma \left(\alpha f(z) +\beta g(z)\right) \dif z = \alpha\int_\gamma f(z)\dif z + \beta\int_\gamma g(z)\dif z $$
+        \item \textcolor{Df}{Let $-\gamma = \{z(b+a-t): t\in [a,b]\}$. } Then 
+        $$ \int_{-\gamma} f(z)\dif z = -\int_\gamma f(z)\dif z. $$
+        \item This inequality holds ($\text{length}(\gamma)$ is the arc length of $\gamma$):
+        $$ \Bigg| \int_\gamma f(z)\dif z \Bigg| \leq \left(\sup_{z\in\gamma} |f(z)|\right) \cdot \text{length}(\gamma) $$
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Obvious.
+        \item Obvious.
+        \item $$ \left|\int_a^b f(z(t))z^\prime (t)\dif t\right|\leq\sup_{t\in[a,b]}|f(z(t))|\int_a^b|z^{\prime}(t)|\dif t\leq\sup_{z\in\gamma}|f(z)|\cdot\mathrm{length}(\gamma) $$
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th1.7.3 (Newton-Leibniz)}
+    Suppose the parametric curve $z: [a,b]\to\mathbb{C}$ is smooth or piecewise-smooth, and $f:\varOmega\to\mathbb{C}$ ($\gamma = \{z(t): t\in [a,b]\}$, $\gamma\subseteq\varOmega$) is continuous on $\varOmega$. If $f$ has a primitive function $F$ on $\varOmega$ \textcolor{Df}{(that is, $F^\prime (z) = f(z)$ for all $z\in\varOmega$)}, then
+    $$ \int_\gamma f(z)\dif z = F(z(b)) - F(z(a)) $$
+    \tcblower
+    \textit{Pf}: 
+    $$
+    \begin{aligned}
+        \int_{\gamma}f(z)\dif z & =\int_a^bf(z(t))z^{\prime}(t)\dif t \\
+         & =\int_a^b F^{\prime}(z(t))z^{\prime}(t) \dif t \\
+         & =\int_a^b\frac{\dif}{\dif t}F(z(t))\dif t \\
+         & =F(z(b))-F(z(a)).
+    \end{aligned}
+    $$
+\end{Th}
+
+\begin{Th}{Clry 1.7.3.1}
+    If $\gamma = \{z(t)\}$ is a closed curve in an open set $\varOmega$ in $\mathbb{C}$, $f: \varOmega\to\mathbb{C}$ is continuous and $f$ has a primitive function on $\varOmega$, then
+    $$ \int_{\gamma}f(z)\dif z = 0. $$
+    \tcblower
+    \textit{Pf}: Obvious by \{, ID: 1.7.3\}.
+\end{Th}
+
+\begin{Th}{Ex1.7.3.2.-1 (for open sets, connected $\Leftrightarrow$ pathwise-connected)}
+    \textcolor{Df}{Suppose $\varOmega\subseteq\mathbb{C}$ contains at least two distinct points. Then $\varOmega$ is called \textbf{pathwise-connected} if every two points in $\varOmega$ can be joined by a piecewise-smooth curve entirely contained in $\varOmega$.} If $\varOmega\subseteq\mathbb{C}$ is open, prove that 
+    $$\varOmega \text{ is connected } \quad\Leftrightarrow\quad \varOmega \text{ is pathwise-connected. }$$
+    \tcblower
+    \textit{Solution}: See the prove of Th \{course: 2, ID: 4.4.3.2\}. Although ``pathwise-connected'' here is more strict (as it requires the curve not only to be  continuous, but also to be $\mathcal{C}^1$) than the ``path-connected'' there, this difference does not influence the proof.
+\end{Th}
+
+\begin{Th}{Clry 1.7.3.2}
+    If $f: \varOmega\to\mathbb{C}$ defined on a region $\varOmega$ is holomorphic, and $f^\prime (z) = 0$ for all $z\in\varOmega$, then $f(z)$ is a constant.
+    \tcblower
+    \textit{Pf}: Since $\varOmega$ is a region (and thus is connected, and thus is pathwise-connected (by Ex \{, ID: 1.7.3.2.-1\})), for every two points $w_0$ and $w$ in $\varOmega$, there is a piecewise-smooth curve $\gamma$ joining them. By Th \{, ID: 1.7.3\},
+    $$ 0 = \int_\gamma f^\prime (z) \dif z = f(w) - f(w_0), $$
+    namely, $f(w) = f(w_0)$.
+\end{Th}
 
 \end{document}

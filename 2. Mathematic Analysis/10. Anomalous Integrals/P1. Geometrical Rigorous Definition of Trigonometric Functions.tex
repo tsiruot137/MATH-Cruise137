@@ -37,17 +37,12 @@
     \newcommand{\dif}{\mathop{}\!\mathrm{d}}
     \newcommand{\Dif}{\mathop{}\!\mathrm{D}}
 \begin{document}
+
 \maketitle
+\tableofcontents
+\newpage
 
 This is a problem file about the \textbf{geometrical rigorous definition of trigonometric functions}.  
-
-\begin{Rmk}{}
-    \textbf{Before reading:}
-    \begin{compactenum}
-        \item Since the discovery of the base of natural logarithm $e$ includes many aspects, we just omit almost all this background information in this file, and just instead list the result of the foundation of $e$ here. As for the background, feel free to learn online by yourself.
-        \item Also, we do not have to record the proofs of the theorems in this file, as they can be all found in the reference book (the book [1] in the reference list in the \verb|exercises.md| file). Actually, this file is just a transcription of the corresponding section (section 6 of chapter 1) of that book.
-    \end{compactenum}
-\end{Rmk}
 
 By the way, we now reiterate some commonly-used notations and conventions:
 \begin{compactenum}
@@ -56,7 +51,7 @@ By the way, we now reiterate some commonly-used notations and conventions:
     \item $\mathbb{N}$: the set of the natural numbers;
     \item $\mathbb{N^\ast}$ or $\mathbb{N}^+$: the set of the positive integers.
     \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
-    \item Continue to use the notations and concepts of functions (see the chapter 1 of course 0).
+    \item This text involves inner product and norm in $\mathbb{R}^n$, which refers to the most common ones — the norm is the $L2$-norm.
 \end{compactenum} 
 Please check the notations and definitions by yourself from the previous chapters or courses. Then with everything prepared, here we go.
 
@@ -76,7 +71,7 @@ Different subsets of points in $\mathbb{R}^n$ vary a lot, and proper parametriza
 
 Unlike the statement in Df \{, ID: 7.7\}, here a curve does not refers to the subset of $\mathbb{R}^n$ itself, but the \textbf{parameter equations} 
 $$ \pmb{x}(t) = (x_1(t), \dots, x_n(t)), \quad t\in I. $$
-This does not conflict with Df \{, ID: 7.7\}, it is a just an abstraction instead. With this definition, a parametrized curve $\pmb{x}: I\rightarrow \mathbb{R}^n$ is called $\mathcal{C}^1$ if $\pmb{x}\in \mathcal{C}^1(I)$; and a $\mathcal{C}^1$ curve is called \textbf{regular} if $\pmb{x}'(t)\neq \pmb{0}$ for all $t\in I$. This is just what Df \{, ID: 7.7\} said.
+This does not conflict with Df \{, ID: 7.7\}, it is a just an abstraction instead. With this definition, a parametrized curve $\pmb{x}: I\rightarrow \mathbb{R}^n$ is called $\mathcal{C}^1$ if $\pmb{x}\in \mathcal{C}^1(I)$; and a $\mathcal{C}^1$ curve is called \textbf{regular} or \textbf{smooth} if $\pmb{x}'(t)\neq \pmb{0}$ for all $t\in I$. This is just what Df \{, ID: 7.7\} said.
 
 The most common curves we know, say, in a piece of paper $\mathbb{R}^2$, are those able to be drawn by a pen without lifting it from the paper. \textcolor{Df}{These curves are discribed as \textbf{continuous curves} or $\mathcal{C}^{0}$ curves ($\mathcal{C}^0$ means $\pmb{x}\in \mathcal{C}^0(I)$ of course)}. Now imagine that your finger touches and moves along the curve, and in this process no sudden change of direction occurs. This is what ``smooth'' literally means, and it is rational to desicribe it by $\mathcal{C}^1$. 
 
@@ -91,13 +86,13 @@ This is just the \textbf{tangent vector}.
 Hence, the parameter equation $\pmb{x}(t)$ specifies anything of the motion of a particle during some time interval $t\in I$. The particle may move along the curve in the velocity $\pmb{v}(t) = \pmb{x}'(t)$, but it may also move in another. Therefore we define an equivalence relation to remove this difference:
 
 \begin{Df}{Df 10\_P1.4.2.1 (equivalent parametrized curves)}
-    Two $\mathcal{C}^1$ parametrized curves $t\mapsto \pmb{x}(t)$ ($t\in I$) and $\tilde{t}\mapsto \tilde{\pmb{x}}(\tilde{t})$ ($\tilde{t}\in \tilde{I}$) are said to be \textbf{equivalent} if 
+    Two parametrized curves $t\mapsto \pmb{x}(t)$ ($t\in I$) and $\tilde{t}\mapsto \tilde{\pmb{x}}(\tilde{t})$ ($\tilde{t}\in \tilde{I}$) are said to be \textbf{equivalent} if 
     $$ \pmb{x}(t) = \tilde{\pmb{x}}(\tilde{t}) $$
     for some $\mathcal{C}^1$ bijection $t\mapsto \tilde{t}$ (from $I$ to $\tilde{I}$) such that
     $$ \frac{\dif\tilde{t}}{\dif t} > 0. $$
 \end{Df}
 
-Thus for two equivalent parametrized curves $\pmb{x}(t)$ and $\tilde{\pmb{x}}(\tilde{t})$, the velocities of the particle at some moment $t_0$ share the same orientation, and differ only in the magnitude:
+\textcolor{Th}{This is exactly an equivalence relation.} Then for two equivalent parametrized curves $\pmb{x}(t)$ and $\tilde{\pmb{x}}(\tilde{t})$, the velocities of the particle at some moment $t_0$ share the same orientation, and differ only in the magnitude:
 
 \begin{Th}{Th 10\_P1.4.2.2}
     Suppose $\pmb{x}(t)$ and $\tilde{\pmb{x}}(\tilde{t})$ are equivalent parametrized curves. Then for any $t_0$,
@@ -108,6 +103,17 @@ Thus for two equivalent parametrized curves $\pmb{x}(t)$ and $\tilde{\pmb{x}}(\t
 \end{Th}
 
 This theorem mathematically justifies the possibility of adjusting the speed of the particle, and lead us to the uniform-speed parametrization that $\|\pmb{x}'(t)\|$ is a constant, especially, $1$. Not only would we like to show the existence of such a parametrization, but also we would clarify that the parametrization here is \textbf{arc-length-parametrized}.
+
+Before going ahead, we clarify that the equivalence relation just defined is authentic, that is, \textcolor{Th}{whether a parametric curve is
+\begin{compactenum}
+    \item continuous
+    \item $\mathcal{C}^1$
+    \item smooth
+    \item piecewise-smooth
+    \item closed
+    \item simple
+\end{compactenum}
+or not, is independent of which equivalent parametrization is chosen.} In other word, if a parametric curve $\pmb{x}$ is continuous (resp. $\mathcal{C}^1$) (resp. smooth) (resp. piecewise-smooth) (resp. closed) (resp. simple), then so is any $\tilde{\pmb{x}}$ equivalent to $\pmb{x}$. Also, \textcolor{Th}{the path length (the Df \{, ID: 7.7.1\}) of a $\mathcal{C}^1$ curve (or a piecewise-smooth curve) is independent of which equivalent parametrization is chosen}.
 
 \begin{Th}{Th 10\_P1.4.3 (parametrized by arc length)}
     \textcolor{Th}{For a regular curve $\pmb{x}(t)$, the arc length $s(t_0, t)$ measured from $t_0$ to $t$ can be defined (known early in Th \{, ID: 7.7.1\}):
@@ -479,5 +485,19 @@ Then we can easily derive all other trigonometric identities, by the induction f
 \begin{Df}{Df 10\_P1.4.9 ($\tan \theta$, $\cot \theta$, $\sec \theta$, $\csc \theta$)}
     $$ \tan \theta \triangleq \frac{\sin \theta}{\cos \theta}, \qquad \cot \theta \triangleq \frac{\cos \theta}{\sin \theta}, \qquad \sec \theta \triangleq \frac{1}{\cos \theta}, \qquad \csc \theta \triangleq \frac{1}{\sin \theta} $$
 \end{Df}
+
+\section{Power Series of Trigonometric Functions}
+
+\begin{Th}{Th 10\_P1.4.10 (power series of $\cos x$ and $\sin x$)}
+    For all $x\in \mathbb{R}$, the power series on the right hand side converges to the value on the left hand side:
+    $$
+    \begin{aligned}
+        \cos x &= \sum_{n=0}^\infty \frac{(-1)^n}{(2n)!}x^{2n} \\
+        \sin x &= \sum_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}x^{2n+1}
+    \end{aligned}
+    $$
+    \tcblower
+    \textit{Pf}: Obvious by the Th \{, ID: 9.5.2\}.
+\end{Th}
 
 \end{document}

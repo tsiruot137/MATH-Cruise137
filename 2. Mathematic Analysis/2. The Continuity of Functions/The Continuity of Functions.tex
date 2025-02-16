@@ -60,6 +60,7 @@ By the way, we now pre-claim some commonly-used notations and terms:
     \begin{compactenum}
     \item $\mathbb{C}$: the set of the complex numbers;
     \item $\mathbb{R}$: the set of the real numbers;
+    \item $\mathbb{R}^+$: the set of the positive real numbers;
     \item $\mathbb{Q}$: the set of the rational numbers;
     \item $\mathbb{Z}$: the set of the integers;
     \item $\mathbb{N}$: the set of the natural numbers;
@@ -324,6 +325,36 @@ Then with everything prepared, here we go.
     \tcblower
     \textit{Pf}: Trivial.
 \end{Th}
+
+\begin{Th}{Eg2.2.3 (some examples of continuous functions)}
+    \begin{compactenum}
+        \item Any \textcolor{Df}{\textbf{constant function} $x\mapsto c$ ($x\in\mathbb{R}$, $c\in\mathbb{R}$)} is continuous on $\mathbb{R}$.
+        \item Any \textcolor{Df}{\textbf{power function} $x\mapsto x^a$ ($x\in\mathbb{R}^+$, $a\in\mathbb{R}$)} is continuous on $\mathbb{R}^+$.
+        \item Any \textcolor{Df}{\textbf{exponential function} $x\mapsto a^x$ ($x\in\mathbb{R}$, $a\in\mathbb{R}^+$)} is continuous on $\mathbb{R}$.
+    \end{compactenum} 
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Obvious.
+        \item To prove $\lim\limits_{h\to 0} (x+h)^a = x^a$, is to prove $\lim\limits_{h\to 0} \left((1+h/x^a) - 1 \right) = 0$. Since for any $\varepsilon>0$:
+            $$
+            \begin{aligned}
+                & \left|\left(1+\frac{h}{x}\right)^{a}-1\right|<\varepsilon \\
+                & \Leftrightarrow-\varepsilon<\left(1+\frac{h}{x}\right)^a-1<\varepsilon \\
+                & \Leftrightarrow1-\varepsilon<\left(1+\frac{h}{x}\right)^{a}<1+\varepsilon \\
+                & \Leftrightarrow(1-\varepsilon)^{1/a}<1+\frac{h}{x}<(1+\varepsilon)^{1/a} \\
+                & \Leftrightarrow(1-\varepsilon)^{1/a}-1<\frac{h}{x}<(1+\varepsilon)^{1/a}-1 \\
+                & \Leftrightarrow x[(1-\varepsilon)^{1/a}-1]<h<x[(1+\varepsilon)^{1/a}-1]
+           \end{aligned}
+           $$
+           Then we can choose $\delta=\min\{x,-x[(1-\varepsilon)^{1/a}-1],x[(1+\varepsilon)^{1/a}-1]\}$, for which $|h|<\delta$ implies $\left|\left(1+h/x\right)^{a}-1\right|<\varepsilon$.
+        \item Trivial.
+    \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    As a supplement, the trigonometric functions $\sin$ and $\cos$ are also continuous on $\mathbb{R}$ (see the P1 file in the 10th chapter of this course). Since we have not formally defined the trigonometric functions yet, we could not list them here. In the future, we will call the constant functions, power functions, exponential functions and trigonometric functions the \textbf{elementary functions.}
+\end{Rmk}
 
 \begin{Df}{$\circ$ Df2.3 (types of discontinuous point)}
     Suppose $f$ is a real function, $x_0\in\mathbb{R}$ and there is some $B_\delta(x_0)$ s.t. $\text{dom}(f)\supseteq B_\delta(x_0)$ (namely, $f$ is continuous at $x_0$ $\Leftrightarrow$ $\lim\limits_{x\to x_0} f(x) = f(x_0)$ $\Leftrightarrow$ $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x) = f(x_0)$ $\Leftrightarrow$ $f$ is both left continuous and right continuous at $x_0$). Suppose also $x_0$ is a discontinuous point of $f$ (and thus $\lim\limits_{x\to x_0^-} f(x) = \lim\limits_{x\to x_0^+} f(x) = f(x_0)$ does not holds). Then the discontinuous point $x_0$ can be further classified into the following types:

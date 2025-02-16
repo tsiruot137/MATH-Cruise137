@@ -123,14 +123,14 @@ Then with everything prepared, here we go.
 
 \begin{Th}{Th9.2.4 (Weierstrass criterion)}
     \begin{compactenum}
-        \item (superior series) A series $\sum_{n=1}^{\infty} M_n$ is called a \textbf{superior series} of the series $\sum_{n=1}^{\infty} a_n(x)$ of functions on $I$ if
+        \item (superior series) \textcolor{Df}{A series $\sum_{n=1}^{\infty} M_n$ is called a \textbf{superior series} of the series $\sum_{n=1}^{\infty} a_n(x)$ of functions on $I$ if
         $$ |a_n(x)| \leq M_n $$
-        holds for all $n\in\mathbb{N}^\ast$ and all $x\in I$.
+        holds for all $n\in\mathbb{N}^\ast$ and all $x\in I$.}
         \item If $\sum_{n=1}^{\infty} a_n(x),\; (x\in I)$ has a convergent superior series, then it converges uniformly on $I$. 
     \end{compactenum}
 \end{Th}
 
-\begin{Df}{Df9.2.5.-1 (uniform bounded)}
+\begin{Df}{Df9.2.5.-1 (uniformly bounded)}
     Suppose $\{f_n\}$ is a sequence of real functions defined on $I$. We say that $\{f_n\}$ is \textbf{uniformly bounded} on $I$ if there exists $M\in\mathbb{R}$ such that
     $$ |f_n(x)| \leq M $$
     holds for all $n\in\mathbb{N}^\ast$ and all $x\in I$.
@@ -349,6 +349,26 @@ Then with everything prepared, here we go.
 
 \begin{Rmk}{}
     The sufficient condition for the expansion of $f$ here is more convenient for applications than the equivalent condition.
+\end{Rmk}
+
+\begin{Th}{Th9.5.2.1 (power-series-expansions of some functions)}
+    For each of the function listed below, the power series on the right-hand side converges to the value of the function on the left-hand side for all $x$ in the range specified.
+    $$
+    \begin{aligned}
+        e^x &= \sum_{n=0}^{\infty} \frac{x^n}{n\,!} \qquad x\in\mathbb{R} \\
+        \frac{1}{1-x} &= \sum_{n=0}^{\infty} x^n \qquad x\in (-1, 1) 
+    \end{aligned}
+    $$
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item For $e^x$, prove that for any $R>0$, $e^x$ satisfies the condition of Th \{, ID: 9.5.2\} on $(-R, R)$.
+        \item For $1/(1-x)$, obvious.
+    \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    As a supplement, see the power-series-expansions of the trigonometric functions in the later Th \{, ID: 10\_P1.4.10\}. Since we have not yet formally defined the trigonometric functions, we could not list them here.
 \end{Rmk}
 
 \end{document}
