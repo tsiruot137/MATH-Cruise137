@@ -1,0 +1,597 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Groups}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\lcm}{\text{lcm}}
+    \newcommand{\cycl}{\text{cycl}}
+\begin{document}
+\maketitle
+
+This is the 1st chapter of Abstract Algebra, which is about the \textbf{Groups}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (1.2.*): The order of a group; the order of an element of a group.
+        \item (1.4.*): Dihedral group.
+        \item (1.5.*): Cycles and cycle-decomposition.
+        \item (1.6.*): Homomorphisms.
+        \item (1.7.*): Subgroups and generated subgroups.
+        \item (1.8.*): Cyclic groups.
+        \item (1.9.*): Cosets.
+        \item (1.10.*): $HK$.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df1.1 (groups)}
+    A \textbf{group} is a non-empty set $G$ with a binary operation $*$ on it (i.e. for any $a, b\in G$, $a*b\in G$) that satisfies the following properties:
+    \begin{compactenum}
+        \item (Associative) For any $a, b, c\in G$, $(a*b)*c=a*(b*c)$.
+        \item (Two-sided Identity) There exists an element $1\in G$ ($1$ here is some element in $G$, not the number $1$) such that for any $a\in G$, $1*a=a*1=a$. \textcolor{Th}{Obviously, such $1$ is unique, } and we call it the \textbf{identity element} (or \textbf{identity} for short) of $G$.
+        \item (Two-sided Inverse) For any $a\in G$, there exists an element $a^{-1}\in G$ such that $a*a^{-1}=a^{-1}*a=1$. \textcolor{Th}{Obviously, for any $a\in G$, such $a^{-1}$ is unique, } and we call it the \textbf{inverse element} (or \textbf{inverse} for short) of $a$. 
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Df}{The identity element of a group is also denoted as $e$ or $\mathrm{id}$ in some cases, as long as it is clear from the context.}
+        \item \textcolor{Df}{A non-empty set $G$ with a binary operation $*$ (write as a tuple $(G, \ast)$) that satisfies the first property (resp. the first two properties) (resp. all the three properties) is called a \textbf{semigroup} (resp. a \textbf{monoid}) (resp. a \textbf{group}).}
+        \item \textcolor{Df}{For the binary operation $*$ on $G$, we interpret it as ``multiplication'' and write $a*b$ as $a\cdot b$ or $ab$. This is called the \textbf{multiplicative notation}. There is also the \textbf{additive notation}, which is often used for Abelian groups (talked about later).}
+        \item \textcolor{Th}{A single element itself can be defined as a group}, \textcolor{Df}{called the \textbf{trivial group}. In this case, the group is said to be trivial.}
+        \item \textcolor{Th}{Obviously, for a group $G$ we have
+        \begin{compactenum}
+            \item $(a^{-1})^{-1}=a$ for any $a\in G$;
+            \item $(a*b)^{-1}=b^{-1}*a^{-1}$ for any $a, b\in G$;
+            \item Define $a_1a_2a_3\cdots a_n = (\cdots ((a_1a_2)a_3)\cdots a_{n-1})a_n$. Then the associative parentheses can be arbitrarily placed in $a_1\cdots a_n$ without changing the result.
+            \item (Two-sided cancellation) For any $a, b, c\in G$, if $c*a=c*b$, (resp. $a*c=b*c$), then $a=b$.
+        \end{compactenum}}
+        \item \textcolor{Th}{Some examples of groups include:
+        \begin{compactenum}
+            \item $(\mathbb{Z}, +)$, $(\mathbb{Q}, +)$, $(\mathbb{R}, +)$, $(\mathbb{C}, +)$, each with the identity $0$ and the inverse $-a$;
+            \item $(\mathbb{Q}\backslash\{0\}, \cdot)$, $(\mathbb{R}\backslash\{0\}, \cdot)$, $(\mathbb{C}\backslash\{0\}, \cdot)$, each with the identity $1$ and the inverse $1/a$;
+            \item $(\mathbb{F}^n, +)$, $(\mathbb{F}^{m,n}, +)$ where $\mathbb{F}$ is a number field, each with the identity $\mathbf{0}$ (the zero vector or matrix) and the inverse $-\mathbf{a}$;
+            \item $(A(S), \circ)$ where $S$ is a non-empty set and $A(S)$ is the set of all bijections $f$ from $S$ to $S$, with the identity $\text{id}_S$ (the identity function) and the inverse $f^{-1}$.
+        \end{compactenum}}
+        \textcolor{Df}{For the group $A(S)$ here, the elements in $A(S)$ are called \textbf{permutations} of $S$. If $S = \{1, \cdots, n\}$, then $A(S)$ called the \textbf{symmetric group on $n$ letters}, denoted by $\mathbb{S}_n$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df1.2 (order)}
+    Let $G$ be a group ($(G, \ast)$). Then:
+    \begin{compactenum}
+        \item The \textbf{order} of an element $a\in G$, denoted as $|a|$, is the smallest positive integer $n$ such that $a^n=1$ (here $a^n = \underbrace{a\ast a\ast \cdots \ast a}_{n\text{ times}}$). If no such $n$ exists, then we say that the order of $a$ is infinite, denoted as $|a|=\infty$;
+        \item The \textbf{order} of a group $G$ is the Cardinality of $G$, denoted as $|G|$. $G$ is said to be \textbf{finite} (resp. \textbf{infinite}) if $G$ is a finite (resp. infinite) set.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{Define the \textbf{integer powers} of an element $a$ in a group $G$ as $a^0\triangleq 1$, $a^1\triangleq a$, $a^2\triangleq a\ast a$, $a^3\triangleq a\ast a\ast a$, $\cdots$, and $a^{-1}\triangleq a^{-1}$, $a^{-2}\triangleq (a^{-1})^2 = (a^2)^{-1}$, $a^{-3}\triangleq (a^{-1})^3 = (a^3)^{-1}$, $\cdots$.}
+\end{Rmk}
+
+\begin{Th}{Th1.2.1}
+    Finite groups' elements all have finite orders.
+    \tcblower
+    \textit{Pf}: If otherwise some element $a$ in the finite group $G$ has infinite order, namely, the sequence $a, a^2, a^3, \cdots$ would not go back to $1$, then it must have a repeated element (since $G$ contains only finitely many elements), say, $a^i=a^{i+k}$ for some $i, k>0$. Then $a^k = 1$, contradiction.
+\end{Th}
+
+\begin{Df}{Df1.3 (Abelian group)}
+    A group $G$ is said to be \textbf{Abelian} if the binary operation is commutative, i.e. 
+    $$ ab = ba $$
+    for any $a, b\in G$.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Th}{The group $(\mathbb{S}_n, \circ)$ is not Abelian for $n\geq 3$.}
+        \item \textcolor{Df}{We often use the additive notation for Abelian groups, that is, we denote the binary operation as $+$ and write $a+b$ instead of $a\ast b$. Hence, for general groups, we use the multiplicative notation, and denote the identity as $1$ and the inverse as $a^{-1}$; for Abelian groups, we use the additive notation, and denote the identity as $0$ and the inverse as $-a$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Ex1.3.1}
+    Let $G$ be a group. Prove that:
+    \begin{compactenum}
+        \item If $a^2=1$ for any $a\in G$, then $G$ is Abelian.
+        \item If $|G|$ is finite and even, then there exists $a\in G$ such that $a\neq 1$ and $a^2=1$.
+        \item For elements $a, b\in G$, we have $|a^{-1}| = |a|$, $|ab| = |ba|$ and $|bab^{-1}| = |a|$.
+    \end{compactenum}
+    \tcblower
+    \textit{Solution}:
+    \begin{compactenum}
+        \item Since $a^2=1$ $\Leftrightarrow$ $a=a^{-1}$, we have
+        $$ ab = (ab)^{-1} = b^{-1}a^{-1} = ba. $$
+        \item Pair the non-desired elements $a$ with their inverses $a^{-1}$, and remove all these ``bad'' pairs $(a, a^{-1})$ from $G$.
+        \item Obvious. 
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Ex1.4 (dihedral group)}
+    Let $P_n$ be the regular $n$-gon in the $\mathbb{R}^2$ plane ($n\geq 3$) whose center is placed at the origin. Consider the set $\mathbb{D}_n$ of all the linear isometries $S$ on $\mathbb{R}^2$ that keep $P_n$ invariant (i.e. $S(P_n)=P_n$). Then
+    \begin{compactenum}
+        \item Is $\mathbb{D}_n$ a group?
+        \item Which elements are in $\mathbb{D}_n$? 
+        \item What are the orders of the group and the elements?
+    \end{compactenum}
+    \tcblower
+    \textit{Solution}:
+    \begin{compactenum}
+        \item $(\mathbb{D}_n, \circ)$ is a group, \textcolor{Df}{called the \textbf{dihedral group}}. This can be answered after we figure out the elements in $\mathbb{D}_n$ (see below).
+        \item The discussion about determinants (in the I1 file of the chapter 8, course 1) gives us the very hint about the answer, which is that $\mathbb{D}_n$ contains and only contains $n$ rotation operators and $n$ flipping operators, $2n$ elements in total. Actually, let $r$ be the rotation operator that rotates the regular $n$-gon by $2\pi/n$ counterclockwise, and let $s$ be the flipping operator that flips the $n$-gon with respect to the axis passing through the vertex $1$ (let us mark the vertices of the $n$-gon as $1, 2, \cdots, n$ beforehand) and the center. Then we know that these $2n$ elements 
+        $$ r^0, r, \cdots, r^{n-1}, s, sr, \cdots, sr^{n-1} $$
+        are all in $\mathbb{D}_n$, and it seems that $r^0 = r^n = s^2 = s^0 = \mathrm{id}$ for $\mathbb{D}_n$ to be a group. Then we can easily check that this set (with these $2n$ elements) is a group. Besides, $\mathbb{D}_n$ only contains these $2n$ elements. Actually, since a linear isometry preserves the norms of vectors, a vertex of the $n$-gon can only be mapped to again a vertex; and since an isometry also preserves the distances between points, two adjacent vertices of the $n$-gon can only be mapped to again two adjacent vertices. Hence an element in $\mathbb{D}_n$ is determined by which vertices it maps the vertices $1$ and $2$ to, and there are exactly $2n$ such possibilities. Thus $|\mathbb{D}_n|=2n$ and there is no other element except for these $2n$ elements in $\mathbb{D}_n$.
+        \item From 2, we know that $|D_n|=2n$, and
+        $$ |r^k| = \frac{\lcm(k, n)}{k}, \quad |sr^k| = 2 $$
+        for any $k=1,\cdots, n$ (where $\lcm$ is the least common multiple).
+        Actually, $|r^k|$ is obvious, and we can verify that $|s| = 2$ and $sr = r^{-1}s$, so that 
+        $$ sr^k sr^k = sr^{k-1}r(sr)r^{k-1} = sr^{k-1}r(r^{-1}s)r^{k-1} = sr^{k-1}sr^{k-1} = \cdots = ss = \mathrm{id}. $$
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.5 (cycle)}
+    Use an example to introduce this definition. Let $S = \{1, \cdots, 10\}$ and use the notation
+    $$ \sigma = \cycl (3, 5, 2, 9, 7)_{10} $$
+    to denote the permutation in $\mathbb{S}_{10}$ that maps $3$ to $5$, $5$ to $2$, $2$ to $9$, $9$ to $7$, and $7$ to $3$, and fixes all other elements. Then $\sigma$ is called a \textbf{cycle} of length $5$ (or a $5$-cycle) in $\mathbb{S}_{10}$. If clear from the context, we may denote
+    $$ \sigma = (3, 5, 2, 9, 7) $$
+    for short. Here $3, 5, 2, 9, 7$ are called the \textbf{elements} of the cycle.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Df}{A $2$-cycle is called a \textbf{transposition}.} 
+        \item \textcolor{Th}{The elements in a cycle are distinct,} that is, for a cycle $(a_1, \cdots, a_n)$, it must be that $a_i\neq a_j$ for any $i\neq j$. If otherwise $a_i=a_j=a$ for some $i\neq j$, then $\sigma$ maps two different elements to $a$, and thus $\sigma$ is not a bijection.
+        \item \textcolor{Th}{A cycle of length $1$, say, $(3)$, is the identity map.} \textcolor{Df}{In this case let us just omit it}.
+        \item \textcolor{Th}{Cycles are of circulant symmetry, that is, for example, $(3, 5, 2, 9, 7) = (5, 2, 9, 7, 3) = (2, 9, 7, 3, 5) = \cdots$.}
+        \item \textcolor{Th}{Not all permutations are cycles.} For example, the permutation $f\in\mathbb{S}_4$ such that $f(1,2,3,4) = (3,4,1,2)$ is not a cycle. Actually, if otherwise $f$ is a cycle, then we write down $f$ beginning with $1$:
+        $$ f = \left(1, \right. = \left(1, 3, \right. = \left(1, 3\right) $$
+        which means that $f(2) = 2$ and $f(4) = 4$, contradiction.
+        \item \textcolor{Th}{(The inverse of a cycle) In $\mathbb{S}_n$, the inverse of a cycle is still a cycle:
+        $$ (a_1, \cdots, a_m)^{-1} = (a_m, \cdots, a_1). $$}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th1.5.1 (disjoint cycles are commutative)}
+    \textcolor{Df}{Two cycles $\sigma_1, \sigma_2\in\mathbb{S}_n$ are said to be \textbf{disjoint} if they have no common elements.} In this case, $\sigma_1\sigma_2 = \sigma_2\sigma_1$.
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th1.5.2 (the cycle-decomposition of a permutation)}
+    Any $f\in\mathbb{S}_n$ can be written as a product of disjoint cycles in $\mathbb{S}_n$, and this product is unique up to the order of the cycles.
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item (Existence) Easy to check that the following algorithm works and finds a cycle decomposition of any $f$ as desired:
+        \begin{compactenum}
+            \item[(1)] Initially, mark all the elements $1, \cdots, n$ as unvisited.
+            \item[(2)] Choose the smallest unvisited number $a$ and compute to obtain the cycle $\sigma = (a, f(a), f^2(a), \cdots)$. Use $\sigma$ as a factor in the cycle decomposition.
+            \item[(3)] Mark all the elements in $\sigma$ as visited. If there is still unvisited elements, go back to step (2); otherwise, terminate.
+        \end{compactenum}
+        Obviously, the step (2) will end up with a cycle $\sigma$ since the $|a|$ is finite, and the next $\sigma$ obtained from the next step (2) will be disjoint with the previous ones.
+        \item (Uniqueness) Suppose 
+        $$ (\quad)\cdots(\quad) = [\quad]\cdots[\quad] $$
+        where ``$(\quad)$'' and ``$[\quad]$'' are all cycles, and these ``$(\quad)$'' (resp. these ``$[\quad]$'') are disjoint. Then we can compare a pair of ``$(\quad)$'' and ``$[\quad]$'' via the behavior of $f$ on a non-fixed point $a$ (i.e. $f(a)\neq a$), which resulted in that $(\cdots, a, \cdots) = [\cdots, a, \cdots]$. 
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.6 (homomorphisms)}
+    Let $G$ and $H$ are semigroups. Then a function $f: G\to H$ is called a \textbf{homomorphism} (from $G$ to $H$) if 
+    $$ f(ab) = f(a)f(b) $$
+    for any $a, b\in G$. In this case, if further:
+    \begin{compactenum}
+        \item $f$ is injective, then $f$ is called a \textbf{monomorphism}.
+        \item $f$ is surjective, then $f$ is called an \textbf{epimorphism}.
+        \item $f$ is bijective, then $f$ is called an \textbf{isomorphism}, denoted as $f: G\overset{\sim}{\to} H$. In this case, $G$ and $H$ are called \textbf{isomorphic}, denoted as $G\simeq H$.
+        \item $H = G$, then $f$ is called an \textbf{endomorphism}.
+        \item $H = G$ and $f$ is bijective, then $f$ is called an \textbf{automorphism}.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{In this definition, if the semigroups $G$ and $H$ are groups, then we call $f$ a \textbf{group homomorphism}.}
+    \textcolor{Th}{Let $G$, $H$ are groups and $f: G\to H$ is a homomorphism. Then:
+    \begin{compactenum}
+        \item $f(1_G) = 1_H$;
+        \item $f(a^{-1}) = f(a)^{-1}$;
+    \end{compactenum}}
+    \textcolor{Th}{Some examples of these ``morphisms'':
+    \begin{compactenum}
+        \item The function $f: (\mathbb{Z}/10\mathbb{Z})\to (\mathbb{Z}/10\mathbb{Z})$ defined as
+        $$ f(\bar{x}) = 2\bar{x} $$
+        is a homomorphism, but is neither a monomorphism nor an epimorphism. If $f$ is instead defined as
+        $$ f(\bar{x}) = 3\bar{x}, $$
+        then it is an isomorphism (and thus an automorphism).
+        \item The function $f: G\to G$ on an Abelian group $G$ defined as $f(a) = a^{-1}$ is an automorphism. However, this is not true for non-Abelian groups. A counterexample is that $G = \mathbb{S}_3$.
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Df}{Df1.6.1 (kernel and image of a homomorphism)}
+    Let $G$ and $H$ are groups, and $f: G\to H$ be a homomorphism. Then:
+    \begin{compactenum}
+        \item the \textbf{(homomorphism) kernel} of $f$, denoted as $\ker f$, is defined as $\ker f = \{a\in G: f(a) = 1_H\}$;
+        \item the \textbf{(homomorphism) image} of $f$, denoted as $\mathrm{Im} f$, is defined as $\mathrm{Im} f = \{f(a): a\in G\}$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Th}{Th1.6.2}
+    Let $f: G\to H$ be a group homomorphism. Then:
+    \begin{compactenum}
+        \item $f$ is an monomorphism iff $\ker f = \{1_G\}$;
+        \item $f$ is an isomorphism iff 
+        $$ ff^{-1} = \mathrm{id}_H \quad \text{and} \quad f^{-1}f = \mathrm{id}_G $$
+        for some group homomorphism $f^{-1}: H\to G$ (here the $\mathrm{id}$ is the identity function).
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.7 (subgroups)}
+    Let $(G, \cdot)$ be a group. Then a subset $H$ of $G$ is called a \textbf{subgroup} of $G$ if $(H, \cdot)$ is a group. In this case, we write $H < G$.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Th}{Given a group $G$, we have $\{1\} < G$ and $G < G$.} \textcolor{Df}{The former is called the \textbf{trivial subgroup} of $G$.} And \textcolor{Df}{for $H < G$, we say $H$ is a \textbf{proper subgroup} of $G$, if $H$ is neither $\{1\}$ nor $G$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th1.7.1 (how to check a subgroup)}
+    Let $(G, \cdot)$ be a group and $H\subseteq G$. Then $H < G$ iff
+    \begin{compactenum}
+        \item[(i)] $H$ is closed under $\cdot$\; (i.e. for any $a, b\in H$, $a\cdot b\in H$);
+        \item[(ii)] $1\in H$;
+        \item[(iii)] For any $a\in H$, $a^{-1}\in H$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th1.7.1.1 (Th \{, ID: 1.7.1\} for short)}
+    Let $(G, \cdot)$ be a group and $\varnothing\neq H\subseteq G$. Then
+    $$ \begin{aligned}
+        H < G \quad & \Longleftrightarrow \quad \forall a, b\in H, \quad ab^{-1}\in H \\ \quad & \Longleftrightarrow \quad \forall a, b\in H, \quad a^{-1}b\in H. 
+    \end{aligned} $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem is only looking easier than Th \{, ID: 1.7.1\} for checking a subgroup, but is not different much in use. With these two theorems, \textcolor{Th}{we can easily check the following examples and facts of subgroups:
+    \begin{compactenum}
+        \item For any $n\in\mathbb{N}$, $n\mathbb{Z}$ is a subgroup of $(\mathbb{Z}, +)$;
+        \item Let $H = \{f\in\mathbb{S}_n: f(n) = n\}$. Then $H<\mathbb{S}_n$, and in fact, $H\simeq\mathbb{S}_{n-1}$.
+        \item Let $f: G\to H$ be a group homomorphism. Then 
+        \begin{compactenum}
+            \item $\ker f < G$;
+            \item For any $A < G$, $f(A) < H$; (here $f(A) = \{f(a): a\in A\}$)
+            \item For any $B < H$, $f^{-1}(B) < G$; (here $f^{-1}(B) = \{a\in G: f(a)\in B\}$)
+        \end{compactenum}
+        \item (Intersection) The intersection of (any non-empty family of) subgroups is still a subgroup.
+        \item (Union) The union of subgroups is not necessarily a subgroup. For example, $2\mathbb{Z}\cup 3\mathbb{Z}$ is not a subgroup of $(\mathbb{Z}, +)$.
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Df}{Df1.7.2 (generated subgroup)}
+    Let $G$ be a group and $\varnothing\neq X\subseteq G$. Then the \textbf{subgroup generated by $X$}, denoted as $\langle X\,\rangle$, is the smallest subgroup of $G$ that contains $X$. In other words, 
+    $$ \langle X\,\rangle \triangleq \bigcap_{H\leq G,\, X\subseteq H} H. $$
+    In this case, we say that $X$ \textbf{generates} $\langle X\,\rangle$, and the elements in $X$ are called the \textbf{generators} of $\langle X\,\rangle$. If $X$ is finite, with $X = \{a_1, \cdots, a_n\}$, then we write $\langle X\,\rangle = \langle a_1, \cdots, a_n\,\rangle$ for convenience.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{Define the generated subgroup by a (arbitrary) family of subsets $\{X_i: i\in I\}$ as $\langle\; \bigcup_{i\in I} X_i\;\rangle$. In this case, if $I$ is finite, with $I = \{1, \cdots, n\}$, then we write
+    $$ \langle\; \bigcup_{i\in I} X_i\;\rangle = X_1\vee\cdots\vee X_n = \bigvee_{i=1}^n X_i. $$}
+\end{Rmk}
+
+\begin{Th}{Th1.7.2.1 (which elements $\langle X\,\rangle$ contains)}
+    Let $G$ be a group and $\varnothing\neq X\subseteq G$. Then
+    $$ \langle X\,\rangle = \Big\{a_1^{n_1}\cdots a_m^{n_m}: \quad m\in\mathbb{N}^\ast, a_i\in X, n_i\in\mathbb{Z}\Big\}. $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Df}{Df1.7.2.2 (cyclic subgroup)}
+    \begin{compactenum}
+        \item A subgroup $H$ of a group $G$ is called \textbf{cyclic} if 
+        $$ H = \langle a\rangle \quad \Big( = \langle \{a\} \rangle \Big) $$
+        for some $a\in G$. 
+        \item A group $G$ is called \textbf{cyclic} if $G = \langle a\rangle$ for some $a\in G$;
+        \item A group $G$ is called \textbf{finitely generated} if 
+        $$ G = \langle a_1, \cdots, a_n\,\rangle $$
+        for some (finitely many elements) $a_1, \cdots, a_n\in G$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Some examples of cyclic subgroups:
+    \begin{compactenum}
+        \item For any $n\in\mathbb{Z}$, we have $\langle n\rangle = n\mathbb{Z}$; conversely, if $n\mathbb{Z} = \langle a\rangle$, then $a = \pm n$.
+        \item For any $n\in\mathbb{N}$ and $n\geq 2$, we have $\mathbb{S}_n = \langle \text{transpositions in }\mathbb{S}_n\,\rangle$.
+        \item For any $n\in\mathbb{N}$ and $n\geq 2$, we have $(\mathbb{Z}/n\mathbb{Z}, +) = \langle \bar{1}\rangle$. Actually, $\mathbb{Z}/n\mathbb{Z} = \langle \bar{x}\rangle$ iff $\gcd(x, n) = 1$.
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Th}{Th1.8 (what cyclic groups exactly are)}
+    A cyclic group $G$ is either isomorphic to $(\mathbb{Z}/n\mathbb{Z}, +)$ for some $n\in\mathbb{N}$ (say $\mathbb{Z}/1\mathbb{Z} = \{\bar{0}\}$), or is isomorphic to $(\mathbb{Z}, +)$.
+    \tcblower
+    \textit{Pf}: Write $G = \langle a\rangle = \{a^n: n\in\mathbb{Z}\}$. Then:
+    \begin{compactenum}
+        \item If $G$ is finite, then 
+        $$ a^j = a^{j+n} $$
+        for some $j\in\mathbb{Z}$ and $n\in\mathbb{N}^\ast$. Say this $n$ is the smallest one (that makes the above equation hold). Then $1 = a^n$, and thus
+        $$ G = \{1, a, \cdots, a^{n-1}\} \simeq \mathbb{Z}/n\mathbb{Z}, $$
+        via the isomorphism $a^j\mapsto \bar{j}$.
+        \item If $G$ is infinite, then 
+        $$ \cdots, a^{-2}, a^{-1}, 1, a, a^2, \cdots $$
+        has no repeated elements (since otherwise we fall back into the case of finite $G$), and thus $G\simeq\mathbb{Z}$, via the isomorphism $a^n\mapsto n$.
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th1.8.1 (the subgroups of $(\mathbb{Z}, +)$)}
+    The subgroups of $(\mathbb{Z}, +)$ are exactly the $n\mathbb{Z}$'s ($n\in\mathbb{Z}$).
+    \tcblower
+    \textit{Pf}: Clearly any $n\mathbb{Z}$ ($n\in\mathbb{Z}$) is a subgroup of $(\mathbb{Z}, +)$. \\
+    Conversely, let $H$ be a subgroup of $(\mathbb{Z}, +)$, then $H$ is trivial ($H = \{0\} = 0\mathbb{Z}$) or non-trivial. If $H$ is non-trivial, then $H$ contains a non-negative element, and thus a positive element, and thus a minimal positive element, say, $n$. Then clearly
+    $$ n\mathbb{Z} \subseteq H. $$
+    Now for any $m\in H$, we claim that $n\mid m$ so that $m\in n\mathbb{Z}$. Otherwise, $\gcd(n, m) = d < n$, and thus by the Bezout identity:
+    $$ xn + ym = d $$
+    for some $x, y\in\mathbb{Z}$. Since $n, m\in H$, we have $d\in H$. But $d<n$, contradicting the minimality of $n$. Hence $H\subseteq n\mathbb{Z}$, and thus $H = n\mathbb{Z}$.
+\end{Th}
+
+\begin{Th}{Th1.8.2 (the subgroups of $(\mathbb{Z}/n\mathbb{Z}, +)$ (the group of congruence classes modulo $n$))}
+    Let $n\geq 2$ be an integer. If $H<(\mathbb{Z}/n\mathbb{Z}, +)$, then $H$ is cyclic. Exactly:
+    \begin{compactenum}
+        \item $H = \langle d\rangle$, where $d$ is the smallest integer in $\{1, \cdots, n\}$ such that $\overline{d}\in H$ (here we write $\overline{n} = \overline{0}$, and so throughout this theorem);
+        \item Consider the $d$ described above. Then any $\overline{d^\prime}$ s.t. $\gcd(d^\prime, n) = d$ can be a generator of $H$;
+        \item For any $d^\prime\in\{1, \cdots, n\}$, we have
+        $ \big|\langle \overline{d^\prime}\rangle\big| = \frac{n}{\gcd(d^\prime, n)} $.
+    \end{compactenum}
+    \tcblower
+    \textcolor{P}{\textit{Analytically}: To figure out what the subgroups of $\mathbb{Z}/n\mathbb{Z}$ are, we can try the cyclic subgroups, say, $\langle \overline{1}\rangle < \mathbb{Z}/10\mathbb{Z}$, $\langle \overline{2}\rangle < \mathbb{Z}/10\mathbb{Z}$, $\langle \overline{3}\rangle < \mathbb{Z}/10\mathbb{Z}$ and so on, by which we would derive this theorem.} \\
+    \textit{Pf}: 
+    \begin{compactenum} 
+        \item Let $H<\mathbb{Z}/n\mathbb{Z}$. First prove that $H = \langle \overline{d}\rangle$. Clearly $\langle \overline{d}\rangle < H$. Then consider $\overline{h}\in H$ ($h\in\{1,\cdots,n\}$). We claim that $d\mid h$, and then we complete the proof of this part (since if $d\mid h$, then $\overline{h}\in\langle\overline{d}\rangle$). Consider $\gcd(h, d)$, we first have $\gcd(h, d) \leq d$. Now write the Bezout identity:
+        $$ xh + yd = \gcd(h, d), $$
+        and thus $\overline{xh} + \overline{yd} = \overline{\gcd(h, d)} $. Since $\overline{h}, \overline{d}\in H$, we have $\overline{\gcd(h, d)}\in H$, and thus by the minimality of $d$ we get $\gcd(h, d) \geq d$, and thus $\gcd(h, d) = d$, and thus $d\mid h$.
+        \item If we have some $d^\prime\in\{1,\cdots,n\}$ s.t. $\gcd(d^\prime, n) = d$, then we claim that $\langle \overline{d^\prime}\rangle = \langle \overline{d}\rangle$. We first have $\langle \overline{d^\prime}\rangle < \langle d \rangle$. For the other direction, write again the Bezout identity:
+        $$ d = xd^\prime + yn, $$
+        and thus $d\equiv xd^\prime$ modulo $n$, and thus $\overline{d} = \overline{xd^\prime}\in\langle \overline{d^\prime}\rangle$, and thus $\langle \overline{d}\rangle = \langle \overline{d^\prime}\rangle = H$.
+        \item Clearly $\langle \overline{d^\prime}\rangle$ consists of $\overline{d^\prime}, \overline{2d^\prime}, \cdots$, and the list stops exactly when $\overline{kd^\prime}$ reaches a multiple of $n$ for the first time. Thus it is obvious that:
+        $$ \big|\langle \overline{d^\prime}\rangle\big| = \frac{\lcm(d^\prime, n)}{d^\prime} = \frac{d^\prime n}{\gcd(d^\prime, n)d^\prime} = \frac{n}{\gcd(d^\prime, n)}. $$
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th1.8.3 ($\big|\langle a\rangle\big| = |a|$)}
+    Let $G$ be a cyclic group with $G = \langle a\rangle$. Then $|G| = |a|$. Actually, if $|a|$ is finite, then
+    $$ G = \{a, a^2, \cdots, a^{|a|}(=\text{identity})\}. $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th1.8.4}
+    Every homomorphic image and every subgroup of a cyclic group is cyclic.
+    \tcblower
+    \textit{Pf}: For the group homomorphism $f:\langle a\rangle\to K$, we have $\text{Im} f = f(\langle a \rangle) = \langle f(a)\rangle$. For a subgroup of a cyclic group, we can treat it as a subgroup of $\mathbb{Z}$ or a subgroup of $\mathbb{Z}/n\mathbb{Z}$, which has been thouroughly discussed in the Th \{, ID: 1.8.1\} and the Th \{, ID: 1.8.2\}.
+\end{Th}
+
+\begin{Th}{Th1.8.5}
+    A group is finite iff it has only finitely many subgroups.
+    \tcblower
+    \textit{Pf}: The ``only if'' is obvious. Now suppose a group $G$ has only finitely many subgroups. If otherwise $G$ is infinite, then select $1\neq a\in G$, and consider $\langle a\rangle$. If $\langle a\rangle \simeq \mathbb{Z}$, then (just like $\mathbb{Z}$) $\langle a\rangle$ has infinitely many subgroups (also subgroups of $G$), contradiction. Thus $\langle a\rangle$ is a finite subgroup of $G$. Then select $1\neq b \in G$ s.t. $b\notin\langle a\rangle$, and still, $\langle b\rangle$ is finite, and it is another subgroup of $G$. By repeating this process we would get infinitely many subgroups of $G$, contradiction.
+\end{Th}
+
+\begin{Th}{Th1.8.6}
+    An infinite group is cyclic iff it it isomorphic to each of its proper subgroups.
+    \tcblower
+    \textit{Pf}: The ``Only if'' is obvious. Now suppose $G$ is infinite and isomorphic to each of its proper subgroups. Then $G\simeq \langle a\rangle$ for some $a\in G$, indicating that $G$ is cyclic.
+\end{Th}
+
+\begin{Th}{Ex1.8.7}
+    Suppose $G$ is an Abelian group, and $a, b\in G$, $|a|, |b| < \infty$. Prove that there is an element in $G$ whose order is $\lcm(|a|, |b|)$.
+    \tcblower
+    \textit{Solution}: 
+    \begin{compactenum}
+        \item First assume that $\gcd(|a|, |b|) = 1$. Then we claim that $|ab| = |a||b| = \lcm(|a|, |b|)$. On one hand, $|ab|$ divides $|a||b|$ since 
+        $$ (ab)^{|a||b|} \xlongequal{G \text{ is Abelian}} a^{|a||b|}b^{|b||a|} = 1. $$
+        On the other hand, $|a||b|$ divides $|ab|$. Actually, since $(ab)^{|ab|} = 1$, we have
+        $$ a^{|b||ab|} = a^{|b||ab|}b^{|b||ab|} = (ab)^{|b||ab|} = 1, $$
+        and thus $|a|$ divides $|b||ab|$. By the Bezout identity $x|a| + y|b| = 1$, we have
+        $$ x|a||ab| + y|b||ab| = |ab|. $$
+        Since $|a|$ divides $|b||ab|$, and thus divides the left side of the identity, we obtain that $a$ divides $|ab|$. By a similar argument we have that $|b|$ divides $|ab|$. Thus $|ab|$ is a common multiple of $|a|$ and $|b|$, and thus $|a||b| = \lcm(|a|, |b|)$ divides $|ab|$.
+        \item Then consider the general case $\gcd(|a|, |b|) = d$. Denote $|a| = m$, $|b| = n$. A natural idea is to reduce it to the previous case, which requires us to write 
+        $$ \lcm(m,n) = m^\prime n^\prime $$
+        for some $m^\prime$, $n^\prime$ s.t. $m^\prime|m$, $n^\prime|n$ and $\gcd(m^\prime, n^\prime) = 1$. This can be achieved by first performing the prime-factorization:
+        $$ \begin{aligned}
+            &\lcm(m,n) = \frac{m}{d}\cdot d\cdot\frac{n}{d} = p\cdot d\cdot q \\
+            &= \underbrace{\prod_{i} p_i}_p \underbrace{\prod_{i} p_{k_i} \prod_{i} r_i \prod_{i} q_{k_i}}_d \underbrace{\prod_{i} q_i}_q \\
+            &= \Pi_1\Pi_2\Pi_3\Pi_4\Pi_5,
+        \end{aligned} $$
+        where the $p_i$'s, $r_i$'s, $q_i$'s are primes, and $\{p_i\}$, $\{q_i\}$, $\{r_i\}$ are disjoint. Now let $m^\prime = \Pi_1\Pi_2\Pi_3$, $n^\prime = \Pi_4\Pi_5$, and we can easily check that $m^\prime$ and $n^\prime$ satisfy the requirements. Therefore by the previous case, we have $|a^{m/m^\prime}| = m^\prime$ and $|b^{n/n^\prime}| = n^\prime$, and thus
+        $$ |a^{m/m^\prime}b^{n/n^\prime}| = m^\prime n^\prime = \lcm(m,n). $$
+    \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.9 (left and right congruence)}
+    Let $G$ be a group and $H<G$. Then for $a, b\in G$, we say that $a$ is \textbf{right congruent} (resp. \textbf{left congruent}) to $b$ modulo $H$, denoted as $a\equiv_r b\pmod{H}$ (resp. $a\equiv_l b\pmod{H}$), if
+    $$ ab^{-1}\in H \quad (\text{resp. } a^{-1}b\in H). $$
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item The concept of right (and left) congruence comes from the congruence in number theory. \textcolor{Th}{In number theory, the congruence modulo $n$ is both a left congruence and a right congruence modulo $n\mathbb{Z}$, in the group $G = (\mathbb{Z}, +)$.}
+        \item Unlike the literal meaning, \textcolor{Th}{$a\equiv_r b\pmod{H}$ is not equivalent to $b\equiv_l a\pmod{H}$}. 
+        \item Obviously, \textcolor{Th}{in Abelian groups, the left and right congruences coincides. But this is not true in general.} 
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th1.9.1 (the right (resp. left) congruence is an equivalence relation)}
+    Let $G$ be a group and $H<G$. Then:
+    \begin{compactenum}
+        \item The right (resp. left) congruence modulo $H$ is an equivalence relation on $G$.
+        \item The equivalence class of $a\in G$ under the right (resp. left) congruence modulo $H$ is $Ha \triangleq \{ha: h\in H\}$ (resp. $aH \triangleq \{ah: h\in H\}$).
+        \item For any $a\in G$, $|Ha| = |aH| = |H|$.
+    \end{compactenum}
+    \textcolor{Df}{And we call $Ha$ (resp. $aH$) a \textbf{right coset} (resp. \textbf{left coset}) of $H$ in $G$.}
+    \tcblower
+    \textit{Pf}:
+    \begin{compactenum}
+        \item Obvious.
+        \item The verification is obvious. About how to derive what the equivalence class is, we think like this:
+        $$ \text{The equivalence class of } a = \{b\in G: ab^{-1}\in H\} = A(a, H), $$
+        that is, the equivalence class of $a$ should be a set only depends on $a$ and $H$. How can a $b$ makes $ab^{-1}\in H$? Since we have little information about how $a$ is related to $H$ (that is, we can not expect whether or not $a\in H$), we can only let $b$ first eliminate the $a$ in $ab^{-1}$, and then let the product fall into $H$. Thus $b^{-1} = a^{-1}h$ for some $h\in H$ is suitable, namely, $b = ha$ for some $h\in H$. Thus $A(a, H) = Ha$.
+        \item Obvious, as we can immediately construct a bijection from $H$ to $Ha$:
+        $$ h\mapsto ha. $$
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th1.9.2}
+    Suppose $G$ is a group and $H<G$. Then:
+    \begin{compactenum}
+        \item $G = \bigcup_{a\in G} Ha = \bigcup_{a\in G} aH$;
+        \item Let $\mathcal{R} = \{Ha: a\in G\}$ and $\mathcal{L} = \{aH: a\in G\}$. Then $|\mathcal{R}| = |\mathcal{L}|$. 
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}:
+    \begin{compactenum}
+        \item Obvious.
+        \item Just verify the map $Ha\mapsto a^{-1}H$ is a bijection from $\mathcal{R}$ to $\mathcal{L}$.
+    \end{compactenum}
+    \textcolor{P}{\textit{Thoughtfully}: To verify $|\mathcal{R}| = |\mathcal{L}|$, the map is constructed as $Ha\mapsto a^{-1}H$, but not $Ha\mapsto aH$. This is to make the map well-defined.}
+\end{Th}
+
+\begin{Df}{Df1.9.3 (index of subgroup, and representatives of cosets)}
+    Let $G$ be a group and $H<G$. Then 
+    \begin{compactenum}
+        \item The \textbf{index} of $H$ in $G$, denoted as $[G:H]$, is the cardinality of the family of right cosets of $H$ in $G$ (recall the Th \{, ID: 1.9.2\}, we have $[G:H] = |\mathcal{R}| = |\mathcal{L}|$ of course).
+        \item A \textbf{complete set of right (resp. left) coset representatives} of $H$ in $G$ is a set contains and only contains exactly one element from each right (resp. left) coset of $H$ in $G$. This definition is well-defined according to the axiom of choice.
+    \end{compactenum}
+\end{Df}
+
+\begin{Th}{Th1.9.4 (the transitivity of the index)}
+    Let $G$ be a group and $K<H<G$. Then
+    $$ [G:K] = [G:H][H:K]. $$
+    \tcblower
+    \textcolor{P}{\textit{Analytically}: To prove the product of cardinalities equals another cardinality, we can only construct a bijection from a Cartisian product to another set.} \\
+    \textit{Pf}: Consider the map $f: \{Kh\}\times\{Hg\}\to \{Kg\}$ defined as
+    $$ (Kh, Hg)\mapsto Khg. $$
+    We have to constrain the values of $h$ and $g$. Actually, we specify that $I$ (resp. $J$) is a complete set of right coset representatives of $H$ in $G$ (resp. of $K$ in $H$), and thus
+    $$ |I| = [G:H], \quad |J| = [H:K], $$
+    and the map $f$ is actually defined as 
+    $$ (Kh, Hg)\mapsto Khg \quad \text{for } h\in I, g\in J. $$
+    \begin{compactenum}
+        \item $f$ is well-defined, as the specification of $I$ and $J$ solves the ambiguity of the product $Khg$.
+        \item $f$ is injective. If $Khg = Kh^\prime g^\prime$, then $hgg^{\prime-1}h^{\prime-1}\in K\subseteq H$, and thus (by cancelling $h$ and $h^{\prime-1}$) $gg^{\prime-1}\in H$. Since $g, g^\prime\in J$, we have $g = g^\prime$. Then $K\ni hgg^{\prime-1}h^{\prime-1} = hgg^{-1}h^{\prime-1} = hh^{\prime-1}$, and thus $h = h^\prime$, and thus $(Kh, Hg) = (Kh^\prime, Hg^\prime)$.
+        \item $f$ is surjective. For $Kg^\prime\in\{Kg\}$, we choose a $g\in J$ s.t. $Hg = Hg^\prime$. Then $g^\prime g^{-1}\in H$, and thus $g^\prime g^{-1} = h^\prime \in Kh$ for some $h\in I$, and thus $g^\prime g^{-1} = kh$ for some $k\in K$, and thus
+        $$ Kg^\prime = Khg. $$
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Clry1.9.4.1 (Lagrange theorem)}
+    Let $G$ be a group and $H<G$. Then
+    $$ |G| = [G:H]|H|. $$
+    \tcblower
+    \textit{Pf}: Obvious, as we let $K = \{1\}$ in the Th \{, ID: 1.9.4\}.
+\end{Th}
+
+\begin{Df}{Df1.10 ($HK$)}
+    Let $G$ be a group and $H, K\subseteq G$. Then the \textbf{product} of $H$ and $K$ is defined as
+    $$ HK \triangleq \{hk: h\in H, k\in K\}. $$
+\end{Df}
+
+\begin{Th}{Th1.10.1 (properties of $HK$)}
+    Let $G$ be a group.
+    \begin{compactenum}
+        \item (Cosets) For $H<G$, we have $Ha = H\{a\}$ and $aH = \{a\}H$;
+        \item (Associative) For $A, B, C\subseteq G$, we have $(AB)C = A(BC)$;
+        \item ((Two-sided) Distributive over Union) Suppose $A\subseteq G$ and $\{B_i: i\in I\}$ is a family of subsets $B_i$ of $G$. Then
+        $$ A\Big(\bigcup_{i\in I} B_i\Big) = \bigcup_{i\in I} (AB_i), \quad \Big(\bigcup_{i\in I} B_i\Big)A = \bigcup_{i\in I} (B_iA). $$
+        \item (Absorption) If $K<H<G$, then $HK = H$.
+        \item (Subgroup) For $H, K<G$, their product $HK$ is not necessarily a subgroup of $G$. But we have
+        $$ HK < G \quad \Longleftrightarrow \quad HK = KH \quad \Longleftrightarrow \quad KH < G. $$
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}:
+    \begin{compactenum}
+        \item Obvious.
+        \item Obvious.
+        \item Obvious.
+        \item Obvious.
+        \item The second equivalence can be implied by the first one. Now prove the ``$\Rightarrow$'' of the first equivalence. We have:
+        $$ \begin{aligned}
+            & h_1k_1 k_2^{-1}h_2^{-1} \in HK \quad (\text{by Th \{, ID: 1.7.1\}}) \\
+            \Longrightarrow \quad & h_1k_1 k_2^{-1}h_2^{-1} = h_3k_3 \\
+            \Longrightarrow \quad & (k_1^{-1}h_1^{-1})^{-1}k_2^{-1}h_2^{-1} = h_3k_3 = (h_4k_4)^{-1} = k_4^{-1}h_4^{-1} = k_5h_5 \in KH \\
+            \Longrightarrow \quad & (k_1h_1)^{-1}(k_2h_2) \in KH \quad (\text{replace } h_1, k_1, h_2, k_2 \text{ by their inverses}) \\
+            \Longrightarrow \quad & KH < G \quad (\text{by Th \{, ID: 1.7.1\}}).
+        \end{aligned} $$
+        Then we can show that $HK$ and $KH$ contain each other, one direction of which is given by:
+        $$ \forall\; hk = (k^{-1}h^{-1})^{-1} = (k^\prime h^\prime)^{-1} = k^{\prime\prime} h^{\prime\prime} \in KH. $$
+        Then for the $\Leftarrow$ of the first equivalence, we have:
+        $$ \forall\; h_1k_1(h_2k_2)^{-1} = h_1(k_1k_2^{-1})h_2^{-1} = h_1(k_3h_2^{-1}) = (h_1h_3)k_4 = h_4k_4 \in KH $$
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th1.10.2 (cardinalities involving $HK$)}
+    Let $G$ be a group and $H, K<G$. Then
+    \begin{compactenum}
+        \item $|HK|\cdot |H\cap K| = |H|\cdot |K|$.
+        \item $[H:H\cap K] \leq [G:K]$. If $[G:K]$ is finite, then the equality holds iff $G = HK$ (resp. $G = KH$).
+        \item $[G:H\cap K] \leq [G:H][G:K]$. If $[G:H]$ and $[G:K]$ are both finite, then the equality holds iff $G = HK$ (resp. $G = KH$).
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}:
+    \begin{compactenum}
+        \item Denote $C = H\cap K$, then $C<H, K$, and thus by the Lagrange theorem we have $|K| = [K:C]\cdot |C|$, and thus:
+        $$ |H|\cdot |K| = |H|\cdot [K:C]\cdot |C|, $$
+        and thus it suffices to show that $|H|\cdot [K:C] = |HK|$. Now consider showing this map is bijective: $f: H\times I \to HK$ defined as
+        $$ (h, k)\mapsto hk, $$
+        where $I$ is a complete set of right coset representatives of $C$ in $K$. If $h_1k_1 = h_2k_2$, then $k_1k_2^{-1} = h_1^{-1}h_2\in H$, and thus $k_1k_2^{-1} \in H\cap K = C$, and thus $k_1 = k_2$, and thus $h_1 = h_2$, and thus $f$ is injective. For surjectivity, we affirm it by the fact that $HK = \bigcup_{k\in I} Hk$. Actually, since $K = \bigcup_{k\in I} Ck$, we can multiply $H$ on both sides to get the desired result, using the absorption and distributive properties of subsets product.
+        \item Consider showing the map $f: A\to B$ is injective, where
+        $$ A = \{(H\cap K)h: h\in H\}, \quad B = \{Kg: g\in G\} \quad\text{and}\quad f((H\cap K)h) = Kh. $$
+        This is obvious. If the cardinalities are finite, then the equality holds iff $|A| = |B|$, and thus iff $f$ is surjective (note that the second ``iff'' is not true if the cardinalities are infinite). Then $f$ is surjective 
+        $$ \begin{aligned}
+            \Longleftrightarrow \quad & \forall g\in G,\; \exists h\in H,\; Kg = Kh, \\
+            \Longleftrightarrow \quad & \forall g\in G,\; \exists h\in H,\; gh^{-1}\in K, \\
+            \Longleftrightarrow \quad & \forall g\in G,\; \exists h\in H,\; \exists k\in K,\; gh^{-1} = k, \\
+            \Longleftrightarrow \quad & \forall g\in G,\; \exists h\in H,\; \exists k\in K,\; g = hk, \\
+            \Longleftrightarrow \quad & \forall g\in G,\; g\in HK \\
+            \Longleftrightarrow \quad & G = HK.
+        \end{aligned} $$
+        And by the Th \{, ID: 1.10.1\}, we know that if $G = HK$, then $HK < G$ and thus $KH = HK = G$.
+        \item We have:
+        $$ \begin{aligned}\relax % \relax is used to prevent the warning of "Bracket group [xxx] at formula start!"
+            [G:H\cap K] &= [G:H][H:H\cap K] \quad (\text{by the Th \{, ID: 1.9.4\}}) \\
+            &\leq [G:H][G:K] \quad (\text{by 2.}) 
+        \end{aligned} $$
+    \end{compactenum}
+\end{Th}
+
+\end{document}

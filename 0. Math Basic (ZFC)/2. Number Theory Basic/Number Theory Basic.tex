@@ -1,0 +1,247 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Number Theory Basic}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\lcm}{\text{lcm}}
+\begin{document}
+\maketitle
+
+This is the 2nd chapter of Math Basic (ZFC), which is about the \textbf{Number Theory Basic}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item $\mathbb{R}$: the set of the real numbers; $\mathbb{R}_\infty = \mathbb{R}\cup\{-\infty, \infty\}$;
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+        \item Keep coincident in the notions and notations of functions with the chapter 1 of course 0, including the ones of domain, range, restriction, image, pre-image, inverse and composition. Specifically for a function $f: A\rightarrow B$ and some sets $E\subseteq A$ and $F\subseteq B$, the image of $E$ and the pre-image of $F$ under $f$ are just:
+        $$f[E] = \{f(x): x\in E\},\quad f^{-1}[F] = \{x\in A: f(x)\in F\}$$
+        \item A set of sets is called a collection or a family.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (2.1.*): Theory of divisibility (division with remainder, prime number, gcd and lcm, Euclidean algorithm, fundamental theorem of arithmetic, etc).
+        \item (2.2.*): Congruence, congruence class ring.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df2.1 (divisibility)}
+    Let $a, b\in\mathbb{Z}$ and $b\neq 0$. We say that $b$ \textbf{(exactly) divides} $a$ (or $a$ is divisible by $b$), denoted by $b|a$, if
+    $$a = bq $$
+    for some $q\in\mathbb{Z}$. In this case, $b$ is called a \textbf{divisor} of $a$, and $a$ is called a \textbf{multiple} of $b$. If $b$ does not divide $a$, we write $b\nmid a$.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Th}{For any $a, b, c\in\mathbb{Z}$:
+        \begin{compactenum}
+            \item If $a|b$ and $b|c$, then $a|c$;
+            \item If $a|b$ and $a|c$, then $a|(bx+cy)$ for any $x, y\in\mathbb{Z}$;
+            \item If $a|b$, then $|a|\leq |b|$; If $a|b$ and $b|a$, then $a = \pm b$,
+        \end{compactenum}}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th2.1.1 (division with remainder)}
+    For any $a, b\in\mathbb{Z}$ and $b\neq 0$, there exist unique integers $q, r$ such that
+    $$a = bq + r$$
+    and $0\leq r < |b|$. \textcolor{Df}{Here $q$ is called the \textbf{quotient} and $r$ is called the \textbf{remainder} of the division (of $a$ by $b$).}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Df}{Df2.1.2 (prime number)}
+    Let $p\in\mathbb{Z}$ and $p\neq 0, \pm 1$. Then $p$ is called a \textbf{prime number} if the only divisors of $p$ are $\pm 1$ and $\pm p$. Otherwise (still $p\neq 0, \pm 1$), $p$ is called a \textbf{composite number}.
+\end{Df}
+
+\begin{Df}{Df2.1.3 (gcd and lcm)}
+    Let $a, b\in\mathbb{Z}\setminus \{0\}$. The \textbf{greatest common divisor} of $a$ and $b$, denoted by $\gcd(a, b)$, is the largest positive integer that divides both $a$ and $b$; the \textbf{least common multiple} of $a$ and $b$, denoted by $\lcm(a, b)$, is the smallest positive integer that is divisible by both $a$ and $b$. \textcolor{Th}{Clearly, the $\gcd$ and $\lcm$ are always existent and unique.}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Df}{If clear from the context, we can also write $\gcd(a, b)$ as $(a, b)$ and $\lcm(a, b)$ as $[a, b]$.}
+        \item \textcolor{Df}{We can similarly define the $\gcd$ and $\lcm$ of $a_1, \cdots, a_n\in\mathbb{Z}\setminus \{0\}$.} And we simply have: 
+            \textcolor{Th}{$$ \begin{aligned}
+                \gcd(a_1, \cdots, a_n) &= \gcd(\gcd(a_1, \cdots, a_{n-1}), a_n) \\
+                \lcm(a_1, \cdots, a_n) &= \lcm(\lcm(a_1, \cdots, a_{n-1}), a_n)
+            \end{aligned} $$}
+        \item \textcolor{Th}{If $M$ is a common multiple of $a$ and $b$, then $M$ is a multiple of $\lcm(a, b)$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df2.1.3.1 (coprime)}
+    Let $a, b\in\mathbb{Z}\setminus \{0\}$. We say that $a$ and $b$ are \textbf{coprime} (or \textbf{relatively prime}) if $\gcd(a, b) = 1$.
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Df}{Similar, define the ``coprime'' integers $a_1, \cdots, a_n$.}
+\end{Rmk}
+
+\begin{Df}{Df2.1.4 (Euclidean algorithm)}
+    For any $a, b\in\mathbb{Z}\setminus \{0\}$, the Euclidean algorithm is to compute the following sequence of divisions with remainder:
+    $$ \begin{aligned}
+        a &= bq_1 + r_1, \quad 0\leq r_1 < |b| \\
+        b &= r_1q_2 + r_2, \quad 0\leq r_2 < r_1 \\
+        r_1 &= r_2q_3 + r_3, \quad 0\leq r_3 < r_2 \\
+        &\dots \\
+        r_{n-2} &= r_{n-1}q_n + r_n, \quad 0\leq r_n < r_{n-1} \\
+        r_{n-1} &= r_nq_{n+1} + 0
+    \end{aligned} $$
+    \textcolor{Th}{Since $r_k$ is strictly decreasing and non-negative, the algorithm must terminate after a finite number of steps.}
+\end{Df}
+
+\begin{Th}{Th2.1.4.1 (Euclidean algorithm obtains the gcd)}
+    \begin{compactenum}
+        \item For any $a, b\in\mathbb{Z}\setminus \{0\}$ with the division (with remainder) as $a = bq + r$, we have $\gcd(a, b) = \gcd(b, r)$;
+        \item For any $a, b\in\mathbb{Z}\setminus \{0\}$, if the Euclidean algorithm in Df \{, ID: 2.1.4\} is applied, then $r_n = \gcd(a, b)$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th2.1.4.2 (Bezout identity)}
+    For any $a, b\in\mathbb{Z}\setminus \{0\}$, there are integers $x, y$ such that
+    $$ ax + by = \gcd(a, b) $$.
+    \tcblower
+    \textit{Pf}: Obvious by recursion of the Euclidean algorithm.
+\end{Th}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Th}{This theorem still holds for $\gcd(a_1, \cdots, a_n)$.}
+        \item \textcolor{Th}{The $x, y$ of the Bezout identity are not unique.}
+        \item \textcolor{Th}{Suppose $a, b\in\mathbb{Z}\setminus \{0\}$. Then $a$ and $b$ are coprime iff $ax + by = 1$ for some integers $x, y$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th2.1.5 (fundamental theorem of arithmetic)}
+    Let $n\in\mathbb{Z}$ and $n\neq 0, \pm 1$. Then $n$ can be uniquely written as a product of prime numbers (up to the order and the signs of the prime numbers).
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th2.1.5.1}
+    Let $a, b\in\mathbb{Z}\setminus \{0\}$. Then $\gcd(a, b)\cdot \lcm(a, b) = |ab|$.
+    \tcblower
+    \textit{Pf}: Obvious by the fundamental theorem of arithmetic.
+\end{Th}
+
+\begin{Th}{Th2.1.5.2 (Euclid)}
+    There are infinitely many prime numbers.
+    \tcblower
+    \textit{Pf}: Obvious by the fundamental theorem of arithmetic.
+\end{Th}
+
+\begin{Df}{Df2.2 (congruence)}
+    Let $a, b, m\in\mathbb{Z}$ and $m\geq 2$. We say that $a$ is \textbf{congruent to} $b$ \textbf{modulo} $m$, denoted by $a\equiv b\pmod{m}$, if
+    $$ m|(a-b) $$
+    (or equivalently, the remainders of $a$ and $b$ divided by $m$ respectively are the same). In this case, $m$ is called the \textbf{modulus} of the congruence $a\equiv b$
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Th}{Obviously, the congruence relation is an equivalence relation on $\mathbb{Z}$. For modulus $m$, the congruence results in $m$ equivalence classes} \textcolor{Df}{(called \textbf{congruence classes})} \textcolor{Th}{$\bar{0}, \bar{1}, \cdots, \overline{m-1}$, where}
+        \textcolor{Df}{$$ \bar{k} \triangleq \{x\in\mathbb{Z}: x\equiv k\pmod{m}\} $$}
+        \item \textcolor{Th}{The} \textcolor{Df}{(\textbf{addition and multiplication of congruence classes})} defined below are well-defined:
+        \textcolor{Th}{$$ \begin{aligned}
+            \bar{a} + \bar{b} &\triangleq \overline{a+b} \\
+            \bar{a}\cdot \bar{b} &\triangleq \overline{a\cdot b}
+        \end{aligned} $$}
+        \item If $a\equiv b\pmod{m}$, and $d\mid a, b$, then
+        $$ \frac{a}{d} \equiv \frac{b}{d}\pmod{\Bigg|\frac{m}{\gcd(m, d)}\Bigg|} $$
+        \item Let $a, b, m_1, m_2,\cdots, m_s\in\mathbb{Z}$ and $m_1, m_2,\cdots, m_s\geq 2$. Then $a\equiv b\pmod{m_i}$ for all $i = 1, 2,\cdots s$ iff 
+        $$ a\equiv b\pmod{\lcm(m_1, m_2,\cdots, m_s)} $$
+        \item \textcolor{Df}{For modulus $m$, denote $m\mathbb{Z} = \{mz: z\in\mathbb{Z}\}$, $a + m\mathbb{Z} = \{a+mz: z\in\mathbb{Z}\}$.} \textcolor{Th}{Then the congruence classes are just
+        $$ \bar{a} = a + m\mathbb{Z} $$
+        (for any $a\in\mathbb{Z}$),} \textcolor{Df}{and we can denote
+        $$ \mathbb{Z}/m\mathbb{Z} = \{\bar{0}, \bar{1}, \cdots, \overline{m-1}\}, $$
+        which is called the \textbf{congruence class ring (modulo $m$)}.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df2.2.1 (congruence class ring)}
+    Defined as in Rmk \{, ID: 2.2\}.
+\end{Df}
+
+\begin{Df}{Df2.2.1.1 (the inverse of a congruence class)}
+    In $\mathbb{Z}/n\mathbb{Z}$, the \textbf{inverse} of a congruence class $\bar{a}$ is the congruence class $\bar{b}$ such that
+    $$ \bar{a}\cdot \bar{b} = \bar{1} $$.
+    If $\bar{a}$ has an inverse, then $\bar{a}$ is called a \textbf{unit}.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Th}{Clearly, the inverse of a congruence class is a two-sided inverse, that is, if $\bar{a}$ is a unit with an inverse $\bar{b}$, then $\overline{ab} = \overline{ba} = \overline{1}$.} 
+        \item \textcolor{Th}{Of course, the inverse of a congruence class is unique.} This is because if $\bar{a}$ has inverses $\overline{b_1}$ and $\overline{b_2}$, then
+        $$ \overline{b_1} = \overline{b_1\cdot 1} = \overline{b_1}\cdot \overline{1} = \overline{b_1}\cdot \overline{ab_2} = \overline{b_1ab_2} = \overline{b_1a}\cdot \overline{b_2} = \overline{1}\cdot \overline{b_2} = \overline{1\cdot b_2} = \overline{b_2}. $$
+        \item \textcolor{Df}{Denote the set of units in $\mathbb{Z}/n\mathbb{Z}$ as $(\mathbb{Z}/n\mathbb{Z})^\ast$.} (Here $\ast$ should be interpreted as ``multiplication'', and the reason for this notation will be clear when we introduce the group theory in the course 5.)
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df2.2.1.2 (Euler $\varphi$ function)}
+    For any $n\in\mathbb{N}^\ast$, the \textbf{Euler $\varphi$ function} is defined as
+    $$ \varphi(n) = \# \{k\in\{1, \cdots, n\}: \gcd(k, n) = 1\} $$
+    (where $\#$ denotes the Cardinality of a set, namely, the number of elements in the set here).
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{In fact,
+    $$ \varphi(n) = \# (\mathbb{Z}/n\mathbb{Z})^\ast. $$}
+    This is because 
+    $$ \overline{ab} = \overline{1} \Leftrightarrow n\mid (ab-1) \Leftrightarrow ba + xn = 1 \text{ for some } x\in\mathbb{Z} \Leftrightarrow \gcd(a, n) = 1. $$
+\end{Rmk}
+
+\begin{Th}{Th2.2.1.2.1 (basic properties of the Euler $\varphi$)}
+    \begin{compactenum}
+        \item For any $n$ with the prime factorization $n = p_1^{\alpha_1}\cdots p_s^{\alpha_s}$ ($p_1, \cdots, p_s$ are distinct), the Euler $\varphi$ function is
+        $$ \varphi(n) = n\prod_{i=1}^{s} \left(1-\frac{1}{p_i}\right). $$
+        \item (Half-multiplicative property) For any $a, b\in\mathbb{N}^\ast$ with $\gcd(a, b) = 1$, we have
+        $$ \varphi(ab) = \varphi(a)\varphi(b). $$
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item $\varphi(n) = n - \# \{m\in\{1, \cdots, n\}: \gcd(m, n) \neq 1\} = n - \# (P_1\cap\cdots\cap P_s)$, where 
+        $$ P_i = \{m\in\{1, \cdots, n\}: p_i\mid m\}. $$
+        Clearly 
+        $$ \# \bigcap_{i\in \{i_1, \cdots, i_k\}} P_i = n\Big/\prod_{i\in \{i_1, \cdots, i_k\}} p_i. $$ 
+        Then by the principle of inclusion-exclusion, we have (denote $|P_i| = \# P_i$ for beauty)
+        $$ \begin{aligned}
+            \varphi(n) &= n - |P_1\cap\cdots\cap P_s| \\
+            &= n - \sum_{i} |P_i| + \sum_{i<j} |P_i\cap P_j| - \sum_{i<j<k} |P_i\cap P_j\cap P_k| + \cdots \\
+            &= n\prod_{i=1}^{s} \left(1-\frac{1}{p_i}\right). 
+        \end{aligned} $$ 
+        \item Obvious by 1.
+    \end{compactenum}
+\end{Th}
+
+\end{document}
