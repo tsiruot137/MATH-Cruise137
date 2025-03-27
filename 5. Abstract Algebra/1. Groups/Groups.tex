@@ -14,6 +14,7 @@
     \usepackage{amssymb}
     \usepackage{amsmath}
     \usepackage{extarrows}
+    \usepackage{tikz-cd}
 
     \usepackage{tcolorbox}
     \definecolor{Df}{RGB}{0, 184, 148}
@@ -30,6 +31,13 @@
     % new commands for formula typying
     \newcommand{\lcm}{\text{lcm}}
     \newcommand{\cycl}{\text{cycl}}
+    \newcommand{\nles}{\vartriangleleft}
+    \newcommand{\notnles}{\ntriangleleft}
+    \newcommand{\Ker}{\text{Ker}\,}
+    \newcommand{\Ima}{\text{Im}\,}
+    \newcommand{\hooktwoheadrightarrow}{%
+        \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
+
 \begin{document}
 \maketitle
 
@@ -51,6 +59,7 @@ Here is the \textbf{Quick Search} for this chapter:
         \item (1.8.*): Cyclic groups.
         \item (1.9.*): Cosets.
         \item (1.10.*): $HK$.
+        \item (1.11.*): Normal subgroups.
     \end{compactdesc}
 \end{Th}
 
@@ -172,7 +181,7 @@ Then with everything prepared, here we go.
         \item \textcolor{Df}{A $2$-cycle is called a \textbf{transposition}.} 
         \item \textcolor{Th}{The elements in a cycle are distinct,} that is, for a cycle $(a_1, \cdots, a_n)$, it must be that $a_i\neq a_j$ for any $i\neq j$. If otherwise $a_i=a_j=a$ for some $i\neq j$, then $\sigma$ maps two different elements to $a$, and thus $\sigma$ is not a bijection.
         \item \textcolor{Th}{A cycle of length $1$, say, $(3)$, is the identity map.} \textcolor{Df}{In this case let us just omit it}.
-        \item \textcolor{Th}{Cycles are of circulant symmetry, that is, for example, $(3, 5, 2, 9, 7) = (5, 2, 9, 7, 3) = (2, 9, 7, 3, 5) = \cdots$.}
+        \item \textcolor{Th}{Cycles are of circulant symmetry, that is, for example, $(3, 5, 2, 9, 7) = (5, 2, 9, 7, 3) = (2, 9, 7, 3, 5) = \cdots$. This is also true conversely, that is, for two expressions $(a_1, \cdots, a_n)$ and $(a_{m_1}, \cdots, a_{m_n})$ of the same cycle, they are of circulant symmetry.}
         \item \textcolor{Th}{Not all permutations are cycles.} For example, the permutation $f\in\mathbb{S}_4$ such that $f(1,2,3,4) = (3,4,1,2)$ is not a cycle. Actually, if otherwise $f$ is a cycle, then we write down $f$ beginning with $1$:
         $$ f = \left(1, \right. = \left(1, 3, \right. = \left(1, 3\right) $$
         which means that $f(2) = 2$ and $f(4) = 4$, contradiction.
@@ -239,19 +248,22 @@ Then with everything prepared, here we go.
 \begin{Df}{Df1.6.1 (kernel and image of a homomorphism)}
     Let $G$ and $H$ are groups, and $f: G\to H$ be a homomorphism. Then:
     \begin{compactenum}
-        \item the \textbf{(homomorphism) kernel} of $f$, denoted as $\ker f$, is defined as $\ker f = \{a\in G: f(a) = 1_H\}$;
-        \item the \textbf{(homomorphism) image} of $f$, denoted as $\mathrm{Im} f$, is defined as $\mathrm{Im} f = \{f(a): a\in G\}$.
+        \item the \textbf{(homomorphism) kernel} of $f$, denoted as $\Ker f$, is defined as $\Ker f = \{a\in G: f(a) = 1_H\}$;
+        \item the \textbf{(homomorphism) image} of $f$, denoted as $\Ima f$, is defined as $\Ima f = \{f(a): a\in G\}$.
     \end{compactenum}
 \end{Df}
 
 \begin{Th}{Th1.6.2}
     Let $f: G\to H$ be a group homomorphism. Then:
     \begin{compactenum}
-        \item $f$ is an monomorphism iff $\ker f = \{1_G\}$;
+        \item $f$ is an monomorphism iff $\Ker f = \{1_G\}$;
+        \item $f$ is an epimorphism iff $\Ima f = H$;
         \item $f$ is an isomorphism iff 
         $$ ff^{-1} = \mathrm{id}_H \quad \text{and} \quad f^{-1}f = \mathrm{id}_G $$
         for some group homomorphism $f^{-1}: H\to G$ (here the $\mathrm{id}$ is the identity function).
     \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
 \end{Th}
 
 \begin{Df}{Df1.7 (subgroups)}
@@ -289,11 +301,10 @@ Then with everything prepared, here we go.
     \begin{compactenum}
         \item For any $n\in\mathbb{N}$, $n\mathbb{Z}$ is a subgroup of $(\mathbb{Z}, +)$;
         \item Let $H = \{f\in\mathbb{S}_n: f(n) = n\}$. Then $H<\mathbb{S}_n$, and in fact, $H\simeq\mathbb{S}_{n-1}$.
-        \item Let $f: G\to H$ be a group homomorphism. Then 
+        \item (Homomorphisms) Let $f: G\to H$ be a group homomorphism. Then 
         \begin{compactenum}
-            \item $\ker f < G$;
-            \item For any $A < G$, $f(A) < H$; (here $f(A) = \{f(a): a\in A\}$)
-            \item For any $B < H$, $f^{-1}(B) < G$; (here $f^{-1}(B) = \{a\in G: f(a)\in B\}$)
+            \item For any $A < G$, $f(A) < H$ (here $f(A) = \{f(a): a\in A\}$). In particular, $\Ima f < H$;
+            \item For any $B < H$, $f^{-1}(B) < G$ (here $f^{-1}(B) = \{a\in G: f(a)\in B\}$). In particular, $\Ker f < G$.
         \end{compactenum}
         \item (Intersection) The intersection of (any non-empty family of) subgroups is still a subgroup.
         \item (Union) The union of subgroups is not necessarily a subgroup. For example, $2\mathbb{Z}\cup 3\mathbb{Z}$ is not a subgroup of $(\mathbb{Z}, +)$.
@@ -592,6 +603,301 @@ Then with everything prepared, here we go.
             &\leq [G:H][G:K] \quad (\text{by 2.}) 
         \end{aligned} $$
     \end{compactenum}
+\end{Th}
+
+\begin{Df}{Df1.11 (normal subgroup)}
+    Let $G$ be a group and $N<G$. Then $N$ is called a \textbf{normal subgroup} of $G$ (or briefly we say, $N$ is \textbf{normal} in $G$), denoted as $N\vartriangleleft G$, if the left and right congruences modulo $N$ coincide.
+\end{Df}
+
+\begin{Rmk}{}
+    This definition says that $N$ is said to be normal if for all $a, b\in G$:
+    $$ a \equiv_l b\pmod{N} \quad \Longleftrightarrow \quad a \equiv_r b\pmod{N}. $$
+    \textcolor{Df}{For $N<G$ but $N$ is not normal, we write $N\notnles G$.}
+\end{Rmk}
+
+\begin{Th}{Th1.11.1 (equivalent definitions of normal subgroup)}
+    Let $G$ be a group and $N<G$. Then the following statements are equivalent:
+    \begin{compactenum}
+        \item $N\vartriangleleft G$;
+        \item Every left coset of $N$ in $G$ is a right coset of $N$ in $G$;
+        \item Every right coset of $N$ in $G$ is a left coset of $N$ in $G$;
+        \item $Ng = gN$ for all $g\in G$;
+        \item $gNg^{-1} = N$ for all $g\in G$;
+        \item $gNg^{-1} \subseteq N$ for all $g\in G$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    Among all the equivalent statements in this theorem, only the last two bring us something new. Since the statement 6 is literally weaker than the statement 5, it is more convenient for judging whether a subgroup is normal. \\
+    Now for some examples of the normality in a group $G$:
+    \begin{compactenum}
+        \item \textcolor{Th}{$\{1\}, G\;\nles\; G$};
+        \item \textcolor{Th}{If $G$ is Abelian, then every subgroup of $G$ is normal in $G$};
+        \item \textcolor{Th}{If $N\nles G$ and $N < H < G$, then $N\nles H$};
+        \item \textcolor{Th}{In the symmetric group $\mathbb{S}_3$, recall that such stuff: $(1,2)$, $(1,2,3)$, are some cycles. Then we have
+        $$ \langle (1,2) \rangle \notnles \,\mathbb{S}_3, \quad \langle (1,2,3) \rangle \nles \,\mathbb{S}_3. $$}
+        \item \textcolor{Th}{In gereral the transitivity of normality is not true, that is, 
+        $$ \left.\begin{matrix}
+            K \nles H \; \\
+            H \nles G \;
+        \end{matrix}\right\} \quad\nRightarrow\quad K \nles G. $$}
+        \item Obviously, \textcolor{Th}{every subgroup of index 2 is normal.}
+    \end{compactenum}
+    \textcolor{Df}{Also, the subset of the form $gNg^{-1}$, for $N<G$, (clearly $gNg^{-1} < G$) is called a \textbf{conjugate} of $N$ in $G$.} Thus \textcolor{Th}{the normality of $N$ is equivalent to the fact that every conjugate of $N$ is $N$ itself.}
+\end{Rmk}
+
+\begin{Th}{Th1.11.2 ($N, K$) (What happens to the subgroup-union and the subgroup-intersection with normality involved?)}
+    Let $G$ be a group and $K<G$, $N\nles G$. Then
+    \begin{compactenum}
+        \item $N\cap K \nles K$;
+        \item $N\nles\, N\vee K = NK = KN < G$; (When discussing the union, we are instead discussing the generated subgroup of the union, as the union itself is not a subgroup in general.)
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Obvious.
+        \item The ``$\nles$'' is obvious. Now for the rest of the statement, we already have
+        $$ N, K \subseteq N\cup K \subseteq NK \subseteq \langle N\cup K\rangle = N\vee K. $$
+        We now claim that $NK < G$, and then by the minimality of $\langle N\cup K\rangle$ we have $NK = \langle N\cup K\rangle = N\vee K$, and by the Th \{, ID: 1.10.1\} we have $NK = KN$. Then verify the claim:
+        $$ n_1k_1(n_2k_2)^{-1} = n_1k_1(k_2^{-1}n_2^{-1}) \xlongequal[]{kN = Nk} n_1(k_1n_3)k_2^{-1} \overset{\cdots}{=} (n_1n_4)(k_1k_2^{-1}) \in NK. $$ 
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th1.11.3 ($n_1n_2 = n_2n_1$)}
+    Let $G$ be a group. If $N_1, N_2\nles G$ and $N_1\cap N_2 = \{1\}$, then
+    $$ n_1n_2 = n_2n_1, \quad \forall n_1\in N_1, n_2\in N_2. $$
+    \tcblower
+    \textit{Pf}: To ask this equality is to ask whether
+    $$ n_1n_2n_1^{-1}n_2^{-1} = 1. $$
+    This is true, as
+    $$ N_2 \ni n_2^\prime n_2^{-1} = (n_1n_2n_1^{-1})n_2^{-1} = n_1(n_2n_1^{-1}n_2^{-1}) = n_1n_1^\prime \in N_1 $$
+    and thus $n_1n_2n_1^{-1}n_2^{-1} \in N_1\cap N_2 = \{1\}$.
+\end{Th}
+
+\begin{Df}{Th1.11.4 (quotient group)}
+    Let $G$ be a group and $N\nles G$. \textcolor{Th}{Then the set
+    $$ G/N \triangleq \{Ng: g\in G\} = \{gN: g\in G\} $$
+    is a group under the subset product defined in Df \{, ID: 1.10\}. Actually we have:
+    $$ g_1N\cdot g_2N = g_1Ng_2N = g_1g_2N. $$}
+    This group is called the \textbf{quotient group} (or \textbf{factor group}) of $G$ by $N$.
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item It is trivial to check that $G/N$ is a group, \textcolor{Th}{with the identity $N$ and the inverse of $gN$ being $g^{-1}N$}. And we should notice that it is the normality of $N$ that makes sure that $g_1Ng_2N = g_1g_2N$.
+        \item \textcolor{Th}{$|G/N| = [G:N]$}.
+        \item \textcolor{Th}{$G/{1} = \{G\}$, $G/G = \{1\}$}.
+        \item \textcolor{Th}{The notation $\mathbb{Z}/n\mathbb{Z}$ is of what it literally means: it is exactly the quotient group of $\mathbb{Z}$ by $n\mathbb{Z}$. Clearly, for $m,n\in\mathbb{N}$, we have
+        $$ m\mathbb{Z}<n\mathbb{Z} \quad \Longleftrightarrow \quad n|m. $$
+        Also we have (assume $n\mid k\mid m$):
+        $$ (n\mathbb{Z}/m\mathbb{Z})\Big/ (k\mathbb{Z}/m\mathbb{Z}) \simeq n\mathbb{Z}/k\mathbb{Z} $$
+        (one can understand this by trying $(2\mathbb{Z}/12\mathbb{Z})\big/ (4\mathbb{Z}/12\mathbb{Z})$).}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th1.12.1 (the canonical epimorphism)}
+    The kernel of a group homomorphism is a normal subgroup (of the domain); and conversely, a normal subgroup is the kernel of a group homomorphism (from the ``supgroup'').
+    \tcblower
+    \textit{Pf}: 
+    \begin{compactenum}
+        \item Let $f: G\to H$ be a group homomorphism. Then we can verify that $\Ker f \,\nles\, G$.
+        \item Let $N\nles G$. Then the map $\pi_N^G: G\to G/N$ defined as $\pi_N^G(g) = gN$ is a group homomorphism, with $\Ker \pi_N^G \,=\, N$.
+    \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Th}{The homomorphism $\pi_N^G$ defined here is epimorphic, } \textcolor{Df}{and we call $\pi_N^G$ (or $\pi_N$, $\pi$ for short if it is clear from the context) the \textbf{canonical epimorphism} (or the \textbf{canonical projection}) (or \textbf{quotient map}) (or \textbf{projection map}) from $G$ to $G/N$.}
+        \item The canonical epimorphism is a common homomorphism from $G$ to $G/N$, and thus when a epimorphism $G\twoheadrightarrow H$ is needed to be constructed, we usually consider $\pi_N^G$.
+        \item Due to the introduction of normal subgroups, and then of the quotient groups, we have more ways to construct new groups. Then for these new groups the study of their correspondences (namely, the homomorphisms between them) is important, which leads to the following several theorems.
+        \item \textcolor{Df}{We now introduce a less formal term, that is, we often \textbf{induce} a map $\overline{f}$ from a given map $f$, by defining $\overline{f}$ based on $f$.} This is less formal, as $\overline{f}$ can be defined in different ways.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Ex1.12.2.-1}
+    Suppose $f: G\to H$ is a group homomorphism. Given a normal subgroup $N\nles G$, please induce a group homomorphism $\overline{f}: G/N\to H$. To do this, please figure out what other conditions are needed, and please study the (1) kernel, (2) image, (3) mono(morphism) and (4) epi(morphism) of $\overline{f}$.
+    \tcblower
+    \textit{Solution}: To induce $\overline{f}$ is to realize what exactly the dashed arrow in the following commutative diagram is for, relying on the existing arrows:
+    $$ \begin{tikzcd}
+        G \arrow[rr, "f"] \arrow[rd, two heads] & & H \\
+        & G/N \arrow[ru, dashed, "\overline{f}"'] &
+    \end{tikzcd} $$
+    Then it is natural to define $\overline{f}$ as $\overline{f} = f\circ(\pi_N^G)^{-1}$ ($\pi_N^G$ is actually not invertible in general, we is just introducing the idea). Then we define
+    $$ \overline{f}(gN) = f(g), \quad \forall g\in G. $$
+    Then:
+    \begin{compactenum}
+        \item Is $\overline{f}$ well-defined? Does $g_1N = g_2N$ imply $f(g_1) = f(g_2)$? Does $g_1g_2^{-1}\in N$ imply $g_1g_2^{-1}\in\Ker f$? \textcolor{P}{This suffices to that $N<\Ker f$}, which should be a premise before we define $\overline{f}$.
+        \item Is $\overline{f}$ a homomorphism? Does $\overline{f}(abN) = f(ab) = f(a)f(b) = \overline{f}(aN)\overline{f}(bN)$? Yes.
+        \item $ \Ker \overline{f} = \{gN\in G/N: \overline{f}(gN) = 1\} = \{gN\in G/N: f(g) = 1\} = \{gN\in G/N: g\in\Ker f\} = (\Ker f)\,/\,N $.
+        \item $ \Ima \overline{f} = \Ima f $.
+        \item $\overline{f}$ is mono $\Longleftrightarrow$ $\Ker \overline{f} = \{1\}$ $\Longleftrightarrow$ $(\Ker f)\,/\,N = \{N\}$ $\Longleftrightarrow$ $\Ker f = N$ (by taking union on the both sides).
+        \item $\overline{f}$ is epi $\Longleftrightarrow$ $f$ is epi. 
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Clry\,1.12.2 ($f: G\to H$, $\overline{f}: G/N\to H$)}
+    Suppose $f: G\to H$ is a group homomorphism. If $N\nles G$ and $N<\Ker f$, then the map $\overline{f}: G/N\to H$ defined as $\overline{f}(gN) = f(g)$ is a group homomorphism, with:
+    \begin{compactenum}
+        \item $\Ker \overline{f} = (\Ker f)\,/\,N$;
+        \item $\Ima \overline{f} = \Ima f$;
+        \item $\overline{f}$ is a monomorphism iff $N = \Ker f$;
+        \item $\overline{f}$ is an epimorphism iff $f$ is an epimorphism.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: This is just the Ex \{, ID: 1.12.2.-1\}.
+\end{Th}
+
+\begin{Th}{Ex1.12.3.-1}
+    For the group homomorphism $f: G\to H$, please find an group isomorphism by inducing $f$ as $\overline{f}$. To do this, please figure out what other conditions are needed.
+    \tcblower
+    \textit{Solution}: Still searching idea by first drawing the commutative diagram. Since we have no other information, we should consider $\Ker f$ and $\Ima f$ besides the given groups $G$ and $H$. Notice that $\Ker f\nles G$, and $\Ima f$ makes $f$ epi, so we can think of:
+    $$ \begin{tikzcd}
+        G \arrow[dd, two heads] \arrow[rr, "f"] \arrow[rd, two heads] & & H \\
+        & \Ima f \arrow[ru, hook] & \\
+        G/\Ker f \arrow[ru, dashed, "\overline{f}"'] & &
+    \end{tikzcd} $$
+    where we expect the dashed arrow $\overline{f}$ to be an isomorphism. It is natural to define $\overline{f}: G/\Ker f\to\Ima f$ as:
+    $$ \overline{f}(g\,\Ker f) = f(g), \quad \forall g\in G. $$
+    Then $\overline{f}$ is actually induced by $f: G\to \Ima f$ in the sense of the one in Clry \{, ID: 1.12.2\}, where we can know that $\overline{f}$ is an isomorphism, and we do not need extra conditions to complete this exercise.
+\end{Th}
+
+\begin{Th}{Clry 1.12.3 (the 1st isomorphism theorem) ($G/\Ker f \simeq \Ima f$)}
+    For a group homomorphism $f: G\to H$, we have
+    $$ G/\Ker f \simeq \Ima f. $$
+    \tcblower
+    \textit{Pf}: This is just the Ex \{, ID: 1.12.3.-1\}. And the isomorphism desired is $g\Ker f \mapsto f(g)$.
+\end{Th}
+
+\begin{Th}{Ex1.12.4.-1}
+    Suppose $f: G\to H$ is a group homomorphism and $N\nles G$, $M\nles H$. Please induce a group homomorphism $\overline{f}: G/N\to H/M$. To do this, please figure out what other conditions are needed, and please study the (1) kernel, (2) image, (3) mono and (4) epi of $\overline{f}$.
+    \tcblower
+    \textit{Solution}: To induce $\overline{f}$ (which involves the quotient spaces), we should first bridge the original groups and their quotient spaces by the canonical epimorphisms. Then from the following commutative diagram
+    $$ \begin{tikzcd}
+        G \arrow[r, "f"] \arrow[d, two heads] & H \arrow[d, two heads] \\
+        G/N \arrow[r, dashed, "\overline{f}"] & H/M
+    \end{tikzcd} $$
+    it is natural to think of defining $\overline{f}$ as $\overline{f} = \pi_M^H\circ f\circ(\pi_N^G)^{-1}$. Is $(\pi_N^G)^{-1}$ here legal? Although $\pi_N^G$ is not invertible in general, we can resort to the Ex \{, ID: 1.12.2.-1\}, which inspires us to define $\overline{f}$ as:
+    $$ \begin{aligned}
+        \alpha &= \pi_M^H\circ f, \\
+        \overline{f} &= \overline{\alpha}, 
+    \end{aligned} $$
+    where we induce $\alpha$ to $\overline{\alpha}$ in the way of Ex \{, ID: 1.12.2.-1\}. According to that exercise, we should add an extra condition that $N<\Ker\alpha$. Since 
+    $$ \Ker\alpha = \{g\in G: \pi_M^H(f(g)) = 1\} = \{g\in G: f(g)\in M\} = f^{-1}(M), $$
+    this extra condition is equivalent to $N<f^{-1}(M)$, namely, \textcolor{P}{$f(N)<M$}. With this premise holding, $\overline{f}$ is well-defined as:
+    $$ \overline{f}(gN) = f(g)M, \quad \forall g\in G, $$
+    with:
+    \begin{compactenum}
+        \item $\Ker \overline{f} = (\Ker \alpha)\,/\,N = f^{-1}(M)\,/\,N$;
+        \item $\Ima \overline{f} = \Ima \alpha = \{f(g)M: g\in G\} = \{hM: h\in\Ima f\}$;
+        \item $\overline{f}$ is mono $\Longleftrightarrow$ $\overline{\alpha}$ is mono $\Longleftrightarrow$ $\Ker\alpha = N$ $\Longleftrightarrow$ $f^{-1}(M) = N$ $\Longleftrightarrow$ $f^{-1}(M) < N$;
+        \item $\overline{f}$ is epi $\Longleftrightarrow$ $\alpha$ is epi $\Longleftrightarrow$ $\Ima\alpha = H/M$. Since $\Ima\alpha = \{hM: h\in\Ima f\} < \{hM: h\in H\} = H/M$, the ``$<$'' becomes ``$=$'' iff:
+        $$ \bigcup_{h\,\in\,\Ima f} hM = \bigcup_{h\,\in\, H} hM, $$
+        which is equivalent to
+        $$ H = \bigcup_{h\,\in\, \Ima f} hM = \bigcup_{h\,\in\, \Ima f} \{h\} M = \left(\bigcup_{h\,\in\, \Ima f} \{h\}\right) M = (\Ima f) M. $$
+        Thus, $\overline{f}$ is epi $\Longleftrightarrow$ $(\Ima f) M = H$.
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Clry 1.12.4 ($f: G\to H$, $\overline{f}: G/N\to H/M$)}
+    Suppose $f: G\to H$ is a group homomorphism and $N\nles G$, $M\nles H$. If $f(N)<M$, then the map $\overline{f}: G/N\to H/M$ defined as $\overline{f}(gN) = f(g)M$ is a group homomorphism, with:
+    \begin{compactenum}
+        \item $\Ker \overline{f} = f^{-1}(M)\,/\,N$;
+        \item $\Ima \overline{f} = \{hM: h\in\Ima f\}$;
+        \item $\overline{f}$ is a monomorphism iff $f^{-1}(M) < N$;
+        \item $\overline{f}$ is an epimorphism iff $(\Ima f) M = H$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: This is just the Ex \{, ID: 1.12.4.-1\}.
+\end{Th}
+
+\begin{Th}{Ex1.12.5.-1}
+    Let $G$ be a group and $H, K< G$. Please find an isomorphism (according to what is given, that is, consider an isomorphism between two of these groups: $H$, $K$, $H\cap K$, $H\vee K$, $H/(H\cap K)$, $K/(H\cap K)$ and all others you can think of). To do this, please figure out what other conditions are needed.
+    \tcblower
+    \textit{Solution}: If it is not that clear that which two groups (among all that we can think if) are isomorphic, we can first finding an equality of cardinalities, as an isomorphism is first a bijection. Then for this what comes to our mind is that
+    $$ |HK|\cdot |H\cap K|= |H|\cdot |K|. $$
+    As we now know little about the Cartisian product of groups, we consider dividing the two sides of the equality instead, by
+    $$ \frac{|HK|}{|H|} = \frac{|K|}{|H\cap K|}, $$
+    and interpreting the division of cardinalities as the cardinality of the quotient group. Then it is a problem that $HK$ is not a subgroup. Of course this can be solved by assuming that one of $H$ and $K$ is normal in $G$. Then by the Th \{, ID: 1.11.2\}, we should let \textcolor{P}{$N\nles G$} instead of $K\nles G$, so that the problem becomes comes to that to find a homomorphism between two quotient groups, which inspires us to apply the Clry \{, ID: 1.12.4\} by considering $f: K\to NK$ as 
+    $$ f(k) = k. $$
+    And it works for this exercise. Then the isomorphism desired is $k(N\cap K)\mapsto kN$.
+\end{Th}
+
+\begin{Th}{Clry 1.12.5 (the 2nd isomorphism theorem) ($G/\Ker f \simeq \Ima f$)}
+    Let $G$ be a group and $N\nles G$, $K<G$. Then
+    $$ K/(N\cap K) \simeq NK/N. $$
+    \tcblower
+    \textit{Pf}: This is just the Ex \{, ID: 1.12.5.-1\}. And the isomorphism desired is $k(N\cap K)\mapsto kN$.
+\end{Th}
+
+\begin{Th}{Ex1.12.6.-1}
+    Recall that the equality
+    $$ (n\mathbb{Z}/m\mathbb{Z})\Big/ (k\mathbb{Z}/m\mathbb{Z}) \simeq n\mathbb{Z}/k\mathbb{Z} $$
+    holds, provided that $n\mid k\mid m$. Can this equality be generalized? To do this, please figure out what other conditions are needed.
+    \tcblower
+    \textit{Solution}: To generalize this equality is to ask whether the equality
+    $$ (G/K)\Big/ (H/K) \simeq (G/H) $$
+    hold, provided that \textcolor{P}{$K\nles G$, $H\nles G$ and $K\nles H$}. Now is it true that $(H/K)\nles (G/K)$? Obviously yes, and then we know our ways, which is to apply the Clry \{, ID: 1.12.4\}, by considering the following commutative diagram:
+    $$ \begin{tikzcd}
+        G \arrow[r, two heads] \arrow[d, two heads] & G/K \arrow[d, two heads]\\
+        G/H \arrow[r, dashed] & (G/K)\Big/ (H/K) 
+    \end{tikzcd} $$
+    and letting $f = \pi_K^G$. Then it works for this exercise, and the isomorphism desired is $gH\mapsto \{ghK: h\in H\}$.
+\end{Th}
+
+\begin{Th}{Clry 1.12.6 (the 3rd isomorphism theorem) ($ (G/K)\Big/ (H/K) \simeq (G/H) $)}
+    Let $G$ be a group. If $K\nles G$, $H\nles G$ and $K\nles H$, then $(H/K)\nles (G/K)$, and
+    $$ (G/K)\Big/ (H/K) \simeq (G/H). $$ 
+    \tcblower
+    \textit{Pf}: This is just the Ex \{, ID: 1.12.6.-1\}, and the isomorphism desired is $gH\mapsto \{ghK: h\in H\}$.
+\end{Th}
+
+\begin{Th}{Ex1.12.7.-1}
+    Let $f: G\to H$ be a group homomorphism.
+    \begin{compactenum}
+        \item Does $f(N)\nles H$ hold for any $N\nles G$? What about that $f^{-1}(M) \nles G$ hold for any $M\nles H$?
+        \item Consider the map $\varphi$ defined as $H\mapsto f(H)$ for $H<G$. Please study the (1) range, (2) injectivity and (3) surjectivity of $\varphi$.
+    \end{compactenum}
+    To answer these questions, figure out what other conditions are needed.
+    \tcblower
+    \textit{Solution}:
+    \begin{compactenum}
+        \item Obviously $M\nles H$ implies $f^{-1}(M) \nles G$. For the former, $f(N)\nles H$, it suffices to that $f$ is an epimorphism.
+        \item Now we study the map $\varphi$.
+        \begin{compactenum}
+            \item For the range of $\varphi$, we first ask whether $\varphi$ is surjective. Then for $L<H$, is there any $H<G$ s.t. $f(H) = L$? For this to be true, we are first worried about that $f$ is not epimorphic, which would result in that some $L$ beyond the $f(G)$ may fail to have a pre-image. Thus we assume that \textcolor{P}{$f$ is an epimorphism}. Then with this new assumption, the surjectivity of $\varphi$ is easy to be verified.
+            \item Is $\varphi$ injective? Does $f(H_1) = f(H_2)$ imply $H_1 = H_2$? This is not so clear, but we notice that $f(H) = f(f^{-1}(f(H)))$, which maybe fail to imply $H = f^{-1}(f(H))$. Actually, the injectivity of $\varphi$ is equivalent to the fact that $H = f^{-1}(f(H))$ holds for every $H < G$. Now we inspect this condition. Clearly $K<f^{-1}(f(H))$. For the other direction, we can easily obtain a sufficient, but extra condition: \textcolor{P}{$\Ker f<H$}. Thus consider restricting $\varphi$ on the set $\mathrm{S}_f(G)\triangleq \{K<G: \,\Ker f<K\}$ we get an injection. 
+            \item $\varphi$ is surjective, but how about the restriction of $\varphi$ on $\mathrm{S}_f(G)$? Does the surjectivity of $f$ still imply the surjectivity of (the restricted) $\varphi$? Yes, if $f$ is an epimorphism, then we can verify that $\varphi(\mathrm{S}_f(G)) = \mathrm{S}(H) = \{H\subseteq G: H<G\}$.
+        \end{compactenum}
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th1.12.7 ($N\mapsto f(N)$)}
+    Let $f: G\to H$ be a group homomorphism. Then:
+    \begin{compactenum}
+        \item $f^{-1}(M) \nles G$ for any $M\nles H$.
+        \item If $f$ is an epimorphism, then $f(N)\nles H$ for any $N\nles G$.
+        \item Consider the map $\varphi: \mathrm{S}(G)\to\mathrm{S}(H)$ where $\mathrm{S}(G)$ (similar to $\mathrm{S}(H)$) is the family of the subgroups of $G$ defined as $H\mapsto f(H)$ for $H<G$. If $f$ is an epimorphism, then $\varphi$ is a surjection.
+        \item In the case of 3 (of course assume that $f$ is epimorphic), let $\mathrm{S}_f(G) = \{K\in\mathrm{S}(G): \,\Ker f<K\}$. Then 
+        $$ \varphi: \mathrm{S}_f(G)\hooktwoheadrightarrow\mathrm{S}(H) $$
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: This is just the Ex \{, ID: 1.12.7.-1\}
+\end{Th}
+
+\begin{Rmk}{}
+    This theorem is useful when we are to study the subgroups of a new group, via group homomorphism. The next theorem is an example.
+\end{Rmk}
+
+\begin{Th}{Th1.12.8 (the subgroups of $G/N$)}
+    Let $G$ be a group and $N\nles G$. Then
+    \begin{compactenum}
+        \item A subset of $G/N$ is a subgroup of $G/N$ iff it is of the form $K/N$, where $N<K<G$.
+        \item A subgroup $K/N$ of $G/N$ is normal iff $K$ is normal in $G$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious by applying the Th \{, ID: 1.12.7\} to the canonical epimorphism $G\twoheadrightarrow G/N$.
 \end{Th}
 
 \end{document}
