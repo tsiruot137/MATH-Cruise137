@@ -1,0 +1,231 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{mathrsfs}
+    \usepackage{extarrows}
+    \usepackage{tikz-cd}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Categories, Direct Products and Free Groups}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\lcm}{\text{lcm}}
+    \newcommand{\cycl}{\text{cycl}}
+    \newcommand{\nles}{\vartriangleleft}
+    \newcommand{\notnles}{\ntriangleleft}
+    \newcommand{\Ker}{\text{Ker}\,}
+    \newcommand{\Ima}{\text{Im}\,}
+    \newcommand{\hooktwoheadrightarrow}{%
+        \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
+    % the weak direct product
+    \newcommand{\wprod}[1]{\sideset{}{^\text{w}}\prod_{#1}}
+\begin{document}
+\maketitle
+
+This is a problem file of the 1st chapter of Abstract Algebra, which is about the \textbf{Categories, Direct Products and Free Groups}. When the author was writing here, he just wanted to say, ``What can I say?'' Thus this file is written in a note-file style, namely the style that Dfs are followed by Ths and Rmks.
+
+In this file, it is proper to temporarily forget the essential opinion that ``every mathematical object is a set'' in the ZFC set theory, especially when learning the category theory, where the objects, morphisms or even a family of objects are not necessarily sets in the ZFC sense. 
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (1\_P1.15.*): Categories.
+        \item (1\_P1.16.*): Direct Products.
+        \item (1\_P1.17.*): Free Groups.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df 1\_P1.15.1 (category)}
+    A \textbf{category} $\mathscr{C}$ is a class of \textbf{objects} (denoted by $A, B, C, \cdots$) together with:
+    \begin{compactenum}
+        \item A set $\text{Hom}(A, B)$ of \textbf{morphisms} for each pair $(A, B)$ of objects in $\mathscr{C}$; here the $\text{Hom}$'s are disjoint for different pairs of objects.
+        \begin{compactenum}
+            \item[(I)] An element $f$ of $\text{Hom}(A, B)$ is called a morphism from $A$ to $B$, denoted by $f: A \to B$.
+        \end{compactenum}
+        \item The \textbf{composition} operation $\circ$ on morphisms, defined as a function 
+        $$ \text{Hom}(B, C) \times \text{Hom}(A, B) \to \text{Hom}(A, C) $$
+        for each triple $(A, B, C)$ of objects in $\mathscr{C}$, written as
+        $$ g \circ f: A \to C $$
+        for $f: A \to B$ and $g: B \to C$. Here $g\circ f$ is called the \textbf{composite} of $g$ and $f$. The composition satisfies the following axioms:
+        \begin{compactenum}
+            \item[(I)] (Associativity) For morphisms $f: A \to B$, $g: B \to C$ and $h: C \to D$, we have 
+            $$ (h \circ g) \circ f = h \circ (g \circ f) $$
+            \item[(II)] (Identity) For each object $B$ in $\mathscr{C}$, there exists a morphism $1_B: B \to B$, called the \textbf{identity morphism} on $B$, such that 
+            $$ 1_B \circ f = f \quad \text{and} \quad g \circ 1_B = g $$
+            for any $f: A \to B$ and $g: B \to C$.
+        \end{compactenum}
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    About this definition:
+    \begin{compactenum}
+        \item An object in a category needs not be a set in the ZFC sense. 
+        \item The $\text{Hom}(A, B)$ needs not to be a set in the ZFC sense in this definition. However, we can view it as a set in the ZFC sense without influencing the proofs.
+        \item \textcolor{Th}{For an object $A$ in a category $\mathscr{C}$, the identity morphism $1_A$ is unique,} as we can easily verify it.
+        \item \textcolor{Df}{A morphism $f: A \to B$ is called an \textbf{equivalence} if there exists a morphism $g: B \to A$ such that $g \circ f = 1_A$ and $f \circ g = 1_B$. If $f: A \to B$ is an equivalence, then we say $A$ and $B$ are \textbf{equivalent}.}
+    \end{compactenum}
+    Then are some examples of categories:
+    \begin{compactenum}
+        \item \textcolor{Df}{The class $\mathscr{S}$ (or denoted by $\mathsf{Set}$) of all sets (in the ZFC sense)} \textcolor{Th}{is a category, where the objects are sets and the morphisms are set-functions. In this category the composition of morphisms is the usual composition of functions, with identity morphisms being the identity functions on the sets.}
+        \item \textcolor{Df}{The class $\mathscr{G}$ (or denoted by $\mathsf{Grp}$) of all groups} \textcolor{Th}{is a category, where the objects are groups and the morphisms are group homomorphisms.}
+        \item \textcolor{Df}{The class $\mathscr{A}$ (or denoted by $\mathsf{Ab}$) of all Abelian groups} \textcolor{Th}{is a category.}
+        \item \textcolor{Th}{A group $G$ (with the multiplicative notation) can be viewed as a category with one object, $G$, where the morphisms in $\text{Hom}(G, G)$ are the elements of $G$ and the composite of $a, b \in G$ is $ab$. The identity morphism $1_G$ is the identity element of $G$.}
+        \item Let $\mathscr{C}$ be a category. \textcolor{Df}{Define the} \textcolor{Th}{category} \textcolor{Df}{$\mathscr{D}$ whose objects are the morphisms in $\mathscr{C}$. If $f: A \to B$ and $g: C \to D$ are morphisms in $\mathscr{C}$, then $\text{Hom}(f, g)$ in $\mathscr{D}$ consists of all pairs $(\alpha, \beta)$ of morphisms $\alpha: A \to C$ and $\beta: B \to D$ such that the following diagram is commutative:}
+        % The tikzcd environment seems incompatible with the \textcolor command, so here we do not color the diagram with \textcolor{Df}
+        $$ \begin{tikzcd}
+            A \arrow[r, "f"] \arrow[d, "\alpha"] & B \arrow[d, "\beta"] \\
+            C \arrow[r, "g"] & D 
+        \end{tikzcd} $$
+        \textcolor{Df}{The composition of morphisms in $\mathscr{D}$ is defined as}
+        $$ (\gamma, \delta) \circ (\alpha, \beta) = (\gamma \circ \alpha, \delta \circ \beta) $$
+        \textcolor{Df}{for morphisms $(\alpha, \beta): f\to g$ and $(\gamma, \delta): g\to h$, exhibited by the commutative diagram}
+        $$ \begin{tikzcd}
+            A \arrow[r, "f"] \arrow[d, "\alpha"'] & B \arrow[d, "\beta"] \\
+            C \arrow[r, "g"] \arrow[d, "\gamma"'] & D \arrow[d, "\delta"] \\
+            E \arrow[r, "h"] & F
+        \end{tikzcd} $$
+        \textcolor{Th}{It is easy to show that the composition in $\mathscr{D}$ is associative, and that the identity morphism on $f: A \to B$ is $(1_A, 1_B): f \to f$, where $1_A: A \to A$ and $1_B: B \to B$ are respectively the identity morphisms on $A$ and $B$, in $\mathscr{C}$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df 1\_P1.15.2 (product and coproduct)}
+    Let $\mathscr{C}$ be a category and $\{A_i\}_{i\in I}$ be a family of objects $A_i$ in $\mathscr{C}$. 
+    \begin{compactenum}
+        \item A \textbf{product} of the family $\{A_i\}$ is an object $P$ in $\mathscr{C}$ together with a family of morphisms $\{\pi_i: P\to A_i\}$ such that
+        \begin{compactitem}
+            \item[$\bullet$] for any object $B$ in $\mathscr{C}$ and any family of morphisms $\{\varphi_i: B\to A_i\}$, there exists a unique morphism $\varphi: B \to P$ such that for all $i\in I$ the following diagram is commutative. 
+            $$ \begin{tikzcd}
+                A_i & \arrow[l, "\pi_i"'] P \\
+                & B \arrow[lu, "\varphi_i"] \arrow[u, "\varphi"']
+            \end{tikzcd} $$
+        \end{compactitem}
+        \item A \textbf{coproduct} (or a \textbf{sum}) of the family $\{A_i\}$ is an object $S$ in $\mathscr{C}$ together with a family of morphisms $\{\iota_i: A_i\to S\}$ such that
+        \begin{compactitem}
+            \item[$\bullet$] for any object $B$ in $\mathscr{C}$ and any family of morphisms $\{\psi_i: A_i\to B\}$, there exists a unique morphism $\psi: S \to B$ such that for all $i\in I$ the following diagram is commutative.
+            $$ \begin{tikzcd}
+                A_i \arrow[r, "\iota_i"] \arrow[rd, "\psi_i"'] & S \arrow[d, "\psi"] \\
+                & B
+            \end{tikzcd} $$
+        \end{compactitem}
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    A morphism in a category, drawn as an arrow, have a direction. Thus every statement involving morphisms has a dual statement, obtained by reversing all the arrows (morphisms) in the original statement. For example, the dual of the definition of product is the definition of coproduct.
+\end{Rmk}
+
+\begin{Th}{Th 1\_P1.15.2.1 (product (and coproduct) is well-defined)}
+    Let $\{A_i\}$ be a family of objects in a category $\mathscr{C}$. If $(P, \{\pi_i\})$ and $(P', \{\pi'_i\})$ are two products of $\{A_i\}$ (resp. $(S, \{\iota_i\})$ and $(S', \{\iota'_i\})$ are two coproducts of $\{A_i\}$), then $P$ and $P'$ (resp. $S$ and $S'$) are equivalent.
+    \tcblower
+    \textit{Pf}: Obvious, prove it by observing the commutative diagram.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Df}{The product of a family $\{A_i\}$ is denoted by $\prod_{i\in I} A_i$ and the coproduct of a family $\{A_i\}$ is denoted by $\coprod_{i\in I} A_i$.} These two notations respectively coinside with the notation of the Cartisian product and the disjoint union when those $A_i$ are sets. \textcolor{Th}{This is reasonable, since the Cartisian product (resp. the disjoint union) is the product (resp. the coproduct) in the category $\mathsf{Set}$ of sets.}
+\end{Rmk}
+
+\begin{Df}{Df 1\_P1.15.3 (concrete category)}
+    A \textbf{concrete category} is a category $\mathscr{C}$ together with a function $\sigma$ that assigns to each object $A$ in $\mathscr{C}$ a set $\sigma(A)$ ($\in\mathsf{Set}$) (called the \textbf{underlying set} of $A$) in such a way that:
+    \begin{compactenum}
+        \item Every morphism $A\to B$ of $\mathscr{C}$ is a function on the underlying sets $\sigma(A)\to \sigma(B)$;
+        \item The identity morphism of each object $A$ is the identity function on $\sigma(A)$;
+        \item The composition of morphisms agrees with the composition of functions on the underlying sets.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item Here the function $\sigma$ is not necessarily a set-function in the ZFC sense. Instead, it is just an assignment.
+        \item \textcolor{Th}{Let $\sigma$ assigns each set in the ZFC sense to itself. Then the category $\mathscr{S}$, the category $\mathscr{G}$ and the category $\mathscr{A}$ are all concrete categories. However, with this $\sigma$, the category $G$ ($G$ is a group, see the example in the Rmk \{, ID: 1\_P1.15.1\}) is not concrete.}
+        \item For a concrete category with the ``trivial'' $\sigma$ described above, we can omit the $\sigma$ in the notation and denote an object and its underlying set by the same symbol. 
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df 1\_P1.15.4 (free object)}
+    Let $\mathscr{C}$ (with $\sigma$) be a concrete category, $X$ a non-empty set, $F$ an object in $\mathscr{C}$, and $i: X \to \sigma(F)$ a set-function. Then $F$ is said to be \textbf{free} on $X$ if
+    \begin{compactitem}
+        \item[$\bullet$] for any object $A$ in $\mathscr{C}$ and any set-function $f: X \to \sigma(A)$, there exists a unique morphism $\overline{f}: F \to A$ of $\mathscr{C}$ such that the following diagram is commutative.
+        $$ \begin{tikzcd}
+            \sigma(F) \arrow[r, "\overline{f}"] & \sigma(A) \\
+            X \arrow[u, "i"'] \arrow[ru, "f"]
+        \end{tikzcd} $$
+    \end{compactitem}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item The essential fact about a free object $F$ is that, say $\sigma$ is trivial, in order to define a morphism with domain $F$, it suffices to specify the image of the subset $i(X)$ of $F$.
+        \item Here is an example of free and non-free objects in $\mathsf{Grp}$. \textcolor{Th}{The group $\mathbb{Z}$ (with addition) is free on the set $\{1\}$; the group $\mathbb{Q}$ (with addition) is not free on any set. Actually, for any set $X$ and any map $i: X \to \mathbb{Q}$, we consider a non-trivial set-function $f: X \to \mathbb{S}_3$ (that is, $f(x)\neq\mathrm{id}$ for some $x\in X$), and then no morphism $\overline{f}: \mathbb{Q} \to \mathbb{S}_3$ can be induced from $f$, since there is no trivial homomorphism from $\mathbb{Q}$ to $\mathbb{S}_3$.}
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Th 1\_P1.15.4.1 (free object on a set is well-defined)}
+    Suppose in a concrete category $\mathscr{C}$, $F$ is a free object on $X$ and $F^\prime$ is a free object on $X^\prime$. If $|X| = |X^\prime|$, then $F$ and $F^\prime$ are equivalent.
+    \tcblower
+    \textit{Pf}: Obvious, prove it by observing the commutative diagram.
+\end{Th}
+
+\begin{Df}{Df 1\_P1.16.1 (direct product and direct sum)}
+    Let $\{G_i\}_{i\in I}$ be a family of groups $G_i$.
+    \begin{compactenum}
+        \item The \textbf{direct product} of the family $\{G_i\}$ is their Cartisian product
+        $$ \prod_{i\in I} G_i = \{(g_i)_{i\in I}: g_i \in G_i\}, $$
+        \textcolor{Th}{which is a group under the component-wise operation:
+        $$ (g_i) (h_i) = (g_ih_i) $$}
+        ($(g_i) = (g_i)_{i\in I}$). \textcolor{Th}{The identity element of $\prod_{i\in I} G_i$ is $(1_{G_i})$, and the inverse of $(g_i)$ is $(g_i^{-1})$.}
+        \item The \textbf{external weak direct product} of the family $\{G_i\}$ is the set
+        $$ \wprod{i\in I} G_i = \Big\{(g_i)\in \prod_{i\in I} G_i: \text{only finitely many } g_i \text{ are non-identity}\Big\} $$
+        \textcolor{Th}{which is a normal subgroup of $\prod_{i\in I} G_i$.} If for all $i\in I$ $G_i = A_i$ is Abelian (with additive notation), then we denote
+        $$ \wprod{i\in I} G_i = \sum_{i\in I} A_i, $$
+        which is called the \textbf{direct sum} of the family $\{A_i\}$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{If $I$ is finite, then the external weak direct product coincides with the direct product.} The term ``external'' is used to distinguish it from the \textbf{internal weak direct product} talked later.
+\end{Rmk}
+
+\begin{Th}{Th 1\_P1.16.2 (direct product (resp. direct sum) is the product (resp. coproduct) in $\mathsf{Grp}$ (resp. in $\mathsf{Ab}$))}
+    Let $\{G_i\}_{i\in I}$ be a family of groups $G_i$.
+    \begin{compactenum}
+        \item \textcolor{Df}{Define the \textbf{canonical projections} of $\{G_i\}$ as the} epimorphisms \textcolor{Df}{$ \big\{\pi_k: \prod_{i\in I} G_i \to G_k\big\}_{k\in I} $, where
+        $$ (g_i) \overset{\pi_k}{\mapsto} g_k. $$}
+        Then in the category $\mathsf{Grp}$, the product of the family $\{G_i\}$ of objects $G_i$ is the direct product $\prod_{i\in I} G_i$ together with the canonical projections $\{\pi_k\}_{k\in I}$ of $\{G_i\}$.
+        \item \textcolor{Df}{Define the \textbf{canonical injections} of $\{G_i\}$ as the} monomorphisms \textcolor{Df}{$ \big\{\iota_k: G_k \to \prod_{i\in I} G_i\big\}_{k\in I} $, where
+        $$ g_k \overset{\iota_k}{\mapsto} (g_i) $$
+        and 
+        $$ g_i = \begin{cases}
+            g_k, & \text{if } i = k \\
+            1_{G_i}, & \text{if } i \neq k
+        \end{cases} $$}
+        Then in the category $\mathsf{Ab}$, the coproduct of the family $\{A_i\}$ of objects $A_i$ is the direct sum $\sum_{i\in I} A_i$ together with the canonical injections $\{\iota_k\}_{k\in I}$ of $\{A_i\}$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\end{document}

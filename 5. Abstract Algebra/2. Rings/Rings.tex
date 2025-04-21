@@ -1,0 +1,211 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+    \usepackage{tikz-cd}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk_continued}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks (continued)}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Rings}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\lcm}{\text{lcm}}
+    \newcommand{\cycl}{\text{cycl}}
+    \newcommand{\nles}{\vartriangleleft}
+    \newcommand{\notnles}{\ntriangleleft}
+    \newcommand{\Ker}{\text{Ker}\,}
+    \newcommand{\Ima}{\text{Im}\,}
+    \newcommand{\hooktwoheadrightarrow}{%
+        \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
+    \newcommand{\End}{\text{End }}
+\begin{document}
+\maketitle
+
+This is the 1st chapter of Abstract Algebra, which is about the \textbf{Rings}. By the way, we now pre-claim some commonly-used notations and terms:
+\begin{Df}{Notations and Terms}
+    \begin{compactenum}
+        \item An agreement for the length of a list: if we write $a_1, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 1$; if we write $a_0, \dots, a_n$, then we indicate that $n$ is finite and that $n\geq 0$.
+    \end{compactenum}
+\end{Df}
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (2.1.*): Basic concepts, properties and examples of rings.
+        \item (2.2.*): Polynomial rings, matrix rings and group rings (included in the P1 file).
+            \subitem (2.2.1.*) Polynomial rings.
+            \subitem (2.2.2.*) Matrix rings.
+            \subitem (2.2.3.*) Group rings.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df2.1 (rings)}
+    A \textbf{ring} is a non-empty set $R$ with two binary operations $+$ and $\times$ on it that satisfies the following properties:
+    \begin{compactenum}
+        \item $(R, +)$ is an Abelian group;
+        \item (Multiplicative Assotiativity) For all $a, b, c \in R$, $(ab)c = a(bc)$;
+        \item ((Two-sided) Distributivity of $\times$ over $+$) For all $a, b, c \in R$, 
+        $$ a(b+c) = ab + ac \quad\text{ and }\quad (b+c)a = ba + ca. $$
+    \end{compactenum}
+    A ring $R$ is said \textbf{commutative} if
+    \begin{compactenum}
+        \item[4.] (Multiplicative Commutativity) For all $a, b \in R$, $ab = ba$.
+    \end{compactenum}
+    A ring $R$ \textbf{with identity} is a ring satisfies
+    \begin{compactenum}
+        \item[5.] (Multiplicative Identity) There exists $1 \in R$ such that for all $a \in R$, $a1 = 1a = a$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    Basic properties of a ring $R$:
+    \begin{compactenum}
+        \item \textcolor{Df}{The additive identity of a ring $R$ is denoted as $0$. Then we are certainly clear about the ``integer multiplication'' $na = an$ for $n\in\mathbb{Z}$, $a\in R$ (for example, $na = an = a + \cdots + a$ ($n$ times) for $n>0$).}
+        \item \textcolor{Th}{$0a = a0 = 0$ for all $a \in R$.}
+        \item \textcolor{Th}{$(na)b = a(nb) = n(ab)$ for all $a, b \in R$ and $n\in\mathbb{Z}$.}
+        \item \textcolor{Th}{(Free Combination) For $a_1, \cdots, a_n, b_1, \cdots, b_m \in R$, we have
+        $$ \left(\sum_{i=1}^{n} a_i\right) \left(\sum_{j=1}^{m} b_j\right) = \sum_{i=1}^{n} \sum_{j=1}^{m} a_i b_j $$
+        } This property is a straightforward consequence of the distributivity of $R$.
+        \item \textcolor{Th}{If $R$ has an identity, then the identity is unique.} 
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Rmk_continued}{}
+    Some basic examples of rings:
+    \begin{compactenum}
+        \item \textcolor{Df}{Given an Abelian group $(G, +)$, we can define the simplest} \textcolor{Th}{ring} \textcolor{Df}{ by $R = G$ and $ab = 0$ for all $a, b \in R$. This ring is said to be \textbf{trivial}. In particular when $R = G = \{0\}$, the ring is called \textbf{zero ring}, denoted as $R = 0$.} \textcolor{Th}{Except for the zero ring, a trivial ring contains no identity; the zero ring is the only ring with an identity $1 = 0$.}
+        \item \textcolor{Th}{$\mathbb{Z}$ together with the addition and multiplication in the usual sense, is a commutative ring with identity $1\in\mathbb{Z}$.} 
+        \item \textcolor{Th}{$\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$, together with the addition and multiplication in the usual sense, are all commutative rings with identity $1\in\mathbb{Q}, \mathbb{R}, \mathbb{C}$.}
+        \item \textcolor{Th}{$\mathbb{Z}/n\mathbb{Z}$ together with the addition and multiplication of congruence classes, is a commutative ring with identity $\overline{1}$. If here $n=1$ then $\mathbb{Z}/n\mathbb{Z}$ is the zero ring of course.}
+        \item Here is a typical example of a non-commutative ring. \textcolor{Th}{The set $\mathbb{H}$ of \textbf{(real) Hamilton Quaternions} is a non-commutative ring with identity.} Here \textcolor{Df}{$\mathbb{H}$ is defined as $\mathbb{H} = \{a1 + bi + cj + dk: a, b, c, d \in \mathbb{R}\}$, where $1$ is the real number $1$, acting as the identity of the ring $\mathbb{H}$, and:
+        \begin{compactenum}
+            \item (Addition) The addition is defined ``componentwisely'' by
+            $$ (a + bi + cj + dk) + (a' + b'i + c'j + d'k) = (a + a') + (b + b')i + (c + c')j + (d + d')k; $$
+            \item (Multiplication) The multiplication is a free combination, that is, is defined following the (two-sided) distributivity by the basic equalities below:
+            $$ i^2 = j^2 = k^2 = -1, \quad ij = -ji = k, \quad jk = -kj = i, \quad ki = -ik = j. $$
+        \end{compactenum}}
+        Also, \textcolor{Th}{the set of \textbf{rational Hamilton Quaternions} is a non-commutative ring with identity.} Here \textcolor{Df}{the rational Hamilton Quaternions are defined similarly as the real Hamilton Quaternions, but with the coefficients $a, b, c, d$ being rational numbers.}
+        \item \textcolor{Th}{Let $X$ be a non-empty set and $A$ be a ring. Then the set $\sideset{^X}{} {\mathop{A}}$ of all functions $f: X \to A$ is a ring under the ``pointwise'' addition and multiplication
+        $$ (f + g)(x) = f(x) + g(x), \quad (fg)(x) = f(x)g(x) $$}
+        \textcolor{Th}{In this case,
+        \begin{compactenum}
+            \item $\sideset{^X}{} {\mathop{A}}$ is commutative iff $A$ is.
+            \item $\sideset{^X}{} {\mathop{A}}$ has an identity iff $A$ does. If $\sideset{^X}{} {\mathop{A}}$ has an identity, then the identity is the constant function $ X\ni x\mapsto 1 \in A $.
+        \end{compactenum}}
+        \item Here is an example of a ring without identity. \textcolor{Th}{The subset $n\mathbb{Z}$ of $\mathbb{Z}$ ($n\in\mathbb{N}^\ast$) is a ring (under the integer addition and multiplication). This ring contains an identity iff $n=1$.} Another example of a ring without identity is the subset $S$ of real functions:
+        $$ S = \{f: \mathbb{R} \to \mathbb{R}: f(x) = 0 \text{ everywhere except for a compact set } X = \{x\} \subseteq\mathbb{R} \}. $$
+        \textcolor{Th}{Easy to see that $S$ is a commutative ring without identity, as the identity must be the constant function $f(x) = 1$ but this function is not in $S$.}
+    \end{compactenum}
+\end{Rmk_continued}
+
+\begin{Df}{Df2.1.1 (zero divisors and cancellation law)}
+    \begin{compactenum}
+        \item If in a ring $R$ there exist $a, b \in R$ such that 
+        $$ a, b \neq 0 \text{ but } ab = 0, $$
+        then $a$ and $b$ are called two \textbf{zero divisors} of $R$. In this case, $a$ (resp. $b$) is called a \textbf{left zero divisor} (resp. \textbf{right zero divisor}) 
+        \item \textcolor{Th}{A ring $R$ has no zero divisors iff the (two-sided, non-zero) cancellation law holds. That is, for all $a, b, c \in R$, if $a\neq 0$, then
+        $$ \left( ab = ac \quad\text{or}\quad ba = ca \right) \quad\Rightarrow\quad b = c. $$}
+    \end{compactenum}
+\end{Df}
+
+\begin{Df}{Df2.1.2 (invertibility, integral domains, division rings, fields)}
+    \begin{compactenum}
+        \item Let $R$ be a ring with identity. An element $a \in R$ is called \textbf{left invertible} (resp. \textbf{right invertible}) if there exists $c \in R$ (resp. $b \in R$) such that $ca = 1$ (resp. $ab = 1$); in this case $c$ (resp. $b$) is called a \textbf{left inverse} (resp. \textbf{right inverse}) of $a$. If $a\in R$ is both left and right invertible, then $a$ is said to be \textbf{invertible} or to be a \textbf{unit} of $R$; \textcolor{Th}{in this case the left and right inverses of $a$ coincide as the \textbf{inverse(s)} of $a$, and the inverse is unique,} denoted as $a^{-1}$. The set of all units of $R$ is denoted as $R^\ast$ or $R^\times$. \textcolor{Th}{Clearly $1 \in R^\times$.}
+        \item Let $R$ be a ring with identity $1\neq 0$. Then $R$ is called an \textbf{integral domain} if 
+        \begin{compactenum}
+            \item $R$ is commutative and
+            \item $R$ has no zero divisors.
+        \end{compactenum}
+        \item Let $D$ be a ring with identity $1\neq 0$. Then $D$ is called a \textbf{division ring} if
+        $$ D^\times = D \setminus \{0\} $$
+        \item A \textbf{field} $F$ is a commutative division ring. 
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    Clearly:
+    \begin{compactenum}
+        \item \textcolor{Th}{A left invertible element could have more than one left inverse.} For example, consider $A = \{(a_0, a_1, a_2, \cdots)\}$ as the set of sequences in $\mathbb{R}$ (of course $A$ is a group under the componentwise addition). Then the set of endomorphisms of $A$, $\text{End }(A)$, is a ring under the pointwise addition and the composition of functions. Consider $r\in\text{End }(A)$ defined by
+        $$ r(a_0, a_1, a_2, \cdots) = (0, a_0, a_1, \cdots), $$
+        then $r$ is left invertible, but with two different left inverses $l$ and $l_0$:
+        $$ \begin{aligned}
+            l(a_0, a_1, a_2, \cdots) &= (a_1, a_2, a_3, \cdots) \\
+            l_0(a_0, a_1, a_2, \cdots) &= (a_0+a_1, a_2, a_3, \cdots) 
+        \end{aligned} $$ 
+        \item \textcolor{Th}{In a ring $R$ with identity, the set $R^\times$ of all units forms a group under the multiplication of $R$.}
+        \item \textcolor{Th}{In a ring $R$ with identity, $0$ is not invertible, $1$ is invertible with inverse $1$.}
+        \item \textcolor{Th}{For a ring $R$ with identity, $R$ is the following disjoint union:
+        $$ R = \{0\} \sqcup \{\text{units}\} \sqcup \{\text{zero divisors}\} \sqcup \{\text{other elements}\} $$
+        Consequently, A field is an integral domain}
+    \end{compactenum}
+    Some examples:
+    \begin{compactenum}
+        \item For $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$ and $\mathbb{C}$: \\ \textcolor{Th}{
+        % Use \begin{minipage} instead of \begin{table} to avoid the error "Float(s) lost".
+        \begin{minipage}{\linewidth}
+            \centering
+            \begin{tabular}{|c|c|c|c|c|}
+                \hline
+                \text{Is} & $\mathbb{Z}$ & $\mathbb{Q}$ & $\mathbb{R}$ & $\mathbb{C}$ \\ \hline
+                \text{an integral domain} & $\surd$ & $\surd$ & $\surd$ & $\surd$ \\ \hline
+                \text{a field} & $\times$ & $\surd$ & $\surd$ & $\surd$ \\ \hline 
+            \end{tabular}
+        \end{minipage}}
+        \textcolor{white}{dddd} % more distance between the table and the text
+        \item \textcolor{Th}{For $\mathbb{Z}/n\mathbb{Z}$ with $n\geq 2$, the set $(\mathbb{Z}/n\mathbb{Z})^\times$ defined previously (defined in Rmk \{course: 0, ID: 2.2.1.1\}) is indeed the set of all units of $\mathbb{Z}/n\mathbb{Z}$, the notation is consistent. } And, \textcolor{Th}{consider the ring $\mathbb{Z}/n\mathbb{Z}$ with $n\geq 2$, written as
+        $$ \mathbb{Z}/n\mathbb{Z} = \{\overline{0}, \overline{1}, \cdots, \overline{n-1}\}. $$
+        Then the element $\overline{a} \in \mathbb{Z}/n\mathbb{Z}$ ($0\leq a\leq n-1$) satisfies exactly one of the following cases
+        \begin{compactenum}
+            \item $a = 0$;
+            \item $a$ and $n$ are coprime, and thus $\overline{a}$ is a unit;
+            \item $a$ and $n$ are not coprime, and thus $\overline{a}$ is a zero divisor.
+        \end{compactenum}
+        Consequently, 
+        $$ \mathbb{Z}/n\mathbb{Z} \,\text{ is an integral domain} \quad \Leftrightarrow \quad \mathbb{Z}/n\mathbb{Z} \,\text{ is a field} \quad \Leftrightarrow \quad n \text{ is prime.} $$ }
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Rmk_continued}{}
+    \begin{compactenum}
+        \item[3.] \textcolor{Th}{Consider the ring $R$ of all functions $f: \mathbb{R} \to \mathbb{R}$ (under the pointwise addition and pointwise multiplication). Then $R$ is neither an integral domain nor a field, as $fg = 0$ for 
+        $$ 0\neq f(x) = \begin{cases}
+            1, & \text{if } x = 1 \\
+            0, & \text{otherwise}
+        \end{cases} \qquad\text{and}\qquad
+        0\neq g(x) = \begin{cases}
+            1, & \text{if } x = 2 \\
+            0, & \text{otherwise}
+        \end{cases} $$ }
+        \item[4.] \textcolor{Df}{A nonzero integer $D$ is said to be \textbf{square-free} if the prime factorization of $D$ contains no repeated prime factors (we force each prime factor to be positive and just place the sign of $D$ in front of the product). By convention we say $\pm 1$ are also square-free} Then \textcolor{Df}{define $$ \mathbb{Q}(\sqrt{D}) = \{a + b\sqrt{D}: a, b \in \mathbb{Q}\} $$
+        where $D$ is a square-free integer. Such sets are called \textbf{quadratic fields}, which are classified as \textbf{real quadratic fields} (if $D>0$) and \textbf{imaginary quadratic fields} (if $D<0$).} Of course \textcolor{Th}{$\mathbb{Q}(\sqrt{D})$ is a field.} Actually one can first verify that \textcolor{Th}{for $a+b\sqrt{D}\in\mathbb{Q}(\sqrt{D})$, $a+b\sqrt{D} = 0$ iff $a = b = 0$,} and then \textcolor{Th}{obtain the inverse of $a+b\sqrt{D}$ by
+        $$ (a+b\sqrt{D})^{-1} = \frac{1}{a+b\sqrt{D}} = \frac{a-b\sqrt{D}}{(a+b\sqrt{D})(a-b\sqrt{D})} = \frac{a-b\sqrt{D}}{a^2 - b^2 D} \in \mathbb{Q}(\sqrt{D}). $$}
+    \end{compactenum}
+\end{Rmk_continued}
+
+\begin{Df}{Blocks from the P1 file}
+\end{Df}
+
+\end{document}

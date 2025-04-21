@@ -84,16 +84,20 @@ To refer to a proof, just use the entire ID of the proved theorem.
 ### 8.1 Hard Proofs
 The proof for each non-trivial theorem is necessary. However there are always some theorems whose proof exceeds the scope of the current learning. In this case, without cyclic reasoning, we can just leave the proof to the future blocks, or just mark it as "todo" to wait for the future completion.
 
-### 8.2 Definition Generalization
-The learning of math is from concrete to abstract, thus sometimes a proposed definition is a special case of a more general definition (the latter may not be always noted by me). Hence, it is natural and practical to propose the specific definition first, and add the general one in the future, with the consistency guaranteed (for example, we can first propose the Df of the limit of sequence in $\mathbb{R}$, and add the definition of limit of sequence in $\mathbb{R^n}$, as long as the latter reduces to the former if $n=1$ and no other definitions and theorems is influenced).
+### 8.2 Change of Definitions of Terms
+Clearly a definition assigns a term to a certain situation. But it is also often the case that we change our understanding to one concept, but still want to keep the original term. In this case, the definition of the term is changed, which was considered illegal in our early design. Then here is our solution:
 
-### 8.3 Reuse of Notations
-The notations human uses are limited, and the math expressions are expected to be precise and concise. Hence we can reuse the notations for different meanings, as long as we take the approach of **"locality"** to avoid confusion. 
+> Suppose we first define a term $d$ to be the situation $A$, at the timestamp $t_A$. After we learn and write down some Df or Th blocks, we find that using $d$ for $A$ is no longer appropriate. Then we can change the meaning of $d$ from $A$ to a new meaning $B$ at the timestamp $t_B$ (where $t_B > t_A$), and the consistency of the system is still kept, by identifying $d$ as $A$ in any blocks proposed in $[t_A, t_B)$, and as $B$ in any blocks proposed in $[t_B, \infty)$. If in the future $d$ is changed again to a new meaning $C$ at the timestamp $t_C$, then we identify $d$ as $B$ in any blocks proposed in $[t_B, t_C)$, and as $C$ in any blocks proposed in $[t_C, \infty)$.
 
-> If notation "a" is claimed for concepts "A" and "B", then you can distinguish the exact meaning by the context in most of the time. If you fail to figure out which of "A" and "B" the notation actually refers to, then the most "local" claim is the correct one (if "a for A" is claimed in the current chapter and "a for B" is claimed in some previous chapter of the current course, then "A" is said to be more "local" than "B"). For a claim of notation, the most "local" claim is the one in the current chapter (no matter in which file of the chapter) and there are no different claim in the same chapter.
->
+In the actual writing, we avoid changing the definition of a term at most of the time unless it is necessary. Thus the number of such terms is limited compared to the total number of terms (or blocks). To remind the reader of the change of definition, we must specify all of these terms by
 
-### 8.4 Shorthands for Blocks
+> listing them, along the timestamps when they are proposed and changed, in a global file `terms_changed.md` stored in the root directory of the repository. 
+
+When editing the `terms_changed.md` file, we list the terms in the alphabetical order. When reading and using a Df or Th block (or a statement of Df or Th validity), we must be clear about which meaning the term involved refers to, by checking the `terms_changed.md` file.
+
+To further limiting the number of terms that are changed, we ignore a type of implicit change of definition: the **definition generalization**. For example, we defined the limit of a sequence in $\mathbb{R}$ in the chapter 1 of the course 2, and then defined the limit of a sequence in $\mathbb{R}^n$ in the chapter 4 of the course 2. Both definitions are referred to by the same term "limit", but they are indeed different since the former is a special case of the latter. However we would not list it in the `terms_changed.md` file, as we can easily figure out which meaning the term "limit" refers to anywhere during the learning.
+
+### 8.3 Shorthands for Blocks
 + **Axiom** -> **Ax**
 + **Definition** -> **Df**
 + **Theorem** -> **Th**
@@ -107,6 +111,12 @@ The notations human uses are limited, and the math expressions are expected to b
 In the writing, I use two colors to distinguish the blocks of definitions validity and theorems validity. And each block is marked with its type (an axiom or a definition or others) and its timestamp.
 
 When refer to a block, it is better to also specify the shorthand.
+
+### 8.4 Reuse of Notations
+The notations human uses are limited, and the math expressions are expected to be precise and concise. Hence we can reuse the notations for different meanings, as long as we take the approach of **"locality"** to avoid confusion. 
+
+> If notation "a" is claimed for concepts "A" and "B", then you can distinguish the exact meaning by the context in most of the time. If you fail to figure out which of "A" and "B" the notation actually refers to, then the most "local" claim is the correct one (if "a for A" is claimed in the current chapter and "a for B" is claimed in some previous chapter of the current course, then "A" is said to be more "local" than "B"). For a claim of notation, the most "local" claim is the one in the current chapter (no matter in which file of the chapter) and there are no different claim in the same chapter.
+>
 
 ### 8.5 Naming Convention
 Here is the naming convention for the directories and files in the repository:

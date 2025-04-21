@@ -53,20 +53,27 @@ Here is the \textbf{Quick Search} for this chapter:
     \begin{compactdesc}
         \item (1.2.*): The order of a group; the order of an element of a group.
         \item (1.4.*): Dihedral group.
-        \item (1.5.*): Cycles and cycle-decomposition.
+        \item (1.5.*): Cycles, transpositions and cycle-decomposition.
         \item (1.6.*): Homomorphisms.
         \item (1.7.*): Subgroups and generated subgroups.
         \item (1.8.*): Cyclic groups.
         \item (1.9.*): Cosets.
         \item (1.10.*): $HK$.
         \item (1.11.*): Normal subgroups.
+        \item (1.12.*): Homomorphisms involving quotient groups.
+        \item (1.13.*): The structure of symmetric groups, alternating groups.
+        \item (1.14.*): Simple groups.
+        \item (1.15.*): Categories (included in the P1 file).
+        \item (1.16.*): Direct products (included in the P1 file).
+        \item (1.17.*): Free groups (included in the P1 file).
+        \item (1.18.*): A summary of the examples of concrete groups (included in the P2 file).
     \end{compactdesc}
 \end{Th}
 
 Then with everything prepared, here we go. 
 
 \begin{Df}{Df1.1 (groups)}
-    A \textbf{group} is a non-empty set $G$ with a binary operation $*$ on it (i.e. for any $a, b\in G$, $a*b\in G$) that satisfies the following properties:
+    A \textbf{group} is a non-empty set $G$ with a binary operation $*$ (or denoted as $\times$) on it (i.e. for any $a, b\in G$, $a*b\in G$) that satisfies the following properties:
     \begin{compactenum}
         \item (Associative) For any $a, b, c\in G$, $(a*b)*c=a*(b*c)$.
         \item (Two-sided Identity) There exists an element $1\in G$ ($1$ here is some element in $G$, not the number $1$) such that for any $a\in G$, $1*a=a*1=a$. \textcolor{Th}{Obviously, such $1$ is unique, } and we call it the \textbf{identity element} (or \textbf{identity} for short) of $G$.
@@ -94,7 +101,7 @@ Then with everything prepared, here we go.
             \item $(\mathbb{F}^n, +)$, $(\mathbb{F}^{m,n}, +)$ where $\mathbb{F}$ is a number field, each with the identity $\mathbf{0}$ (the zero vector or matrix) and the inverse $-\mathbf{a}$;
             \item $(A(S), \circ)$ where $S$ is a non-empty set and $A(S)$ is the set of all bijections $f$ from $S$ to $S$, with the identity $\text{id}_S$ (the identity function) and the inverse $f^{-1}$.
         \end{compactenum}}
-        \textcolor{Df}{For the group $A(S)$ here, the elements in $A(S)$ are called \textbf{permutations} of $S$. If $S = \{1, \cdots, n\}$, then $A(S)$ called the \textbf{symmetric group on $n$ letters}, denoted by $\mathbb{S}_n$.}
+        \textcolor{Df}{For the group $A(S)$ here, the elements in $A(S)$ are called \textbf{permutations} of $S$. If $S = \{1, \cdots, n\}$, then $A(S)$ called the \textbf{symmetric group on $n$ letters}, denoted by $\mathbb{S}_n$.} \textcolor{Df}{For $f\in\mathbb{S}_n$ and $a\in\{1,\cdots,n\}$, we call $a$ a \textbf{fixed point} (resp. \textbf{non-fixed point}) of $f$ if $f(a) = a$ (resp. $f(a) \neq a$).}
     \end{compactenum}
 \end{Rmk}
 
@@ -169,35 +176,40 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Df}{Df1.5 (cycle)}
-    Use an example to introduce this definition. Let $S = \{1, \cdots, 10\}$ and use the notation
-    $$ \sigma = \cycl (3, 5, 2, 9, 7)_{10} $$
-    to denote the permutation in $\mathbb{S}_{10}$ that maps $3$ to $5$, $5$ to $2$, $2$ to $9$, $9$ to $7$, and $7$ to $3$, and fixes all other elements. Then $\sigma$ is called a \textbf{cycle} of length $5$ (or a $5$-cycle) in $\mathbb{S}_{10}$. If clear from the context, we may denote
-    $$ \sigma = (3, 5, 2, 9, 7) $$
-    for short. Here $3, 5, 2, 9, 7$ are called the \textbf{elements} of the cycle.
+    A permutation $\sigma\in\mathbb{S}_n$ (of course $n\geq 2$) is called a \textbf{cycle} in $\mathbb{S}_n$ if there exist distinct $a_1, a_2, \cdots, a_m\in \{1,2,\cdots,n\}$ ($m\geq 2$) such that
+    $$ \sigma(a_1) = a_2, \quad \sigma(a_2) = a_3, \quad \cdots \quad ,\sigma(a_{m-1}) = a_m, \quad \sigma(a_m) = a_1 $$
+    and $\sigma(a_i) = a_i$ for any $a_i\notin \{a_1, a_2, \cdots, a_m\}$. In this case:
+    \begin{compactenum}
+        \item We write $\sigma = \cycl (a_1, a_2, \cdots, a_m)$ (or $\sigma = (a_1, a_2, \cdots, a_m)$, or $\sigma = (a_1a_2\cdots a_m)$, if no ambiguity), and call $(a_1, a_2, \cdots, a_m)$ a \textbf{cycle expression} of $\sigma$, and call $a_1, a_2, \cdots, a_m$ the \textbf{elements} of $\sigma$;
+        \item \textcolor{Th}{The non-fixed points of $\sigma$ are exactly the elements of $\sigma$, and the fixed points of $\sigma$ are exactly the others.} Thus \textcolor{Th}{the elements of $\sigma$ are unique (that is, must be the set of non-fixed points of $\sigma$)}, and we call $m$ the \textbf{length} of $\sigma$, or say that $\sigma$ is a $m$-cycle.
+        \item \textcolor{Th}{Obviously there is no $1$-cycle. And the $0$-cycle is exactly the identity map.}
+        \item \textcolor{Th}{Different expressions of the same cycle is of cyclic symmetry, that is, all possible expressions of the cycle $(a_1, a_2, \cdots, a_m)$ are exactly $(a_1, a_2, \cdots, a_m)$, $(a_2, \cdots, a_m, a_1)$, $\cdots$, $(a_m, a_1, a_2, \cdots )$.}
+        \item $\sigma$ is called a \textbf{transposition} if $m=2$.
+    \end{compactenum}
 \end{Df}
 
 \begin{Rmk}{}
     \begin{compactenum}
-        \item \textcolor{Df}{A $2$-cycle is called a \textbf{transposition}.} 
-        \item \textcolor{Th}{The elements in a cycle are distinct,} that is, for a cycle $(a_1, \cdots, a_n)$, it must be that $a_i\neq a_j$ for any $i\neq j$. If otherwise $a_i=a_j=a$ for some $i\neq j$, then $\sigma$ maps two different elements to $a$, and thus $\sigma$ is not a bijection.
-        \item \textcolor{Th}{A cycle of length $1$, say, $(3)$, is the identity map.} \textcolor{Df}{In this case let us just omit it}.
-        \item \textcolor{Th}{Cycles are of circulant symmetry, that is, for example, $(3, 5, 2, 9, 7) = (5, 2, 9, 7, 3) = (2, 9, 7, 3, 5) = \cdots$. This is also true conversely, that is, for two expressions $(a_1, \cdots, a_n)$ and $(a_{m_1}, \cdots, a_{m_n})$ of the same cycle, they are of circulant symmetry.}
         \item \textcolor{Th}{Not all permutations are cycles.} For example, the permutation $f\in\mathbb{S}_4$ such that $f(1,2,3,4) = (3,4,1,2)$ is not a cycle. Actually, if otherwise $f$ is a cycle, then we write down $f$ beginning with $1$:
         $$ f = \left(1, \right. = \left(1, 3, \right. = \left(1, 3\right) $$
         which means that $f(2) = 2$ and $f(4) = 4$, contradiction.
         \item \textcolor{Th}{(The inverse of a cycle) In $\mathbb{S}_n$, the inverse of a cycle is still a cycle:
-        $$ (a_1, \cdots, a_m)^{-1} = (a_m, \cdots, a_1). $$}
+        $$ (a_1, a_2, \cdots, a_m)^{-1} = (a_m, \cdots, a_2, a_1). $$}
+        \item (The order of cycles) \textcolor{Th}{The order of a cycle is equal to its length (expect for the $0$-cycle, whose order is $1$).} 
     \end{compactenum}
 \end{Rmk}
 
-\begin{Th}{Th1.5.1 (disjoint cycles are commutative)}
-    \textcolor{Df}{Two cycles $\sigma_1, \sigma_2\in\mathbb{S}_n$ are said to be \textbf{disjoint} if they have no common elements.} In this case, $\sigma_1\sigma_2 = \sigma_2\sigma_1$.
+\begin{Th}{Th1.5.1 (disjoint permutations are commutative)}
+    \begin{compactenum}
+        \item \textcolor{Df}{A list of permutations $\sigma_1, \sigma_2, \cdots, \sigma_m\in\mathbb{S}_n$ are said to be \textbf{disjoint} if the sets $N_1, N_2, \cdots, N_m$ of their non-fixed points are pairwise disjoint.} 
+        \item Disjoint permutations are commutative.
+    \end{compactenum}
     \tcblower
-    \textit{Pf}: Obvious.
+    \textit{Pf}: Obvious. 
 \end{Th}
 
 \begin{Th}{Th1.5.2 (the cycle-decomposition of a permutation)}
-    Any $f\in\mathbb{S}_n$ can be written as a product of disjoint cycles in $\mathbb{S}_n$, and this product is unique up to the order of the cycles.
+    Any $f\in\mathbb{S}_n\setminus \{\mathrm{id}\}$ (that is, $f$ is a permutation in $\mathbb{S}_n$ and $f$ is not the identity map) can be written as a product of disjoint cycles in $\mathbb{S}_n$, and this product is unique up to the order of the cycles (of course, the identity map is omitted in this product expression). 
     \tcblower
     \textit{Pf}: 
     \begin{compactenum}
@@ -214,6 +226,36 @@ Then with everything prepared, here we go.
     \end{compactenum}
 \end{Th}
 
+\begin{Th}{Th1.5.3 (the order of a permutation)}
+    The order of a permutation equals the least common multiple of the orders of its cycle factors (in the expression of cycle decomposition (Th \{, ID: 1.5.2\})). In particular, the order of the identity map $\mathrm{id}$ is $1$, namely, $|\mathrm{id}|=|\text{the } 0\text{-cycle}| = \lcm(1) = 1$.
+    \tcblower
+    \textit{Pf}: Obvious by the cycle decomposition.
+\end{Th}
+
+\begin{Th}{Th1.5.4 (the transposition-decomposition of a permutation)}
+    Any $f\in\mathbb{S}_n\setminus\{\mathrm{id}\}$ can be written as a product of transpositions. This factorization is not necessarily unique, and the factors (as cycles) are not necessarily disjoint.
+    \tcblower
+    \textit{Pf}: One can easily prove it based on the cycle decomposition, but we here prove it in an easier and more general way. Actually we do not need to formally prove it, but just need to clarify it by an exercise. That is, for an arbitrary given permutation, say, $f = (3, 4, 2, 1)^\mathrm{T}$ (here the notation means a column vector, representing that $f(1) = 3$, $f(2) = 4$, $f(3) = 2$, $f(4) = 1$), please write it as a product of transpositions. Then it is naturally to think of:
+    $$ \mathrm{id} = \begin{bmatrix}
+        1 \\ 2 \\ 3 \\ 4
+    \end{bmatrix} \xlongrightarrow[\text{place } 3\text{ to the correct position}]{\text{multiply }(1,3) \text{ on the left to}} \begin{bmatrix}
+        3 \\ 2 \\ 1 \\ 4
+    \end{bmatrix} \xlongrightarrow[\text{place } 4\text{ to the correct position}]{\text{multiply }(2,4) \text{ on the left to}} \begin{bmatrix}
+        3 \\ 4 \\ 1 \\ 2
+    \end{bmatrix} \xlongrightarrow[\text{to place } 2\text{ to }\cdots]{\text{multiply }(1,2)\, \cdots} \begin{bmatrix}
+        3 \\ 2 \\ 4 \\ 1
+    \end{bmatrix} = f. $$
+    Thus $f = (1,2)(2,4)(1,3)$. \\
+    Now we see that this expression is not unique, as also $f = (3,4)(2,3)(1,4)$. Also, a general permutation may fail to be expressed as a product of disjoint transpositions, otherwise it would violates the uniqueness of the cycle decomposition. 
+\end{Th}
+
+\begin{Th}{Th1.5.5 (quickly factorizing a cycle into transpositions)}
+    For any cycle $(a_1, a_2, \cdots, a_m)$, we have
+    $$ (a_1, a_2, \cdots, a_m) = (a_1, a_m)(a_1, a_{m-1})\cdots(a_1, a_3)(a_1, a_2). $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
 \begin{Df}{Df1.6 (homomorphisms)}
     Let $G$ and $H$ are semigroups. Then a function $f: G\to H$ is called a \textbf{homomorphism} (from $G$ to $H$) if 
     $$ f(ab) = f(a)f(b) $$
@@ -225,6 +267,7 @@ Then with everything prepared, here we go.
         \item $H = G$, then $f$ is called an \textbf{endomorphism}.
         \item $H = G$ and $f$ is bijective, then $f$ is called an \textbf{automorphism}.
     \end{compactenum}
+    The set of all endomorphisms of a group $G$ is denoted as $\text{End}(G)$.
 \end{Df}
 
 \begin{Rmk}{}
@@ -535,6 +578,7 @@ Then with everything prepared, here we go.
 \begin{Df}{Df1.10 ($HK$)}
     Let $G$ be a group and $H, K\subseteq G$. Then the \textbf{product} of $H$ and $K$ is defined as
     $$ HK \triangleq \{hk: h\in H, k\in K\}. $$
+    \textcolor{Th}{In particular, $\varnothing K = H\varnothing = \varnothing$ by the set theory.}
 \end{Df}
 
 \begin{Th}{Th1.10.1 (properties of $HK$)}
@@ -688,7 +732,7 @@ Then with everything prepared, here we go.
     \begin{compactenum}
         \item It is trivial to check that $G/N$ is a group, \textcolor{Th}{with the identity $N$ and the inverse of $gN$ being $g^{-1}N$}. And we should notice that it is the normality of $N$ that makes sure that $g_1Ng_2N = g_1g_2N$.
         \item \textcolor{Th}{$|G/N| = [G:N]$}.
-        \item \textcolor{Th}{$G/{1} = \{G\}$, $G/G = \{1\}$}.
+        \item \textcolor{Th}{$G/\{1\} = \{G\}$, $G/G = \{1\}$}.
         \item \textcolor{Th}{The notation $\mathbb{Z}/n\mathbb{Z}$ is of what it literally means: it is exactly the quotient group of $\mathbb{Z}$ by $n\mathbb{Z}$. Clearly, for $m,n\in\mathbb{N}$, we have
         $$ m\mathbb{Z}<n\mathbb{Z} \quad \Longleftrightarrow \quad n|m. $$
         Also we have (assume $n\mid k\mid m$):
@@ -824,7 +868,7 @@ Then with everything prepared, here we go.
     And it works for this exercise. Then the isomorphism desired is $k(N\cap K)\mapsto kN$.
 \end{Th}
 
-\begin{Th}{Clry 1.12.5 (the 2nd isomorphism theorem) ($G/\Ker f \simeq \Ima f$)}
+\begin{Th}{Clry 1.12.5 (the 2nd isomorphism theorem) ($ K/(N\cap K) \simeq NK/N $)}
     Let $G$ be a group and $N\nles G$, $K<G$. Then
     $$ K/(N\cap K) \simeq NK/N. $$
     \tcblower
@@ -894,10 +938,70 @@ Then with everything prepared, here we go.
     Let $G$ be a group and $N\nles G$. Then
     \begin{compactenum}
         \item A subset of $G/N$ is a subgroup of $G/N$ iff it is of the form $K/N$, where $N<K<G$.
-        \item A subgroup $K/N$ of $G/N$ is normal iff $K$ is normal in $G$.
+        \item A subgroup $K/N$ (where $N<K<G$) of $G/N$ is normal iff $K$ is normal in $G$.
     \end{compactenum}
     \tcblower
     \textit{Pf}: Obvious by applying the Th \{, ID: 1.12.7\} to the canonical epimorphism $G\twoheadrightarrow G/N$.
+\end{Th}
+
+\begin{Df}{Df1.13.1 (the parity of a permutation)}
+    In $\mathbb{S}_n$ ($n\geq 2$), an \textbf{odd permutation} (resp. \textbf{even permutation}) is a permutation that can be expressed as a product of an odd (resp. even) number of transpositions. 
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{This definition is well-defined, that is, any permutation cannot be both odd and even.} Actually, this fact was discussed in the 8th chapter of the course 1, where we discussed the parity of a permutation before defining the determinants of square matrices. Then one can be clear that the concept of ``permutation'' is just the same as the one discussed there, and we had an analogue to ``transposition'' there, which is the ``swap'' defined in the Df \{course: 1, ID: 8.1.-1.1\}. Strictly a transposition is not a swap. A transposition exchanges the assigned elements, while a swap exchanges the assigned positions. But these two concepts correspond to each other:
+    $$ S(\pmb{p}) = (p, q) \pmb{p} $$
+    where $\pmb{p}$ is a permutation, $(p,q)$ is a transposition and $S$ is the swap operator. For $S$ and $(p,q)$ in this equality, if one is $\forall$, then the other is $\exists$. \\
+    Therefore things become easy. By those blocks \{course: 1, ID: 8.1.-1.*\}, a permutation is odd (resp. even) $\Longleftrightarrow$ the permutation is a product of an odd (resp. even) number of transpositions $\Longleftrightarrow$ the number of reversals of the permutation is odd (resp. even). As the number of reversals cannot be both odd and even, so does the parity of a permutation. 
+\end{Rmk}
+
+\begin{Df}{Df1.13.2 (alternating group)}
+    For $n\geq 2$, the \textbf{alternating group on} $n$ \textbf{letters} (or, the \textbf{alternating group of degree} $n$), $\mathbb{A}_n$, is the subset of $\mathbb{S}_n$ consisting of all even permutations. \textcolor{Th}{It is obvious that $\mathbb{A}_n$ is a normal subgroup of $\mathbb{S}_n$, with index 2.} 
+\end{Df}
+
+\begin{Rmk}{}
+    Clearly \textcolor{Th}{$\mathbb{S}_n = \mathbb{A}_n\sqcup (1,2)\mathbb{A}_n$, where $(1,2)\mathbb{A}_n = \{f\in\mathbb{S}_n: f \text{ is odd}\}$}. And of course \textcolor{Th}{a subgroup of index 2 is always normal}. 
+\end{Rmk}
+
+\begin{Df}{Df1.14 (simple group)}
+    A group is called \textbf{simple} if it has no proper normal subgroups.
+\end{Df}
+
+\begin{Th}{Ex1.14.1.-1 (simple Abelian group)}
+    \textcolor{Th}{There are cases of simple non-Abelian groups, such as $\mathbb{A}_3$; and cases of non-simple non-Abelian groups, such as $\langle r\rangle\nles\mathbb{D}_4 = \{1, r, r^2, r^3, s, sr, sr^2, sr^3\}$.} But things seem much easier for Abelian groups, as every subgroup of an Abelian group is normal. Then what?
+    \tcblower
+    \textit{Solution}: An Abelian group $G$ is simple iff it has no proper subgroup. However, we have a easiest way to contruct a, in most of the case, proper subgroup of $G$, that is, $\langle a\rangle < G$. Thus to make $G$ simple, we must let it to be cyclic. Then, $G\simeq\mathbb{Z}$ or $G\simeq\mathbb{Z}/m\mathbb{Z}$. Since the former case is also impossible (for $G$ to be simple), $G$ must be (isomorphic to) $\mathbb{Z}/m\mathbb{Z}$. Since the subgroups of $\mathbb{Z}/m\mathbb{Z}$ are exactly those $\mathbb{Z}/k\mathbb{Z}$ with $k\mid m$, we get the answer.
+\end{Th}
+
+\begin{Th}{Th1.14.1 (simple Abelian groups are exactly those $\mathbb{Z}/p\mathbb{Z}$ with $p$ prime)}
+    Simple Abelian groups are exactly those $\mathbb{Z}/p\mathbb{Z}$ with $p$ prime. Here $p$ can be $1$, which means $\mathbb{Z}/p\mathbb{Z}$ is the trivial group, simple of course.
+    \tcblower
+    \textit{Pf}: This is just the Ex \{, ID: 1.14.1.-1\}.
+\end{Th}
+
+\begin{Th}{Lma1.14.2.-2}
+    Let $n\geq 3$, and $r,s\in\{1,\cdots, n\}$, $r\neq s$. Then 
+    $$ \mathbb{A}_n = \langle \{\text{3-cycles}\} \rangle = \langle \{(rsk): k\neq r,s\} \rangle. $$
+    \tcblower
+    \textit{Pf}: See the lemma 6.11 in the chapter 1 of the reference book.
+\end{Th}
+
+\begin{Th}{Lma1.14.2.-1}
+    Let $n\geq 3$. If a normal subgroup $N$ of $\mathbb{A}_n$ contains some 3-cycle, then $N = \mathbb{A}_n$.
+    \tcblower
+    \textit{Pf}: See the lemma 6.12 in the chapter 1 of the reference book.
+\end{Th}
+
+\begin{Th}{Th1.14.2 ($\mathbb{A}_n$ is simple iff $n\neq 4$)}
+    The alternating group $\mathbb{A}_n$ is simple iff $n\neq 4$.
+    \tcblower
+    \textit{Pf}: See the theorem 6.10 in the chapter 1 of the reference book.
+\end{Th}
+
+\begin{Th}{Blocks from the P1 file}
+\end{Th}
+
+\begin{Th}{Blocks from the P2 file}
 \end{Th}
 
 \end{document}

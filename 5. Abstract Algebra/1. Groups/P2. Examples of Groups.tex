@@ -1,0 +1,126 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+    \setlength{\parskip}{1em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{mathrsfs}
+    \usepackage{extarrows}
+    \usepackage{tikz-cd}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Examples of Groups}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\lcm}{\text{lcm}}
+    \newcommand{\cycl}{\text{cycl}}
+    \newcommand{\nles}{\vartriangleleft}
+    \newcommand{\notnles}{\ntriangleleft}
+    \newcommand{\Ker}{\text{Ker}\,}
+    \newcommand{\Ima}{\text{Im}\,}
+    \newcommand{\hooktwoheadrightarrow}{%
+        \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
+    % the weak direct product
+    \newcommand{\wprod}[1]{\sideset{}{^\text{w}}\prod_{#1}}
+    
+    
+    % Insert dynamically separator lines every 5 items
+    % Define the new env \fiveitems
+    \usepackage{enumitem}
+    \usepackage{etoolbox}
+    
+    \newcounter{itemcounter}
+    \newlist{fiveitems}{itemize}{1}
+    \setlist[fiveitems]{
+        label={},
+        align=left,  % set the label to the left
+        leftmargin=*, % no indentation
+        before=\setcounter{itemcounter}{0},
+        noitemsep,
+        topsep=0pt,
+        partopsep=0pt,
+        parsep=0pt,
+        itemsep=0pt
+    }
+    
+    \newcommand{\fiveitem}[2][]{%
+        \stepcounter{itemcounter}%
+        \item[#1] #2%
+        \ifnum\value{itemcounter}=5\relax
+            \setcounter{itemcounter}{0}%
+            \end{fiveitems}%
+            \noindent\rule{\linewidth}{0.4pt}\par
+            \begin{fiveitems}%
+        \fi%
+    }
+
+\begin{document}
+\maketitle
+
+This is a problem file of the 1st chapter of Abstract Algebra, which is about the \textbf{Examples of Groups}. Clearly one cannot master the group theory without covering enough concrete examples, which imposes the author to write this file, where a more comprehensive and updating collection of examples will be recorded.
+
+In detail, which examples would be included in this file? An example is either trivial or non-trivial, and is either already learnt previously from the note file (\verb|Groups.pdf|) or not. Among those non-trivial examples (those examples that are not intuitive or obvious enough for a beginner of abstract algebra) there are many typical ones in the history of mathematics. Thus the author expects to include these examples ($\surd$: included; $\times$: not included) in this file:
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+        ~ & trivial & non-trivial \\ \hline
+        learnt & $\times$ & $\surd$ \\ \hline
+        not learnt & $\surd$ & $\surd$ \\ \hline
+    \end{tabular}
+\end{table}
+
+For the trivial examples, we may omit their proofs and just clearly illustrate them; for the learnt examples, we may also omit their proofs but give a reference to the note file. Here is the \textbf{Quick Search}, which list the positions of the examples in this file, in the alphabetical order. For an example with different names, we will list it one times for each name (e.g. the ``Klein group'' and the ``order-4 group'' are two names for the same block of examples). 
+
+\begin{Th}{Quick Search}
+    % A small bug in the \fiveitem environment: an error occurs if the total number of items is exactly a multiple of 5. So just add an empty item "\fiveitem[]{}" no matter how many items in total are there, to avoid this error.
+    \begin{fiveitems}
+        \fiveitem[Klein group]{\hfill \{, ID: 1\_P2.18.3\}}
+        \fiveitem[Order-2 group]{\hfill \{, ID: 1\_P2.18.2\}}
+        \fiveitem[Order-3 group]{\hfill \{, ID: 1\_P2.18.2\}}
+        \fiveitem[Order-4 groups]{\hfill \{, ID: 1\_P2.18.3\}}
+        \fiveitem[Trivial group]{\hfill \{, ID: 1\_P2.18.1\}}
+        % add an empty item to avoid the error "Something's wrong--perhaps a missing \item".
+        \fiveitem[]{} 
+    \end{fiveitems}
+\end{Th}
+
+Besides, some other meaningful examples (although maybe trivial) are also included in this file.
+
+About the assignment of blocks for containing the examples, the author will assign the series \{, ID: 1.18.* \} to include all the examples in this file. This, however, will unavoidably make the file fail to include those examples that are not learnt previously (for maintaining the consistency of timestamps (see the \verb|README.md| file of the entire project)), e.g. the examples leart after the \{, ID: 1.19 \}. In this case, we can just new such a problem file ``Examples of Groups: Wave 2'' for those examples (if any), and just let us relax and enjoy the examples in this file first.
+
+With everything prepared, here we go !
+
+\begin{Th}{Th 1\_P2.18.1 (trivial group)}
+    A single element $1$ forms a group $G = \{1\}$.
+\end{Th}
+
+\begin{Th}{Th 1\_P2.18.2 (order-2 group, order-3 group)}
+    There is exactly one group of order $2$ (resp. of order $3$), which is $\mathbb{Z}_2$ (resp. $\mathbb{Z}_3$).
+\end{Th}
+
+\begin{Th}{Th 1\_P2.18.3 (order-4 group) (Klein group)}
+    There are exactly two groups of order $4$, which are $\mathbb{Z}_4$ and $\mathbb{Z}_2 \oplus \mathbb{Z}_2$. \textcolor{Df}{The latter is called the \textbf{Klein group}.}
+\end{Th}
+
+\end{document}

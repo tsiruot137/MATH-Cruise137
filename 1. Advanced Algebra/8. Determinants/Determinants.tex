@@ -57,7 +57,7 @@ Please check the notations and definitions by yourself from the previous chapter
 \end{Th}
 
 \begin{Df}{Df8.1.-1.1 (swap)}
-    Given the set $\mathcal{P}_n$ of all permutations of $(1,2,\dots,n)$, a \textbf{swap} $S(i,j; \cdot): \mathcal{P}_n\to\mathcal{P}_n$ is a function that swaps the $i$-th and $j$-th elements (say, $i\neq j$) of a permutation. 
+    Given the set $\mathcal{P}_n$ of all permutations of $(1,2,\dots,n)$ (with $n\geq 2$), a \textbf{swap} $S(i,j; \cdot): \mathcal{P}_n\to\mathcal{P}_n$ is a function that swaps the $i$-th and $j$-th elements (of course $i\neq j$) of a permutation. 
 \end{Df}
 
 \begin{Rmk}{}
@@ -73,7 +73,7 @@ Please check the notations and definitions by yourself from the previous chapter
     A permutation $\pmb{p}$ is called \textbf{odd} (resp. \textbf{even}) if $r(\pmb{p})$ is odd (resp. even). 
 \end{Df}
 
-\begin{Th}{Lma8.1.-1.3 (a swap changes the parity of a permutation)}
+\begin{Th}{Lma8.1.-1.4 (a swap changes the parity of a permutation)}
     Suppose $\pmb{p} = (p_1, \cdots, p_n)$ is a permutation of $(1,\cdots,n)$. Then for any swap $S$, the parity of $S(\pmb{p})$ is different from that of $\pmb{p}$.
     \tcblower
     \textit{Pf}: The result $S(\pmb{p})$ is something like ($i<j$):
@@ -81,11 +81,11 @@ Please check the notations and definitions by yourself from the previous chapter
     then the reversals among those pairs $(p_i,\bullet)$, $(p_j,\bullet)$ does not change; the reversals' changes among those pairs $(p_i, \circ)$ are each matched with $(p_j, \circ)$, resulting in a totally even number of change in the number of reversals. Thus the parity is changed by the last remaining pair swapped $p_i\leftrightarrow p_j$. 
 \end{Th}
 
-\begin{Th}{Th8.1.-1.4 (the parity and the number of swaps)}
+\begin{Th}{Th8.1.-1.5 (the parity and the number of swaps)}
     The odd (resp. even) permutations are exactly those which can be obtained by an odd (resp. even) number of swaps of the identity permutation $(1,\cdots,n)$. Furthermore, given two permutations $\pmb{p}_1$ and $\pmb{p}_2$, the parity of the number of swaps needed to transform $\pmb{p}_1$ to $\pmb{p}_2$ must be the same as the parity of $r(\pmb{p}_1)+r(\pmb{p}_2)$, and is independent of the exact sequence of swaps.
     \tcblower
-    \textit{Pf}: First, it is clear that any permutation can be obtained by swapping on the identity permutation finitely many times. In fact, to change $(1, \cdots, n)$ to $(p_1, \cdots, p_n)$, we can just move $p_1$ in $(1,\cdots, n)$ to the $1$st position by every time swapping $p_1$ with the element on its left, and then move $p_2$ to the $2$nd position, and repeat. \\
-    Then this theorem is obvious by the Lma \{, ID: 8.1.-1.3\}.
+    \textit{Pf}: First, it is clear that any permutation can be obtained by swapping on the identity permutation finitely many times. In fact, to change $(1, \cdots, n)$ to $(p_1, \cdots, p_n)$, we can just first swap $p_1$ in $(1,\cdots, n)$ to the $1$st position, and then swap $p_2$ to the $2$nd position, and repeat. \\
+    Then this theorem is obvious by the Lma \{, ID: 8.1.-1.4\}.
 \end{Th}
 
 \begin{Df}{Df8.1 (determinants)}

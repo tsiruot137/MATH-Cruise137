@@ -1,0 +1,103 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+    \usepackage{tikz-cd}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk_continued}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks (continued)}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Polynomial Rings, Matrix Rings and Group Rings}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typying
+    \newcommand{\lcm}{\text{lcm}}
+    \newcommand{\cycl}{\text{cycl}}
+    \newcommand{\nles}{\vartriangleleft}
+    \newcommand{\notnles}{\ntriangleleft}
+    \newcommand{\Ker}{\text{Ker}\,}
+    \newcommand{\Ima}{\text{Im}\,}
+    \newcommand{\hooktwoheadrightarrow}{%
+        \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
+    \newcommand{\End}{\text{End }}
+\begin{document}
+\maketitle
+
+This is the 1st chapter of Abstract Algebra, which is about the \textbf{Polynomial Rings, Matrix Rings and Group Rings}. 
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (2\_P1.2.1.*) Polynomial rings.
+        \item (2\_P1.2.2.*) Matrix rings.
+        \item (2\_P1.2.3.*) Group rings.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df 2\_P1.2.1 (polynomial rings)}
+    \begin{compactenum}
+        \item Given a ring $R$, the set 
+        $$ R[x] = \{a_0 + a_1 x + \cdots + a_n x^n\} $$
+        \textcolor{Th}{is a ring,} called the \textbf{polynomial ring} over $R$ in the indeterminate $x$ (or, the polynomial ring in variable $x$ with coefficients in $R$). The definition of the addition and multiplication of $R[x]$ are of course what follows, which we should have been familiar with.
+        \begin{compactenum}
+            \item (Addition) Componentwise addition.
+            \item (Multiplication) Calculate by expanding out and collecting like terms.
+        \end{compactenum}
+        For a polynomial $p(x) = a_0 + a_1 x + \cdots + a_n x^n\neq 0$ ($a_n\neq 0$), the $a_n$ is called the \textbf{leading coefficient} and $a_nx^n$ is called the \textbf{leading term}. In this case, we say that $p(x)$ is of \textbf{degree} $n$, denoted by $\deg p(x) = n$. The degree of the zero polynomial is defined to be $-\infty$. 
+        \item \textcolor{Th}{For the polynomial ring $R[x]$, we have $R\subseteq R[x]$.}
+        \item \textcolor{Th}{The polynomial ring $R[x]$ is commutative iff the ring $R$ is.}
+        \item \textcolor{Th}{The polynomial ring $R[x]$ has an identity iff the ring $R$ does.}
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item We have in the chapter 1 of the course 1 defined the polynomial ring over a number field $\mathbb{F}$, where we denoted the polynomial ring as $\mathcal{P}_\mathbb{F}(x)$. The polynomial ring defined here is the same as the one defined at that time (if $R$ here is a number field), but with a different notation.
+        \item The statement $R\subseteq R[x]$ means that $R[x]$ contains some (ring-)isomorphic copy of $R$, which would be talked soon in this chapter.
+        \item \textcolor{Th}{If $R$ is an integral domain, then for $p(x), q(x)\in R[x]$ we have:
+        \begin{compactenum}
+            \item $\deg(p(x) + q(x)) \leq \max\{\deg p(x), \deg q(x)\}$;
+            \item $\deg(p(x)q(x)) = \deg p(x) + \deg q(x)$;
+            \item $R[x]$ is an integral domain.
+        \end{compactenum}}
+        where the condition ``$R$'' is an integral domain" is necessary for the second statement, as it assures that the leading coefficient of $p(x)q(x)$ would not vanish.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Df}{Df 2\_P1.2.2 (matrix rings)}
+    \begin{compactenum}
+        \item \textcolor{Th}{Given a ring $R$, the set of all $n\times n$ matrices, denoted by $\mathcal{M}_n(R)$, is a ring under the usual matrix addition and multiplication,} called the ($n\times n$) \textbf{matrix ring} over $R$. 
+        \item \textcolor{Th}{The tricks of computation using block matrix including \{course: 1, ID: 5.3\} and \{course: 1, ID: 5.3.1\} are still valid here.}
+        \item Make use of the block-matrix-computation, we can easily show that \textcolor{Th}{$\mathcal{M}_n(R)$ has an identity iff $R$ does, in which case the identity of $\mathcal{M}_n(R)$ is the $n\times n$ identity matrix
+        $$ I_n = \begin{bmatrix}
+            1 & & \\
+            & \ddots & \\
+            & & 1
+        \end{bmatrix} $$}
+        and the set $(\mathcal{M}_n(R))^\times$ of units of $\mathcal{M}_n(R)$ is denoted by $GL_n(R)$, called the \textbf{general linear group} of degree $n$ over $R$.
+        \item \textcolor{Th}{The matrix ring $\mathcal{M}_n(R)$ is commutative only if $R$ is a trivial ring.}
+    \end{compactenum}
+\end{Df}
+
+\end{document}
