@@ -124,7 +124,7 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Df}{Df1.3 (Abelian group)}
-    A group $G$ is said to be \textbf{Abelian} if the binary operation is commutative, i.e. 
+    A group $G$ is said to be \textbf{Abelian} or \textbf{commutative} if the binary operation is commutative, i.e. 
     $$ ab = ba $$
     for any $a, b\in G$.
 \end{Df}
@@ -277,6 +277,7 @@ Then with everything prepared, here we go.
         \item $f(1_G) = 1_H$;
         \item $f(a^{-1}) = f(a)^{-1}$;
     \end{compactenum}}
+    One can prove the first statement by first showing that $f(G)$ is a subgroup (subgroups are talked later, but here is no cyclic reasoning) of $H$, and that $f(1_G) = 1_{f(G)}$ (the identity element of the group $f(G)$), and then using the fact that $1_{f(G)} = 1_H$. The second statement can be directly proved by the first statement.
     \textcolor{Th}{Some examples of these ``morphisms'':
     \begin{compactenum}
         \item The function $f: (\mathbb{Z}/10\mathbb{Z})\to (\mathbb{Z}/10\mathbb{Z})$ defined as
@@ -910,14 +911,14 @@ Then with everything prepared, here we go.
         \item Obviously $M\nles H$ implies $f^{-1}(M) \nles G$. For the former, $f(N)\nles H$, it suffices to that $f$ is an epimorphism.
         \item Now we study the map $\varphi$.
         \begin{compactenum}
-            \item For the range of $\varphi$, we first ask whether $\varphi$ is surjective. Then for $L<H$, is there any $H<G$ s.t. $f(H) = L$? For this to be true, we are first worried about that $f$ is not epimorphic, which would result in that some $L$ beyond the $f(G)$ may fail to have a pre-image. Thus we assume that \textcolor{P}{$f$ is an epimorphism}. Then with this new assumption, the surjectivity of $\varphi$ is easy to be verified.
-            \item Is $\varphi$ injective? Does $f(H_1) = f(H_2)$ imply $H_1 = H_2$? This is not so clear, but we notice that $f(H) = f(f^{-1}(f(H)))$, which maybe fail to imply $H = f^{-1}(f(H))$. Actually, the injectivity of $\varphi$ is equivalent to the fact that $H = f^{-1}(f(H))$ holds for every $H < G$. Now we inspect this condition. Clearly $K<f^{-1}(f(H))$. For the other direction, we can easily obtain a sufficient, but extra condition: \textcolor{P}{$\Ker f<H$}. Thus consider restricting $\varphi$ on the set $\mathrm{S}_f(G)\triangleq \{K<G: \,\Ker f<K\}$ we get an injection. 
-            \item $\varphi$ is surjective, but how about the restriction of $\varphi$ on $\mathrm{S}_f(G)$? Does the surjectivity of $f$ still imply the surjectivity of (the restricted) $\varphi$? Yes, if $f$ is an epimorphism, then we can verify that $\varphi(\mathrm{S}_f(G)) = \mathrm{S}(H) = \{H\subseteq G: H<G\}$.
+            \item For the range of $\varphi$, we first ask whether $\varphi$ is surjective. Then for $L<H$, is there any $K<G$ s.t. $f(K) = L$? For this to be true, we are first worried about that $f$ is not epimorphic, which would result in that some $L$ beyond the $f(G)$ may fail to have a pre-image. Thus we assume that \textcolor{P}{$f$ is an epimorphism}. Then with this new assumption, $\varphi$ is surjective, since $L = f(f^{-1}(L)) = \varphi(f^{-1}(L))$ given $L<H$.
+            \item Is $\varphi$ injective? Does $f(K_1) = f(K_2)$ imply $K_1 = K_2$? This is not so clear, but we notice that $f(K) = f(f^{-1}(f(K)))$, which maybe fail to imply $K = f^{-1}(f(K))$. Actually, the injectivity of $\varphi$ is equivalent to the fact that $K = f^{-1}(f(K))$ holds for every $K < G$. Now we inspect this condition. Clearly $K<f^{-1}(f(K))$. For the other direction, we can easily obtain a sufficient, but extra condition: \textcolor{P}{$\Ker f<K$}. Thus consider restricting $\varphi$ on the set $\mathrm{S}_f(G)\triangleq \{K<G: \,\Ker f<K\}$ we get an injection. 
+            \item $\varphi$ is surjective, but how about the restriction of $\varphi$ on $\mathrm{S}_f(G)$? Does the surjectivity of $f$ still imply the surjectivity of (the restricted) $\varphi$? Yes, if $f$ is an epimorphism, then we can still have $L = f(f^{-1}(L)) = \varphi(f^{-1}(L))$ for $L<H$, since always $\Ker f<f^{-1}(L)$.
         \end{compactenum}
     \end{compactenum}
 \end{Th}
 
-\begin{Th}{Th1.12.7 ($N\mapsto f(N)$)}
+\begin{Th}{Th1.12.7 ($N\mapsto f(N)$, $K\mapsto f(K)$)}
     Let $f: G\to H$ be a group homomorphism. Then:
     \begin{compactenum}
         \item $f^{-1}(M) \nles G$ for any $M\nles H$.
@@ -934,7 +935,7 @@ Then with everything prepared, here we go.
     This theorem is useful when we are to study the subgroups of a new group, via group homomorphism. The next theorem is an example.
 \end{Rmk}
 
-\begin{Th}{Th1.12.8 (the subgroups of $G/N$)}
+\begin{Th}{Clry 1.12.8 (the subgroups of $G/N$)}
     Let $G$ be a group and $N\nles G$. Then
     \begin{compactenum}
         \item A subset of $G/N$ is a subgroup of $G/N$ iff it is of the form $K/N$, where $N<K<G$.

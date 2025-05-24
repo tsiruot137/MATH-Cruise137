@@ -42,9 +42,9 @@
 \begin{document}
 \maketitle
 
-This is the 1st chapter of Abstract Algebra, which is about the \textbf{Polynomial Rings, Matrix Rings and Group Rings}. 
+This file is about the \textbf{Polynomial Rings, Matrix Rings and Group Rings}. 
 
-Here is the \textbf{Quick Search} for this chapter:
+Here is the \textbf{Quick Search} for this file:
 \begin{Th}{Quick Search}
     \begin{compactdesc}
         \item (2\_P1.2.1.*) Polynomial rings.
@@ -99,5 +99,28 @@ Then with everything prepared, here we go.
         \item \textcolor{Th}{The matrix ring $\mathcal{M}_n(R)$ is commutative only if $R$ is a trivial ring.}
     \end{compactenum}
 \end{Df}
+
+\begin{Df}{Df 2\_P1.2.3 (group rings)}
+    Let $G$ be a group written multiplicatively, and $R$ be a ring. Then $R$ is of course Abelian, and by the Df \{, ID: 1\_P1.16.1\} we write the direct sum of the family $\{R_g: g\in G\}$ where $R_g = R$ for all $g\in G$, as
+    $$ R(G) = \sum_{g\in G} R_g = \sum_{g\in G} R = \{(r_g)_{g\in G}: \text{ only finitely many } r_g\neq 0\}. $$
+    Then write the elements $(r_g)_{g\in G}$ of $R(G)$ as the \textbf{formal sums}
+    $$ (r_g)_{g\in G} = r_{g_1}g_1 + \cdots + r_{g_n}g_n = r_1g_1 + \cdots + r_ng_n = \sum_{i=1}^n r_ig_i. $$
+    Here we allow that some of the $r_i$'s are zero and that some of the $g_i$'s are repeated, so that an element of $R(G)$ may be written in formally different ways. With this notation we define the addition and multiplication on $R(G)$ as
+    \begin{compactenum}
+        \item (Addition) Componentwise addition; 
+        \item (Multiplication) Calculate by expanding out and collecting like terms.
+    \end{compactenum}
+    The definition of the addition and multiplication of $R(G)$ is similar to that of the polynomial ring $R[x]$ in Df \{, ID: 2\_P1.2.1\}. Then we can check that \textcolor{Th}{these definitions are well-defined, under which $R(G)$ is a ring,} called the \textbf{group ring} of $G$ over $R$.  
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{For the group ring $R(G)$, 
+    \begin{compactenum}
+        \item $R\subseteq R(G)$ (that is, $R(G)$ contains a (ring-isomorphic) copy of $R$);
+        \item $R(G)$ is commutative iff both $R$ and $G$ are commutative;
+        \item $R(G)$ has an identity iff $R$ does, in which case the identity of $R(G)$ is the element $1_R 1_G$.
+    \end{compactenum}}
+    \textcolor{Df}{When the identity (of $R$, or of $G$) appears in the notation of formal sum, omit it. For example, we write $rg+1_R h = rg + h$, $rg+s1_G = rg + s$.}
+\end{Rmk}
 
 \end{document}

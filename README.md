@@ -199,3 +199,11 @@ To solve this problem, we make the following regulation:
 > 3. **Insertion by newing a non-note file (which is about to hold validity) `I`**: write a **reminder block** at the desired position — say, between the adjacent blocks `{, ID: 1.3.1}` and `{, ID: 1.4}` — to indicate that some blocks with validity are inserted here.
 > 4. **Insertion by write a block with validity in `I`**: suppose the reminder block of `I` is **exactly between** the blocks with IDs `id1` and `id2` (`id1` is before `id2`) in this moment, **keep the written block's timestamp after `id1`, before `id2` and in the right order within `I`**. 
 > 5. **Insertion by write a block with validity in `N`**: if in that moment, one or both of the adjacent positions of the written block are some reminder blocks, say, the next (resp. the last) position is, then keep the timestamp of the written block **before the first block (resp. after the last block) with validity in the file referred by the reminder block**.
+
+### 8.13 Personal Notations
+Sometimes some personal notations are used in place of the standard notations (in the math literature) for the sake of convenience. In this case the personal notations should be claimed as "personal" in the block proposing the notation.
+
+### 8.14 Hint step
+It is widely acknowledged by math learners that a proof easy to check is usually written in a reverse order of the thinking chain, and thus is usually hard to think of. To balance the checkability and the thinkability, we can still write the proof easy to check, but ``reverse the order'' at some critical steps, that is, give some hints. 
+
+An example of hint step can be seen in the writing of equality. For some equality $a = b$, it is often the case that given $b$ we can notice $b=a$, but given $a$ we may fail to notice $a=b$. In this case we had better to hint $b$ (possibly mark $b$ in another color). For a continued equality $a = b = c = d$ we may want to prove $a = d$. But if $b=c$ is hinted we mean that we first notice $b=c$, and then notice $c=d$ and $b=a$. Such trick can be seen in the proof of the theorem `{course: 5, ID: 2_P2.4.3.2.3 }`, and this way we can exhibit our chain of thought. 

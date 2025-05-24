@@ -228,4 +228,63 @@ Then with everything prepared, here we go.
     \textit{Pf}: Obvious.
 \end{Th}
 
+\begin{Th}{Th 1\_P1.16.3 (internal weak direct product)}
+    Let $G$ be a group and $\{N_i\}_{i\in I}$ be a family of normal subgroups $N_i$ of $G$. If
+    \begin{compactenum}
+        \item[(1)] $G = \big\langle \bigcup_{i\in I} N_i \big\rangle$;
+        \item[(2)] $N_i \cap \big\langle\bigcup_{j\neq i} N_j\big\rangle = \{1\}$ for all $i\in I$;
+    \end{compactenum}
+    Then $G \simeq \prod_{i\in I}^{\text{w}} N_i$. \textcolor{Df}{In this case we say that $G$ is the \textbf{internal weak direct product} of the family $\{N_i\}_{i\in I}$, denoted by (an equality mark instead of an isomorphism mark is used here, if no confusion arises)
+    $$ G = \wprod{i\in I} N_i $$}
+    \tcblower
+    \textit{Pf}: Check the map $\varphi: \prod_{i\in I}^{\text{w}} N_i \to G$ is a group isomorphism. Here $\varphi$ is defined as
+    $$ (n_i)_{i\in I}\mapsto \prod_{i\in I_1} n_i $$
+    where $ I_1 = \{i\in I: n_i \neq 1\} $. By the condition (2) (and by the Th \{, ID: 1.11.3\}) we know that $\varphi$ is well-defined. Then check that $\varphi$ is epi by the condition (1) and $\varphi$ is mono by the condition (2):
+    \begin{compactenum}
+        \item (epi) For any $g\in G$, we have
+        $$ \{n_{i_1}\cdots n_{i_m}: n_{i_k}\in N_{i_k}\} = \big\langle \bigcup_{i\in I} N_i \big\rangle = \textcolor{P}{G\ni g} = n_{i_1}\cdots n_{i_m} \xlongequal[i_1, \cdots, i_m \text{ distinct}]{n_{i_k}\neq 1} \varphi(n_i)_{i\in I} $$
+        \item (mono) For $n_{i_1}\cdots n_{i_m} = 1$ (where $i_1, \cdots, i_m$ are distinct), we have
+        $$ N_{i_i}\ni n_{i_1} = (n_{i_2}\cdots n_{i_m})^{-1} \in N_{i_2}\cdots N_{i_m} $$
+        so that $n_{i_1} = 1$. So forth we have $(n_i)_{i\in I} = 1$.
+    \end{compactenum}
+\end{Th}
+
+\begin{Th}{Th 1\_P1.16.3.1 (characterization of internal weak direct product)}
+    Let $G$ be a group and $\{N_i\}_{i\in I}$ be a family of normal subgroups $N_i$ of $G$. Then $G$ is the internal weak direct product of $\{N_i\}$ if and only if any nonidentity element $g\in G$ can be uniquely written as a product $n_{i_1}\cdots n_{i_m}$ such that:
+    \begin{compactenum}
+        \item $n_{i_k}\in N_{i_k}$ for all $k\in\{1, \cdots, m\}$;
+        \item $n_{i_k} \neq 1$ for all $k\in\{1, \cdots, m\}$;
+        \item $i_1, \cdots, i_m$ are distinct.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious. This is a direct corollary of the Th \{, ID: 1\_P1.16.3\}. See the proof there.
+\end{Th}
+
+\begin{Th}{Th 1\_P1.16.4 ($f_i: G_i \to H_i$, $\overline{f}: \prod_{i\in I} G_i \to \prod_{i\in I} H_i$)}
+    Let $\{f_i: G_i \to H_i\}_{i\in I}$ be a family of group homomorphisms $f_i$. Then $\{f_i\}$ induces a group homomorphism $ \prod_{i\in I} f_i: \prod_{i\in I} G_i \to \prod_{i\in I} H_i$ defined as $(g_i)_{i\in I}\mapsto (f_i(g_i))_{i\in I}$. And
+    \begin{compactenum}
+        \item $\prod_{i\in I} f_i\left(\prod_{i\in I}^{\text{w}} G_i\right) \subseteq \prod_{i\in I}^{\text{w}} H_i$, and thus the restriction of $\prod_{i\in I} f_i$ to $\prod_{i\in I}^{\text{w}} G_i$, denoted by $\prod_{i\in I}^{\text{w}} f_i$, is a group homomorphism $\prod_{i\in I}^{\text{w}} G_i \to \prod_{i\in I}^{\text{w}} H_i$. 
+        \item $\Ker \prod f_i = \prod \Ker f_i$, $\Ker \prod^{\text{w}} f_i = \prod^{\text{w}} \Ker f_i$.
+        \item $\Ima \prod f_i = \prod \Ima f_i$, $\Ima \prod^{\text{w}} f_i = \prod^{\text{w}} \Ima f_i$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious. 
+\end{Th}
+
+\begin{Rmk}{}
+    In the case of this theorem, of course $\prod f_i$ is mono (resp. epi) iff each $f_i$ is (and the same for $\prod^{\text{w}} f_i$).
+\end{Rmk}
+
+\begin{Th}{Clry 1\_P1.16.4.1 ($\prod G_i\big/ \prod N_i \simeq \prod G_i/N_i$)}
+    Let $\{G_i\}_{i\in I}$ and $\{N_i\}_{i\in I}$ be families of groups, and $N_i\nles G_i$ for all $i\in I$. Then
+    \begin{compactenum}
+        \item $\prod N_i\nles \prod G_i$ \quad and\quad $\prod G_i\big/ \prod N_i \simeq \prod G_i/N_i$;
+        \item $\prod^{\text{w}} N_i\nles \prod^{\text{w}} G_i$ \quad and\quad $\prod^{\text{w}} G_i\big/ \prod^{\text{w}} N_i \simeq \prod^{\text{w}} G_i/N_i$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious as we consider the canonical projections $\pi_i: G_i \to G_i/N_i$, using the Th \{, ID: 1\_P1.16.4\} and the 1st isomorphism theorem:
+    $$ \prod G_i\big/ \prod N_i = \prod G_i\big/ \prod \Ker \pi_i = \prod G_i\big/ \Ker \prod \pi_i \simeq \Ima \prod \pi_i = \prod \Ima \pi_i = \prod G_i/N_i. $$
+    The weak direct product case is similar.
+\end{Th}
+
 \end{document}
