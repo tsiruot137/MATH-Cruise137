@@ -38,7 +38,8 @@
     \newcommand{\Ima}{\text{Im}\,}
     \newcommand{\hooktwoheadrightarrow}{%
         \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
-    \newcommand{\End}{\text{End }}
+    \newcommand{\Endo}{\text{End}\,}
+    \newcommand{\Auto}{\text{Aut}\,}
     \newcommand{\Char}{\text{char}\,}
 
     % group isomorphism and ring isomorphism
@@ -138,8 +139,8 @@ Then with everything prepared, here we go.
         \item If in a ring $R$ there exist $a, b \in R$ such that 
         $$ a, b \neq 0 \text{ but } ab = 0, $$
         then $a$ and $b$ are called two \textbf{zero divisors} of $R$. In this case, $a$ (resp. $b$) is called a \textbf{left zero divisor} (resp. \textbf{right zero divisor}) 
-        \item \textcolor{Th}{A ring $R$ has no zero divisors iff the (two-sided, non-zero) cancellation law holds. That is, for all $a, b, c \in R$, if $a\neq 0$, then
-        $$ \left( ab = ac \quad\text{or}\quad ba = ca \right) \quad\Rightarrow\quad b = c. $$}
+        \item \textcolor{Th}{A ring $R$ has no zero divisors iff the (two-sided, non-zero) cancellation law holds (that is, for all $a, b, c \in R$, if $a\neq 0$, then
+        $$ \left( ab = ac \quad\text{or}\quad ba = ca \right) \quad\Rightarrow\quad b = c. )$$}
     \end{compactenum}
 \end{Df}
 
@@ -165,7 +166,7 @@ Then with everything prepared, here we go.
 \begin{Rmk}{}
     Clearly:
     \begin{compactenum}
-        \item \textcolor{Th}{A left invertible element could have more than one left inverse.} For example, consider $A = \{(a_0, a_1, a_2, \cdots)\}$ as the set of sequences in $\mathbb{R}$ (of course $A$ is a group under the componentwise addition). Then the set of endomorphisms of $A$, $\text{End }(A)$, is a ring under the pointwise addition and the composition of functions. Consider $r\in\text{End }(A)$ defined by
+        \item \textcolor{Th}{A left invertible element could have more than one left inverse.} For example, consider $A = \{(a_0, a_1, a_2, \cdots)\}$ as the set of sequences in $\mathbb{R}$ (of course $A$ is a group under the componentwise addition). Then the set of endomorphisms of $A$, $\Endo A$, is a ring under the pointwise addition and the composition of functions. Consider $r\in\Endo A$ defined by
         $$ r(a_0, a_1, a_2, \cdots) = (0, a_0, a_1, \cdots), $$
         then $r$ is left invertible, but with two different left inverses $l$ and $l_0$:
         $$ \begin{aligned}
@@ -236,7 +237,7 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Rmk}{}
-    The condition that $a_i a_j = a_j a_i$ for all $i, j$ is necessary, but the condition that $R$ has an identity is not. If $R$ has no identity the equation is still valid, as long as we view $a_i^0 a$ as $a$ (although $a_i^0$ is not defined). 
+    \textcolor{Th}{The condition that $a_i a_j = a_j a_i$ for all $i, j$ is necessary, but the condition that $R$ has an identity is not. If $R$ has no identity the equation is still valid, as long as we view $a_i^0 a$ as $a$ (although $a_i^0$ is not defined).}
 \end{Rmk}
 
 \begin{Df}{Df2.3 (ring homomorphism)}

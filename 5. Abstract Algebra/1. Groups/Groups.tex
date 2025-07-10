@@ -28,13 +28,15 @@
     \title{\LARGE \textbf{Groups}}
     \author{\large Jiawei Hu}
 
-    % new commands for formula typying
+    % new commands for formula typing
     \newcommand{\lcm}{\text{lcm}}
     \newcommand{\cycl}{\text{cycl}}
     \newcommand{\nles}{\vartriangleleft}
     \newcommand{\notnles}{\ntriangleleft}
     \newcommand{\Ker}{\text{Ker}\,}
     \newcommand{\Ima}{\text{Im}\,}
+    \newcommand{\Endo}{\text{End}\,}
+    \newcommand{\Auto}{\text{Aut}\,}
     \newcommand{\hooktwoheadrightarrow}{%
         \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
 
@@ -67,6 +69,7 @@ Here is the \textbf{Quick Search} for this chapter:
         \item (1.16.*): Direct products (included in the P1 file).
         \item (1.17.*): Free groups (included in the P1 file).
         \item (1.18.*): A summary of the examples of concrete groups (included in the P2 file).
+        \item (1.19.*): Group actions and Sylow theorem (included in the P3 file).
     \end{compactdesc}
 \end{Th}
 
@@ -99,9 +102,9 @@ Then with everything prepared, here we go.
             \item $(\mathbb{Z}, +)$, $(\mathbb{Q}, +)$, $(\mathbb{R}, +)$, $(\mathbb{C}, +)$, each with the identity $0$ and the inverse $-a$;
             \item $(\mathbb{Q}\backslash\{0\}, \cdot)$, $(\mathbb{R}\backslash\{0\}, \cdot)$, $(\mathbb{C}\backslash\{0\}, \cdot)$, each with the identity $1$ and the inverse $1/a$;
             \item $(\mathbb{F}^n, +)$, $(\mathbb{F}^{m,n}, +)$ where $\mathbb{F}$ is a number field, each with the identity $\mathbf{0}$ (the zero vector or matrix) and the inverse $-\mathbf{a}$;
-            \item $(A(S), \circ)$ where $S$ is a non-empty set and $A(S)$ is the set of all bijections $f$ from $S$ to $S$, with the identity $\text{id}_S$ (the identity function) and the inverse $f^{-1}$.
+            \item $(\mathcal{A}(S), \circ)$ where $S$ is a non-empty set and $\mathcal{A}(S)$ is the set of all bijections $f$ from $S$ to $S$, with the identity $\text{id}_S$ (the identity function) and the inverse $f^{-1}$.
         \end{compactenum}}
-        \textcolor{Df}{For the group $A(S)$ here, the elements in $A(S)$ are called \textbf{permutations} of $S$. If $S = \{1, \cdots, n\}$, then $A(S)$ called the \textbf{symmetric group on $n$ letters}, denoted by $\mathbb{S}_n$.} \textcolor{Df}{For $f\in\mathbb{S}_n$ and $a\in\{1,\cdots,n\}$, we call $a$ a \textbf{fixed point} (resp. \textbf{non-fixed point}) of $f$ if $f(a) = a$ (resp. $f(a) \neq a$).}
+        \textcolor{Df}{For the group $\mathcal{A}(S)$ here, the elements in $\mathcal{A}(S)$ are called \textbf{permutations} of $S$. If $S = \{1, \cdots, n\}$, then $\mathcal{A}(S)$ called the \textbf{symmetric group on $n$ letters}, denoted by $\mathbb{S}_n$.} \textcolor{Df}{For $f\in\mathbb{S}_n$ and $a\in\{1,\cdots,n\}$, we call $a$ a \textbf{fixed point} (resp. \textbf{non-fixed point}) of $f$ if $f(a) = a$ (resp. $f(a) \neq a$).}
     \end{compactenum}
 \end{Rmk}
 
@@ -267,7 +270,7 @@ Then with everything prepared, here we go.
         \item $H = G$, then $f$ is called an \textbf{endomorphism}.
         \item $H = G$ and $f$ is bijective, then $f$ is called an \textbf{automorphism}.
     \end{compactenum}
-    The set of all endomorphisms of a group $G$ is denoted as $\text{End}(G)$.
+    The set of all endomorphisms (resp. automorphisms) of a group $G$ is denoted as $\Endo G$ (resp. $\Auto G$).
 \end{Df}
 
 \begin{Rmk}{}
@@ -902,7 +905,7 @@ Then with everything prepared, here we go.
     Let $f: G\to H$ be a group homomorphism.
     \begin{compactenum}
         \item Does $f(N)\nles H$ hold for any $N\nles G$? What about that $f^{-1}(M) \nles G$ hold for any $M\nles H$?
-        \item Consider the map $\varphi$ defined as $H\mapsto f(H)$ for $H<G$. Please study the (1) range, (2) injectivity and (3) surjectivity of $\varphi$.
+        \item Consider the map $\varphi$ defined as $K\mapsto f(K)$ for $K<G$. Please study the (1) range, (2) injectivity and (3) surjectivity of $\varphi$.
     \end{compactenum}
     To answer these questions, figure out what other conditions are needed.
     \tcblower
@@ -921,9 +924,9 @@ Then with everything prepared, here we go.
 \begin{Th}{Th1.12.7 ($N\mapsto f(N)$, $K\mapsto f(K)$)}
     Let $f: G\to H$ be a group homomorphism. Then:
     \begin{compactenum}
-        \item $f^{-1}(M) \nles G$ for any $M\nles H$.
-        \item If $f$ is an epimorphism, then $f(N)\nles H$ for any $N\nles G$.
-        \item Consider the map $\varphi: \mathrm{S}(G)\to\mathrm{S}(H)$ where $\mathrm{S}(G)$ (similar to $\mathrm{S}(H)$) is the family of the subgroups of $G$ defined as $H\mapsto f(H)$ for $H<G$. If $f$ is an epimorphism, then $\varphi$ is a surjection.
+        \item $M\nles H \implies f^{-1}(M) \nles G$.
+        \item If $f$ is an epimorphism, then $N\nles G \implies f(N)\nles H$. 
+        \item Consider the map $\varphi: \mathrm{S}(G)\to\mathrm{S}(H)$ where $\mathrm{S}(G)$ (similar to $\mathrm{S}(H)$) is the family of the subgroups of $G$ defined as $K\mapsto f(K)$ for $K<G$. If $f$ is an epimorphism, then $\varphi$ is a surjection.
         \item In the case of 3 (of course assume that $f$ is epimorphic), let $\mathrm{S}_f(G) = \{K\in\mathrm{S}(G): \,\Ker f<K\}$. Then 
         $$ \varphi: \mathrm{S}_f(G)\hooktwoheadrightarrow\mathrm{S}(H) $$
     \end{compactenum}
@@ -1003,6 +1006,9 @@ Then with everything prepared, here we go.
 \end{Th}
 
 \begin{Th}{Blocks from the P2 file}
+\end{Th}
+
+\begin{Th}{Blocks from the P3 file}
 \end{Th}
 
 \end{document}

@@ -15,6 +15,7 @@
     \usepackage{amsmath}
     \usepackage{extarrows}
     \usepackage{tikz-cd}
+    \usepackage{float}
 
     \usepackage{tcolorbox}
     \definecolor{Df}{RGB}{0, 184, 148}
@@ -130,7 +131,7 @@ Then with everything prepared, here we go.
 \begin{Rmk}{}
     Some examples of subrings and ideals:
     \begin{compactenum}
-        \item ($\mathbb{Z}$) \textcolor{Th}{Of the ring $(\mathbb{Z},+,\times)$. Every (additive) subgroup, $n\mathbb{Z}$, is a subring, is a principal ideal ($n\mathbb{Z} = (n) = (-n)$).}
+        \item ($\mathbb{Z}$) \textcolor{Th}{Of the ring $(\mathbb{Z},+,\times)$, every (additive) subgroup, $n\mathbb{Z}$, is a principal ideal ($n\mathbb{Z} = (n) = (-n)$).}
         \item ($\cent R$) \textcolor{Th}{The center of a ring is a subring, but is not necessarily an ideal.} For example, \textcolor{Th}{
         $$ \cent\mathcal{M}_2(\mathbb{R}) = \left\{ \begin{bmatrix}
             a & 0 \\
@@ -230,28 +231,117 @@ Then with everything prepared, here we go.
         \item Normal subgroups $\leftrightarrow$ ideals;
         \item (For the notations) $G\leftrightarrow R$, $H\leftrightarrow S$, $N\leftrightarrow I$, $M\leftrightarrow J$, $K\leftrightarrow Q$, $L\leftrightarrow T$.
     \end{compactenum}}
-    Many of the following theorems is a direct extension of the corresponding group theorems, under this analogy. In other words, \textbf{just replacing the group terms in the group theorems (including their proofs or solutions) with the ring terms we can get the ring theorems (including their proofs or solutions).} 
+    Many of the following theorems is a direct extension of the corresponding group theorems, under this analogy. In other words, \textbf{just replacing the group terms in the group theorems (including their proofs or solutions) with the ring terms we can get the ring theorems (including their proofs or solutions).} Here we give an summary of these theorems (convenient for the readers to remember), and state their content more detailedly in the several following Th blocks.
+    \begin{Rmk}{}
+        The following theorems are direct extension to those of groups recorded in the chapter 1.
+        \begin{compactenum}
+            \item[$\bullet$] [(The mark of the ring theorem)] $\overset{\mathcal{A}}{\Longleftarrow}$ [block ID of the group theorem]
+            \item (the canonical epimorphism) \verb|{, ID: 2_P2.4.2.1.1}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.1}|
+            \item () \verb|{, ID: 2_P2.4.2.1.2.-1}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.2.-1}|, \\ 
+            ($f: R\to S$, $\overline{f}: R/I\to S$) \verb|{, ID: 2_P2.4.2.1.2}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.2}|
+            \item () \verb|{, ID: 2_P2.4.2.1.3.-1}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.3.-1}|, \\ 
+            (the 1st isomorphism theorem) ($R/\Ker f\Riso \Ima f$) \verb|{, ID: 2_P2.4.2.1.3}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.3}|
+            \item () \verb|{, ID: 2_P2.4.2.1.4.-1}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.4.-1}|, \\ 
+            ($f: R\to S$, $\overline{f}: R/I\to S/J$) \verb|{, ID: 2_P2.4.2.1.4}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.4}|
+            \item () \verb|{, ID: 2_P2.4.2.1.5.-1}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.5.-1}|, \\ 
+            (the 2nd isomorphism theorem) ($ Q/(I\cap Q) \Riso (I+Q)/I $) \verb|{, ID: 2_P2.4.2.1.5}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.5}|
+            \item () \verb|{, ID: 2_P2.4.2.1.6.-1}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.6.-1}|, \\ 
+            (the 3rd isomorphism theorem) ($ (R/Q)\Big/ (S/Q) \Riso (R/S) $) \verb|{, ID: 2_P2.4.2.1.6}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.6}|
+            \item () \verb|{, ID: 2_P2.4.2.1.7.-1}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.7.-1}|, \\ 
+            ($I\mapsto f(I)$, $Q\mapsto f(Q)$) \verb|{, ID: 2_P2.4.2.1.7}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.7}|
+            \item (the subrings of $R/I$) \verb|{, ID: 2_P2.4.2.1.8}| $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.8}|
+        \end{compactenum}
+    \end{Rmk}
 \end{Rmk}
 
-\begin{Th}{Th 2\_P2.4.2.1 (ring isomorphism theorems)}
-    The following theorems are direct extension to those of groups recorded in the chapter 1.
+\begin{Th}{Th 2\_P2.4.2.1.1 (the canonical epimorphism)}
+    The kernel of a ring homomorphism is an ideal (of the domain); and conversely, an ideal is the kernel of a ring homomorphism (from the “supring”)
+    \tcblower
+    \textit{Pf}: 
     \begin{compactenum}
-        \item[$\bullet$] [(The mark of the ring theorem)] $\overset{\mathcal{A}}{\Longleftarrow}$ [block ID of the group theorem]
-        \item (the canonical epimorphism) $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.1}|
-        \item () $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.2.-1}|, \\ 
-        ($f: R\to S$, $\overline{f}: R/I\to S$) $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.2}|
-        \item () $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.3.-1}|, \\ 
-        (the 1st isomorphism theorem) ($R/\Ker f\Riso \Ima f$) $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.3}|
-        \item () $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.4.-1}|, \\ 
-        ($f: R\to S$, $\overline{f}: R/I\to S/J$) $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.4}|
-        \item () $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.5.-1}|, \\ 
-        (the 2nd isomorphism theorem) ($ Q/(I\cap Q) \Riso (I+Q)/I $) $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.5}|
-        \item () $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.6.-1}|, \\ 
-        (the 3rd isomorphism theorem) ($ (R/Q)\Big/ (S/Q) \Riso (R/S) $) $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.6}|
-        \item () $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.7.-1}|, \\ 
-        ($I\mapsto f(I)$, $Q\mapsto f(Q)$) $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.7}|
-        \item (the subrings of $R/I$) $\overset{\mathcal{A}}{\Longleftarrow}$ \verb|{, ID: 1.12.8}|
+        \item Let $f: R\to S$ be a ring homomorphism. Then $\Ker f\ideal R$.
+        \item Let $I\ideal R$. Then the map $\pi_I^R: R\to R/I$ defined by $r\mapsto r+I$ is a ring homomorphism with $\Ker \pi_I^R = I$.
     \end{compactenum}
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Obviously the $\pi_I^R$ here is epimorphic,} \textcolor{Df}{still called the \textbf{canonical epimorphism}}
+\end{Rmk}
+
+\begin{Th}{Th 2\_P2.4.2.1.2 ($f: R\to S$, $\overline{f}: R/I\to S$)}
+    Suppose $f: R\to S$ is a ring homomorphism. If $I\ideal R$ and $I\subseteq\Ker f$, then the map $\overline{f}: R/I\to S$ defined as $\overline{f}(r+I) = f(r)$ is a ring homomorphism, with:
+    \begin{compactenum}
+        \item $\Ker \overline{f} = (\Ker f)\,/\,I$;
+        \item $\Ima \overline{f} = \Ima f$;
+        \item $\overline{f}$ is a monomorphism iff $I = \Ker f$;
+        \item $\overline{f}$ is an epimorphism iff $f$ is an epimorphism.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th 2\_P2.4.2.1.3 (the 1st isomorphism theorem) ($R/\Ker f\Riso \Ima f$)}
+    For a ring homomorphism $f: R\to S$, we have
+    $$ R/\Ker f \simeq \Ima f. $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th 2\_P2.4.2.1.4 ($f: R\to S$, $\overline{f}: R/I\to S/J$)}
+    Suppose $f: R\to S$ is a ring homomorphism and $I\ideal R$, $J\ideal S$. If $f(I)<J$, then the map $\overline{f}: R/I\to S/J$ defined as $\overline{f}(r+I) = f(r)+J$ is a ring homomorphism, with:
+    \begin{compactenum}
+        \item $\Ker \overline{f} = f^{-1}(J)\,/\,I$;
+        \item $\Ima \overline{f} = \{h+J: h\in\Ima f\}$;
+        \item $\overline{f}$ is a monomorphism iff $f^{-1}(J) < I$;
+        \item $\overline{f}$ is an epimorphism iff $(\Ima f) + J = S$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th 2\_P2.4.2.1.5 (the 2nd isomorphism theorem) ($ Q/(I\cap Q) \Riso (I+Q)/I $)}
+    Let $R$ be a ring and $I\ideal R$, $Q\subr R$. Then
+    $$ Q/(I\cap Q) \simeq (I+Q)/I. $$
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Th 2\_P2.4.2.1.6 (the 3rd isomorphism theorem) ($ (R/Q)\Big/ (S/Q) \Riso (R/S) $)}
+    Let $R$ be a ring. If $Q\ideal R$, $S\ideal R$ and $Q\ideal S$, then $(S/Q)\ideal (R/Q)$, and
+    $$ (R/Q)\Big/ (S/Q) \simeq (R/S). $$
+    \tcblower
+    \textit{Pf}:
+\end{Th}
+
+\begin{Th}{Th 2\_P2.4.2.1.7 ($I\mapsto f(I)$, $Q\mapsto f(Q)$)}
+    Let $f: R\to S$ be a ring homomorphism. Then:
+    \begin{compactenum}
+        \item $J\ideal S \implies f^{-1}(J) \ideal R$.
+        \item If $f$ is an epimorphism, then $I\ideal R \implies f(I)\ideal S$. 
+        \item Consider the map $\varphi: \mathrm{S}(R)\to\mathrm{S}(S)$ where $\mathrm{S}(R)$ (similar to $\mathrm{S}(S)$) is the family of the subrings of $R$ defined as $Q\mapsto f(Q)$ for $Q\subr R$. If $f$ is an epimorphism, then $\varphi$ is a surjection.
+        \item In the case of 3 (of course assume that $f$ is epimorphic), let $\mathrm{S}_f(R) = \{Q\in\mathrm{S}(R): \,\Ker f\subseteq Q\}$. Then
+        $$ \varphi: \mathrm{S}_f(R)\hooktwoheadrightarrow\mathrm{S}(S) $$
+    \end{compactenum}
+    \tcblower
+\end{Th}
+
+\begin{Rmk}{}
+    The 3rd and 4th statements of this theorem still say about the subrings. However, in ring theory the subrings are not that important, and thus we modify the statements to talk about the ideals instead. Actually we can prove in a familiar way that \textcolor{Th}{(let $f: R\to S$ be a ring homomorphism)
+    \begin{compactenum}
+        \item If $f$ is an epimorphism, then the map $\varphi: \mathrm{I}(R)\to\mathrm{I}(S)$ where $\mathrm{I}(R)$ (similar to $\mathrm{I}(S)$) is the family of the ideals of $R$ can be defined, still by $I\mapsto f(I)$ for $I\ideal R$. And then $\varphi$ is a surjection.
+        \item In the case of 1 (of course assume that $f$ is epimorphic), let $\mathrm{I}_f(R) = \{I\in\mathrm{I}(R): \,\Ker f\subseteq I\}$. Then
+        $$ \varphi: \mathrm{I}_f(R)\hooktwoheadrightarrow\mathrm{I}(S) $$
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Th}{Th 2\_P2.4.2.1.8 (the subrings of $R/I$)}
+    Let $R$ be a ring and $I\ideal R$. Then
+    \begin{compactenum}
+        \item A subset of $R/I$ is a subring of $R/I$ iff it is of the form $Q/I$, where $I\subseteq Q\subseteq R$.
+        \item A subring $Q/I$ (where $I\subseteq Q\subseteq R$) of $R/I$ is an ideal of $R/I$ iff $Q$ is an ideal of $R$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
 \end{Th}
 
 \begin{Df}{Df 2\_P2.4.3.1 (prime ideals)}
@@ -383,7 +473,7 @@ Then with everything prepared, here we go.
         \item If $I$ is finite (denote $I = \{1, \cdots, n\}$) and each $R_i$ has an identity, then each ideal of $R_1\times\cdots\times R_n$ is of the form $A_1\times\cdots\times A_n$, where $A_i\ideal R_i$ for all $i\in I$.
     \end{compactenum}
     \tcblower
-    \textit{Pf}: The 1st statement is obvious. Now prove the 2nd statement. First for an ideal $A$ of $R_1\times\cdots\times R_n$ we have (by let $f$ in the 7th statement of Th \{, 2\_P2.4.2.1\} be the canonical projection $\pi_i$) $\pi_i(A)\ideal R_i\triangleq A_i$, and thus $A\subseteq A_1\times\cdots\times A_n$. Then we need to show that $A_1\times\cdots\times A_n\subseteq A$. \\
+    \textit{Pf}: The 1st statement is obvious. Now prove the 2nd statement. First for an ideal $A$ of $R_1\times\cdots\times R_n$ we have (by let $f$ in the 7th statement of Th \{, 2\_P2.4.2.1\} be the canonical projection $\pi_i$) $A_i\triangleq \pi_i(A)\ideal R_i$, and thus $A\subseteq A_1\times\cdots\times A_n$. Then we need to show that $A_1\times\cdots\times A_n\subseteq A$. \\
     For any $(a_1, a_2, \cdots, a_n)\in A_1\times A_2\cdots\times A_n$, there is some $(a_1, \ast, \cdots, \ast)\in A$, and thus
     $$ (a_1, 0, \cdots, 0) = (1_{R_1}, 0, \cdots, 0)(a_1, \ast, \cdots, \ast) \in A. $$
     And so forth, we have $(0, a_2, \cdots, 0)\in A$, \; $\cdots$ \;, $(0, \cdots, 0, a_n)\in A$, and then

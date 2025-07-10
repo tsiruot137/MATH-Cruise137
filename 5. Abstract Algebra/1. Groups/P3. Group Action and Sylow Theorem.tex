@@ -1,0 +1,195 @@
+\documentclass{article}
+
+    \usepackage{xcolor}
+    \definecolor{pf}{rgb}{0.4,0.6,0.4}
+    \usepackage[top=1in,bottom=1in, left=0.8in, right=0.8in]{geometry}
+    \usepackage{setspace}
+    \setstretch{1.2} 
+    \setlength{\parindent}{0em}
+
+    \usepackage{paralist}
+    \usepackage{cancel}
+
+    % \usepackage{ctex}
+    \usepackage{amssymb}
+    \usepackage{amsmath}
+    \usepackage{extarrows}
+    \usepackage{tikz-cd}
+
+    \usepackage{tcolorbox}
+    \definecolor{Df}{RGB}{0, 184, 148}
+    \definecolor{Th}{RGB}{9, 132, 227}
+    \definecolor{Rmk}{RGB}{215, 215, 219}
+    \definecolor{P}{RGB}{154, 13, 225}
+    \newtcolorbox{Df}[2][]{colbacktitle=Df, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Th}[2][]{colbacktitle=Th, colback=white, title={\large\color{white}#2},fonttitle=\bfseries,#1}
+    \newtcolorbox{Rmk}[2][]{colbacktitle=Rmk, colback=white, title={\large\color{black}{Remarks}},fonttitle=\bfseries,#1}
+
+    \title{\LARGE \textbf{Group Action and Sylow Theorem}}
+    \author{\large Jiawei Hu}
+
+    % new commands for formula typing
+    \newcommand{\lcm}{\text{lcm}}
+    \newcommand{\cycl}{\text{cycl}}
+    \newcommand{\nles}{\vartriangleleft}
+    \newcommand{\notnles}{\ntriangleleft}
+    \newcommand{\Ker}{\text{Ker}\,}
+    \newcommand{\Ima}{\text{Im}\,}
+    \newcommand{\hooktwoheadrightarrow}{%
+        \hookrightarrow\mathrel{\mspace{-15mu}}\rightarrow}
+    \newcommand{\act}{\curvearrowright}
+
+    \newcommand{\Endo}{\text{End}\,}
+    \newcommand{\Auto}{\text{Aut}\,}
+    \newcommand{\Inn}{\text{Inn}\,}
+    
+\begin{document}
+\maketitle
+
+This file is about the \textbf{Group Action and Sylow Theorem}. 
+
+Here is the \textbf{Quick Search} for this chapter:
+\begin{Th}{Quick Search}
+    \begin{compactdesc}
+        \item (1\_P3.19.0.*, 1\_P3.19.1.*): Group actions, orbits, stabilizers.
+        \item (1\_P3.19.2.*): $G\act S \implies G\to \mathcal{A}(S)$.
+    \end{compactdesc}
+\end{Th}
+
+Then with everything prepared, here we go. 
+
+\begin{Df}{Df 1\_P3.19 (group action)}
+    Let $G$ be a group and $S$ a set. Then we say that $G$ \textbf{acts on} $S$ (\textbf{by} the \textbf{action} $\alpha$), denoted as $G\overset{\alpha}{\act} S$, if there is a map $\alpha: G \times S \to S$ such that
+    \begin{compactenum}
+        \item $\alpha(1_G, x) = x$ for all $x \in S$;
+        \item $\alpha(g_1g_2, x) = \alpha(g_1, \alpha(g_2, x))$ for all $g_1, g_2 \in G$ and $x \in S$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    Remarks about this definition:
+    \begin{compactenum}
+        \item \textcolor{Df}{If the action $\alpha$ is clear from the context, we may usually omit it and just write $G \curvearrowright S$.}
+        \item \textcolor{Df}{We usually denote $\alpha$ as $(g, x)\mapsto gx$ if no confusion arises (that is, if $gx$ had already been defined as some product, we should be careful).} Then the two conditions above can be rewritten as
+        \begin{compactenum}
+            \item $1_G x = x$ for all $x \in S$;
+            \item $(g_1g_2)x = g_1(g_2x)$ for all $g_1, g_2 \in G$ and $x \in S$.
+        \end{compactenum}
+        which is more convenient to use.
+    \end{compactenum}
+\end{Rmk}
+
+\begin{Th}{Eg 1\_P3.19.0.1 (examples of group actions)}
+    Some examples of group actions:
+    \begin{compactenum}
+        \item $\mathcal{A}(S)\act S$ (see the definition of $\mathcal{A}(S)$ in the Rmk \{, ID: 1.1\}) by $(f, x)\mapsto f(x)$.
+        \item (Translation action) Let $G$ be a group. 
+        \begin{compactenum}
+            \item Let $H<G$. Then $H\act G$ by $(h, g)\mapsto hg$ (resp. by $(h, g)\mapsto gh^{-1}$), \textcolor{Df}{which is called the \textbf{left} (resp. \textbf{right}) \textbf{translation action} of $H$ on $G$.}
+            \item Let $H, K<G$, and $S = \{gK\}$ be the set of all left cosets (resp. $S = \{Kg\}$ be the set of all right cosets) of $K$ in $G$. Then $H\act S$ by $(h, gK)\mapsto hgK$ (resp. $H\act S$ by $(h, Kg)\mapsto Kgh^{-1}$), \textcolor{Df}{which is called the \textbf{left} (resp. \textbf{right}) \textbf{translation action} of $H$ on $S$.}
+        \end{compactenum}
+        \item (Conjugation action) Let $G$ be a group.
+        \begin{compactenum}
+            \item Let $H<G$. Then $H\act G$ by $(h, g)\mapsto hgh^{-1}$, \textcolor{Df}{which is called the \textbf{conjugation action} of $H$ on $G$.} \textcolor{Df}{In this case, the element $hgh^{-1}$ is called a \textbf{conjugate} of $g$ (the conjugate of $g$ by $h$).}
+            \item Let $H<G$, and $S = \{K\subseteq G: K<G\}$. Then $H\act S$ by $(h, K)\mapsto hKh^{-1}$, \textcolor{Df}{which is called the \textbf{conjugation action} of $H$ on $S$.} \textcolor{Df}{In this case, the set $hKh^{-1}$ is called a \textbf{conjugate} of $K$ (the conjugate of $K$ by $h$).} 
+        \end{compactenum}
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{The right translation by which $G>H\act G$ is defined as $(h, g)\mapsto gh^{-1}$ instead of $(h, g)\mapsto gh$, as the latter is not a group action.}
+\end{Rmk}
+
+\begin{Th}{Th 1\_P3.19.1 (orbit and stabilizer)}
+    Let $G\act S$ by $(g, x)\mapsto gx$. Then 
+    \begin{compactenum}
+        \item The relation $\sim$ on $S$ defined by
+        $$ x\sim x^\prime \quad\Longleftrightarrow\quad gx = x^\prime \;\text{for some}\; g\in G $$
+        is an equivalence relation, \textcolor{Df}{under which the equivalence class of $x\in S$, denoted as $\overline{x}$, is called the \textbf{orbit} of $x$ (an orbit of $G$ on $S$).}
+        \item For each $x\in S$, the set $G_x = \{g\in G: gx = x\}$ is a subgroup of $G$, \textcolor{Df}{called the \textbf{stabilizer} of $x$ (or, the \textbf{subgroup fixing} $x$, the \textbf{isotropy group} of $x$).}
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Df}{Df 1\_P3.19.1.1 (examples of orbit and stabilizer)}
+    Some examples of orbits and stabilizers:
+    \begin{compactenum}
+        \item Consider $G\act G$ by conjugation (that is, consider $G<G$). Then the orbit of $x\in G$, $\overline{x}\,\textcolor{Th}{= \{gxg^{-1}: g\in G\}}$, is called the \textbf{conjugacy class} of $x$ (a conjugacy class of $G$).
+        \item Consider $G>H\act G$ by conjugation. Then the stabilizer of $x\in G$, $H_x \textcolor{Th}{ = \{h\in H: hx = xh\}}$, is called the \textbf{centralizer} of $x$ in $H$, denoted as $\mathcal{C}_H(x) = H_x$. If $H = G$, then $\mathcal{C}_G(x)$ is simply called the \textbf{centralizer} of $x$.
+        \item Consider $G>H\act S = \{K\subseteq G: K<H\}$ by conjugation. Then the stabilizer of $K\in S$, $H_K\,\textcolor{Th}{= \{h\in H: hK = Kh\}}$, is called the \textbf{normalizer} of $K$ in $H$, denoted as $\mathcal{N}_H(K) = H_K$. If $H = G$, then $\mathcal{N}_G(K)$ is simply called the \textbf{normalizer} of $K$.
+    \end{compactenum}
+\end{Df}
+
+\begin{Rmk}{}
+    \textcolor{Th}{Consider $G\act S = \{K\subseteq G: K<G\}$ by conjugation. Then 
+    \begin{compactenum}
+        \item For each $K\in S$ we have $K\nles \mathcal{N}_G(K)$.
+        \item For each $K\in S$, 
+        $$ K\nles G \quad\Longleftrightarrow\quad \mathcal{N}_G(K) = G $$
+    \end{compactenum}}
+\end{Rmk}
+
+\begin{Th}{Th 1\_P3.19.1.2 (orbit-stabilizer theorem)}
+    Let $G\act S$. Then for each $x\in S$, 
+    $$ |\overline{x}| = [G: G_x] $$
+    \tcblower
+    \textit{Pf}: Let $\{g_i\}_{i\in I}$ be a complete set of left coset representatives of $G_x$ in $G$ (see the Df \{, ID: 1.9.3\}). Then it is easy to check that the map $\{g_i G_x\}\to \overline{x}$ defined by $g_i G_x \mapsto g_i x$ is a bijection. 
+\end{Th}
+
+\begin{Th}{Clry 1\_P3.19.1.2.1 (class equation)}
+    Consider $G\act G$ by conjugation. Then
+    \begin{compactenum}
+        \item For each $x\in G$, $|\overline{x}| = [G: \mathcal{C}_G(x)]$.
+        \item If $G$ is finite and $\overline{x}_1, \cdots, \overline{x}_n$ are all the distinct conjugacy classes of $G$, then the \textcolor{Df}{\textbf{class equation of}} $G$ below holds:
+        $$ |G| = \sum_{i=1}^{n} [G: \mathcal{C}_G(x_i)]. $$
+    \end{compactenum}
+    Consider $G\act S = \{K\subseteq G: K<G\}$ by conjugation. Then
+    \begin{compactenum}
+        \item[3.] For each $K\in S$, $\big|\overline{K}\big| = [G: \mathcal{N}_G(K)]$.
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: Obvious by the Th \{, ID: 1\_P3.19.1.2\}. 
+\end{Th}
+
+\begin{Th}{Th 1\_P3.19.2 ($G\act S \implies \text{A homo } G\to \mathcal{A}(S)$)}
+    If $G\act S$ by $(g,x)\mapsto gx$, then this action induces an group homomorphism $\tau: G\to \mathcal{A}(S)$ such that 
+    $$ g \;\overset{\tau}{\longmapsto}\; \left(x\mapsto gx\right). $$ 
+    \tcblower
+    \textit{Pf}: Obvious.
+\end{Th}
+
+\begin{Th}{Clry 1\_P3.19.2.1 (Cayley) ($G\hookrightarrow \mathcal{A}(G)$)}
+    Let $G$ be a group. Then there is a group monomorphism $G\to\mathcal{A}(G)$.
+    \tcblower
+    \textit{Pf}: Consider $G\act G$ by left translation. Then this follows immediately from the Th \{, ID: 1\_P3.19.2\}.
+\end{Th}
+
+\begin{Rmk}{}
+    \textcolor{Th}{This theorem indicates that, every group is isomorphic to a group of permutations on it. If particular the group $G$ is finite, then $G$ is isomorphic to some subgroup of $\mathbb{S}_{|G|}$ (since $\mathcal{A}(G)\simeq \mathbb{S}_{|G|}$).}
+\end{Rmk}
+
+\begin{Th}{Clry 1\_P3.19.2.2 ($G\to \Auto (G)$)}
+    Let $G$ be a group. 
+    \begin{compactenum}
+        \item For each $g\in G$, the map $G\to G$ such that $x\mapsto gxg^{-1}$ is a group automorphism.
+        \item There is a group homomorphism $G\to \Auto G$ with kernel $\mathcal{C}(G)\triangleq \{g\in G: gx = xg\;\text{for all}\; x\in G\}$. 
+    \end{compactenum}
+    \tcblower
+    \textit{Pf}: The statement 1 is obvious. For the statement 2, consider $G\act G$ by conjugation and then it follows immediately from the Th \{, ID: 1\_P3.19.2\}.
+\end{Th}
+
+\begin{Rmk}{}
+    \begin{compactenum}
+        \item \textcolor{Df}{Let $G$ be a group. Then a map of the form $x\mapsto gxg^{-1}$ is called an \textbf{inner automorphism} of $G$ (the inner automorphism induced by $g$). The set of all inner automorphisms of $G$ is denoted as $\Inn G$.}
+        \item \textcolor{Df}{Let $G$ be a group. Then set $\mathcal{C}(G)$ is called the \textbf{center} of $G$.} \textcolor{Th}{An element $g\in G$ is in $\mathcal{C}(G)$ iff the conjugacy class of $g$ consists of $g$ alone.} And \textcolor{Th}{if $x\in \mathcal{C}(G)$, then $[G: \mathcal{C}_G(x)] = 1$.} And \textcolor{Th}{if $G$ is finite, then the class equation of $G$ can be written as
+        $$ |G| = \sum_{x_i\in\mathcal{C}(G)} [G: \mathcal{C}_G(x_i)] + \sum_{x_j\notin\mathcal{C}(G)} [G: \mathcal{C}_G(x_j)] = |\mathcal{C}(G)| + \sum_{x_j\notin\mathcal{C}(G)} [G: \mathcal{C}_G(x_j)]. $$
+        Clearly, for the $x_j$'s we have $[G: \mathcal{C}_G(x_j)] > 1$.}
+    \end{compactenum}
+\end{Rmk}
+
+
+
+\end{document}
